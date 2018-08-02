@@ -1,4 +1,7 @@
 import {Platform, StyleSheet,Dimensions} from 'react-native';
+import {White,ButtonText,PlusIconBackground,HeaderColor} from '../../../utils/Colors';
+import {LogoSize,LogoFontWeight,LogoPadding,TextInputFont,RegularFon,HeaderTextFontWeight,HeaderText,ButtonTextSize} from '../../../utils/FontSizes';
+
 
 
 export default styles = StyleSheet.create({
@@ -7,17 +10,17 @@ export default styles = StyleSheet.create({
         fontSize: 40,
         fontWeight: 'bold',
         color: 'white',
-        padding:30,
+        padding:15,
         alignItems:'center'
         
 
     },
     view3:{
-        height:45,
+        height:Platform.OS === 'ios' ? 45 : 38,
         width:280, 
         borderColor: 'white',
          borderWidth: 1,
-         padding:10,
+         padding: Platform.OS === 'ios' ? 10 : 0,
         margin:6,
         
     
@@ -26,10 +29,10 @@ export default styles = StyleSheet.create({
     },
 
     textinput:{
-        
+        flex:1,
         marginLeft:10,
         color: "white",
-        fontSize:20
+        fontSize:Platform.OS === 'ios' ? 20 : 15,
 
     },
     loginbutton:{
@@ -48,8 +51,8 @@ export default styles = StyleSheet.create({
     },
     buttontext:{
         
-        color:"red",
-        fontWeight: "bold",
+        color:ButtonText,
+        fontWeight: 'bold',
         fontSize:25
 
     },
@@ -145,7 +148,22 @@ export default styles = StyleSheet.create({
         height: '90%',
         backgroundColor: '#e91c1a',
       },
-      
+      homescreenboxtext1:{
+        textAlign: 'right' ,
+        fontWeight: '500',
+         fontSize: 25, 
+         color: '#ffffff'
+      },
+      homescreenboxtext2:{
+        textAlign: 'left',
+        fontWeight: '500' ,
+         fontSize: 25, 
+        color: '#ffffff'
+
+      },
+      iconpadding:{
+        padding: Platform.OS === 'ios' ? 0 : 5,
+      }
 
 
 
