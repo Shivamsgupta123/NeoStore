@@ -163,7 +163,29 @@ export default styles = StyleSheet.create({
       },
       iconpadding:{
         padding: Platform.OS === 'ios' ? 0 : 5,
-      }
+      },
+      rowFlex:{
+
+        flex:1,
+        flexDirection:'row',
+        // alignItems:'center',
+        // justifyContent:'center',
+    },
+    radio:{
+        flex:7,
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between',
+        color:White,
+    },
+    radioTitle:{
+        fontSize:Platform.OS === 'ios' ? 20 : 17,
+        color: White,
+        paddingBottom:5,
+        paddingRight:20,
+        paddingLeft:5,
+        // fontWeight:'bold',
+    },
 
 
 

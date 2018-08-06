@@ -4,15 +4,37 @@ import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import styles from './Styles';
-import Login from '../components/screens/Myaccount/Myaccount';
+import Login from '../components/screens/Loginscreen/Loginscreen';
+import Myaccount from '../components/screens/Myaccount/Myaccount';
+import { AsyncStorage } from 'react-native';
 
 export default class Drawer extends Component{
+
+    logout = () => {
+        async() => {
+            try {
+              await AsyncStorage.multiRemove(['Username','Password']);
+        
+            
+            }
+            catch(exception) {
+              alert("failed.")
+
+            }
+          }
+        this.props.navigation.navigate('Loginscreen')
+    }
+
+
+
     render(){
         return(
             <View style = {{flex:1, backgroundColor:'black'}}>
 
             <View style = {{ alignItems:'center',padding:20}}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Myaccount')}>
             <Image style={{width: 80, height: 80, borderRadius:40,borderColor:'white',borderWidth:2}} source={require('../assets/images/lion.jpg')}/>
+            </TouchableOpacity>
             <Text style = {{color:'white',fontWeight:'500',fontSize:25,paddingTop:10}}>Shivam Gupta</Text>
             <Text style = {{color:'white',fontWeight:'400',fontSize:16}}>shivamsgupta@outlook.com</Text>
             </View>
@@ -84,7 +106,7 @@ export default class Drawer extends Component{
              <View style = {styles.drawerview}>
             
             <Icon name="sign-out" style = {styles.drawericon} size={30} color="#FFFFFF" />
-            <TouchableOpacity >
+            <TouchableOpacity onPress = {()=>this.logout()} >
            <Text style = {styles.drawertext}>Logout</Text>
             </TouchableOpacity>
             </View>

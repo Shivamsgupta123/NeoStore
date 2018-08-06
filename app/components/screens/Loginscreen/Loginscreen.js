@@ -4,64 +4,96 @@ import styles from './Styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import {White,ButtonText,PlusIconBackground} from '../../../utils/Colors';
+import Editprofile from '../Editprofile/EditProfilescreen';
+import { AsyncStorage } from 'react-native';
+import {login} from '../../../lib/api';
 
 
-
+const storedata = async() => {
+    
+        try {
+          await AsyncStorage.setItem(Username, this.state.Username);
+          await AsyncStorage.setItem(Password, this.state.Password);
+          
+        } catch (error) {
+            alert("error saving data")
+        
+        }
+      
+}
 
 
 
 
 
 // const img = require('../../assets/images/red_1.jpg');
+// var st = true ;
 export default class Login extends Component{
+    
+    
     state = {
         Username: '',
         Password: ''
 
     }
 
-    // handleUsername = (text) => {
-    //     this.setState({ Username: text })
-    //  }
-    //  handlePassword = (text) => {
-    //     this.setState({ Password: text })
-    //  }
-    login = (Username,Password) => {
+    // validate(){
+//     var emailreg = /\S+@\S+\.\S+/;
+//     var passwordreg = /^[0-9a-zA-Z]+$/;
 
-        
-        if(Username == "")
-        alert("Enter Username.")
-        else
-        {
-        if(Password == "")
-        alert("enter Password")
-        if(Username != "" && Password != "")
-        {
-        this.props.navigation.navigate('Homescreen');
-         
-        }
-        }
-    }
+//     if(this.state.Username == "" || !this.state.Username.match(emailreg))
+//     {
+//     alert("Enter Valid User Name.")
+//     return false
+//     }
+//     else
+//     if(this.state.Password == "" || !this.state.Password.match(passwordreg) || this.state.Password.length<8)
+//     {
+//     alert("Enter alphanumeric password having atleast 8 characters.")
+//    return false
+//     }
+//     else
+    // this.login()
 
+    // }
 
+   
+//  async login(){
 
 
-//     login(){
-// return 
-// fetch('http://staging.php-dev.in:8844/trainingapp/api/users/login', {
-//   method: 'POST',
-//   headers: {
-//     Accept: 'application/json',
-//     'Content-Type': 'application/json',
-//   },
-//   body: JSON.stringify({
-//     firstParam: 'yourValue',
-//     secondParam: 'yourOtherValue',
-//   }),
-// });
+    
 
+
+//     let formData = new FormData();
+//       formData.append('email', this.state.Username);
+//       formData.append('password', this.state.Password);
+    
+
+//   await fetch(
+//     'http://staging.php-dev.in:8844/trainingapp/api/users/login'  
+//     , {
+//       method: 'POST',
+//       body: formData,
+//     })
+//     .then(response => response.json()  )
+//     .then(  response =>{
+// if(response.status == 200)
+// {
+// alert("success")
+// console.log("err")
+// this.props.navigation.navigate('Homescreen')
+// }
+// else
+// alert(response.user_msg)
 
 //     }
+//     )
+// shivamsgupta@outlook.com
+      
+
+
+    
+// }
 
 
 
@@ -75,14 +107,14 @@ export default class Login extends Component{
            <Text style = { styles.neostore }>NeoSTORE</Text>
            <View style={styles.view3 }>
            <Icon name="user" size={30} color="#FFFFFF" style = {{padding: Platform.OS === 'ios' ? 0 : 5}}/>
-           <TextInput  onChangeText={(text) => this.setState({Username:text})}    style = {styles.textinput} placeholder = "Username" placeholderTextColor ={White} ></TextInput>
+           <TextInput  returnKeyType = {"next"} onChangeText={(text) => this.setState({Username:text})}    style = {styles.textinput} placeholder = "Username" placeholderTextColor ={White} ></TextInput>
            
            </View>
            <View style={styles.view3 }>
            <Icon name="lock" size={30} color="#FFFFFF" style = {{padding: Platform.OS === 'ios' ? 0 : 5}}/>
            <TextInput  onChangeText={(text) => this.setState({Password:text})}    style = {styles.textinput} secureTextEntry={true} placeholder = "Password" placeholderTextColor = {White} ></TextInput>
            </View>
-           <TouchableOpacity onPress = {()=>this.login(this.state.Username, this.state.Password)} style = {styles.loginbutton}>
+           <TouchableOpacity onPress={() => this.props.navigation.navigate('Homescreen')} style = {styles.loginbutton}>
            <Text style={styles.buttontext}>LOGIN</Text>
            
            </TouchableOpacity>
@@ -95,7 +127,7 @@ export default class Login extends Component{
            
                <View style = {{ flexDirection: 'row',justifyContent: 'space-between', alignItems:'center'}}>
                   <Text style = {styles.newaccount}>DONT HAVE AN ACCOUNT?</Text>
-                  <TouchableOpacity  onPress={() => this.props.navigation.navigate('Registrationscreen')}>
+                  <TouchableOpacity  onPress={() => this.props.navigation.navigate('EditProfilescreen')}>
                   <FeatherIcon style = {{marginRight:15,backgroundColor: PlusIconBackground, padding:2}} name="plus" size={40} color="#FFFFFF" />
             
            </TouchableOpacity>

@@ -6,10 +6,70 @@ import { Container, Header, Left, Body, Right, Button, Title } from 'native-base
 import styles from './Styles';
 import {White,ButtonText,PlusIconBackground,HeaderColor} from '../../../utils/Colors';
 import {LogoSize,LogoFontWeight,LogoPadding,TextInputFont,RegularFon,HeaderTextFontWeight,HeaderText,ButtonTextSize} from '../../../utils/FontSizes';
+import DatePicker from 'react-native-datepicker';
+import { Calendar } from 'react-native-calendars'; 
+
 
 
 
 export default class Editprofile extends Component{
+
+  // constructor(props){
+  //   super(props)
+  //   this.state = {date:"2016-05-15"}
+  // }
+
+  state = {
+         FirstName:'',
+        LastName:'',
+        Email:'',
+        PhoneNumber:'',
+        DOB: ''
+
+  }
+  validate = (FirstName,LastName,Email,PhoneNumber,DOB) => {
+        
+    var namereg = /^[A-Za-z]+$/;
+    var emailreg = /\S+@\S+\.\S+/;
+    // var passwordreg = /^[0-9a-zA-Z]+$/;
+    var phonenoreg = /^\+?([0-9]{2})\)?[-. ]?([0-9]{5})[-. ]?([0-9]{5})$/;
+    var dobreg = /^([0-9]{2})-([0-9]{2})-([0-9]{4})$/;
+    
+    
+    if(FirstName == "")
+    alert("Please Enter First Name.")
+    else
+    if(!FirstName.match(namereg))
+    alert("Enter only Characters & Dont insert wide spaces .")
+    else
+    if(LastName == "")
+    alert("Please Enter Last Name.")
+    else
+    if(!LastName.match(namereg))
+    alert("Enter only Characters & Dont insert wide spaces .")
+    else
+    if(Email == "")
+    alert("Please Enter Email.")
+    else
+    if(!Email.match(emailreg))
+    alert("Enter valid Email.")
+    else
+    if(PhoneNumber == "")
+    alert("Please Enter Phone Number.")
+    else
+    if(!PhoneNumber.match(phonenoreg))
+    alert("Please enter 10 digit phone no with country code(eg.+91).")
+    else
+    if (DOB == "")
+    alert("Enter DOB")
+    else
+    // if(!DOB.match(dobreg))
+    // alert("Enter DOB in formate dd-mm-yyyy.")
+    // else
+    this.props.navigation.navigate('Myaccount')
+
+  }
+  
 render(){
     return(
         <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={{ flex:1,borderColor:"red",borderWidth:1, heigh:Dimensions.get('window').height}}>
@@ -37,32 +97,60 @@ render(){
         <Image style={{width: 400/3, height: 400/3, borderRadius:400/6,}} source={require('../../../assets/images/lion.jpg')}/>
           <View style = {styles.view3}>
         <Icon name="user" size={25} color="#FFFFFF" style = {styles.iconpadding}/>
-           <TextInput style = {styles.textinput}  placeholder = "First Name" placeholderTextColor ="white" ></TextInput>
+           <TextInput  returnKeyType = {"next"} onChangeText={(text) => this.setState({FirstName:text})} style = {styles.textinput}  placeholder = "First Name" placeholderTextColor ="white" ></TextInput>
         </View>
 
         <View style = {styles.view3}>
         <Icon name="user" size={25} color="#FFFFFF" style = {styles.iconpadding}/>
-           <TextInput style = {styles.textinput} placeholder = "Last Name" placeholderTextColor ="white" ></TextInput>
+           <TextInput returnKeyType = {"next"} onChangeText={(text) => this.setState({LastName:text})} style = {styles.textinput} placeholder = "Last Name" placeholderTextColor ="white" ></TextInput>
         </View>
 
         <View style={styles.view3 }>
            <Icon name="envelope" size={20} color="#FFFFFF" style = {styles.iconpadding}/>
-           <TextInput style = {styles.textinput} placeholder = "Email" placeholderTextColor ="white" ></TextInput>
+           <TextInput returnKeyType = {"next"} onChangeText={(text) => this.setState({Email:text})} style = {styles.textinput} placeholder = "Email" placeholderTextColor ="white" ></TextInput>
            
            </View>
 
            <View style={styles.view3 }>
            <Icon name="mobile" size={35} color="#FFFFFF" style = {{ height:50, width:Platform.OS === 'ios' ? 30: 35,
                 justifyContent:"center",paddingBottom:7, paddingLeft:Platform.OS === 'ios' ? 0: 8}} />
-           <TextInput style = {styles.textinput}  placeholder = "Phone Number" placeholderTextColor ="white" ></TextInput>
+           <TextInput returnKeyType = {"next"} keyboardType = "phone-pad" onChangeText={(text) => this.setState({PhoneNumber:text})} style = {styles.textinput}  placeholder = "Phone Number" placeholderTextColor ="white" ></TextInput>
            </View>
 
            <View style={styles.view3 }>
+           
+           {/* <DatePicker
+        style={{width: 300, paddingRight:50}}
+        date={this.state.date}
+        mode="date"
+        placeholder="select date"
+        format="YYYY-MM-DD"
+        minDate="1950-05-01"
+        maxDate="2020-06-01"
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"
+        customStyles={{
+          dateIcon: {
+            position: 'absolute',
+            left: 0,
+            top: 4,
+            marginLeft: 0
+          },
+          dateInput: {
+            marginLeft: 36
+          }
+          // ... You can check the source to find the other keys.
+        }}
+        onDateChange={(date) => {this.setState({date: date})}}
+      /> */}
+
+
+
            <Icon name="birthday-cake" size={20} color="#FFFFFF" style = {styles.iconpadding} />
-           <TextInput style = {styles.textinput} placeholder = "DOB" placeholderTextColor ="white" ></TextInput>
+           <TextInput  returnKeyType = {"next"} onChangeText={(text) => this.setState({DOB:text})} style = {styles.textinput} placeholder = "DOB" placeholderTextColor ="white" ></TextInput>
            </View>
 
-           <TouchableOpacity style = {styles.loginbutton}  onPress={() => this.props.navigation.navigate('Loginscreen')}>
+           <TouchableOpacity style = {styles.loginbutton}  onPress = {()=>this.validate(this.state.FirstName,this.state.LastName,this.state.Email,this.state.PhoneNumber,this.state.DOB)}>
            <Text style={styles.buttontext}>SUBMIT</Text>
            </TouchableOpacity>
 

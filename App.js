@@ -11,6 +11,8 @@ import {createDrawerNavigator} from 'react-navigation';
 import Drawer from './app/containers/Drawer';
 import Myaccount from './app/components/screens/Myaccount/Myaccount';
 import Editprofile from './app/components/screens/Editprofile/EditProfilescreen';
+import { AsyncStorage } from 'react-native';
+import Tables from './app/components/screens/Tables/Tables';
 //  import MyHomeScreen from './app/components/screens/demo';
 // import {White,ButtonText,PlusIconBackground,HeaderColor} from '../../../utils/Colors';
 // import {LogoSize,LogoFontWeight,LogoPadding,TextInputFont,RegularFon,HeaderTextFontWeight,HeaderText,ButtonTextSize} from '../../../utils/FontSizes';
@@ -21,9 +23,11 @@ import Editprofile from './app/components/screens/Editprofile/EditProfilescreen'
   MyCart: {
     screen:Home
   },
-  Tables: {
-    screen:Login
-  },
+  // Tables: {
+  //   screen:Tables
+  // },
+  
+
 
   // Notifications: {
   //   screen: MyNotificationsScreen,
@@ -84,7 +88,15 @@ const RootStack = createStackNavigator(
       navigationOptions:{
         header:null,
       }
+    },
+    Tables: {
+      screen: Tables,
+      navigationOptions:{
+        header:null
+      }
     }
+  
+    
 
 
    
@@ -92,6 +104,7 @@ const RootStack = createStackNavigator(
 
   
   {
+    
     initialRouteName: 'Loginscreen',
   }
 );

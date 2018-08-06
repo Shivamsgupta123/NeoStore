@@ -6,7 +6,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import {White,ButtonText,PlusIconBackground,HeaderColor} from '../../../utils/Colors';
 import {LogoSize,LogoFontWeight,LogoPadding,TextInputFont,RegularFon,HeaderTextFontWeight,HeaderText,ButtonTextSize} from '../../../utils/FontSizes';
-
+import { Calendar } from 'react-native-calendars'; 
+import Tables from '../Tables/Tables';
 
  
 
@@ -24,9 +25,9 @@ import {LogoSize,LogoFontWeight,LogoPadding,TextInputFont,RegularFon,HeaderTextF
             <Icon name="bars" size={22}  color="#f9fbff" style = {{marginLeft:40/3}} />
             </Button>
           </Left>
-          {/* <Body> */}
+          
           <Text style = {{ color:White,fontSize:HeaderText,marginLeft:Platform.OS === 'ios'? 0 : 65, fontWeight:HeaderTextFontWeight,marginTop:Platform.OS === 'ios'? 5:10}}>NeoSTORE</Text>
-          {/* </Body> */}
+          
           <Right>
           <Icon name="search" size={22}  color="#f9fbff" style = {{marginRight:40/3}} />
           </Right>
@@ -59,9 +60,10 @@ import {LogoSize,LogoFontWeight,LogoPadding,TextInputFont,RegularFon,HeaderTextF
          <View style = {{height:Platform.OS === 'ios' ? 380 : 340}}>
           <View style={ styles.containerbottom }>
              <View style={styles.boxrow}>
-                <TouchableOpacity style={[styles.boxtop,]} >
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Tables')} style={[styles.boxtop,]} >
                   <Text style={styles.homescreenboxtext1}>Tables</Text>
                   <Icon name='table' style={{textAlign: 'left' }} color="#ffffff" size={80} />
+                  
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.boxtop,]}>
                   <Icon style={{textAlign: 'right' }} name='sofa' color="#ffffff" size={80} />

@@ -14,6 +14,70 @@ import {LogoSize,LogoFontWeight,LogoPadding,TextInputFont,RegularFont} from '../
 
 // const img = require('../../assets/images/red_1.jpg');
 export default class Forgotpassword extends Component{
+
+  state = {
+    Username: '',
+    NewPassword: '',
+    ConfirmPassword: ''
+
+}
+
+validate()
+{
+  var emailreg = /\S+@\S+\.\S+/;
+  var passwordreg = /^[0-9a-zA-Z]+$/;
+  if(this.state.Username == "" || !this.state.Username.match(emailreg))
+        {
+        alert("Enter Valid User Name.")
+        return false
+        }
+        
+        else
+        if(this.state.NewPassword == "" || !this.state.NewPassword.match(passwordreg))
+        {
+        alert("Enter new alphanumeric password having atleast 8 characters.")
+        return false
+        }
+        if(this.state.ConfirmPassword == "")
+        {
+        alert("Please Confirm Password.")
+        return false
+        }
+        else
+        this.submit()
+
+
+}
+
+async submit(){
+        
+  
+        let formData = new FormData();
+      formData.append('email', this.state.Username);
+
+      await fetch(
+        'http://staging.php-dev.in:8844/trainingapp/api/users/forgot'  
+        , {
+          method: 'POST',
+          body: formData,
+        })
+        .then(response => response.json()  )
+        .then(  response =>{
+    if(response.status == 200)
+    {
+    alert("Submitted")
+    this.props.navigation.navigate('Loginscreen')
+    }
+    else
+    alert(response.user_msg)
+    
+        }
+        )
+      
+    
+    
+
+}
     render(){
         return(
             
@@ -36,21 +100,21 @@ export default class Forgotpassword extends Component{
            <View style = {styles.view1}>
            <Text style = { styles.neostore }>NeoSTORE</Text>
            <View style={styles.view3 }>
-           <Icon name="user" size={30} color="#FFFFFF" style = {{padding: Platform.OS === 'ios' ? 0 : 5}}/>
-           <TextInput style = {styles.textinput} placeholder = "Username" placeholderTextColor ="white" ></TextInput>
+           <Icon name="user" size={30} color="#FFFFFF" style = {{padding: Platform.OS === 'ios' ? 0 : 5, width:35}}/>
+           <TextInput onChangeText={(text) => this.setState({Username:text})} style = {styles.textinput} placeholder = "Username" placeholderTextColor ="white" ></TextInput>
            
            </View>
 
            <View style={styles.view3 }>
-           <Icon name="unlock" size={30} color="#FFFFFF" style = {{padding: Platform.OS === 'ios' ? 0 : 5}} />
-           <TextInput style = {styles.textinput} placeholder = "Enter New Password" placeholderTextColor ="white" ></TextInput>
+           <Icon name="unlock" size={27} color="#FFFFFF" style = {{padding: Platform.OS === 'ios' ? 0 : 5, width:35}} />
+           <TextInput onChangeText={(text) => this.setState({NewPassword:text})} style = {styles.textinput} placeholder = "Enter New Password" placeholderTextColor ="white" ></TextInput>
            </View>
 
            <View style={styles.view3 }>
-           <Icon name="lock" size={30} color="#FFFFFF" style = {{padding: Platform.OS === 'ios' ? 0 : 5}}/>
-           <TextInput style = {styles.textinput} placeholder = "Confirm Password" placeholderTextColor ="white" ></TextInput>
+           <Icon name="lock" size={30} color="#FFFFFF" style = {{padding: Platform.OS === 'ios' ? 0 : 5, width:35}}/>
+           <TextInput onChangeText={(text) => this.setState({ConfirmPassword:text})} style = {styles.textinput} placeholder = "Confirm Password" placeholderTextColor ="white" ></TextInput>
            </View>
-           <TouchableOpacity style = {styles.loginbutton} onPress={() => this.props.navigation.navigate('Loginscreen')}>
+           <TouchableOpacity style = {styles.loginbutton} onPress={() => this.validate()}>
            <Text style={styles.buttontext}>SUBMIT</Text>
            
            </TouchableOpacity>
