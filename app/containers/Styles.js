@@ -15,6 +15,18 @@ export default styles = StyleSheet.create({
         fontWeight:'400',
 
     },
+    username: {
+        color:'white',
+        fontWeight:'500',
+        fontSize:25,
+        paddingTop:10
+
+    },
+    useremail:{
+        color:'white',
+        fontWeight:'400',
+        fontSize:16
+    },
     drawerview:{
         flex:1,
         flexDirection:'row',

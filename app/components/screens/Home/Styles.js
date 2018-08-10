@@ -1,4 +1,6 @@
 import {Platform, StyleSheet,Dimensions} from 'react-native';
+import {White,ButtonText,PlusIconBackground,HeaderColor} from '../../../utils/Colors';
+import {LogoSize,LogoFontWeight,LogoPadding,TextInputFont,RegularFon,HeaderTextFontWeight,HeaderText,ButtonTextSize} from '../../../utils/FontSizes';
 
 
 export default styles = StyleSheet.create({
@@ -99,7 +101,13 @@ export default styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         
     },
-
+    headerText:{
+        color:White,
+        fontSize:HeaderText,
+        marginLeft:Platform.OS === 'ios'? 0 : 65, 
+        fontWeight:HeaderTextFontWeight,
+        marginTop:Platform.OS === 'ios'? 5:10
+    },
 
     containerbottom: {
         flex: 3,
@@ -110,24 +118,24 @@ export default styles = StyleSheet.create({
         marginVertical: 45/3,
         marginBottom: 15,
         
-      },
-      boxrow:{
+    },
+    boxrow:{
         
             flex:1,
             flexDirection: 'column',
             justifyContent: 'space-between',
             width: '100%',
             
-          },
-      boxrow:{
+    },
+    boxrow:{
     
         flex:1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '100%',
         
-      },
-      boxtop: {
+    },
+    boxtop: {
         padding: 60/3,
 
         justifyContent: 'space-between',
@@ -136,15 +144,15 @@ export default styles = StyleSheet.create({
         
         
         backgroundColor: '#e91c1a',
-      },
-      boxbottom: {
+    },
+    boxbottom: {
           padding: 60/3,
           justifyContent: 'space-between',
         
         width: '48%',
         height: '90%',
         backgroundColor: '#e91c1a',
-      },
+    },
       homescreenboxtext1:{
         textAlign: 'right' ,
         fontWeight: '500',

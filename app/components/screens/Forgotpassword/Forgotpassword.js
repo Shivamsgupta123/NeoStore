@@ -3,41 +3,32 @@ import { View, Image, Text, ImageBackground, TextInput, Platform, TouchableOpaci
 import styles from './Styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
-import { White, ButtonText, PlusIconBackground, HeaderColor, HeaderTextFontWeight } from '../../../utils/Colors';
-import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFont, HeaderText } from '../../../utils/FontSizes';
-import { AsyncStorage } from 'react-native';
+import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
+import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFont } from '../../../utils/FontSizes';
 
 
-export default class ResetPasswordScreen extends Component {
+export default class Forgotpassword extends Component {
 
     state = {
-        CurrentPassword: '',
+        Username: '',
         NewPassword: '',
-        ConfirmPassword: '',
-        token: '',
+        ConfirmPassword: ''
 
     }
-
-
 
     validate() {
         var emailreg = /\S+@\S+\.\S+/;
         var passwordreg = /^[0-9a-zA-Z]+$/;
-        // if(this.state.Username == "" || !this.state.Username.match(emailreg))
-        // {
-        //   alert("Enter Valid User Name.")
-        //   return false
-        // }
+        if (this.state.Username == "" || !this.state.Username.match(emailreg)) {
+            alert("Enter Valid User Name.")
+            return false
+        }
 
-        // else
-        if (this.state.CurrentPassword == "") {
-            alert("Please Enter Current Password")
-            return false
-        }
-        if (this.state.NewPassword == "" || !this.state.NewPassword.match(passwordreg)) {
-            alert("Enter new alphanumeric password having atleast 8 characters.")
-            return false
-        }
+        else
+            if (this.state.NewPassword == "" || !this.state.NewPassword.match(passwordreg)) {
+                alert("Enter new alphanumeric password having atleast 8 characters.")
+                return false
+            }
         if (this.state.ConfirmPassword == "") {
             alert("Please Confirm Password.")
             return false
@@ -50,26 +41,14 @@ export default class ResetPasswordScreen extends Component {
 
     async submit() {
 
-        var getdata = await AsyncStorage.getItem('ResponseData');
-
-
-        getdata = JSON.parse(getdata)
-
-
         let formData = new FormData();
-        formData.append(' old_password', this.state.CurrentPassword);
-        formData.append(' password', this.state.NewPassword);
-        formData.append(' confirm_password', this.state.ConfirmPassword);
+        formData.append('email', this.state.Username);
 
         await fetch(
-            'http://staging.php-dev.in:8844/trainingapp/api/users/change'
+            'http://staging.php-dev.in:8844/trainingapp/api/users/forgot'
             , {
                 method: 'POST',
                 body: formData,
-                headers: {
-                    access_token: getdata.data.access_token
-
-                }
             })
             .then(response => response.json())
             .then(response => {
@@ -83,24 +62,26 @@ export default class ResetPasswordScreen extends Component {
             }
             )
 
+
+
+
     }
     render() {
         return (
 
             <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={{ flex: 1, borderColor: "red", borderWidth: 1 }}>
 
-                <Header style={{ backgroundColor: HeaderColor }}>
+                <Header style={{ backgroundColor: 'red' }}>
                     <Left>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="chevron-left" size={22} color="#f9fbff" />
+                        <Button transparent onPress={() => this.props.navigation.navigate('Loginscreen')}>
+                            <Icon name="chevron-left" size={26} color="#f9fbff" />
                         </Button>
                     </Left>
                     <Body>
-                        <Text style={styles.headertitle}>Reset Password</Text>
+                        {/* <Title style = {{color:'white',fontWeight:'bold',fontSize:25, textAlign:'center'}}>Register</Title> */}
                     </Body>
-                    <Right>
+                    <Right></Right>
 
-                    </Right>
 
                 </Header>
 
@@ -108,18 +89,18 @@ export default class ResetPasswordScreen extends Component {
                     <Text style={styles.neostore}>NeoSTORE</Text>
 
                     <View style={styles.view3}>
-                        <Icon name="lock" size={30} color="#FFFFFF" style={styles.icon} />
-                        <TextInput onChangeText={(text) => this.setState({ CurrentPassword: text })} style={styles.textinput} placeholder="Current Password" placeholderTextColor="white" ></TextInput>
+                        <Icon name="user" size={30} color="#FFFFFF" style={{ padding: Platform.OS === 'ios' ? 0 : 5, width: 35 }} />
+                        <TextInput onChangeText={(text) => this.setState({ Username: text })} style={styles.textinput} placeholder="Username" placeholderTextColor="white" ></TextInput>
 
                     </View>
 
                     <View style={styles.view3}>
-                        <Icon name="unlock" size={27} color="#FFFFFF" style={styles.icon} />
+                        <Icon name="unlock" size={27} color="#FFFFFF" style={{ padding: Platform.OS === 'ios' ? 0 : 5, width: 35 }} />
                         <TextInput onChangeText={(text) => this.setState({ NewPassword: text })} style={styles.textinput} placeholder="Enter New Password" placeholderTextColor="white" ></TextInput>
                     </View>
 
                     <View style={styles.view3}>
-                        <Icon name="lock" size={30} color="#FFFFFF" style={styles.icon} />
+                        <Icon name="lock" size={30} color="#FFFFFF" style={{ padding: Platform.OS === 'ios' ? 0 : 5, width: 35 }} />
                         <TextInput onChangeText={(text) => this.setState({ ConfirmPassword: text })} style={styles.textinput} placeholder="Confirm Password" placeholderTextColor="white" ></TextInput>
                     </View>
 
