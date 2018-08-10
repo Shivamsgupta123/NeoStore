@@ -9,20 +9,35 @@ import Myaccount from '../components/screens/Myaccount/Myaccount';
 import { AsyncStorage } from 'react-native';
 
 export default class Drawer extends Component{
+    state = {
+        FirstName : '',
+        LastName : '',
+        Email : ''
+    }
 
-    logout = () => {
-        async() => {
+    componentWillMount = async () => {
+        var getdata = await AsyncStorage.getItem('ResponseData');      
+
+        getdata = JSON.parse(getdata)
+        this.setState({FirstName:getdata.data.first_name})
+        this.setState({LastName:getdata.data.last_name})
+        this.setState({Email:getdata.data.email})
+    }
+
+    logout = async () => {
+       
             try {
-              await AsyncStorage.multiRemove(['Username','Password']);
-        
-            
+              await AsyncStorage.clear();
             }
             catch(exception) {
               alert("failed.")
 
             }
-          }
-        this.props.navigation.navigate('Loginscreen')
+            
+          
+          
+            this.props.navigation.navigate('Loginscreen')
+        
     }
 
 
@@ -31,86 +46,86 @@ export default class Drawer extends Component{
         return(
             <View style = {{flex:1, backgroundColor:'black'}}>
 
-            <View style = {{ alignItems:'center',padding:20}}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Myaccount')}>
-            <Image style={{width: 80, height: 80, borderRadius:40,borderColor:'white',borderWidth:2}} source={require('../assets/images/lion.jpg')}/>
-            </TouchableOpacity>
-            <Text style = {{color:'white',fontWeight:'500',fontSize:25,paddingTop:10}}>Shivam Gupta</Text>
-            <Text style = {{color:'white',fontWeight:'400',fontSize:16}}>shivamsgupta@outlook.com</Text>
-            </View>
-            <ScrollView>
-            <View style = {styles.drawerview}>
-            
-            <Icon name="shopping-cart" style = {styles.drawericon} size={30} color="#FFFFFF" />
-            <TouchableOpacity>
-           <Text style = {styles.drawertext}>My Cart</Text>
-            </TouchableOpacity>
-            </View>
-            
-            <View style = {styles.drawerview}>
-            
-            <Icon name="table" style = {styles.drawericon} size={30} color="#FFFFFF" />
-            <TouchableOpacity>
-           <Text style = {styles.drawertext}>Tables</Text>
-            </TouchableOpacity>
-            </View>
+                <View style = {{ alignItems:'center',padding:20}}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Myaccount')}>
+                        <Image style={{width: 80, height: 80, borderRadius:40,borderColor:'white',borderWidth:2}} source={require('../assets/images/lion.jpg')}/>
+                    </TouchableOpacity>
+                    <Text style = {{color:'white',fontWeight:'500',fontSize:25,paddingTop:10}}>{this.state.FirstName} {this.state.LastName}</Text>
+                    <Text style = {{color:'white',fontWeight:'400',fontSize:16}}>{this.state.Email}</Text>
+                </View>
+                <ScrollView>
+                    <View style = {styles.drawerview}>
+                    
+                        <Icon name="shopping-cart" style = {styles.drawericon} size={30} color="#FFFFFF" />
+                        <TouchableOpacity>
+                            <Text style = {styles.drawertext}>My Cart</Text>
+                        </TouchableOpacity>
+                    </View>
+                    
+                    <View style = {styles.drawerview}>
+                    
+                        <Icon name="table" style = {styles.drawericon} size={30} color="#FFFFFF" />
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', {Title:'Tables',Id:"1"})}>
+                            <Text style = {styles.drawertext}>Tables</Text>
+                        </TouchableOpacity>
+                    </View>
 
-            <View style = {styles.drawerview}>
-            
-            <Icon name="table" style = {styles.drawericon} size={30} color="#FFFFFF" />
-            <TouchableOpacity>
-           <Text style = {styles.drawertext}>Sofas</Text>
-            </TouchableOpacity>
-            </View>
+                    <View style = {styles.drawerview}>
+                    
+                        <Icon name="table" style = {styles.drawericon} size={30} color="#FFFFFF" />
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', {Title:'Sofas',Id:"3"})}>
+                            <Text style = {styles.drawertext}>Sofas</Text>
+                        </TouchableOpacity>
+                    </View>
 
-            <View style = {styles.drawerview}>
-            
-            <Icon name="table" style = {styles.drawericon} size={30} color="#FFFFFF" />
-            <TouchableOpacity>
-           <Text style = {styles.drawertext}>Chairs</Text>
-            </TouchableOpacity>
-            </View>
+                    <View style = {styles.drawerview}>
+                    
+                        <Icon name="table" style = {styles.drawericon} size={30} color="#FFFFFF" />
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', {Title:'Chairs',Id:"2"})}>
+                            <Text style = {styles.drawertext}>Chairs</Text>
+                        </TouchableOpacity>
+                    </View>
 
-           <View style = {styles.drawerview}>
-            
-            <Icon name="table" style = {styles.drawericon} size={30} color="#FFFFFF" />
-            <TouchableOpacity>
-           <Text style = {styles.drawertext}>Cupboards</Text>
-            </TouchableOpacity>
-            </View>
+                    <View style = {styles.drawerview}>
+                    
+                        <Icon name="table" style = {styles.drawericon} size={30} color="#FFFFFF" />
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', {Title:'Cupboards',Id:"5"})}>
+                            <Text style = {styles.drawertext}>Cupboards</Text>
+                        </TouchableOpacity>
+                    </View>
 
-             <View style = {styles.drawerview}>
-            
-            <Icon name="user" style = {styles.drawericon} size={30} color="#FFFFFF" />
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Myaccount')}>
-           <Text style = {styles.drawertext}>My Acoount</Text>
-            </TouchableOpacity>
-            </View>
+                    <View style = {styles.drawerview}>
+                    
+                        <Icon name="user" style = {styles.drawericon} size={30} color="#FFFFFF" />
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Myaccount')}>
+                            <Text style = {styles.drawertext}>My Acoount</Text>
+                        </TouchableOpacity>
+                    </View>
 
-            <View style = {styles.drawerview}>
-            
-            <Icon name="location-arrow" style = {styles.drawericon} size={30} color="#FFFFFF" />
-            <TouchableOpacity>
-           <Text style = {styles.drawertext}>Store Locators</Text>
-            </TouchableOpacity>
-            </View>
+                    <View style = {styles.drawerview}>
+                    
+                        <Icon name="location-arrow" style = {styles.drawericon} size={30} color="#FFFFFF" />
+                        <TouchableOpacity>
+                            <Text style = {styles.drawertext}>Store Locators</Text>
+                        </TouchableOpacity>
+                    </View>
 
-            <View style = {styles.drawerview}>
-            
-            <Icon name="list" style = {styles.drawericon} size={30} color="#FFFFFF" />
-            <TouchableOpacity>
-           <Text style = {styles.drawertext}>My Orders</Text>
-            </TouchableOpacity>
-            </View>
+                    <View style = {styles.drawerview}>
+                    
+                        <Icon name="list" style = {styles.drawericon} size={30} color="#FFFFFF" />
+                        <TouchableOpacity>
+                        <Text style = {styles.drawertext}>My Orders</Text>
+                        </TouchableOpacity>
+                    </View>
 
-             <View style = {styles.drawerview}>
-            
-            <Icon name="sign-out" style = {styles.drawericon} size={30} color="#FFFFFF" />
-            <TouchableOpacity onPress = {()=>this.logout()} >
-           <Text style = {styles.drawertext}>Logout</Text>
-            </TouchableOpacity>
-            </View>
-            </ScrollView>
+                    <View style = {styles.drawerview}>
+                    
+                        <Icon name="sign-out" style = {styles.drawericon} size={30} color="#FFFFFF" />
+                        <TouchableOpacity onPress = {()=>this.logout()} >
+                        <Text style = {styles.drawertext}>Logout</Text>
+                        </TouchableOpacity>
+                    </View>
+                </ScrollView>
 
                 
             </View>

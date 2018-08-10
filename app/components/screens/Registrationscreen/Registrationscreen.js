@@ -21,6 +21,17 @@ var gender=[
 ];
 export default class Registration extends Component{
 
+  constructor(props) {
+    super(props);
+
+    this.focusNextField = this.focusNextField.bind(this);
+    this.inputs = {};
+  }
+
+  focusNextField(id) {
+    this.inputs[id].focus()
+  }
+
     state = {
         
         FirstName:'',
@@ -100,7 +111,7 @@ export default class Registration extends Component{
         return false
         }
         else 
-        if(!this.state.ConfirmPassword != this.state.Password)
+        if(this.state.ConfirmPassword != this.state.Password)
         {
         alert("Please enter password exactly same as above password")
         return false
@@ -137,7 +148,7 @@ export default class Registration extends Component{
       formData.append('confirm_password', this.state.ConfirmPassword);
       formData.append('gender','M');
       formData.append('phone_no', this.state.PhoneNumber);
-        console.log(formData)
+        
       await fetch(
         'http://staging.php-dev.in:8844/trainingapp/api/users/register'  
         , {
@@ -166,11 +177,8 @@ export default class Registration extends Component{
       onPress = data => this.setState({ data });
     render(){
 
-        // let selectedButton = this.state.data.find(e => e.selected == true);
-        // selectedButton = selectedButton ? selectedButton.value : this.state.data[0].label;
-        // onSubmitEditing={() => {this.focusNextField('two');}} ref={ input => {this.inputs['one'] = input; }}returnKeyType = {"next"}
-
-        return(   
+        
+      return(   
 
           
             
@@ -190,7 +198,7 @@ export default class Registration extends Component{
           
         
         </Header>
-        <ScrollView style = {{height:Dimensions.get('window').height}}>  
+        <ScrollView >  
             <KeyboardAvoidingView style = {styles.keyboardview} behavior="padding" enabled>
 
               
@@ -199,27 +207,27 @@ export default class Registration extends Component{
            <Text style = { styles.neostore }>NeoSTORE</Text>
            <View style={styles.view3 }>
            <Icon name="user" size={30} color="#FFFFFF" style = {styles.iconpadding}/>
-           <TextInput  returnKeyType = {"next"} onChangeText={(text) => this.setState({FirstName:text})} style = {styles.textinput} placeholder = "First Name" placeholderTextColor ="white" ></TextInput>
+           <TextInput onSubmitEditing={() => {this.focusNextField('two');}} returnKeyType = {"next"}  ref={ input => {this.inputs['one'] = input;}} onChangeText={(text) => this.setState({FirstName:text})} style = {styles.textinput} placeholder = "First Name" placeholderTextColor ="white" ></TextInput>
            
            </View>
            <View style={styles.view3 }>
            <Icon name="user" size={30} color="#FFFFFF" style = {styles.iconpadding}/>
-           <TextInput returnKeyType = {"next"} onChangeText={(text) => this.setState({LastName:text})} style = {styles.textinput} placeholder = "Last Name" placeholderTextColor ="white" ></TextInput>
+           <TextInput onSubmitEditing={() => {this.focusNextField('three');}} returnKeyType = {"next"} ref={ input => {this.inputs['two'] = input;}} onChangeText={(text) => this.setState({LastName:text})} style = {styles.textinput} placeholder = "Last Name" placeholderTextColor ="white" ></TextInput>
            
            </View>
            <View style={styles.view3 }>
            <Icon name="envelope" size={23} color="#FFFFFF" style = {styles.iconpadding}/>
-           <TextInput returnKeyType = {"next"} onChangeText={(text) => this.setState({Email:text})} style = {styles.textinput} placeholder = "Email" placeholderTextColor ="white" ></TextInput>
+           <TextInput onSubmitEditing={() => {this.focusNextField('four');}} returnKeyType = {"next"} ref={ input => {this.inputs['three'] = input;}}  onChangeText={(text) => this.setState({Email:text})} style = {styles.textinput} placeholder = "Email" placeholderTextColor ="white" ></TextInput>
            
            </View>
            <View style={styles.view3 }>
            <Icon name="unlock" size={23} color="#FFFFFF" style = {styles.iconpadding} />
-           <TextInput returnKeyType = {"next"} onChangeText={(text) => this.setState({Password:text})} style = {styles.textinput} secureTextEntry={true} placeholder = "Password" placeholderTextColor ="white" ></TextInput>
+           <TextInput onSubmitEditing={() => {this.focusNextField('five');}} returnKeyType = {"next"} ref={ input => {this.inputs['four'] = input;}} onChangeText={(text) => this.setState({Password:text})} style = {styles.textinput} secureTextEntry={true} placeholder = "Password" placeholderTextColor ="white" ></TextInput>
            </View>
 
            <View style={styles.view3 }>
            <Icon name="lock" size={30} color="#FFFFFF" style = {styles.iconpadding}/>
-           <TextInput returnKeyType = {"next"} onChangeText={(text) => this.setState({ConfirmPassword:text})} style = {styles.textinput} secureTextEntry={true} placeholder = "Confirm Password" placeholderTextColor ="white" ></TextInput>
+           <TextInput onSubmitEditing={() => {this.focusNextField('six');}} returnKeyType = {"next"} ref={ input => {this.inputs['five'] = input;}} onChangeText={(text) => this.setState({ConfirmPassword:text})} style = {styles.textinput} secureTextEntry={true} placeholder = "Confirm Password" placeholderTextColor ="white" ></TextInput>
            </View>
 
                             <View style={styles.radio}>
@@ -244,7 +252,7 @@ export default class Registration extends Component{
 
             <View style={styles.view3 }>
            <Icon name="mobile" size={30} color="#FFFFFF" style = {styles.iconpadding} />
-           <TextInput returnKeyType = {"next"} keyboardType = "phone-pad" onChangeText={(text) => this.setState({PhoneNumber:text})} style = {styles.textinput} placeholder = "Phone Number" placeholderTextColor ="white" ></TextInput>
+           <TextInput  onSubmitEditing={() => {this.focusNextField('seven');}}  returnKeyType = {"next"} ref={ input => {this.inputs['six'] = input;}} keyboardType = "phone-pad" onChangeText={(text) => this.setState({PhoneNumber:text})} style = {styles.textinput} placeholder = "Phone Number" placeholderTextColor ="white" ></TextInput>
            </View>
            <View style = {{flexDirection:'row' }}>
              <Checkbox label = "" checked = {false} color = 'ffffff'/>

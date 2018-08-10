@@ -12,19 +12,34 @@ export default styles = StyleSheet.create({
         width:Platform.OS === 'ios' ? 30: 35,
         // textAlign:Platform.OS === 'ios' ? ,'center'
         justifyContent:"center"
-      },
+    },
      
-      view3:{
+    view3:{
         height:Platform.OS === 'ios' ? 45 : 40,
         width:280, 
         borderColor: 'white',
-         borderWidth: 1,
-         padding: Platform.OS === 'ios' ? 10 : 0,
-        marginTop:20,
-        
-    
+        borderWidth: 1,
+        padding: Platform.OS === 'ios' ? 10 : 0,
+        marginTop:20,           
         flexDirection: 'row'
 
+    },
+    profileimage:{
+        width: 133.3, 
+        height: 133.3, 
+        borderRadius:66.6,
+    },
+    backgroundimage:{
+        flex:1,borderColor:"red",
+        borderWidth:1, 
+        height:Dimensions.get('window').height
+
+    },
+    headertitle:{
+        color:White,textAlign:'center',
+        fontSize:HeaderText,
+        width:250, 
+        fontWeight:HeaderTextFontWeight
     },
 
     textinput:{
@@ -48,12 +63,39 @@ export default styles = StyleSheet.create({
         justifyContent:"center",
         alignItems:"center"
         
-     },
-     buttontext:{
+    },
+    buttontext:{
          
          color:ButtonText,
          fontWeight: "bold",
          fontSize:ButtonTextSize
  
-     },
+    },
+
+    resetpasswordbutton:{
+    
+        borderWidth:1,
+        backgroundColor:White,
+        height: 55,
+        width:Dimensions.get('window').width,
+        marginTop:18,
+    
+        fontSize:5,
+        borderColor: "white",
+        justifyContent:"center",
+        alignItems:"center"
+        
+    },
+
+    resetpasswordbuttontext:{
+         
+        color:"#7F7F7F",
+        // fontWeight: "bold",
+        fontSize:ButtonTextSize
+
+    },
+
+     
+
+
 });

@@ -12,7 +12,10 @@ import Drawer from './app/containers/Drawer';
 import Myaccount from './app/components/screens/Myaccount/Myaccount';
 import Editprofile from './app/components/screens/Editprofile/EditProfilescreen';
 import { AsyncStorage } from 'react-native';
-import Tables from './app/components/screens/Tables/Tables';
+import Productlist from './app/components/screens/Productlist/Productlist';
+import Productdetailscreen from './app/components/screens/Productdetailscreen/Productdetailscreen';
+import { productdetail } from './app/lib/api';
+import ResetPasswordScreen from './app/components/screens/ResetPassword/ResetPasswordScreen';
 //  import MyHomeScreen from './app/components/screens/demo';
 // import {White,ButtonText,PlusIconBackground,HeaderColor} from '../../../utils/Colors';
 // import {LogoSize,LogoFontWeight,LogoPadding,TextInputFont,RegularFon,HeaderTextFontWeight,HeaderText,ButtonTextSize} from '../../../utils/FontSizes';
@@ -20,23 +23,23 @@ import Tables from './app/components/screens/Tables/Tables';
 
 
  const MyApp = createDrawerNavigator({
-  MyCart: {
-    screen:Home
+    MyCart: {
+      screen:Home
+    },
+    // Tables: {
+    //   screen:Tables
+    // },
+    
+
+
+    // Notifications: {
+    //   screen: MyNotificationsScreen,
+    // },
   },
-  // Tables: {
-  //   screen:Tables
-  // },
-  
-
-
-  // Notifications: {
-  //   screen: MyNotificationsScreen,
-  // },
-},
-{
+  {
   contentComponent: Drawer,
   // drawerWidth: 300
-}
+  }
 
 );
 
@@ -54,14 +57,14 @@ const RootStack = createStackNavigator(
       navigationOptions:{
         header:null,
         
-    }
-  },
+      }
+    },
     Registrationscreen: {
       screen: Registration,
       navigationOptions:{
         header:null,
         
-    }
+      }
     },
     //  Homescreen: {
     //   screen: Home,
@@ -89,8 +92,20 @@ const RootStack = createStackNavigator(
         header:null,
       }
     },
-    Tables: {
-      screen: Tables,
+    Productlist: {
+      screen: Productlist,
+      navigationOptions:{
+        header:null
+      }
+    },
+    Productdetailscreen:{
+      screen :Productdetailscreen,
+      navigationOptions:{
+        header:null
+      }
+    },
+    ResetPasswordScreen:{
+      screen: ResetPasswordScreen,
       navigationOptions:{
         header:null
       }
@@ -112,6 +127,10 @@ const RootStack = createStackNavigator(
 
 
 export default class App extends Component {
+
+
+
+
   render() {
     return (
         
