@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFont } from '../../../utils/FontSizes';
-
+import { register, forgotpassword } from '../../../lib/api';
 
 export default class Forgotpassword extends Component {
 
@@ -45,7 +45,7 @@ export default class Forgotpassword extends Component {
         formData.append('email', this.state.Username);
 
         await fetch(
-            'http://staging.php-dev.in:8844/trainingapp/api/users/forgot'
+            forgotpassword
             , {
                 method: 'POST',
                 body: formData,
@@ -73,7 +73,7 @@ export default class Forgotpassword extends Component {
 
                 <Header style={{ backgroundColor: 'red' }}>
                     <Left>
-                        <Button transparent onPress={() => this.props.navigation.navigate('Loginscreen')}>
+                        <Button transparent onPress={() => this.props.navigation.goBack()}>
                             <Icon name="chevron-left" size={26} color="#f9fbff" />
                         </Button>
                     </Left>

@@ -9,6 +9,7 @@ import { White, ButtonText, PlusIconBackground, HeaderColor, ProductlistFont } f
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize, ProductlistTitle } from '../../../utils/FontSizes';
 import Productdetail from '../Productdetail/Productdetail';
 import { login, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
+import { Globals } from '../../../lib/Globals';
 
 export default class Productlist extends Component {
 
@@ -20,29 +21,36 @@ export default class Productlist extends Component {
 
     componentDidMount() {
         let url = prductlist + "?product_category_id=" + this.props.navigation.state.params.Id;
+        return Globals(url, { method: 'GET' }, response => {
+            if (response.status == 200) {
+                this.setState({
+                    fetcheddata: response.data,
+                }
 
-        return fetch(url, {
-            method: 'GET',
+
+
+                );
+
+            }
         })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                if (responseJson.status == 200) {
-                    this.setState({
-                        fetcheddata: responseJson.data,
-                    }
+        // return fetch(url, {
+        //     method: 'GET',
+        // })
+        //     .then((response) => response.json())
+        //     .then((responseJson) => {
+        //         if (responseJson.status == 200) {
+        //             this.setState({
+        //                 fetcheddata: responseJson.data,
+        //             }
 
 
 
-                    );
+        //             );
 
-                }
-                else {
+        //         }
 
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        //     })
+
     }
 
     render() {

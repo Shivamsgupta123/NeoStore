@@ -6,6 +6,9 @@ import { Container, Header, Left, Body, Right, Button, Title } from 'native-base
 import { White, ButtonText, PlusIconBackground, HeaderColor, HeaderTextFontWeight } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFont, HeaderText } from '../../../utils/FontSizes';
 import { AsyncStorage } from 'react-native';
+import { changepassword } from '../../../lib/api';
+// import { Globals } from '../../../lib/Globals';
+import { Globals } from '../../../lib/Globals';
 
 
 export default class ResetPasswordScreen extends Component {
@@ -51,7 +54,7 @@ export default class ResetPasswordScreen extends Component {
     async submit() {
 
         var getdata = await AsyncStorage.getItem('ResponseData');
-
+        console.log('resetpassword', getdata)
 
         getdata = JSON.parse(getdata)
 
@@ -60,28 +63,38 @@ export default class ResetPasswordScreen extends Component {
         formData.append(' old_password', this.state.CurrentPassword);
         formData.append(' password', this.state.NewPassword);
         formData.append(' confirm_password', this.state.ConfirmPassword);
-
-        await fetch(
-            'http://staging.php-dev.in:8844/trainingapp/api/users/change'
-            , {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    access_token: getdata.data.access_token
-
-                }
-            })
-            .then(response => response.json())
-            .then(response => {
-                if (response.status == 200) {
-                    alert("Submitted")
-                    this.props.navigation.navigate('Loginscreen')
-                }
-                else
-                    alert(response.user_msg)
-
+        // Globals(changepassword, POST, formData, getdata.data.access_token)
+        await Globals(changepassword, { method: 'POST', body: formData, headers: { access_token: getdata.data.access_token } }, response => {
+            console.log('reset password', response)
+            if (response.status == 200) {
+                alert("Submitted")
+                this.props.navigation.navigate('Login')
             }
-            )
+            else
+                alert(response.user_msg)
+        })
+
+        // await fetch(
+        //     changepassword
+        //     , {
+        //         method: 'POST',
+        //         body: formData,
+        //         headers: {
+        //             access_token: getdata.data.access_token
+
+        //         }
+        //     })
+        //     .then(response => response.json())
+        //     .then(response => {
+        //         if (response.status == 200) {
+        //             alert("Submitted")
+        //             this.props.navigation.navigate('Loginscreen')
+        //         }
+        //         else
+        //             alert(response.user_msg)
+
+        //     }
+        //     )
 
     }
     render() {

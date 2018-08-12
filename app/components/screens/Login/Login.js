@@ -6,7 +6,9 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import Editprofile from '../Editprofile/Editprofile';
 import { AsyncStorage } from 'react-native';
-import { login } from '../../../lib/api';
+// import { login } from '../../../lib/api';
+import { _login, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
+import { Globals } from '../../../lib/Globals';
 
 
 export default class Login extends Component {
@@ -68,38 +70,18 @@ export default class Login extends Component {
     }
 
     userdetails(access_token) {
-        fetch(
-            'http://staging.php-dev.in:8844/trainingapp/api/users/getUserData'
-            , {
-                method: 'GET',
-                headers: {
-                    'access_token': access_token
+        Globals(fetchaccountdetail, { method: 'GET', headers: { 'access_token': access_token } }, response => {
 
-                }
-            })
-            .then(response => response.json())
-            .then(response => {
-                if (response.status == 200) {
-                    console.log(response)
+            if (response.status == 200) {
 
-                    alert("success")
-
-                    // this.storedata();
-
-
-
-
-                    this.props.navigation.replace('MyApp', response)
-                }
-                else
-                    alert(response.user_msg)
-
+                this.props.navigation.replace('MyApp', response)
             }
-            )
-            .catch(err => {
+            else
+                alert(response.user_msg)
 
-                console.log(err)
-            })
+        }
+        )
+
 
 
     }
@@ -111,33 +93,51 @@ export default class Login extends Component {
         formData.append('password', this.state.Password);
 
 
-        fetch(
-            'http://staging.php-dev.in:8844/trainingapp/api/users/login'
-            , {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(response => {
-                if (response.status == 200) {
-                    console.log(response.data.access_token)
+        Globals(_login, { method: 'POST', body: formData }, response => {
+            if (response.status == 200) {
+                console.log(response.data.access_token)
 
-                    alert("success")
+                alert("success")
+                AsyncStorage.setItem("access_token", response.data.access_token, () => {
+                    this.userdetails(response.data.access_token);
+                })
+                AsyncStorage.setItem("ResponseData", JSON.stringify(response))
 
-                    // this.storedata();
-                    AsyncStorage.setItem("access_token", response.data.access_token, () => {
-                        this.userdetails(response.data.access_token);
-                    })
 
-                    AsyncStorage.setItem("ResponseData", JSON.stringify(response))
-
-                    // this.props.navigation.navigate('Homescreen', response)
-                }
-                else
-                    alert(response.user_msg)
 
             }
-            )
+            else
+                alert(response.user_msg)
+        })
+
+
+        // fetch(
+        //     login
+        //     , {
+        //         method: 'POST',
+        //         body: formData,
+        //     })
+        //     .then(response => response.json())
+        //     .then(response => {
+        //         if (response.status == 200) {
+        //             console.log(response.data.access_token)
+
+        //             alert("success")
+
+
+        //             AsyncStorage.setItem("access_token", response.data.access_token, () => {
+        //                 this.userdetails(response.data.access_token);
+        //             })
+
+        //             AsyncStorage.setItem("ResponseData", JSON.stringify(response))
+
+
+        //         }
+        //         else
+        //             alert(response.user_msg)
+
+        //     }
+        //     )
 
     }
 
@@ -177,7 +177,7 @@ export default class Login extends Component {
 
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                             <Text style={styles.newaccount}>DONT HAVE AN ACCOUNT?</Text>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Registrationscreen')}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Registration')}>
                                 <FeatherIcon style={{ marginRight: 15, backgroundColor: PlusIconBackground, padding: 2 }} name="plus" size={40} color="#FFFFFF" />
 
                             </TouchableOpacity>

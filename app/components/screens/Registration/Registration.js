@@ -12,6 +12,8 @@ import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../uti
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
 // import {firstname,lastname} from '../../../utils/Validators';
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
+import { register, forgotpassword } from '../../../lib/api';
+import { Globals } from '../../../lib/Globals';
 
 
 
@@ -128,35 +130,47 @@ export default class Registration extends Component {
 
     }
 
-    async register() {
+    register() {
 
 
 
 
         let formData = new FormData();
-        formData.append('first_name:', this.state.FirstName);
+        formData.append('first_name', this.state.FirstName);
         formData.append('last_name', this.state.LastName);
         formData.append('email', this.state.Email);
         formData.append('password', this.state.Password);
         formData.append('confirm_password', this.state.ConfirmPassword);
         formData.append('gender', 'M');
         formData.append('phone_no', this.state.PhoneNumber);
+        console.log(formData)
 
-        await fetch(
-            'http://staging.php-dev.in:8844/trainingapp/api/users/register'
-            , {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(response => {
-                if (response.status == 200)
-                    alert("Registered Successfully")
-                else
-                    alert(response.user_msg)
-
+        Globals(register, { method: 'POST', body: formData }, response => {
+            if (response.status == 200) {
+                alert("Registered Successfully")
+                this.props.navigation.goBack()
             }
-            )
+            else
+                alert(response.user_msg)
+
+
+        })
+        // register
+        //     , {
+        //         method: 'POST',
+        //         body: formData,
+        //     })
+        // .then(response => response.json())
+        // .then(response => {
+        //     if (response.status == 200) {
+        //         alert("Registered Successfully")
+        //         this.props.navigation.goBack()
+        //     }
+        //     else
+        //         alert(response.user_msg)
+
+        // }
+        // )
 
 
 
@@ -179,7 +193,7 @@ export default class Registration extends Component {
 
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left>
-                        <Button transparent onPress={() => this.props.navigation.navigate('Loginscreen')}>
+                        <Button transparent onPress={() => this.props.navigation.goBack()}>
                             <Icon name="chevron-left" size={26} color={White} />
                         </Button>
                     </Left>
@@ -232,7 +246,7 @@ export default class Registration extends Component {
                                         initial={0}
                                         buttonColor={'#fff'}
                                         selectedButtonColor={'#fff'}
-                                        labelStyle={{ fontSize: Platform.OS === 'ios' ? 20 : 17, color: "#fff", padding: 4 }}
+                                        labelStyle={{ fontSize: Platform.OS === 'ios' ? 20 : 17, color: "#ffffff", padding: 4 }}
                                         onPress={(value) => { }} />
 
 

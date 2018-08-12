@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import Login from './app/components/screens/Login/Login';
 import Forgotpassword from './app/components/screens/Forgotpassword/Forgotpassword';
-import Registration from './app/components/screens/Registrationscreen/Registrationscreen';
+import Registration from './app/components/screens/Registration/Registration';
 import { createStackNavigator } from 'react-navigation';
 import Home from './app/components/screens/Home/Home';
 import { createDrawerNavigator } from 'react-navigation';
@@ -60,7 +60,7 @@ const RootStack = createStackNavigator(
 
             }
         },
-        Registrationscreen: {
+        Registration: {
             screen: Registration,
             navigationOptions: {
                 header: null,

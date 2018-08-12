@@ -10,7 +10,7 @@ import { AsyncStorage } from 'react-native';
 // import Modal from 'react-native-modalbox';
 import Modal from "react-native-modal";
 import { login, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
-
+import { Globals } from '../../../lib/Globals';
 export default class Productdetail extends Component {
 
     constructor(props) {
@@ -38,32 +38,31 @@ export default class Productdetail extends Component {
 
     componentDidMount() {
         let url = productdetail + "?product_id=" + this.props.navigation.state.params.Id;
+        return Globals(url, { method: 'GET' }, response => {
 
-        return fetch(url, {
-            method: 'GET',
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                if (responseJson.status == 200) {
-                    this.setState({
-                        fetcheddata: responseJson.data,
-                        datafetched: true,
-                        img1: responseJson.data.product_images[0].image,
-                        // img2: responseJson.data.product_images[1].image, 
-                        // img3: responseJson.data.product_images[2].image, 
-                        // img4: responseJson.data.product_images[3].image, 
-                    }
-                    );
-
+            if (response.status == 200) {
+                this.setState({
+                    fetcheddata: response.data,
+                    datafetched: true,
+                    img1: response.data.product_images[0].image,
 
                 }
+                );
 
 
-            })
+            }
+        })
+        // return fetch(url, {
+        //     method: 'GET',
+        // })
+        //     .then((response) => response.json())
+        //     .then((responseJson) => {
 
-            .catch((error) => {
-                console.error(error);
-            });
+
+
+        // })
+
+
 
     }
 

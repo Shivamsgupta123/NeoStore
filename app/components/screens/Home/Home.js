@@ -9,12 +9,18 @@ import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, Heade
 import { Calendar } from 'react-native-calendars';
 import Productlist from '../Productlist/Productlist';
 import { AsyncStorage } from 'react-native';
-import { login, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
+import { _login, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
 
 export default class Home extends Component {
+
+    state = {
+        length: 5
+    }
     constructor(props) {
         super(props)
-        console.log(props)
+        // console.log('props', props)
+        // console.log(this.props.navigation.state.params.data.product_categories[1].icon_image)
+
 
     }
     // componentWillMount = async () => {
@@ -70,17 +76,19 @@ export default class Home extends Component {
                     <View>
                         <View style={styles.swiperimage}>
                             <Swiper >
+                                {this.props.navigation.state.params.data.product_categories.map(img => (
+                                    <View style={{ flex: 1 }}>
+                                        <Image resizeMode="stretch" style={styles.swiperimage} source={{ uri: img.icon_image }} />
 
-                                <View style={{ flex: 1 }}>
-                                    <Image resizeMode="stretch" style={styles.swiperimage} source={require('../../../assets/images/sofa.jpeg')} />
+                                    </View>
 
-                                </View>
-                                <View style={{ flex: 1 }}>
+                                ))}
+                                {/* <View style={{ flex: 1 }}>
                                     <Image resizeMode="stretch" style={styles.swiperimage} source={require('../../../assets/images/cupboard.jpg')} />
                                 </View>
                                 <View style={{ flex: 1 }}>
                                     <Image resizeMode="stretch" style={styles.swiperimage} source={require('../../../assets/images/table.jpg')} />
-                                </View>
+                                </View> */}
                             </Swiper>
                         </View>
 
