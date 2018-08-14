@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, ImageBackground, TextInput, Platform, TouchableOpacity } from 'react-native';
+import { View, Image, ActivityIndicator, Text, ImageBackground, TextInput, Platform, TouchableOpacity } from 'react-native';
 import styles from './Styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
@@ -18,6 +18,7 @@ export default class ResetPasswordScreen extends Component {
         NewPassword: '',
         ConfirmPassword: '',
         token: '',
+        Loading: false
 
     }
 
@@ -70,8 +71,9 @@ export default class ResetPasswordScreen extends Component {
         await GlobalAPI(changepassword, "POST", formData, accesstoken, response => {
             console.log('resetpassword123', response)
             if (response.status == 200) {
-                alert("Submitted")
+                alert("Password Changed Successfully")
                 this.props.navigation.navigate('Login')
+                this.setState({ Loading: true })
             }
             else
                 alert(response.user_msg)
@@ -115,6 +117,8 @@ export default class ResetPasswordScreen extends Component {
 
     }
     render() {
+        if (this.state.Loading)
+            return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
         return (
 
             <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={{ flex: 1, borderColor: "red", borderWidth: 1 }}>

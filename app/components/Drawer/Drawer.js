@@ -36,7 +36,7 @@ export default class Drawer extends Component {
 
 
 
-        this.props.navigation.navigate('Login')
+        this.props.navigation.replace('Login')
 
     }
 
@@ -57,7 +57,7 @@ export default class Drawer extends Component {
                     <View style={styles.drawerview}>
 
                         <Icon name="shopping-cart" style={styles.drawericon} size={30} color="#FFFFFF" />
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('MyCart')}>
                             <Text style={styles.drawertext}>My Cart</Text>
                         </TouchableOpacity>
                     </View>
@@ -98,7 +98,7 @@ export default class Drawer extends Component {
 
                         <Icon name="user" style={styles.drawericon} size={30} color="#FFFFFF" />
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('Myaccount')}>
-                            <Text style={styles.drawertext}>My Acoount</Text>
+                            <Text style={styles.drawertext}>My Account</Text>
                         </TouchableOpacity>
                     </View>
 

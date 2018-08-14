@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, FlatList, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
+import { AppRegistry, FlatList, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity, ActivityIndicator } from 'react-native';
 // import StarRatingBar from 'react-native-star-rating-view/StarRatingBar';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
@@ -16,11 +16,11 @@ export default class Productlist extends Component {
     constructor(props) {
         super(props)
         console.log('1234', props)
-        this.state = { fetcheddata: [] }
+        this.state = { fetcheddata: [], Loading: true }
     }
 
 
-    componentDidMount() {
+    componentWillMount() {
         let url = prductlist + product_category + this.props.navigation.state.params.Id;
 
         return GlobalAPI(url, "GET", null, null, response => {
@@ -28,12 +28,13 @@ export default class Productlist extends Component {
                 // console.log('prodlist', response)
                 this.setState({
                     fetcheddata: response.data,
+                    Loading: false,
                 }
                 );
             }
         },
             error => {
-                console.log(error.error)
+                console.log(error)
 
             }
 
@@ -99,8 +100,8 @@ export default class Productlist extends Component {
 
 
     render() {
-
-
+        if (this.state.Loading)
+            return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
         return (
             <View style={{ flex: 1, }}>
                 <Header style={{ backgroundColor: HeaderColor }}>
@@ -124,12 +125,12 @@ export default class Productlist extends Component {
                         renderItem={({ item }) =>
                             (
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Productdetail', { Title: item.name, Id: item.id, })}>
-                                    <View style={{ flex: 1, flexDirection: 'row', padding: 15, borderWidth: 1, borderColor: 'green' }}>
+                                    <View style={styles.mainview}>
                                         <View style={{ flexDirection: 'row' }}>
-                                            <Image source={{ uri: item.product_images }} style={{ height: 100, width: 100 }} />
+                                            <Image source={{ uri: item.product_images }} style={styles.productimage} />
                                         </View>
                                         <View>
-                                            <Text style={{ fontSize: ProductlistTitle, color: ProductlistFont, padding: 5 }}> {item.name}</Text>
+                                            <Text style={styles.productname}> {item.name}</Text>
 
 
                                             <Text style={{ fontSize: 15, color: ProductlistFont, paddingLeft: 9 }}>{item.producer}</Text>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, FlatList, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
+import { AppRegistry, FlatList, ActivityIndicator, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import { Rating } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
@@ -31,6 +31,7 @@ export default class Productdetail extends Component {
             datafetched: false,
             Quntity: '',
             isModalVisible1: false,
+            Loading: true
         }
     }
 
@@ -51,9 +52,10 @@ export default class Productdetail extends Component {
                 this.setState({
                     fetcheddata: response.data,
                     datafetched: true,
+                    Loading: false,
                     // {this.state.fetcheddata.map(img =>() )}
                     img1: response.data.product_images[0].image,
-                    img2: response.data.product_images[1].image,
+                    // img2: response.data.product_images[1].image,
                     // img3: response.data.product_images[2].image,
                     // img4: response.data.product_images[3].image,
                     // http://staging.php-dev.in:8844/trainingapp/api/products/getDetail?product_id=
@@ -87,18 +89,20 @@ export default class Productdetail extends Component {
 
     getimage() {
         var image = [];
+        // <ScrollView showsHorizontalScrollIndicator={true}>
 
         this.state.fetcheddata.product_images.forEach(img => {
-
+            // append image
+            // <ScrollView showsHorizontalScrollIndicator={true}>
             image.push(
-                <TouchableOpacity onPress={() => {
-                    this.setState({ img1: img.image })
-                }}>
+                <TouchableOpacity onPress={() => { this.setState({ img1: img.image }) }}>
                     <Image source={{ uri: img.image }} style={{ width: 110, height: 70, marginLeft: 12, borderWidth: 1, borderColor: HeaderColor }} />
                 </TouchableOpacity>
             )
+            // </ScrollView>
 
         })
+
         return image
     }
 
@@ -120,6 +124,10 @@ export default class Productdetail extends Component {
 
     submit = () => {
         // alert("Thanks for rating.")
+        let formData = new FormData();
+        formData.append(' product_id', this.state.fetcheddata.id);
+        formData.append(' quantity', this.state.Quntity);
+
         this.setState({ isModalVisible: false })
     }
 
@@ -139,7 +147,7 @@ export default class Productdetail extends Component {
         await GlobalAPI(addtocart, "POST", formData, getdata.data.access_token, response => {
             if (response.status == 200) {
                 alert(response.message)
-                this.setState({ isModalVisible1: false })
+                this.setState({ isModalVisible1: false, Loading: false })
             }
             else
                 alert(response.user_msg)
@@ -148,7 +156,18 @@ export default class Productdetail extends Component {
             console.log(error.error)
         })
     }
+
+    buymodalback() {
+        this.setState({ isModalVisible1: !this.state.isModalVisible1 })
+
+    }
+    ratingmodalback() {
+        this.setState({ isModalVisible: !this.state.isModalVisible })
+
+    }
     render() {
+        if (this.state.Loading)
+            return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
         return (
             this.state.datafetched ?
                 <View style={{ flex: 1, marginBottom: 10 }}>
@@ -168,7 +187,7 @@ export default class Productdetail extends Component {
 
                     </Header>
 
-                    <ScrollView>
+                    <ScrollView >
 
                         <View style={{ flex: 1, backgroundColor: White }}>
                             <Text style={{ color: DetailScreenFont, fontSize: 30, fontWeight: '600', marginLeft: 8, marginTop: 4 }}>{this.state.fetcheddata.name}</Text>
@@ -197,10 +216,10 @@ export default class Productdetail extends Component {
                             <View style={{ flex: 1, alignItems: 'center', padding: 10 }}>
                                 <Image source={{ uri: this.state.img1 }} style={{ width: 270, height: 170, marginTop: 12, }} />
                             </View>
-
-                            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingBottom: 15 }}>
-                                {this.getimage()}
-                                {/* <TouchableOpacity>
+                            <ScrollView horizontal={true}>
+                                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', paddingBottom: 15 }}>
+                                    {this.getimage()}
+                                    {/* <TouchableOpacity>
                                     <Image source={{ uri: this.state.img1 }} style={{ width: 110, height: 70, marginLeft: 12, borderWidth: 1, borderColor: HeaderColor }} />
                                 </TouchableOpacity>
                               
@@ -210,10 +229,11 @@ export default class Productdetail extends Component {
                                 <TouchableOpacity>
                                     <Image source={{ uri: this.state.img1 }} style={{ width: 110, height: 70, marginRight: 12, borderWidth: 1, borderColor: HeaderColor }} />
                                 </TouchableOpacity>  */}
-                            </View>
+                                </View>
+                            </ScrollView>
 
                             <View styel={{ flex: 1, paddingBottom: 15 }}>
-                                <Text style={{ color: "#111111", fontSize: 30, fontWeight: '600', marginLeft: 12 }}>Descrition</Text>
+                                <Text style={{ color: "#111111", fontSize: 30, fontWeight: '600', marginLeft: 12 }}>DESCRIPTION</Text>
                                 <Text style={{ color: "#333333", fontSize: 20, marginLeft: 12, marginRight: 12 }}>{this.state.fetcheddata.description}</Text>
                             </View>
 
@@ -226,7 +246,7 @@ export default class Productdetail extends Component {
                                     <Text style={styles.buttontext1}>RATE</Text>
                                 </TouchableOpacity>
                             </View>
-
+                            {/* Rating modal                  */}
                             <View style={{ flex: 1, justifyContent: 'center', width: "95%", height: 50 }}>
                                 <Modal isVisible={this.state.isModalVisible}>
                                     <View style={{ flex: 1, backgroundColor: White, justifyContent: 'center', alignItems: 'center' }}>
@@ -246,15 +266,21 @@ export default class Productdetail extends Component {
                                             style={{ paddingVertical: 10 }}
                                         />
 
-
-                                        <TouchableOpacity onPress={() => this.submit()} style={styles.ratingbutton}>
-                                            <Text style={styles.ratingbuttontext}>SUBMIT</Text>
-                                        </TouchableOpacity>
+                                        <View style={{ flexDirection: 'row', }}>
+                                            <TouchableOpacity onPress={() => this.submit()} style={styles.ratingbutton}>
+                                                <Text style={styles.ratingbuttontext}>SUBMIT</Text>
+                                            </TouchableOpacity>
+                                            <View style={styles.popupbutton}>
+                                                <TouchableOpacity style={styles.popupback} onPress={() => this.ratingmodalback()}>
+                                                    <Text style={styles.popupbutton}>BACK</Text>
+                                                </TouchableOpacity>
+                                            </View>
+                                        </View>
                                     </View>
                                 </Modal>
                             </View>
                             {/* <ScrollView style = {{height:Dimensions.get(window).height}}> */}
-
+                            {/* Buy Modal */}
                             <View style={{ flex: 1, justifyContent: 'center', width: "95%", height: 50 }}>
                                 <Modal isVisible={this.state.isModalVisible1}>
                                     <View style={{ flex: 1, backgroundColor: White, justifyContent: 'center', alignItems: 'center' }}>
@@ -262,10 +288,16 @@ export default class Productdetail extends Component {
                                         <Image source={{ uri: this.state.img1 }} style={styles.buypopupimage} />
                                         <Text style={styles.buypopuptext}>Enter Qty</Text>
                                         <TextInput onChangeText={(text) => this.setState({ Quntity: text })} style={styles.textinput} keyboardType="phone-pad" />
-
-                                        <TouchableOpacity onPress={() => this.buysubmit()} style={styles.ratingbutton}>
-                                            <Text style={styles.ratingbuttontext}>SUBMIT</Text>
-                                        </TouchableOpacity>
+                                        <View style={{ flexDirection: 'row', }}>
+                                            <TouchableOpacity onPress={() => this.buysubmit()} style={styles.ratingbutton}>
+                                                <Text style={styles.ratingbuttontext}>SUBMIT</Text>
+                                            </TouchableOpacity>
+                                            <View style={styles.popupbutton}>
+                                                <TouchableOpacity style={styles.popupback} onPress={() => this.buymodalback()}>
+                                                    <Text style={styles.popupbutton}>BACK</Text>
+                                                </TouchableOpacity>
+                                            </View>
+                                        </View>
                                     </View>
                                 </Modal>
                             </View>

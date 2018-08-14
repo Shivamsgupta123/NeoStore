@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
+import { AppRegistry, ActivityIndicator, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import Editprofile from '../Editprofile/Editprofile'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
@@ -16,7 +16,8 @@ export default class Myaccount extends Component {
         LastName: '',
         Email: '',
         PhoneNumber: '',
-        DOB: ''
+        DOB: '',
+
 
     }
     componentWillMount = async () => {
@@ -25,13 +26,14 @@ export default class Myaccount extends Component {
 
         getdata = JSON.parse(getdata)
 
-        this.setState({ FirstName: getdata.data.first_name })
-        this.setState({ LastName: getdata.data.last_name })
-        this.setState({ Email: getdata.data.email })
-        this.setState({ PhoneNumber: getdata.data.phone_no })
-        this.setState({ DOB: getdata.data.dob })
+        this.setState({ FirstName: getdata.data.first_name, LastName: getdata.data.last_name, Email: getdata.data.email, PhoneNumber: getdata.data.phone_no, DOB: getdata.data.dob })
+        //     this.setState({ LastName: getdata.data.last_name })
+        //     this.setState({ Email: getdata.data.email })
+        //     this.setState({ PhoneNumber: getdata.data.phone_no })
+        //     this.setState({ DOB: getdata.data.dob })
     }
     render() {
+
         return (
             <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
                 <Header style={{ backgroundColor: HeaderColor }}>

@@ -20,7 +20,7 @@ import StartUp from './app/components/screens/StartUp/StartUp';
 //  import MyHomeScreen from './app/components/screens/demo';
 // import {White,ButtonText,PlusIconBackground,HeaderColor} from '../../../utils/Colors';
 // import {LogoSize,LogoFontWeight,LogoPadding,TextInputFont,RegularFon,HeaderTextFontWeight,HeaderText,ButtonTextSize} from '../../../utils/FontSizes';
-
+import MyCart from './app/components/screens/MyCart/MyCart';
 
 
 const MyApp = createDrawerNavigator({
@@ -122,6 +122,13 @@ const RootStack = createStackNavigator(
             navigationOptions: {
                 header: null
             }
+        },
+        MyCart: {
+            screen: MyCart,
+            navigationOptions: {
+                header: null
+            }
+
         }
 
 

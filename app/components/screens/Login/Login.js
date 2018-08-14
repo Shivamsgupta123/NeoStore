@@ -21,7 +21,7 @@ export default class Login extends Component {
     state = {
         Username: '',
         Password: '',
-        Loading: true
+        Loading: false
 
     }
 
@@ -33,7 +33,7 @@ export default class Login extends Component {
         //     this.setState({ Loading: false })
         //     this.props.navigation.navigate('Homescreen')
         // }
-        this.setState({ Loading: false })
+        // this.setState({ Loading: false })
 
 
     }
@@ -64,6 +64,7 @@ export default class Login extends Component {
             if (response.status == 200) {
 
                 this.props.navigation.replace('MyApp', response)
+                this.setState({ Loading: true })
             }
             else
                 alert(response.user_msg)
@@ -87,11 +88,12 @@ export default class Login extends Component {
         GlobalAPI(_login, "POST", formData, null, response => {
 
             if (response.status == 200) {
-                console.log(response.data.access_token)
+                // console.log(response.data.access_token)
 
-                alert("success")
+
                 AsyncStorage.setItem("access_token", response.data.access_token, () => {
                     this.userdetails(response.data.access_token);
+                    this.setState({ Loading: true })
                 })
                 AsyncStorage.setItem("ResponseData", JSON.stringify(response))
 

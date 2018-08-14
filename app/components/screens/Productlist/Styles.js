@@ -20,6 +20,22 @@ export default styles = StyleSheet.create({
         fontSize: ProductlistTitle,
         color: HeaderColor,
         padding: 7
+    },
+    mainview: {
+        flex: 1,
+        flexDirection: 'row',
+        padding: 15,
+        borderBottomWidth: 1,
+        borderColor: 'grey'
+    },
+    productimage: {
+        height: 90,
+        width: 90
+    },
+    productname: {
+        fontSize: Platform.OS === 'ios' ? 22 : 20,
+        color: ProductlistFont,
+        padding: 2
     }
 
 });

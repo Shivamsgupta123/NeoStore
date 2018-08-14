@@ -7,4 +7,5 @@ export const ButtonTextSize = 25;
 export const HeaderText = 25;
 export const HeaderTextFontWeight = "800";
 export const ProductlistTitle = 22;
+// export const HeaderText = 20,
 

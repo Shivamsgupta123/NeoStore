@@ -54,7 +54,7 @@ export default class Home extends Component {
         return (
 
 
-            <View style={{ marginBottom: 50 }}>
+            <View style={{ height: Dimensions.get('window').height }}>
 
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left>
@@ -71,62 +71,62 @@ export default class Home extends Component {
 
                 </Header>
 
-                <ScrollView>
+                {/* <ScrollView> */}
 
-                    <View>
-                        <View style={styles.swiperimage}>
-                            <Swiper >
-                                {this.props.navigation.state.params.data.product_categories.map(img => (
-                                    <View style={{ flex: 1 }}>
-                                        <Image resizeMode="stretch" style={styles.swiperimage} source={{ uri: img.icon_image }} />
+                <View>
+                    <View style={styles.swiperimage}>
+                        <Swiper >
+                            {this.props.navigation.state.params.data.product_categories.map(img => (
+                                <View style={{ flex: 1 }}>
+                                    <Image resizeMode="stretch" style={styles.swiperimage} source={{ uri: img.icon_image }} />
 
-                                    </View>
+                                </View>
 
-                                ))}
-                                {/* <View style={{ flex: 1 }}>
+                            ))}
+                            {/* <View style={{ flex: 1 }}>
                                     <Image resizeMode="stretch" style={styles.swiperimage} source={require('../../../assets/images/cupboard.jpg')} />
                                 </View>
                                 <View style={{ flex: 1 }}>
                                     <Image resizeMode="stretch" style={styles.swiperimage} source={require('../../../assets/images/table.jpg')} />
                                 </View> */}
-                            </Swiper>
-                        </View>
+                        </Swiper>
+                    </View>
 
 
-                        <View style={{ height: Platform.OS === 'ios' ? 380 : 340 }}>
-                            <View style={styles.containerbottom}>
-                                <View style={styles.boxrow}>
-                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { Title: 'Tables', Id: "1" })} style={[styles.boxtop,]} >
-                                        <Text style={styles.homescreenboxtext1}>Tables</Text>
-                                        <Icon name='table' style={{ textAlign: 'left' }} color="#ffffff" size={80} />
+                    <View style={styles.iconview}>
+                        <View style={styles.containerbottom}>
+                            <View style={styles.boxrow}>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { Title: 'Tables', Id: "1" })} style={[styles.boxtop,]} >
+                                    <Text style={styles.icontext1}>Tables</Text>
+                                    <Icon name='table' style={{ textAlign: 'left' }} color="#ffffff" size={80} />
 
-                                    </TouchableOpacity >
-                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { Title: 'Sofas', Id: "3" })} style={[styles.boxtop,]}>
-                                        <Icon style={{ textAlign: 'right' }} name='lock' color="#ffffff" size={80} />
-                                        <Text style={styles.homescreenboxtext2}>Sofas</Text>
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={styles.boxrow}>
-                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { Title: 'Chairs', Id: "2" })} style={[styles.boxbottom,]}>
-                                        <Text style={styles.homescreenboxtext2}>Chairs</Text>
-                                        <Icon name='wheelchair' color="#ffffff" style={{ textAlign: 'right' }} size={80} />
-                                    </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { Title: 'Cupboards', Id: "5" })} style={[styles.boxbottom,]}>
-                                        <Icon name='lock' style={{ textAlign: 'left' }} color="#ffffff" size={80} />
-                                        <Text style={styles.homescreenboxtext1}>Cupboards</Text>
-                                    </TouchableOpacity>
-                                </View>
+                                </TouchableOpacity >
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { Title: 'Sofas', Id: "3" })} style={[styles.boxtop,]}>
+                                    <Icon style={{ textAlign: 'right' }} name='lock' color="#ffffff" size={80} />
+                                    <Text style={styles.icontext2}>Sofas</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.boxrow}>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { Title: 'Chairs', Id: "2" })} style={[styles.boxbottom,]}>
+                                    <Text style={styles.icontext2}>Chairs</Text>
+                                    <Icon name='wheelchair' color="#ffffff" style={{ textAlign: 'right' }} size={75} />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { Title: 'Cupboards', Id: "5" })} style={[styles.boxbottom,]}>
+                                    <Icon name='lock' style={{ textAlign: 'left' }} color="#ffffff" size={80} />
+                                    <Text style={styles.icontext1}>Cupboards</Text>
+                                </TouchableOpacity>
                             </View>
                         </View>
-
-
-
-
-
-
                     </View>
-                </ScrollView>
-            </View>
+
+
+
+
+
+
+                </View>
+                {/* </ScrollView> */}
+            </View >
 
 
 
