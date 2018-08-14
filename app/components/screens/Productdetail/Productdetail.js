@@ -9,12 +9,17 @@ import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, Heade
 import { AsyncStorage } from 'react-native';
 // import Modal from 'react-native-modalbox';
 import Modal from "react-native-modal";
-import { login, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
-import { Globals } from '../../../lib/Globals';
+import { login, productid, addtocart, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
+import { GlobalAPI } from '../../../lib/Globals';
+
+
 export default class Productdetail extends Component {
+
 
     constructor(props) {
         super(props)
+        console.log('shivam', props)
+
         this.state = {
             fetcheddata: [],
             img1: '',
@@ -37,21 +42,35 @@ export default class Productdetail extends Component {
 
 
     componentDidMount() {
-        let url = productdetail + "?product_id=" + this.props.navigation.state.params.Id;
-        return Globals(url, { method: 'GET' }, response => {
+        let url = productdetail + productid + this.props.navigation.state.params.Id;
+        return GlobalAPI(url, "GET", null, null, response => {
 
             if (response.status == 200) {
+                // response1 = response
+                // console.log('product', response)
                 this.setState({
                     fetcheddata: response.data,
                     datafetched: true,
+                    // {this.state.fetcheddata.map(img =>() )}
                     img1: response.data.product_images[0].image,
+                    img2: response.data.product_images[1].image,
+                    // img3: response.data.product_images[2].image,
+                    // img4: response.data.product_images[3].image,
+                    // http://staging.php-dev.in:8844/trainingapp/api/products/getDetail?product_id=
 
                 }
+
                 );
+                // console.log(this.state.fetcheddata)
 
 
             }
-        })
+        }, error => {
+            console.log(error.error)
+        }
+        )
+
+
         // return fetch(url, {
         //     method: 'GET',
         // })
@@ -64,6 +83,23 @@ export default class Productdetail extends Component {
 
 
 
+    }
+
+    getimage() {
+        var image = [];
+
+        this.state.fetcheddata.product_images.forEach(img => {
+
+            image.push(
+                <TouchableOpacity onPress={() => {
+                    this.setState({ img1: img.image })
+                }}>
+                    <Image source={{ uri: img.image }} style={{ width: 110, height: 70, marginLeft: 12, borderWidth: 1, borderColor: HeaderColor }} />
+                </TouchableOpacity>
+            )
+
+        })
+        return image
     }
 
     ratingCompleted(rating) {
@@ -88,50 +124,30 @@ export default class Productdetail extends Component {
     }
 
     async buysubmit() {
-        //    try{
-        //     var getdata = await AsyncStorage.getItem('ResponseData');   
-        //     console.log(getdata)
 
-        //     getdata = JSON.parse(getdata)
+        var getdata = await AsyncStorage.getItem('ResponseData');
+        console.log(getdata)
 
-
-        //     let formData = new FormData();
-        //     formData.append(' product_id', this.state.fetcheddata.id);
-        //     formData.append(' quantity', this.state.Quntity);
+        getdata = JSON.parse(getdata)
 
 
-
-        //     await fetch(
-        //       'http://staging.php-dev.in:8844/trainingapp/api/addToCart', {
-        //            method: 'POST',
-        //            body: formData,
-        //            headers:{
-        //              access_token: getdata.data.access_token
-
-        //            }
-        //         })
-        //         .then(response => response.json()  )
-        //         .then(  response =>{
-        //             if(response.status == 200)
-        //             {
-        //              alert(response.message)
-        this.setState({ isModalVisible1: false })
-        //             }
-        //             else
-        //              alert(response.user_msg)
-
-        //         }
-        //         ) 
-        //     }
-        //     catch(error){
-        //         console.log(error)
-        //     }   
+        let formData = new FormData();
+        formData.append(' product_id', this.state.fetcheddata.id);
+        formData.append(' quantity', this.state.Quntity);
 
 
+        await GlobalAPI(addtocart, "POST", formData, getdata.data.access_token, response => {
+            if (response.status == 200) {
+                alert(response.message)
+                this.setState({ isModalVisible1: false })
+            }
+            else
+                alert(response.user_msg)
+
+        }, error => {
+            console.log(error.error)
+        })
     }
-
-
-
     render() {
         return (
             this.state.datafetched ?
@@ -149,7 +165,6 @@ export default class Productdetail extends Component {
                         <Right>
                             <Icon name="search" size={22} color="#f9fbff" style={{ marginRight: 10 }} />
                         </Right>
-
 
                     </Header>
 
@@ -184,15 +199,17 @@ export default class Productdetail extends Component {
                             </View>
 
                             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingBottom: 15 }}>
-                                <TouchableOpacity>
+                                {this.getimage()}
+                                {/* <TouchableOpacity>
                                     <Image source={{ uri: this.state.img1 }} style={{ width: 110, height: 70, marginLeft: 12, borderWidth: 1, borderColor: HeaderColor }} />
                                 </TouchableOpacity>
-                                <TouchableOpacity>
+                              
+                                 <TouchableOpacity>
                                     <Image source={{ uri: this.state.img1 }} style={{ width: 110, height: 70, borderWidth: 1, borderColor: HeaderColor }} />
                                 </TouchableOpacity>
                                 <TouchableOpacity>
                                     <Image source={{ uri: this.state.img1 }} style={{ width: 110, height: 70, marginRight: 12, borderWidth: 1, borderColor: HeaderColor }} />
-                                </TouchableOpacity>
+                                </TouchableOpacity>  */}
                             </View>
 
                             <View styel={{ flex: 1, paddingBottom: 15 }}>

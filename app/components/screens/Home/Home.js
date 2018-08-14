@@ -18,7 +18,7 @@ export default class Home extends Component {
     }
     constructor(props) {
         super(props)
-        // console.log('props', props)
+        console.log('Home', props)
         // console.log(this.props.navigation.state.params.data.product_categories[1].icon_image)
 
 

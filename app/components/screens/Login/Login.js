@@ -8,7 +8,7 @@ import Editprofile from '../Editprofile/Editprofile';
 import { AsyncStorage } from 'react-native';
 // import { login } from '../../../lib/api';
 import { _login, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
-import { Globals } from '../../../lib/Globals';
+import { GlobalAPI } from '../../../lib/Globals';
 
 
 export default class Login extends Component {
@@ -38,18 +38,7 @@ export default class Login extends Component {
 
     }
 
-    // storedata = async() => {
 
-    //     try {
-    //      await AsyncStorage.setItem("Username", this.state.Username);
-    //      await AsyncStorage.setItem('Password', this.state.Password);
-
-    //     } 
-    //     catch (error) {
-    //     alert("error saving data")
-    //     }
-
-    // }
 
     validate() {
         var emailreg = /\S+@\S+\.\S+/;
@@ -70,7 +59,7 @@ export default class Login extends Component {
     }
 
     userdetails(access_token) {
-        Globals(fetchaccountdetail, { method: 'GET', headers: { 'access_token': access_token } }, response => {
+        GlobalAPI(fetchaccountdetail, "GET", null, access_token, (response) => {
 
             if (response.status == 200) {
 
@@ -78,6 +67,9 @@ export default class Login extends Component {
             }
             else
                 alert(response.user_msg)
+
+        }, error => {
+            console.log(error.error)
 
         }
         )
@@ -92,8 +84,8 @@ export default class Login extends Component {
         formData.append('email', this.state.Username);
         formData.append('password', this.state.Password);
 
+        GlobalAPI(_login, "POST", formData, null, response => {
 
-        Globals(_login, { method: 'POST', body: formData }, response => {
             if (response.status == 200) {
                 console.log(response.data.access_token)
 
@@ -106,8 +98,14 @@ export default class Login extends Component {
 
 
             }
-            else
+            else {
                 alert(response.user_msg)
+                // alert("Connection Failed!")
+            }
+        }, error => {
+            console.log(error.error)
+            alert("Connection Failed!")
+
         })
 
 

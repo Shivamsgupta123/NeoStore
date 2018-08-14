@@ -4,7 +4,7 @@ import styles from './Styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 // import { Container, Header, Content, ListItem, Text, Radio, Right, Left } from 'native-base';
 import RadioGroup from 'react-native-radio-buttons-group';
-import Checkbox from '../../../containers/CheckBox';
+import CheckBox from '../../CheckBox/CheckBox';
 // import {Header  } from "react-native-elements";
 // import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
@@ -13,7 +13,7 @@ import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, Heade
 // import {firstname,lastname} from '../../../utils/Validators';
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 import { register, forgotpassword } from '../../../lib/api';
-import { Globals } from '../../../lib/Globals';
+import { GlobalAPIPost } from '../../../lib/Globals';
 
 
 
@@ -145,7 +145,7 @@ export default class Registration extends Component {
         formData.append('phone_no', this.state.PhoneNumber);
         console.log(formData)
 
-        Globals(register, { method: 'POST', body: formData }, response => {
+        GlobalAPIPost(register, formData, null, response => {
             if (response.status == 200) {
                 alert("Registered Successfully")
                 this.props.navigation.goBack()
@@ -154,7 +154,10 @@ export default class Registration extends Component {
                 alert(response.user_msg)
 
 
-        })
+        },
+            error => {
+                console.log(error.error)
+            })
         // register
         //     , {
         //         method: 'POST',
@@ -262,7 +265,7 @@ export default class Registration extends Component {
                                     <TextInput onSubmitEditing={() => { this.focusNextField('seven'); }} returnKeyType={"next"} ref={input => { this.inputs['six'] = input; }} keyboardType="phone-pad" onChangeText={(text) => this.setState({ PhoneNumber: text })} style={styles.textinput} placeholder="Phone Number" placeholderTextColor="white" ></TextInput>
                                 </View>
                                 <View style={{ flexDirection: 'row' }}>
-                                    <Checkbox label="" checked={false} color='ffffff' />
+                                    <CheckBox label="" checked={false} color='ffffff' />
                                     <Text style={{ color: "white", fontWeight: 'bold', fontSize: 14 }}>I agree the Terms & Condtition</Text>
                                 </View>
 

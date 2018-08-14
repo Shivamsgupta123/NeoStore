@@ -4,8 +4,8 @@ import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import styles from './Styles';
-import Login from '../components/screens/Login/Login';
-import Myaccount from '../components/screens/Myaccount/Myaccount';
+import Login from '../screens/Login/Login';
+import Myaccount from '../screens/Myaccount/Myaccount';
 import { AsyncStorage } from 'react-native';
 
 export default class Drawer extends Component {
@@ -48,7 +48,7 @@ export default class Drawer extends Component {
 
                 <View style={{ alignItems: 'center', padding: 20 }}>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('Myaccount')}>
-                        <Image style={{ width: 80, height: 80, borderRadius: 40, borderColor: 'white', borderWidth: 2 }} source={require('../assets/images/lion.jpg')} />
+                        <Image style={styles.profileimage} source={require('../../assets/images/lion.jpg')} />
                     </TouchableOpacity>
                     <Text style={styles.username}>{this.state.FirstName} {this.state.LastName}</Text>
                     <Text style={styles.useremail}>{this.state.Email}</Text>

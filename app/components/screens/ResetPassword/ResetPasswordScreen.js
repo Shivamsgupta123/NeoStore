@@ -8,7 +8,7 @@ import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFont, Head
 import { AsyncStorage } from 'react-native';
 import { changepassword } from '../../../lib/api';
 // import { Globals } from '../../../lib/Globals';
-import { Globals } from '../../../lib/Globals';
+import { GlobalAPI } from '../../../lib/Globals';
 
 
 export default class ResetPasswordScreen extends Component {
@@ -54,18 +54,21 @@ export default class ResetPasswordScreen extends Component {
     async submit() {
 
         var getdata = await AsyncStorage.getItem('ResponseData');
-        console.log('resetpassword', getdata)
+        // console.log('resetpassword', getdata)
 
         getdata = JSON.parse(getdata)
+        var accesstoken = getdata.data.access_token
+        console.log('resetpassword', accesstoken)
 
 
         let formData = new FormData();
         formData.append(' old_password', this.state.CurrentPassword);
         formData.append(' password', this.state.NewPassword);
         formData.append(' confirm_password', this.state.ConfirmPassword);
-        // Globals(changepassword, POST, formData, getdata.data.access_token)
-        await Globals(changepassword, { method: 'POST', body: formData, headers: { access_token: getdata.data.access_token } }, response => {
-            console.log('reset password', response)
+        // formData = JSON.parse(formData)
+
+        await GlobalAPI(changepassword, "POST", formData, accesstoken, response => {
+            console.log('resetpassword123', response)
             if (response.status == 200) {
                 alert("Submitted")
                 this.props.navigation.navigate('Login')
@@ -73,6 +76,20 @@ export default class ResetPasswordScreen extends Component {
             else
                 alert(response.user_msg)
         })
+
+
+
+        // await Globals(changepassword, { method: 'POST', body: formData, headers: { access_token: getdata.data.access_token } }, response => {
+        //     console.log('reset password', response)
+        //     if (response.status == 200) {
+        //         alert("Submitted")
+        //         this.props.navigation.navigate('Login')
+        //     }
+        //     else
+        //         alert(response.user_msg)
+        // })
+
+
 
         // await fetch(
         //     changepassword

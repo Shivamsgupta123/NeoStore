@@ -1,6 +1,6 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
-import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
-import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
+import { White, ProductlistFont, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
+import { LogoSize, ProductlistTitle, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
 
 export default styles = StyleSheet.create({
     productList: {
@@ -10,5 +10,16 @@ export default styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'green'
     },
+
+    productproducer: {
+        fontSize: 15,
+        color: ProductlistFont,
+        paddingLeft: 9
+    },
+    productcost: {
+        fontSize: ProductlistTitle,
+        color: HeaderColor,
+        padding: 7
+    }
 
 });

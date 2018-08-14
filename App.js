@@ -8,7 +8,7 @@ import Registration from './app/components/screens/Registration/Registration';
 import { createStackNavigator } from 'react-navigation';
 import Home from './app/components/screens/Home/Home';
 import { createDrawerNavigator } from 'react-navigation';
-import Drawer from './app/containers/Drawer';
+import Drawer from './app/components/Drawer/Drawer';
 import Myaccount from './app/components/screens/Myaccount/Myaccount';
 import Editprofile from './app/components/screens/Editprofile/Editprofile';
 import { AsyncStorage } from 'react-native';

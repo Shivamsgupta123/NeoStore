@@ -9,6 +9,8 @@ import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, Heade
 import DatePicker from 'react-native-datepicker';
 import { Calendar } from 'react-native-calendars';
 import ImagePicker from 'react-native-customized-image-picker';
+import { updateaccountdetail } from '../../../lib/api';
+import { GlobalAPIPost } from '../../../lib/Globals';
 
 
 
@@ -74,8 +76,20 @@ export default class Editprofile extends Component {
                                             // alert("Enter DOB in formate dd-mm-yyyy.")
                                             // else
                                             this.props.navigation.navigate('Myaccount')
+        this.submit()
 
     }
+    submit() {
+        let formData = new FormData();
+        formData.append('first_name', this.state.FirstName);
+        formData.append('last_name', this.state.LastName);
+        formData.append('email', this.state.Email);
+        formData.append('password', this.state.Password);
+        formData.append('confirm_password', this.state.ConfirmPassword);
+        formData.append('gender', 'M');
+        formData.append('phone_no', this.state.PhoneNumber);
+    }
+
 
     render() {
         return (

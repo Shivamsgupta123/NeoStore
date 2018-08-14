@@ -3,36 +3,62 @@ import { AppRegistry, FlatList, ImageBackground, TextInput, StyleSheet, Text, Pl
 // import StarRatingBar from 'react-native-star-rating-view/StarRatingBar';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
-// import styles from './Styles';
+import styles from './Styles';
 import { Rating } from 'react-native-elements';
 import { White, ButtonText, PlusIconBackground, HeaderColor, ProductlistFont } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize, ProductlistTitle } from '../../../utils/FontSizes';
 import Productdetail from '../Productdetail/Productdetail';
-import { login, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
-import { Globals } from '../../../lib/Globals';
+import { login, detail, productid, product_category, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
+import { GlobalAPI } from '../../../lib/Globals';
 
 export default class Productlist extends Component {
 
     constructor(props) {
         super(props)
+        console.log('1234', props)
         this.state = { fetcheddata: [] }
     }
 
 
     componentDidMount() {
-        let url = prductlist + "?product_category_id=" + this.props.navigation.state.params.Id;
-        return Globals(url, { method: 'GET' }, response => {
+        let url = prductlist + product_category + this.props.navigation.state.params.Id;
+
+        return GlobalAPI(url, "GET", null, null, response => {
             if (response.status == 200) {
+                // console.log('prodlist', response)
                 this.setState({
                     fetcheddata: response.data,
                 }
-
-
-
                 );
+            }
+        },
+            error => {
+                console.log(error.error)
 
             }
-        })
+
+        )
+
+
+
+
+
+
+
+        // return Globals(url, { method: 'GET' }, response => {
+        //     if (response.status == 200) {
+        //         this.setState({
+        //             fetcheddata: response.data,
+        //         }
+
+
+
+        //         );
+
+        //     }
+        // })
+
+
         // return fetch(url, {
         //     method: 'GET',
         // })
@@ -50,8 +76,27 @@ export default class Productlist extends Component {
         //         }
 
         //     })
+        // this.productdetail()
 
     }
+    // productdetail() {
+    //     console.log("hello")
+    //     let api = detail + this.props.navigation.state.params.Id;
+    //     return GlobalAPI(api, "GET", null, null, response => {
+    //         if (response.status == 200) {
+    //             console.log('prodlist', response)
+
+    //         }
+    //     },
+    //         error => {
+    //             console.log(error.error)
+
+    //         }
+
+    //     )
+
+    // }
+
 
     render() {
 
