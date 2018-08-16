@@ -59,7 +59,7 @@ export default class Login extends Component {
     }
 
     userdetails(access_token) {
-        GlobalAPI(fetchaccountdetail, "GET", null, { "shivam": "gupta" }, (response) => {
+        GlobalAPI(fetchaccountdetail, "GET", null, access_token, (response) => {
 
             if (response.status == 200) {
 
@@ -70,7 +70,7 @@ export default class Login extends Component {
                 alert(response.user_msg)
 
         }, error => {
-            console.log(error.error)
+            console.log(error)
 
         }
         )

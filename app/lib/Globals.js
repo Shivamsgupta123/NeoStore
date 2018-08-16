@@ -19,12 +19,19 @@ import { AsyncStorage } from 'react-native';
 //             console.log(err)
 //         })
 // };
+var myBoolean = true
+
+export const Console = (name, message) => {
+    if (myBoolean)
+        console.log(name, message)
+}
+
 
 export const GlobalAPI = (api, method, body, header, success_callback, error_callback) => {
     console.log('head', header)
     AsyncStorage.getItem("access_token").then((value) => {
         let obj = { method: method }
-        let headers = header;
+        let headers = {};
         body != null ? obj["body"] = body : null
         value != null ? headers["access_token"] = value : null
         value != null ? obj["headers"] = headers : null

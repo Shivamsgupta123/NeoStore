@@ -11,7 +11,7 @@ import { Calendar } from 'react-native-calendars';
 import ImagePicker from 'react-native-customized-image-picker';
 import { updateaccountdetail } from '../../../lib/api';
 import { GlobalAPIPost } from '../../../lib/Globals';
-
+import { GlobalAPI } from '../../../lib/Globals';
 
 
 
@@ -45,37 +45,32 @@ export default class Editprofile extends Component {
         var dobreg = /^([0-9]{2})-([0-9]{2})-([0-9]{4})$/;
 
 
-        if (FirstName == "")
-            alert("Please Enter First Name.")
+        if (this.state.FirstName == "" || !this.state.FirstName.match(namereg)) {
+            alert("Please Enter Valid First Name with no wide spaces & Numbers.")
+            return false
+        }
         else
-            if (!FirstName.match(namereg))
-                alert("Enter only Characters & Dont insert wide spaces .")
+            if (this.state.LastName == "" || !this.state.LastName.match(namereg)) {
+                alert("Please Enter Valid Last Name with no wide spaces & Numbers.")
+                return false
+            }
             else
-                if (LastName == "")
-                    alert("Please Enter Last Name.")
+                if (this.state.Email == "" || !this.state.Email.match(emailreg)) {
+                    alert("Please Enter Valid Email.")
+                    return false
+                }
                 else
-                    if (!LastName.match(namereg))
-                        alert("Enter only Characters & Dont insert wide spaces .")
+                    if (this.state.PhoneNumber == "" || !this.state.PhoneNumber.match(phonenoreg)) {
+                        alert("Please enter 10 digit phone no with country code(eg.+91).")
+                        return false
+                    }
                     else
-                        if (Email == "")
-                            alert("Please Enter Email.")
+                        if (this.state.DOB == "" || !this.state.DOB.match(phonenoreg)) {
+                            alert("PLease enter BOB in formate DD-MM-YYYY")
+                            return false
+                        }
                         else
-                            if (!Email.match(emailreg))
-                                alert("Enter valid Email.")
-                            else
-                                if (PhoneNumber == "")
-                                    alert("Please Enter Phone Number.")
-                                else
-                                    if (!PhoneNumber.match(phonenoreg))
-                                        alert("Please enter 10 digit phone no with country code(eg.+91).")
-                                    else
-                                        if (DOB == "")
-                                            alert("Enter DOB")
-                                        else
-                                            // if(!DOB.match(dobreg))
-                                            // alert("Enter DOB in formate dd-mm-yyyy.")
-                                            // else
-                                            this.props.navigation.navigate('Myaccount')
+                            this.props.navigation.navigate('Myaccount')
         this.submit()
 
     }
@@ -84,10 +79,22 @@ export default class Editprofile extends Component {
         formData.append('first_name', this.state.FirstName);
         formData.append('last_name', this.state.LastName);
         formData.append('email', this.state.Email);
-        formData.append('password', this.state.Password);
-        formData.append('confirm_password', this.state.ConfirmPassword);
-        formData.append('gender', 'M');
         formData.append('phone_no', this.state.PhoneNumber);
+        formData.append('profile_pic', "abc");
+        formData.append('dob', this.state.DOB);
+
+        GlobalAPI(updateaccountdetail, "POST", formData, null, response => {
+            if (response.status == 200) {
+                alert("Account detail updated successfully.")
+            }
+            else
+                alert(response.user_msg)
+        },
+            error => {
+                console.log(error)
+
+            }
+        )
     }
 
 

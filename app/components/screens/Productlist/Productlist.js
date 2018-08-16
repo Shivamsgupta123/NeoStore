@@ -9,7 +9,7 @@ import { White, ButtonText, PlusIconBackground, HeaderColor, ProductlistFont } f
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize, ProductlistTitle } from '../../../utils/FontSizes';
 import Productdetail from '../Productdetail/Productdetail';
 import { login, detail, productlimit, productid, product_category, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
-import { GlobalAPI } from '../../../lib/Globals';
+import { GlobalAPI, Console } from '../../../lib/Globals';
 import ReactList from 'react-list';
 import LazyLoading from 'react-list-lazy-load';
 
@@ -19,52 +19,31 @@ export default class Productlist extends Component {
     constructor(props) {
         super(props)
         console.log('1234', props)
-        this.state = { fetcheddata: [], Loading: true, list: [], page: 1, limit: 6 }
+        this.state = { fetcheddata: [], Loading: true, list: [], page: 1, limit: 5 }
     }
 
-    // LazyLoading
-    //     componentDidMount() {
-    //         this.fetchResult();
-    //     }
+    LazyLoading
+    componentDidMount() {
+        this.fetchResult();
+    }
     //     componentWillMount{
-    // fetchResult = () => {
+    fetchResult = () => {
 
-    //     let url = prductlist + product_category + this.props.navigation.state.params.Id + "&limit=6&page=" + this.state.page;
-    //     const { limit, page, fetcheddata } = this.state;
-    //     return GlobalAPI(url, "GET", null, null, response => {
-    //         if (response.status == 200) {
-    //             // console.log('prodlist', response)
-    //             this.setState({
-    //                 list: response.data,
-    //                 fetcheddata: fetcheddata.concat(list.fetcheddata),
-    //                 page: page + 1,
-    //                 limit: limit + 6,
-    //                 Loading: false,
-    //             })
-    //         }
-    //     },
-    //         error => {
-    //             console.log(error)
-
-    //         }
-    //     )
-
-    // }
-    // }
-
-
-
-    componentWillMount() {
-        let url = prductlist + product_category + this.props.navigation.state.params.Id;
-
+        let url = prductlist + product_category + this.props.navigation.state.params.Id + "&limit=7&page=" + this.state.page;
+        Console("url", url)
+        const { limit, page, fetcheddata } = this.state;
         return GlobalAPI(url, "GET", null, null, response => {
             if (response.status == 200) {
-                // console.log('prodlist', response)
+
+                Console("prodlist123", response)
                 this.setState({
-                    fetcheddata: response.data,
+
+                    fetcheddata: fetcheddata.concat(response.data),
+                    page: page + 1,
                     Loading: false,
-                }
-                );
+
+                })
+                Console("fetchdata", this.state.fetcheddata.length)
             }
         },
             error => {
@@ -72,7 +51,31 @@ export default class Productlist extends Component {
 
             }
         )
+
     }
+
+
+
+
+    // componentWillMount() {
+    //     let url = prductlist + product_category + this.props.navigation.state.params.Id;
+
+    //     return GlobalAPI(url, "GET", null, null, response => {
+    //         if (response.status == 200) {
+    //             // console.log('prodlist', response)
+    //             this.setState({
+    //                 fetcheddata: response.data,
+    //                 Loading: false,
+    //             }
+    //             );
+    //         }
+    //     },
+    //         error => {
+    //             console.log(error)
+
+    //         }
+    //     )
+    // }
 
     render() {
         if (this.state.Loading)
@@ -86,7 +89,7 @@ export default class Productlist extends Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Text style={{ color: White, fontSize: HeaderText, marginLeft: Platform.OS === 'ios' ? 0 : 65, fontWeight: HeaderTextFontWeight, }}>{this.props.navigation.state.params.Title}</Text>
+                        <Text style={{ color: White, fontSize: HeaderText, textAlign: "center", marginLeft: Platform.OS === 'ios' ? -3 : 65, fontWeight: HeaderTextFontWeight, }}>{this.props.navigation.state.params.Title}</Text>
                     </Body>
                     <Right>
                         <Icon name="search" size={20} color="#f9fbff" />
@@ -98,12 +101,11 @@ export default class Productlist extends Component {
                 <View style={{ flex: 1, backgroundColor: White }}>
 
                     <FlatList
-                        // onEndReached={this.fetchResult()}
-                        // // // data={this.state.fetcheddata}
-                        // // // renderItem={rowData => {}}
-                        // // // keyExtractor={item => item.id.toString()}
-                        // onEndReachedThreshold={0.7}
+                        onEndReached={() => this.fetchResult()}
+
+                        onEndReachedThreshold={0.7}
                         data={this.state.fetcheddata}
+
                         renderItem={({ item }) =>
                             (
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Productdetail', { Title: item.name, Id: item.id, })}>
