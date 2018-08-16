@@ -1,6 +1,6 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
-import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
+import { LogoSize, LogoHeaderText, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
 
 
 export default styles = StyleSheet.create({
@@ -103,7 +103,7 @@ export default styles = StyleSheet.create({
     },
     headerText: {
         color: White,
-        fontSize: HeaderText,
+        fontSize: LogoHeaderText,
         marginLeft: Platform.OS === 'ios' ? 0 : 65,
         fontWeight: HeaderTextFontWeight,
         marginTop: Platform.OS === 'ios' ? 5 : 10

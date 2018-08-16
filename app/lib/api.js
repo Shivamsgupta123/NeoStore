@@ -14,4 +14,5 @@ export const product_category = "?product_category_id=";
 export const updateaccountdetail = StagingAPI + "users/update";
 export const detail = "http://staging.php-dev.in:8844/trainingapp/api/products/getDetail?product_id=";
 export const cartitem = StagingAPI + "cart";
+export const productlimit = "&limit=6&page=1";
 

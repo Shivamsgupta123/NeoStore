@@ -9,6 +9,7 @@
   "dependencies": {
     "native-base": "^2.7.2",
     "react": "16.4.1",
+    "react-list": "^0.8.10",
     "react-list-lazy-load": "^1.1.1",
     "react-native": "0.56.0",
     "react-native-calendars": "^1.20.0",
