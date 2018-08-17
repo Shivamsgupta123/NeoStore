@@ -21,7 +21,7 @@ export default class Productlist extends Component {
         super(props)
         // console.log('1234', props)
 
-        this.state = { fetcheddata: [], loader: true, list: [], page: 1, limit: 7, isdata: false }
+        this.state = { fetcheddata: [], loader: false, list: [], page: 1, limit: 7, isdata: false }
         // this.fetchResult();
     }
 
@@ -48,38 +48,38 @@ export default class Productlist extends Component {
     }
 
     fetchResult = () => {
-        this.setState({ loader: true })
-        if (this.state.isdata)
-            return
+        if (!this.state.isdata) {
+            this.setState({ loader: true })
 
-        let url = prductlist + product_category + this.props.navigation.state.params.Id + "&limit=7&page=" + this.state.page;
-        Console("url", url)
-        const { limit, page, fetcheddata } = this.state;
-        return GlobalAPI(url, "GET", null, null, response => {
-            this.setState({ loader: false })
-            // Console("res", response)
-            if (response.status == 401)
-                this.setState({ isdata: true })
-            // Console("prodlist123", response)
-            if (response.status == 200) {
-
+            let url = prductlist + product_category + this.props.navigation.state.params.Id + "&limit=7&page=" + this.state.page;
+            Console("url", url)
+            const { limit, page, fetcheddata } = this.state;
+            return GlobalAPI(url, "GET", null, null, response => {
+                this.setState({ loader: false })
+                // Console("res", response)
+                if (response.status == 401)
+                    this.setState({ isdata: true })
                 // Console("prodlist123", response)
-                this.setState({
+                if (response.status == 200) {
 
-                    fetcheddata: fetcheddata.concat(response.data),
-                    page: page + 1,
-                    // limit: limit + 7,
-                    Loading: false,
+                    // Console("prodlist123", response)
+                    this.setState({
 
-                })
-                Console("fetchdata", this.state.fetcheddata.length)
-            }
-        },
-            error => {
-                console.log("res2", error)
+                        fetcheddata: fetcheddata.concat(response.data),
+                        page: page + 1,
+                        // limit: limit + 7,
+                        loader: false,
 
-            }
-        )
+                    })
+                    Console("fetchdata", this.state.fetcheddata.length)
+                }
+            },
+                error => {
+                    console.log("res2", error)
+
+                }
+            )
+        }
 
     }
 
@@ -108,7 +108,11 @@ export default class Productlist extends Component {
     // }
 
     render() {
+        // if (this.state.loader) { return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" /> }
+
+
         return (
+
             <View style={{ flex: 1, }}>
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left>
@@ -126,7 +130,7 @@ export default class Productlist extends Component {
                 </Header>
 
 
-                {this.state.loader ? <Loader /> : null}
+
                 <View style={{ flex: 1, backgroundColor: White }}>
 
 
@@ -181,7 +185,8 @@ export default class Productlist extends Component {
 
 
                     <View style={{ alignItems: "center" }}>
-                        <Text style={styles.itemcount}>{this.state.fetcheddata.length} of {this.state.fetcheddata.length}</Text>
+                        {this.state.loader ? <Loader /> :
+                            <Text style={styles.itemcount}>{this.state.fetcheddata.length} of {this.state.fetcheddata.length}</Text>}
                     </View>
 
 
