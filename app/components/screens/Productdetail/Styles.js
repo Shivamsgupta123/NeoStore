@@ -33,7 +33,7 @@ export default styles = StyleSheet.create({
         color: White,
         textAlign: 'center',
         fontSize: HeaderText,
-        width: 250,
+        width: 230,
         fontWeight: HeaderTextFontWeight
     },
 

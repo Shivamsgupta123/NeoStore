@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, ActivityIndicator, Text, ImageBackground, TextInput, Platform, TouchableOpacity } from 'react-native';
+import { View, Image, ActivityIndicator, Text, ImageBackground, TextInput, Platform, TouchableOpacity, KeyboardAvoidingView, Dimensions, ScrollView } from 'react-native';
 import styles from './Styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
@@ -137,32 +137,36 @@ export default class ResetPasswordScreen extends Component {
                     </Right>
 
                 </Header>
+                <ScrollView >
+                    <KeyboardAvoidingView behavior="padding" enabled>
 
-                <View style={styles.view1}>
-                    <Text style={styles.neostore}>NeoSTORE</Text>
+                        <View style={styles.view1}>
+                            <Text style={styles.neostore}>NeoSTORE</Text>
 
-                    <View style={styles.view3}>
-                        <Icon name="lock" size={30} color="#FFFFFF" style={styles.icon} />
-                        <TextInput onChangeText={(text) => this.setState({ CurrentPassword: text })} style={styles.textinput} placeholder="Current Password" placeholderTextColor="white" ></TextInput>
+                            <View style={styles.view3}>
+                                <Icon name="lock" size={30} color="#FFFFFF" style={styles.icon} />
+                                <TextInput onChangeText={(text) => this.setState({ CurrentPassword: text })} style={styles.textinput} placeholder="Current Password" placeholderTextColor="white" ></TextInput>
 
-                    </View>
+                            </View>
 
-                    <View style={styles.view3}>
-                        <Icon name="unlock" size={27} color="#FFFFFF" style={styles.icon} />
-                        <TextInput onChangeText={(text) => this.setState({ NewPassword: text })} style={styles.textinput} placeholder="Enter New Password" placeholderTextColor="white" ></TextInput>
-                    </View>
+                            <View style={styles.view3}>
+                                <Icon name="unlock" size={27} color="#FFFFFF" style={styles.icon} />
+                                <TextInput onChangeText={(text) => this.setState({ NewPassword: text })} style={styles.textinput} placeholder="Enter New Password" placeholderTextColor="white" ></TextInput>
+                            </View>
 
-                    <View style={styles.view3}>
-                        <Icon name="lock" size={30} color="#FFFFFF" style={styles.icon} />
-                        <TextInput onChangeText={(text) => this.setState({ ConfirmPassword: text })} style={styles.textinput} placeholder="Confirm Password" placeholderTextColor="white" ></TextInput>
-                    </View>
+                            <View style={styles.view3}>
+                                <Icon name="lock" size={30} color="#FFFFFF" style={styles.icon} />
+                                <TextInput onChangeText={(text) => this.setState({ ConfirmPassword: text })} style={styles.textinput} placeholder="Confirm Password" placeholderTextColor="white" ></TextInput>
+                            </View>
 
-                    <TouchableOpacity style={styles.loginbutton} onPress={() => this.validate()}>
-                        <Text style={styles.buttontext}>SUBMIT</Text>
+                            <TouchableOpacity style={styles.loginbutton} onPress={() => this.validate()}>
+                                <Text style={styles.buttontext}>SUBMIT</Text>
 
-                    </TouchableOpacity>
+                            </TouchableOpacity>
 
-                </View>
+                        </View>
+                    </KeyboardAvoidingView>
+                </ScrollView>
 
             </ImageBackground>
 

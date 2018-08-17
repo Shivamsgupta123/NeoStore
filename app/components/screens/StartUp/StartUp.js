@@ -16,13 +16,13 @@ export default class StartUp extends Component {
                 GlobalAPI(fetchaccountdetail, "GET", null, value, (response) => {
 
                     if (response.status == 200) {
-                        console.log("123")
+                        // console.log("123")
                         this.props.navigation.replace('MyApp', response);
                     }
                     else {
                         AsyncStorage.removeItem("access_token")
                         this.props.navigation.replace('Login')
-                        console.log("456")
+                        // console.log("456")
 
                     }
 
@@ -65,7 +65,7 @@ export default class StartUp extends Component {
 
             }
             else {
-                console.log("login")
+                // console.log("login")
                 this.props.navigation.replace('Login')
 
             }

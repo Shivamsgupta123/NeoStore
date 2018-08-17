@@ -1,101 +1,101 @@
-import {Platform, StyleSheet,Dimensions} from 'react-native';
+import { Platform, StyleSheet, Dimensions } from 'react-native';
 // import { ButtonText } from '../../../Utils/Colors';
-import {White,ButtonText,PlusIconBackground,HeaderColor} from '../../../utils/Colors';
-import {LogoSize,LogoFontWeight,LogoPadding,TextInputFont,RegularFon,HeaderTextFontWeight,HeaderText,ButtonTextSize} from '../../../utils/FontSizes';
+import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
+import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
 
 
 export default styles = StyleSheet.create({
-    
-    iconpadding:{
+
+    iconpadding: {
         padding: Platform.OS === 'ios' ? 0 : 7,
-        height:50,
-        width:Platform.OS === 'ios' ? 30: 35,
+        height: 50,
+        width: Platform.OS === 'ios' ? 30 : 35,
         // textAlign:Platform.OS === 'ios' ? ,'center'
-        justifyContent:"center"
+        justifyContent: "center"
     },
-     
-    view3:{
-        height:Platform.OS === 'ios' ? 45 : 40,
-        width:280, 
+
+    view3: {
+        height: Platform.OS === 'ios' ? 45 : 40,
+        width: 280,
         borderColor: 'white',
         borderWidth: 1,
         padding: Platform.OS === 'ios' ? 10 : 0,
-        marginTop:20,           
+        marginTop: Platform.OS === 'ios' ? 20 : 13,
         flexDirection: 'row'
 
     },
-    profileimage:{
-        width: 133.3, 
-        height: 133.3, 
-        borderRadius:66.6,
+    profileimage: {
+        width: 120,
+        height: 120,
+        borderRadius: 66.6,
     },
-    backgroundimage:{
-        flex:1,borderColor:"red",
-        borderWidth:1, 
-        height:Dimensions.get('window').height
+    backgroundimage: {
+        flex: 1, borderColor: "red",
+        borderWidth: 1,
+        height: Dimensions.get('window').height
 
     },
-    headertitle:{
-        color:White,textAlign:'center',
-        fontSize:HeaderText,
-        width:250, 
-        fontWeight:HeaderTextFontWeight
+    headertitle: {
+        color: White, textAlign: 'center',
+        fontSize: HeaderText,
+        width: 250,
+        fontWeight: HeaderTextFontWeight
     },
 
-    textinput:{
-        flex:1,
-        marginLeft:10,
+    textinput: {
+        flex: 1,
+        marginLeft: 10,
         color: "white",
-        fontSize:Platform.OS === 'ios' ? 20 : 15,
-        fontWeight:Platform.OS === 'ios'?'500':'500'
+        fontSize: Platform.OS === 'ios' ? 20 : 15,
+        fontWeight: Platform.OS === 'ios' ? '500' : '500'
 
     },
-    loginbutton:{
-    
-        borderWidth:1,
-        backgroundColor:White,
+    loginbutton: {
+
+        borderWidth: 1,
+        backgroundColor: White,
         height: 55,
-        width:280,
-        marginTop:18,
-        borderRadius:10,
-        fontSize:5,
+        width: 280,
+        marginTop: 18,
+        borderRadius: 10,
+        fontSize: 5,
         borderColor: "white",
-        justifyContent:"center",
-        alignItems:"center"
-        
+        justifyContent: "center",
+        alignItems: "center"
+
     },
-    buttontext:{
-         
-         color:ButtonText,
-         fontWeight: "bold",
-         fontSize:ButtonTextSize
- 
+    buttontext: {
+
+        color: ButtonText,
+        fontWeight: "bold",
+        fontSize: ButtonTextSize
+
     },
 
-    resetpasswordbutton:{
-    
-        borderWidth:1,
-        backgroundColor:White,
+    resetpasswordbutton: {
+
+        borderWidth: 1,
+        backgroundColor: White,
         height: 55,
-        width:Dimensions.get('window').width,
-        marginTop:18,
-    
-        fontSize:5,
+        width: Dimensions.get('window').width,
+        marginTop: 18,
+
+        fontSize: 5,
         borderColor: "white",
-        justifyContent:"center",
-        alignItems:"center"
-        
+        justifyContent: "center",
+        alignItems: "center"
+
     },
 
-    resetpasswordbuttontext:{
-         
-        color:"#7F7F7F",
+    resetpasswordbuttontext: {
+
+        color: "#7F7F7F",
         // fontWeight: "bold",
-        fontSize:ButtonTextSize
+        fontSize: ButtonTextSize
 
     },
 
-     
+
 
 
 });

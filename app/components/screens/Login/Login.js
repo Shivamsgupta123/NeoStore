@@ -4,7 +4,7 @@ import styles from './Styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
-import Editprofile from '../Editprofile/Editprofile';
+
 import { AsyncStorage } from 'react-native';
 // import { login } from '../../../lib/api';
 import { _login, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
@@ -27,6 +27,7 @@ export default class Login extends Component {
 
 
     componentWillMount = async () => {
+
         let user = await AsyncStorage.getItem('Username')
 
         // if (user != null) {
@@ -59,12 +60,13 @@ export default class Login extends Component {
     }
 
     userdetails(access_token) {
+        this.setState({ Loading: true })
         GlobalAPI(fetchaccountdetail, "GET", null, access_token, (response) => {
 
             if (response.status == 200) {
 
                 this.props.navigation.replace('MyApp', response)
-                this.setState({ Loading: true })
+
             }
             else
                 alert(response.user_msg)
@@ -84,7 +86,7 @@ export default class Login extends Component {
         let formData = new FormData();
         formData.append('email', this.state.Username);
         formData.append('password', this.state.Password);
-
+        this.setState({ Loading: true })
         GlobalAPI(_login, "POST", formData, null, response => {
 
             if (response.status == 200) {
@@ -92,8 +94,10 @@ export default class Login extends Component {
 
 
                 AsyncStorage.setItem("access_token", response.data.access_token, () => {
+
                     this.userdetails(response.data.access_token);
-                    this.setState({ Loading: true })
+
+
                 })
                 AsyncStorage.setItem("ResponseData", JSON.stringify(response))
 

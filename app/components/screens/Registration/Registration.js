@@ -265,7 +265,7 @@ export default class Registration extends Component {
                                     <TextInput onSubmitEditing={() => { this.focusNextField('seven'); }} returnKeyType={"next"} ref={input => { this.inputs['six'] = input; }} keyboardType="phone-pad" onChangeText={(text) => this.setState({ PhoneNumber: text })} style={styles.textinput} placeholder="Phone Number" placeholderTextColor="white" ></TextInput>
                                 </View>
                                 <View style={{ flexDirection: 'row' }}>
-                                    <CheckBox label="" checked={false} color='ffffff' />
+                                    <CheckBox label="" checked={false} color='#ffffff' />
                                     <Text style={{ color: "white", fontWeight: 'bold', fontSize: 14 }}>I agree the Terms & Condtition</Text>
                                 </View>
 

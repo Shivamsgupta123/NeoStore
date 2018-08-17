@@ -36,6 +36,13 @@ export default styles = StyleSheet.create({
         fontSize: Platform.OS === 'ios' ? 22 : 20,
         color: ProductlistFont,
         padding: 2
+    },
+    itemcount: {
+        fontSize: 20,
+        paddingLeft: 7,
+        paddingRight: 7,
+        color: "#111111",
+        backgroundColor: "#7a7676"
     }
 
 });

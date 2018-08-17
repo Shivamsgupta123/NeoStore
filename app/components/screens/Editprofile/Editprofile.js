@@ -100,6 +100,7 @@ export default class Editprofile extends Component {
 
     render() {
         return (
+            // <View style={{ height: Dimensions.get('window').height }}>
             <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={{ flex: 1, borderColor: "red", borderWidth: 1, heigh: Dimensions.get('window').height }}>
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left>
@@ -116,7 +117,7 @@ export default class Editprofile extends Component {
 
 
                 </Header>
-                <ScrollView style={{ height: Dimensions.get('window').height }}>
+                <ScrollView >
                     <KeyboardAvoidingView style={styles.keyboardview} behavior="padding" enabled>
 
                         <View style={{ alignItems: 'center', padding: 20 }}>
@@ -160,6 +161,7 @@ export default class Editprofile extends Component {
                     </KeyboardAvoidingView>
                 </ScrollView>
             </ImageBackground>
+            // </View>
 
         );
     }

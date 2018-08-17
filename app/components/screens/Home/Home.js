@@ -77,7 +77,7 @@ export default class Home extends Component {
                     <View style={styles.swiperimage}>
                         <Swiper >
                             {this.props.navigation.state.params.data.product_categories.map(img => (
-                                <View style={{ flex: 1 }}>
+                                <View key={img.icon_image} style={{ flex: 1 }}>
                                     <Image resizeMode="stretch" style={styles.swiperimage} source={{ uri: img.icon_image }} />
 
                                 </View>

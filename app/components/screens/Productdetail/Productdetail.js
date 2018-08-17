@@ -18,7 +18,7 @@ export default class Productdetail extends Component {
 
     constructor(props) {
         super(props)
-        console.log('shivam', props)
+        // console.log('shivam', props)
 
         this.state = {
             fetcheddata: [],
@@ -91,11 +91,11 @@ export default class Productdetail extends Component {
         var image = [];
         // <ScrollView showsHorizontalScrollIndicator={true}>
 
-        this.state.fetcheddata.product_images.forEach(img => {
+        this.state.fetcheddata.product_images.forEach((img, index) => {
             // append image
             // <ScrollView showsHorizontalScrollIndicator={true}>
             image.push(
-                <TouchableOpacity onPress={() => { this.setState({ img1: img.image }) }}>
+                <TouchableOpacity key={index} onPress={() => { this.setState({ img1: img.image }) }}>
                     <Image source={{ uri: img.image }} style={{ width: 110, height: 70, marginLeft: 12, borderWidth: 1, borderColor: HeaderColor }} />
                 </TouchableOpacity>
             )
