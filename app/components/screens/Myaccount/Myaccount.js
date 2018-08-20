@@ -9,7 +9,7 @@ import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, Heade
 import ResetPasswordScreen from '../ResetPassword/ResetPasswordScreen';
 import { AsyncStorage } from 'react-native';
 
-
+var getdata
 export default class Myaccount extends Component {
     state = {
         FirstName: '',
@@ -17,16 +17,18 @@ export default class Myaccount extends Component {
         Email: '',
         PhoneNumber: '',
         DOB: '',
+        ProfileImage: 'abc',
+
 
 
     }
     componentWillMount = async () => {
-        var getdata = await AsyncStorage.getItem('ResponseData');
-
+        getdata = await AsyncStorage.getItem('ResponseData');
+        // console.log("data123", getdata)
 
         getdata = JSON.parse(getdata)
 
-        this.setState({ FirstName: getdata.data.first_name, LastName: getdata.data.last_name, Email: getdata.data.email, PhoneNumber: getdata.data.phone_no, DOB: getdata.data.dob })
+        this.setState({ FirstName: getdata.data.first_name, LastName: getdata.data.last_name, Email: getdata.data.email, PhoneNumber: getdata.data.phone_no, DOB: getdata.data.dob, ProfileImage: getdata.data.profile_pic })
         //     this.setState({ LastName: getdata.data.last_name })
         //     this.setState({ Email: getdata.data.email })
         //     this.setState({ PhoneNumber: getdata.data.phone_no })
@@ -56,7 +58,7 @@ export default class Myaccount extends Component {
 
                 <View style={{ alignItems: 'center', padding: Platform.OS === 'ios' ? 20 : 0, height: Dimensions.get('window').height }}>
 
-                    <Image style={styles.profileimage} source={require('../../../assets/images/lion.jpg')} />
+                    <Image style={styles.profileimage} source={{ uri: this.state.ProfileImage }} />
                     <View style={styles.view3}>
                         <Icon name="user" size={25} color="#FFFFFF" style={styles.iconpadding} />
                         <TextInput style={styles.textinput} editable={false} placeholder={this.state.FirstName} placeholderTextColor="white" ></TextInput>
@@ -83,7 +85,7 @@ export default class Myaccount extends Component {
                         <TextInput style={styles.textinput} editable={false} placeholder="16-10-1996" placeholderTextColor="white" ></TextInput>
                     </View>
 
-                    <TouchableOpacity style={styles.loginbutton} onPress={() => this.props.navigation.navigate('Editprofile')}>
+                    <TouchableOpacity style={styles.loginbutton} onPress={() => this.props.navigation.navigate('Editprofile', getdata)}>
                         <Text style={styles.buttontext}>Edit Profile</Text>
                     </TouchableOpacity>
 

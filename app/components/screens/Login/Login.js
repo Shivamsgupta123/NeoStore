@@ -87,7 +87,7 @@ export default class Login extends Component {
         formData.append('email', this.state.Username);
         formData.append('password', this.state.Password);
         this.setState({ Loading: true })
-        GlobalAPI(_login, "POST", formData, null, response => {
+        GlobalAPI(_login, "POST", formData, {}, response => {
 
             if (response.status == 200) {
                 // console.log(response.data.access_token)

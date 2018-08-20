@@ -91,3 +91,31 @@ export const GlobalAPI = (api, method, body, headers, success_callback, error_ca
 
     })
 }
+
+
+
+
+
+
+
+
+// const imagePicker = require('react-native-imagepicker');
+imagePicker.open({
+    takePhoto: true,
+    useLastPhoto: false,
+    chooseFromLibrary: true,
+    takePhoto: {
+
+        config: { /*ImagePickerIOS.openCameraDialog()*/ }
+    },
+
+    chooseFromLibrary: {
+
+        config: { /* Config object to ImagePickerIOS.openSelectDialog() */ }
+    },
+}).then(({ uri, width, height }) => {
+    console.log('image asset', uri, width, height);
+}, (error) => {
+    // Typically, user cancel  
+    console.log('error', error);
+});

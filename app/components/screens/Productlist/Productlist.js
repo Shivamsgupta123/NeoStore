@@ -21,7 +21,7 @@ export default class Productlist extends Component {
         super(props)
         // console.log('1234', props)
 
-        this.state = { fetcheddata: [], loader: false, list: [], page: 1, limit: 7, isdata: false }
+        this.state = { fetcheddata: [], loader: false, list: [], page: 1, limit: 7, isdata: false, loader1: true }
         // this.fetchResult();
     }
 
@@ -44,6 +44,7 @@ export default class Productlist extends Component {
     // }
     componentDidMount() {
         this.fetchResult()
+        this.setState({ loader1: false })
 
     }
 
@@ -108,7 +109,7 @@ export default class Productlist extends Component {
     // }
 
     render() {
-        // if (this.state.loader) { return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" /> }
+        if (this.state.loader1) { return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" /> }
 
 
         return (

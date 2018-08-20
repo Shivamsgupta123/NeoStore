@@ -38,6 +38,7 @@ export const GlobalAPI = (api, method, body, header, success_callback, error_cal
     AsyncStorage.getItem("access_token").then((value) => {
         let obj = { method: method }
         let headers = {};
+        // headers = header
         body != null ? obj["body"] = body : null
         value != null ? headers["access_token"] = value : null
         value != null ? obj["headers"] = headers : null

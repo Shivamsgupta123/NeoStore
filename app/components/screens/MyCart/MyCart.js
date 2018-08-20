@@ -95,6 +95,7 @@ export default class MyCart extends Component {
 
                             </View>
                         )}
+                        eyExtractor={(item, index) => '' + index}
                     />
                 </View>
             </View>

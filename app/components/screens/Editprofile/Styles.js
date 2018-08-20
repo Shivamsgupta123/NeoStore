@@ -59,4 +59,23 @@ export default styles = StyleSheet.create({
         fontSize: ButtonTextSize
 
     },
+    profileimage: {
+        width: 133.3,
+        height: 133.3,
+        borderRadius: 66.6,
+    },
+    imagetext: {
+        color: White,
+        fontSize: 20
+
+    },
+    dob: {
+        marginLeft: 10,
+        color: "white",
+        fontSize: Platform.OS === 'ios' ? 20 : 15,
+        fontWeight: Platform.OS === 'ios' ? '500' : '500',
+        height: Platform.OS === 'ios' ? 37 : 48,
+        width: Platform.OS === 'ios' ? 150 : 150,
+        marginTop: Platform.OS === 'ios' ? -3 : 7
+    }
 });

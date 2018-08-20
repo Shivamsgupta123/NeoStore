@@ -106,19 +106,16 @@ export default class Productdetail extends Component {
         return image
     }
 
-    ratingCompleted(rating) {
+    ratingCompleted = (rating) => {
 
-        //  this.setState({
-        //     Rating:rating
 
-        // })
         console.log("Rating is: " + rating)
-        // this.setState(
-        //     {
-        //         Rating:rating
-        //     }
-        // )
-        // console.log(Rating)
+        this.setState(
+            {
+                Rating: rating
+            }
+        )
+        console.log("xxx", this.state.Rating)
 
     }
 
