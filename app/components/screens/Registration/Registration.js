@@ -22,10 +22,8 @@ var gender = [
     { label: "Female", value: 1 }
 ];
 export default class Registration extends Component {
-
     constructor(props) {
         super(props);
-
         this.focusNextField = this.focusNextField.bind(this);
         this.inputs = {};
     }
@@ -56,52 +54,21 @@ export default class Registration extends Component {
             alert("Please Enter Valid Name with no wide spaces & Numbers.")
             return false
         }
-        // else
-        // if(!this.state.FirstName.match(namereg))
-        // {
-        // alert("Enter only Characters & Dont insert wide spaces .")
-        // return false
-        // }
         else
             if (this.state.LastName == "" || !this.state.LastName.match(namereg)) {
                 alert("Please Enter Valid Name with no wide spaces & Numbers.")
                 return false
             }
-            // else
-            // if(!this.state.LastName.match(namereg))
-            // {
-            // alert("Enter only Characters & Dont insert wide spaces .")
-            // return false
-            // }
             else
                 if (this.state.Email == "" || !this.state.Email.match(emailreg)) {
                     alert("Please Enter Valid Email.")
                     return false
                 }
-                // else
-                // if(!this.state.Email.match(emailreg))
-                // {
-                // alert("Enter valid Email.")
-                // return false
-                // }
                 else
                     if (this.state.Password == "" || !this.state.Password.match(passwordreg) || this.state.Password.length < 8) {
                         alert("Enter alphanumeric password having atleast 8 characters.")
                         return false
                     }
-                    // else
-                    // if(!this.state.Password.match(passwordreg))
-                    // {
-                    // alert("Enter only alphanumeric characters.")
-                    // return false
-                    // }
-                    // else 
-                    // if(this.state.Password.length<8 || this.state.Password.length>12)
-                    // {
-                    // alert("Password must contain 8-12 characters")
-                    // return false
-                    // }
-
                     else
                         if (this.state.ConfirmPassword == "") {
                             alert("Please Confirm Password.")
@@ -117,24 +84,10 @@ export default class Registration extends Component {
                                     alert("Please enter 10 digit phone no with country code(eg.+91).")
                                     return false
                                 }
-                                // else
-                                // if(!this.state.PhoneNumber.match(phonenoreg))
-                                // {
-                                // alert("Please enter 10 digit phone no with country code(eg.+91).")
-                                // return false
-                                // }
                                 else
                                     this.register()
-
-
-
     }
-
     register() {
-
-
-
-
         let formData = new FormData();
         formData.append('first_name', this.state.FirstName);
         formData.append('last_name', this.state.LastName);
@@ -144,7 +97,6 @@ export default class Registration extends Component {
         formData.append('gender', 'M');
         formData.append('phone_no', this.state.PhoneNumber);
         console.log(formData)
-
         GlobalAPIPost(register, formData, null, response => {
             if (response.status == 200) {
                 alert("Registered Successfully")
@@ -158,40 +110,16 @@ export default class Registration extends Component {
             error => {
                 console.log(error.error)
             })
-        // register
-        //     , {
-        //         method: 'POST',
-        //         body: formData,
-        //     })
-        // .then(response => response.json())
-        // .then(response => {
-        //     if (response.status == 200) {
-        //         alert("Registered Successfully")
-        //         this.props.navigation.goBack()
-        //     }
-        //     else
-        //         alert(response.user_msg)
-
-        // }
-        // )
-
-
-
-
     }
     focusNextField(id) {
         this.inputs[id].focus();
     }
 
-
+    // radio buttons
     onPress = data => this.setState({ data });
+
     render() {
-
-
         return (
-
-
-
             <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={{ flex: 1, borderColor: "red", borderWidth: 1, heigh: Dimensions.get('window').height }}>
 
                 <Header style={{ backgroundColor: HeaderColor }}>
@@ -200,18 +128,11 @@ export default class Registration extends Component {
                             <Icon name="chevron-left" size={26} color={White} />
                         </Button>
                     </Left>
-                    {/* <Body>
-            <Title style = {{color:'white',fontWeight:'bold',fontSize:25, marginLeft:Platform.OS === 'ios' ? 0 : 45}}>Register</Title>
-          </Body> */}
-                    <Text style={{ color: White, fontSize: HeaderText, marginLeft: Platform.OS === 'ios' ? 0 : 65, fontWeight: HeaderTextFontWeight, marginTop: Platform.OS === 'ios' ? 5 : 10 }}>Register</Text>
+                    <Text style={styles.HeaderText}>Register</Text>
                     <Right></Right>
-
-
                 </Header>
                 <ScrollView >
                     <KeyboardAvoidingView style={styles.keyboardview} behavior="padding" enabled>
-
-
                         <View stlye={{ flex: 1 }}>
                             <View style={styles.neostore}>
                                 <Text style={styles.neostore}>NeoSTORE</Text>
@@ -249,10 +170,8 @@ export default class Registration extends Component {
                                         initial={0}
                                         buttonColor={'#fff'}
                                         selectedButtonColor={'#fff'}
-                                        labelStyle={{ fontSize: Platform.OS === 'ios' ? 20 : 17, color: "#ffffff", padding: 4 }}
+                                        labelStyle={styles.radiobuttonlable}
                                         onPress={(value) => { }} />
-
-
                                 </View>
 
 

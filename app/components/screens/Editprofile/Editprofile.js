@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
+import { AppRegistry, ActivityIndicator, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import { AsyncStorage } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
@@ -15,7 +15,6 @@ import { GlobalAPI } from '../../../lib/Globals';
 
 
 export default class Editprofile extends Component {
-
     constructor(props) {
         super(props);
         console.log("editprofilr123", props)
@@ -28,25 +27,20 @@ export default class Editprofile extends Component {
             PhoneNumber: '',
             DOB: '',
             avatarSource: null,
-            Loader: false,
+            Loading: false,
             // profileimage: 'abc'
             DateText: "16 - 10 - 1996",
             DateHolder: null
         }
         console.log("profileimage", this.props.navigation.state.params.data.profile_pic)
-
-
     }
 
     focusNextField(id) {
         this.inputs[id].focus()
     }
 
-
-
     // Validation
     validate = (FirstName, LastName, Email, PhoneNumber, DOB) => {
-
         var namereg = /^[A-Za-z]+$/;
         var emailreg = /\S+@\S+\.\S+/;
         var phonenoreg = /^\+?([0-9]{2})\)?[-. ]?([0-9]{5})[-. ]?([0-9]{5})$/;
@@ -71,17 +65,13 @@ export default class Editprofile extends Component {
                         return false
                     }
                     else
-                        // if (this.state.DOB == "" || !this.state.DOB.match(dobreg)) {
-                        //     alert("PLease enter DOB in formate DD-MM-YYYY")
-                        //     return false
-                        // }
-                        // else
 
                         this.submit()
-
     }
 
+    // sending updated data to API
     submit() {
+        this.setState({ Loading: true })
         let formData = new FormData();
         formData.append('first_name', this.state.FirstName);
         formData.append('last_name', this.state.LastName);
@@ -89,26 +79,24 @@ export default class Editprofile extends Component {
         formData.append('dob', this.state.DateText);
         formData.append('profile_pic', this.state.avatarSource.uri);
         formData.append('phone_no', this.state.PhoneNumber);
-
-
         // console.log("formdata", formData)
 
         GlobalAPI(updateaccountdetail, "POST", formData, null, response => {
+
             if (response.status == 200) {
+                this.setState({ Loading: false })
                 alert("Account detail updated successfully.")
                 this.props.navigation.navigate('Myaccount')
-                // this.setState({ Loader: false })
+
             }
             else
                 alert(response.user_msg)
         },
             error => {
                 console.log(error)
-
             }
         )
     }
-
 
     // ImagePicker
     takeimage() {
@@ -141,7 +129,7 @@ export default class Editprofile extends Component {
             }
         });
     }
-
+    // Datepicker
     DatePickerMainFunctionCall() {
         let DateHolder = this.state.DateHolder;
         if (!DateHolder || DateHolder == null) {
@@ -165,89 +153,69 @@ export default class Editprofile extends Component {
         console.log("date", this.state.DateText)
     }
 
-
-
-
     render() {
-        // if (this.state.Loader)
-        //     return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
+        if (this.state.Loading)
+            return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
         return (
             // <View style={{ height: Dimensions.get('window').height }}>
-            <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={{ flex: 1, borderColor: "red", borderWidth: 1, heigh: Dimensions.get('window').height }}>
+            <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left>
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
                             <Icon name="chevron-left" size={22} color={White} />
                         </Button>
                     </Left>
-
-                    <Text style={{ color: White, fontSize: HeaderText, marginLeft: Platform.OS === 'ios' ? 0 : 65, fontWeight: HeaderTextFontWeight, marginTop: Platform.OS === 'ios' ? 5 : 10 }}>Edit Profile</Text>
-
+                    <Text style={styles.headertext}>Edit Profile</Text>
                     <Right>
                         <Icon name="search" size={22} color={White} />
                     </Right>
-
-
                 </Header>
+
                 <ScrollView >
                     <KeyboardAvoidingView style={styles.keyboardview} behavior="padding" enabled>
+                        <View style={styles.mainview}>
 
-                        <View style={{ alignItems: 'center', padding: 20 }}>
                             <TouchableOpacity onPress={() => this.takeimage()} >
-
                                 <View style={styles.profileimage}>
-
                                     {this.state.avatarSource === null ? <Image style={styles.profileimage} source={{ uri: this.props.navigation.state.params.data.profile_pic }} /> :
                                         <Image style={styles.profileimage} source={this.state.avatarSource} />
                                     }
-
                                 </View>
-
                                 {/* <Image style={styles.profileimage} source={require('../../../assets/images/lion.jpg')} /> */}
                             </TouchableOpacity>
 
                             <View style={styles.view3}>
                                 <Icon name="user" size={25} color="#FFFFFF" style={styles.iconpadding} />
-                                <TextInput onSubmitEditing={() => { this.focusNextField('two'); }} returnKeyType={"next"} ref={input => { this.inputs['one'] = input; }} onChangeText={(text) => this.setState({ FirstName: text })} style={styles.textinput} placeholder={this.props.navigation.state.params.data.first_name} placeholderTextColor="white" ></TextInput>
+                                <TextInput onSubmitEditing={() => { this.focusNextField('two'); }} returnKeyType={"next"} ref={input => { this.inputs['one'] = input; }} onChangeText={(text) => this.setState({ FirstName: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.first_name} placeholderTextColor="white" ></TextInput>
                             </View>
 
                             <View style={styles.view3}>
                                 <Icon name="user" size={25} color="#FFFFFF" style={styles.iconpadding} />
-                                <TextInput onSubmitEditing={() => { this.focusNextField('three'); }} returnKeyType={"next"} ref={input => { this.inputs['two'] = input; }} onChangeText={(text) => this.setState({ LastName: text })} style={styles.textinput} placeholder="Last Name" placeholderTextColor="white" ></TextInput>
+                                <TextInput onSubmitEditing={() => { this.focusNextField('three'); }} returnKeyType={"next"} ref={input => { this.inputs['two'] = input; }} onChangeText={(text) => this.setState({ LastName: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.last_name} placeholderTextColor="white" ></TextInput>
                             </View>
 
                             <View style={styles.view3}>
                                 <Icon name="envelope" size={20} color="#FFFFFF" style={styles.iconpadding} />
-                                <TextInput onSubmitEditing={() => { this.focusNextField('four'); }} returnKeyType={"next"} ref={input => { this.inputs['three'] = input; }} onChangeText={(text) => this.setState({ Email: text })} style={styles.textinput} placeholder="Email" placeholderTextColor="white" ></TextInput>
+                                <TextInput onSubmitEditing={() => { this.focusNextField('four'); }} returnKeyType={"next"} ref={input => { this.inputs['three'] = input; }} onChangeText={(text) => this.setState({ Email: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.email} placeholderTextColor="white" ></TextInput>
                             </View>
 
                             <View style={styles.view3}>
-                                <Icon name="mobile" size={35} color="#FFFFFF" style={{ height: 50, width: Platform.OS === 'ios' ? 30 : 35, justifyContent: "center", paddingBottom: 7, paddingLeft: Platform.OS === 'ios' ? 0 : 8 }} />
-                                <TextInput onSubmitEditing={() => { this.focusNextField('five'); }} returnKeyType={"next"} ref={input => { this.inputs['four'] = input; }} keyboardType="phone-pad" onChangeText={(text) => this.setState({ PhoneNumber: text })} style={styles.textinput} placeholder="Phone Number" placeholderTextColor="white" ></TextInput>
+                                <Icon name="mobile" size={35} color="#FFFFFF" style={styles.mobileicon} />
+                                <TextInput onSubmitEditing={() => { this.focusNextField('five'); }} returnKeyType={"next"} ref={input => { this.inputs['four'] = input; }} keyboardType="phone-pad" onChangeText={(text) => this.setState({ PhoneNumber: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.phone_no} placeholderTextColor="white" ></TextInput>
                             </View>
 
                             <View style={styles.view3}>
                                 <Icon name="birthday-cake" size={20} color="#FFFFFF" style={styles.iconpadding} />
                                 <TouchableOpacity onPress={() => this.DatePickerMainFunctionCall()}>
-
-
                                     <Text style={styles.dob}>{this.state.DateText}</Text>
-                                    {/* fontSize: 30, marginLeft: 15, marginTop: 0, borderWidth: 0, color: 'white', */}
                                 </TouchableOpacity>
                                 <DatePickerDialog ref="DatePickerDialog" onDatePicked={(d) => this.onDatePickedFunction(d)} />
-
-                                {/* <TextInput returnKeyType={"next"} onChangeText={(text) => this.setState({ DOB: text })} style={styles.textinput} placeholder="DOB" placeholderTextColor="white" ></TextInput> */}
                             </View>
 
                             <TouchableOpacity style={styles.loginbutton} onPress={() => this.validate(this.state.FirstName, this.state.LastName, this.state.Email, this.state.PhoneNumber, this.state.DOB)}>
                                 <Text onSubmitEditing={() => { this.focusNextField('six'); }} returnKeyType={"next"} ref={input => { this.inputs['five'] = input; }} style={styles.buttontext}>SUBMIT</Text>
                             </TouchableOpacity>
-
-
-
-
                         </View>
-
                     </KeyboardAvoidingView>
                 </ScrollView>
             </ImageBackground >

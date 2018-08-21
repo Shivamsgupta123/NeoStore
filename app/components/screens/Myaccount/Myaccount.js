@@ -18,26 +18,17 @@ export default class Myaccount extends Component {
         PhoneNumber: '',
         DOB: '',
         ProfileImage: 'abc',
-
-
-
     }
+
+    // getting users data
     componentWillMount = async () => {
         getdata = await AsyncStorage.getItem('ResponseData');
         // console.log("data123", getdata)
-
         getdata = JSON.parse(getdata)
-
         this.setState({ FirstName: getdata.data.first_name, LastName: getdata.data.last_name, Email: getdata.data.email, PhoneNumber: getdata.data.phone_no, DOB: getdata.data.dob, ProfileImage: getdata.data.profile_pic })
-        //     this.setState({ LastName: getdata.data.last_name })
-        //     this.setState({ Email: getdata.data.email })
-        //     this.setState({ PhoneNumber: getdata.data.phone_no })
-        //     this.setState({ DOB: getdata.data.dob })
     }
     render() {
-
         return (
-
             <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left>
@@ -51,12 +42,9 @@ export default class Myaccount extends Component {
                     <Right>
                         <Icon name="search" size={22} color="#f9fbff" />
                     </Right>
-
                 </Header>
-                {/* <ScrollView style={{ height: Dimensions.get('window').height }}> */}
-                {/* <KeyboardAvoidingView style = {styles.keyboardview} behavior="padding" enabled> */}
 
-                <View style={{ alignItems: 'center', padding: Platform.OS === 'ios' ? 20 : 0, height: Dimensions.get('window').height }}>
+                <View style={styles.mainview}>
 
                     <Image style={styles.profileimage} source={{ uri: this.state.ProfileImage }} />
                     <View style={styles.view3}>
@@ -76,7 +64,7 @@ export default class Myaccount extends Component {
                     </View>
 
                     <View style={styles.view3}>
-                        <Icon name="mobile" size={35} color="#FFFFFF" style={{ height: 50, width: Platform.OS === 'ios' ? 30 : 35, justifyContent: "center", paddingBottom: 7, paddingLeft: Platform.OS === 'ios' ? 0 : 8 }} />
+                        <Icon name="mobile" size={35} color="#FFFFFF" style={styles.mobileicon} />
                         <TextInput style={styles.textinput} editable={false} placeholder={this.state.PhoneNumber} placeholderTextColor="white" ></TextInput>
                     </View>
 
@@ -89,15 +77,10 @@ export default class Myaccount extends Component {
                         <Text style={styles.buttontext}>Edit Profile</Text>
                     </TouchableOpacity>
 
-
-
                     <TouchableOpacity style={styles.resetpasswordbutton} onPress={() => this.props.navigation.navigate('ResetPasswordScreen')}>
                         <Text style={styles.resetpasswordbuttontext}>RESET PASSWORD</Text>
                     </TouchableOpacity>
                 </View>
-
-                {/* </KeyboardAvoidingView> */}
-                {/* </ScrollView> */}
 
             </ImageBackground>
 

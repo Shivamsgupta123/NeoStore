@@ -94,6 +94,18 @@ export default styles = StyleSheet.create({
         fontSize: ButtonTextSize
 
     },
+    mainview: {
+        alignItems: 'center',
+        padding: Platform.OS === 'ios' ? 20 : 0,
+        height: Dimensions.get('window').height
+    },
+    mobileicon: {
+        height: 50,
+        width: Platform.OS === 'ios' ? 30 : 35,
+        justifyContent: "center",
+        paddingBottom: 7,
+        paddingLeft: Platform.OS === 'ios' ? 0 : 8
+    }
 
 
 

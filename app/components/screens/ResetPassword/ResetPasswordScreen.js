@@ -121,7 +121,7 @@ export default class ResetPasswordScreen extends Component {
             return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
         return (
 
-            <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={{ flex: 1, borderColor: "red", borderWidth: 1 }}>
+            <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
 
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left>

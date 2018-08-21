@@ -19,8 +19,10 @@ export default styles = StyleSheet.create({
 
     },
     productimage: {
-        height: 80,
-        width: 80
+        height: 90,
+        width: 82,
+        borderWidth: 1,
+        borderColor: "grey"
     },
     productname: {
         fontSize: 23,
@@ -41,7 +43,6 @@ export default styles = StyleSheet.create({
         paddingLeft: 35,
         fontWeight: "100",
         color: "#1C1C1C"
-
     },
     subview: {
         paddingTop: 10,
@@ -57,8 +58,55 @@ export default styles = StyleSheet.create({
         fontSize: 19,
         fontWeight: "300",
         color: "#1C1C1C",
-        paddingLeft: 170
+        paddingLeft: Platform.OS === 'ios' ? 110 : 100,
 
+
+    },
+    totalview: {
+        // flex: 1,
+        paddingTop: 30,
+        paddingBottom: 30,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingLeft: 15,
+        paddingRight: 11,
+        borderTopWidth: 1,
+        borderColor: "grey",
+
+    },
+    producttotal: {
+        fontSize: 21,
+        fontWeight: "300",
+        color: "#1C1C1C",
+        fontWeight: "500"
+    },
+    orderbutton: {
+        borderWidth: 1,
+        backgroundColor: ButtonText,
+        height: 55,
+        width: Platform.OS === 'ios' ? 347 : 330,
+        marginTop: 18,
+        borderRadius: 10,
+        fontSize: 5,
+        borderColor: White,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    orderbuttontext: {
+        color: White,
+        fontWeight: "bold",
+        fontSize: ButtonTextSize
+    },
+    buttonview: {
+        padding: 15,
+        justifyContent: 'center',
+        borderTopWidth: 1,
+        borderColor: "grey",
+
+    },
+    countlist: {
+        paddingLeft: 5
 
     }
 

@@ -14,37 +14,21 @@ import { GlobalAPI } from '../../../lib/Globals';
 export default class Login extends Component {
     constructor(props) {
         super(props)
-
     }
-
-
     state = {
         Username: '',
         Password: '',
         Loading: false
-
     }
-
 
     componentWillMount = async () => {
-
         let user = await AsyncStorage.getItem('Username')
-
-        // if (user != null) {
-        //     this.setState({ Loading: false })
-        //     this.props.navigation.navigate('Homescreen')
-        // }
-        // this.setState({ Loading: false })
-
-
     }
 
-
-
+    // validing input field
     validate() {
         var emailreg = /\S+@\S+\.\S+/;
         var passwordreg = /^[0-9a-zA-Z]+$/;
-
         if (this.state.Username == "" || !this.state.Username.match(emailreg)) {
             alert("Enter Valid User Name.")
             return false
@@ -59,50 +43,34 @@ export default class Login extends Component {
 
     }
 
+    // user Authentication
     userdetails(access_token) {
         this.setState({ Loading: true })
         GlobalAPI(fetchaccountdetail, "GET", null, access_token, (response) => {
-
             if (response.status == 200) {
-
                 this.props.navigation.replace('MyApp', response)
-
             }
             else
                 alert(response.user_msg)
-
         }, error => {
             console.log(error)
-
         }
         )
-
-
-
     }
 
+    // for gating access_token from API
     login() {
-
         let formData = new FormData();
         formData.append('email', this.state.Username);
         formData.append('password', this.state.Password);
         this.setState({ Loading: true })
         GlobalAPI(_login, "POST", formData, {}, response => {
-
             if (response.status == 200) {
                 // console.log(response.data.access_token)
-
-
                 AsyncStorage.setItem("access_token", response.data.access_token, () => {
-
                     this.userdetails(response.data.access_token);
-
-
                 })
                 AsyncStorage.setItem("ResponseData", JSON.stringify(response))
-
-
-
             }
             else {
                 alert(response.user_msg)
@@ -114,35 +82,6 @@ export default class Login extends Component {
 
         })
 
-
-        // fetch(
-        //     login
-        //     , {
-        //         method: 'POST',
-        //         body: formData,
-        //     })
-        //     .then(response => response.json())
-        //     .then(response => {
-        //         if (response.status == 200) {
-        //             console.log(response.data.access_token)
-
-        //             alert("success")
-
-
-        //             AsyncStorage.setItem("access_token", response.data.access_token, () => {
-        //                 this.userdetails(response.data.access_token);
-        //             })
-
-        //             AsyncStorage.setItem("ResponseData", JSON.stringify(response))
-
-
-        //         }
-        //         else
-        //             alert(response.user_msg)
-
-        //     }
-        //     )
-
     }
 
 
@@ -152,31 +91,32 @@ export default class Login extends Component {
             return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
 
         return (
-            <View style={{ height: Dimensions.get('window').height, width: Dimensions.get('window').width }}>
+            <View style={styles.mainview}>
 
-                <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={{ flex: 1, borderColor: "red", borderWidth: 1, height: Dimensions.get("window").height }}>
+                <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
 
                     <View style={styles.view1}>
                         <Text style={styles.neostore}>NeoSTORE</Text>
 
                         <View style={styles.view3}>
-                            <Icon name="user" size={30} color="#FFFFFF" style={{ padding: Platform.OS === 'ios' ? 0 : 5 }} />
+                            <Icon name="user" size={30} color="#FFFFFF" style={styles.icon} />
                             <TextInput returnKeyType={"next"} onChangeText={(text) => this.setState({ Username: text })} style={styles.textinput} placeholder="Username" placeholderTextColor={White} ></TextInput>
-
                         </View>
+
                         <View style={styles.view3}>
-                            <Icon name="lock" size={30} color="#FFFFFF" style={{ padding: Platform.OS === 'ios' ? 0 : 5 }} />
+                            <Icon name="lock" size={30} color="#FFFFFF" style={styles.icon} />
                             <TextInput onChangeText={(text) => this.setState({ Password: text })} style={styles.textinput} secureTextEntry={true} placeholder="Password" placeholderTextColor={White} ></TextInput>
                         </View>
+
                         <TouchableOpacity onPress={() => this.validate()} style={styles.loginbutton}>
                             <Text style={styles.buttontext}>LOGIN</Text>
-
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('Forgotpassword')}>
                             <Text style={styles.forgotpassword}>Forgot Password?</Text>
-
                         </TouchableOpacity>
+
                     </View>
+
                     <View style={styles.view2}>
 
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -186,6 +126,7 @@ export default class Login extends Component {
 
                             </TouchableOpacity>
                         </View>
+
                     </View>
 
                 </ImageBackground>

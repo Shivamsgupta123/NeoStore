@@ -77,5 +77,29 @@ export default styles = StyleSheet.create({
         height: Platform.OS === 'ios' ? 37 : 48,
         width: Platform.OS === 'ios' ? 150 : 150,
         marginTop: Platform.OS === 'ios' ? -3 : 7
+    },
+    backgroundimage: {
+        flex: 1,
+        borderColor: "red",
+        borderWidth: 1,
+        height: Dimensions.get('window').height
+    },
+    headertext: {
+        color: White,
+        fontSize: HeaderText,
+        marginLeft: Platform.OS === 'ios' ? 0 : 65,
+        fontWeight: HeaderTextFontWeight,
+        marginTop: Platform.OS === 'ios' ? 5 : 10
+    },
+    mainview: {
+        alignItems: 'center',
+        padding: 20
+    },
+    mobileicon: {
+        height: 50,
+        width: Platform.OS === 'ios' ? 30 : 35,
+        justifyContent: "center",
+        paddingBottom: 7,
+        paddingLeft: Platform.OS === 'ios' ? 0 : 8
     }
 });

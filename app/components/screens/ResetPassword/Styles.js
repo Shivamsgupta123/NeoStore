@@ -176,7 +176,13 @@ export default styles = StyleSheet.create({
         fontSize: 25,
         color: '#ffffff'
 
+    },
+    backgroundimage: {
+        flex: 1,
+        borderColor: "red",
+        borderWidth: 1
     }
+
 
 
 

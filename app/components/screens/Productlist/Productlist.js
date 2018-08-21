@@ -16,42 +16,21 @@ import Loader from '../../Loader/Loader';
 
 
 export default class Productlist extends Component {
-
     constructor(props) {
         super(props)
-        // console.log('1234', props)
-
         this.state = { fetcheddata: [], loader: false, list: [], page: 1, limit: 7, isdata: false, loader1: true }
-        // this.fetchResult();
     }
 
-    // LazyLoading
-    // componentWillMount() {
-    //     let url = prductlist + product_category + this.props.navigation.state.params.Id
-    //     return GlobalAPI(url, "GET", null, null, response => {
-    //         if (response.status == 200) {
-    //             Console("itemcount", response.data)
-    //             this.setState({ list: response.data })
-
-    //         }
-
-    //     }, error => {
-    //         console.log(error)
-
-    //     })
-
-
-    // }
     componentDidMount() {
         this.fetchResult()
         this.setState({ loader1: false })
 
     }
 
+    // fetching product list
     fetchResult = () => {
         if (!this.state.isdata) {
             this.setState({ loader: true })
-
             let url = prductlist + product_category + this.props.navigation.state.params.Id + "&limit=7&page=" + this.state.page;
             Console("url", url)
             const { limit, page, fetcheddata } = this.state;
@@ -62,15 +41,11 @@ export default class Productlist extends Component {
                     this.setState({ isdata: true })
                 // Console("prodlist123", response)
                 if (response.status == 200) {
-
                     // Console("prodlist123", response)
                     this.setState({
-
                         fetcheddata: fetcheddata.concat(response.data),
                         page: page + 1,
-                        // limit: limit + 7,
                         loader: false,
-
                     })
                     Console("fetchdata", this.state.fetcheddata.length)
                 }
@@ -81,39 +56,11 @@ export default class Productlist extends Component {
                 }
             )
         }
-
     }
-
-
-
-
-
-    // componentWillMount() {
-    //     let url = prductlist + product_category + this.props.navigation.state.params.Id;
-
-    //     return GlobalAPI(url, "GET", null, null, response => {
-    //         if (response.status == 200) {
-    //             // console.log('prodlist', response)
-    //             this.setState({
-    //                 fetcheddata: response.data,
-    //                 Loading: false,
-    //             }
-    //             );
-    //         }
-    //     },
-    //         error => {
-    //             console.log(error)
-
-    //         }
-    //     )
-    // }
 
     render() {
         if (this.state.loader1) { return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" /> }
-
-
         return (
-
             <View style={{ flex: 1, }}>
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left>
@@ -121,24 +68,14 @@ export default class Productlist extends Component {
                             <Icon name="chevron-left" size={22} color={White} />
                         </Button>
                     </Left>
-
-                    <Text style={{ color: White, fontSize: HeaderText, marginLeft: Platform.OS === 'ios' ? -3 : 65, marginTop: Platform.OS === 'ios' ? 10 : 13, fontWeight: HeaderTextFontWeight, }}>{this.props.navigation.state.params.Title}</Text>
-
+                    <Text style={styles.headertext}>{this.props.navigation.state.params.Title}</Text>
                     <Right>
                         <Icon name="search" size={20} color="#f9fbff" />
                     </Right>
-
                 </Header>
-
-
-
                 <View style={{ flex: 1, backgroundColor: White }}>
-
-
                     <FlatList
                         onEndReached={() => this.fetchResult()}
-
-
                         data={this.state.fetcheddata}
                         onEndReachedThreshold={0.01}
                         renderItem={({ item }) =>
@@ -150,14 +87,10 @@ export default class Productlist extends Component {
                                         </View>
                                         <View>
                                             <Text style={styles.productname}> {item.name}</Text>
-
-
-                                            <Text style={{ fontSize: 15, color: ProductlistFont, paddingLeft: 9 }}>{item.producer}</Text>
-                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: "77%" }}>
-                                                <Text style={{ fontSize: ProductlistTitle, color: HeaderColor, padding: 7 }}>Rs. {item.cost}</Text>
-
+                                            <Text style={styles.productproducer}>{item.producer}</Text>
+                                            <View style={styles.ratingview}>
+                                                <Text style={styles.productcost1}>Rs. {item.cost}</Text>
                                                 <Rating
-
                                                     type="custom"
                                                     fractions={1}
                                                     startingValue={item.rating}
@@ -168,31 +101,19 @@ export default class Productlist extends Component {
                                                 // style={{ paddingVertical: 10 ,marginLeft:30}}
                                                 />
                                                 {/* </View> */}
-
-
                                             </View>
                                         </View>
-
                                     </View>
                                 </TouchableOpacity>
-
                             )
-
                         }
                         keyExtractor={(item, index) => '' + index}
-
-
                     />
-
-
                     <View style={{ alignItems: "center" }}>
                         {this.state.loader ? <Loader /> :
                             <Text style={styles.itemcount}>{this.state.fetcheddata.length} of {this.state.fetcheddata.length}</Text>}
                     </View>
-
-
                 </View>
-
             </View>
         );
     }

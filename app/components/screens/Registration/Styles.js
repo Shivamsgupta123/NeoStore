@@ -189,6 +189,18 @@ export default styles = StyleSheet.create({
         paddingLeft: 5,
         // fontWeight:'bold',
     },
+    HeaderText: {
+        color: White,
+        fontSize: HeaderText,
+        marginLeft: Platform.OS === 'ios' ? 0 : 65,
+        fontWeight: HeaderTextFontWeight,
+        marginTop: Platform.OS === 'ios' ? 5 : 10
+
+    },
+    radiobuttonlable: {
+        fontSize: Platform.OS === 'ios' ? 20 : 17,
+        color: "#ffffff", padding: 4
+    }
 
 
 

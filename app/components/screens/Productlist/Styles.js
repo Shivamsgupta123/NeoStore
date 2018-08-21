@@ -43,6 +43,28 @@ export default styles = StyleSheet.create({
         paddingRight: 7,
         color: "#111111",
         backgroundColor: "#7a7676"
+    },
+    headertext: {
+        color: White,
+        fontSize: HeaderText,
+        marginLeft: Platform.OS === 'ios' ? -3 : 65,
+        marginTop: Platform.OS === 'ios' ? 10 : 13,
+        fontWeight: HeaderTextFontWeight,
+    },
+    productproducer: {
+        fontSize: 15,
+        color: ProductlistFont, paddingLeft: 9
+    },
+    ratingview: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: "77%"
+    },
+    productcost1: {
+        fontSize: ProductlistTitle,
+        color: HeaderColor,
+        padding: 7
     }
 
 });

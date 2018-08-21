@@ -141,7 +141,7 @@ export default styles = StyleSheet.create({
 
 
     },
-    boxtop: {
+    boxtop1: {
         padding: 60 / 3,
 
         justifyContent: 'space-between',
@@ -149,15 +149,33 @@ export default styles = StyleSheet.create({
         height: '90%',
 
 
-        backgroundColor: '#e91c1a',
+        backgroundColor: '#fe3f3f',
     },
-    boxbottom: {
+    boxtop2: {
+        padding: 60 / 3,
+
+        justifyContent: 'space-between',
+        width: '48%',
+        height: '90%',
+
+
+        backgroundColor: '#bb0100',
+    },
+    boxbottom1: {
         padding: 60 / 3,
         justifyContent: 'space-between',
 
         width: '48%',
         height: '90%',
-        backgroundColor: '#e91c1a',
+        backgroundColor: '#e91b1a',
+    },
+    boxbottom2: {
+        padding: 60 / 3,
+        justifyContent: 'space-between',
+
+        width: '48%',
+        height: '90%',
+        backgroundColor: '#9e0100',
     },
     icontext1: {
         textAlign: 'right',
@@ -172,6 +190,12 @@ export default styles = StyleSheet.create({
         fontSize: 25,
         color: '#ffffff'
 
+    },
+    headreicon1: {
+        marginLeft: Platform.OS === 'ios' ? 10 : 0
+    },
+    headericon2: {
+        marginRight: 13.3
     }
 
 
