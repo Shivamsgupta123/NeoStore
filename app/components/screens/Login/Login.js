@@ -43,22 +43,25 @@ export default class Login extends Component {
 
     }
 
-    // user Authentication
-    userdetails(access_token) {
+
+    userdetails = (access_token) => {
         this.setState({ Loading: true })
         GlobalAPI(fetchaccountdetail, "GET", null, access_token, (response) => {
             if (response.status == 200) {
                 this.props.navigation.replace('MyApp', response)
             }
-            else
+            else {
                 alert(response.user_msg)
+
+            }
+
         }, error => {
             console.log(error)
         }
         )
     }
 
-    // for gating access_token from API
+    // user Authentication
     login() {
         let formData = new FormData();
         formData.append('email', this.state.Username);
@@ -74,6 +77,8 @@ export default class Login extends Component {
             }
             else {
                 alert(response.user_msg)
+                this.setState({ Loading: false })
+                console.log("Loading123", this.state.Loading)
                 // alert("Connection Failed!")
             }
         }, error => {
@@ -87,13 +92,19 @@ export default class Login extends Component {
 
     render() {
 
-        if (this.state.Loading)
-            return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
+        // if (this.state.Loading)
+        //     return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
 
         return (
+
             <View style={styles.mainview}>
 
                 <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
+                    {/* {this.state.Loading ? <ActivityIndicator style={{ alignSelf: 'center', margin: "100%" }} size="large" color="white" /> : null} */}
+
+                    {/* {this.state.Loading ? <ActivityIndicator size="large" color="white" /> : null} */}
+
+
 
                     <View style={styles.view1}>
                         <Text style={styles.neostore}>NeoSTORE</Text>
@@ -107,24 +118,29 @@ export default class Login extends Component {
                             <Icon name="lock" size={30} color="#FFFFFF" style={styles.icon} />
                             <TextInput onChangeText={(text) => this.setState({ Password: text })} style={styles.textinput} secureTextEntry={true} placeholder="Password" placeholderTextColor={White} ></TextInput>
                         </View>
-
+                        {/* {this.state.Loading ? <ActivityIndicator size="large" color="white" /> : null} */}
                         <TouchableOpacity onPress={() => this.validate()} style={styles.loginbutton}>
-                            <Text style={styles.buttontext}>LOGIN</Text>
+                            {this.state.Loading ? <ActivityIndicator size="large" color="red" /> : <Text style={styles.buttontext}>LOGIN</Text>}
+                            {console.log("Loading", this.state.Loading)}
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Forgotpassword')}>
-                            <Text style={styles.forgotpassword}>Forgot Password?</Text>
-                        </TouchableOpacity>
+                        {this.state.Loading ? <Text style={styles.forgotpassword}>Forgot Password?</Text> :
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Forgotpassword')}>
+                                <Text style={styles.forgotpassword}>Forgot Password?</Text>
 
+                            </TouchableOpacity>
+                        }
                     </View>
 
                     <View style={styles.view2}>
 
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                             <Text style={styles.newaccount}>DONT HAVE AN ACCOUNT?</Text>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Registration')}>
-                                <FeatherIcon style={{ marginRight: 15, backgroundColor: PlusIconBackground, padding: 2 }} name="plus" size={40} color="#FFFFFF" />
+                            {this.state.Loading ? <FeatherIcon style={{ marginRight: 15, backgroundColor: PlusIconBackground, padding: 2 }} name="plus" size={40} color="#FFFFFF" /> :
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Registration')}>
+                                    <FeatherIcon style={{ marginRight: 15, backgroundColor: PlusIconBackground, padding: 2 }} name="plus" size={40} color="#FFFFFF" />
 
-                            </TouchableOpacity>
+                                </TouchableOpacity>
+                            }
                         </View>
 
                     </View>

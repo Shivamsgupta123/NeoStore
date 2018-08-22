@@ -19,7 +19,6 @@ export default class ResetPasswordScreen extends Component {
         ConfirmPassword: '',
         token: '',
         Loading: false
-
     }
 
 
@@ -27,13 +26,7 @@ export default class ResetPasswordScreen extends Component {
     validate() {
         var emailreg = /\S+@\S+\.\S+/;
         var passwordreg = /^[0-9a-zA-Z]+$/;
-        // if(this.state.Username == "" || !this.state.Username.match(emailreg))
-        // {
-        //   alert("Enter Valid User Name.")
-        //   return false
-        // }
 
-        // else
         if (this.state.CurrentPassword == "") {
             alert("Please Enter Current Password")
             return false
@@ -53,15 +46,12 @@ export default class ResetPasswordScreen extends Component {
     }
 
     async submit() {
-
+        this.setState({ Loading: true })
         var getdata = await AsyncStorage.getItem('ResponseData');
         // console.log('resetpassword', getdata)
-
         getdata = JSON.parse(getdata)
         var accesstoken = getdata.data.access_token
         console.log('resetpassword', accesstoken)
-
-
         let formData = new FormData();
         formData.append(' old_password', this.state.CurrentPassword);
         formData.append(' password', this.state.NewPassword);
@@ -71,16 +61,14 @@ export default class ResetPasswordScreen extends Component {
         await GlobalAPI(changepassword, "POST", formData, accesstoken, response => {
             console.log('resetpassword123', response)
             if (response.status == 200) {
+                this.setState({ Loading: false })
                 alert("Password Changed Successfully")
-                this.props.navigation.navigate('Login')
+                this.props.navigation.replace('Login')
                 this.setState({ Loading: true })
             }
             else
                 alert(response.user_msg)
         })
-
-
-
         // await Globals(changepassword, { method: 'POST', body: formData, headers: { access_token: getdata.data.access_token } }, response => {
         //     console.log('reset password', response)
         //     if (response.status == 200) {
@@ -90,9 +78,6 @@ export default class ResetPasswordScreen extends Component {
         //     else
         //         alert(response.user_msg)
         // })
-
-
-
         // await fetch(
         //     changepassword
         //     , {
@@ -117,8 +102,8 @@ export default class ResetPasswordScreen extends Component {
 
     }
     render() {
-        if (this.state.Loading)
-            return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
+        // if (this.state.Loading)
+        //     return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
         return (
 
             <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
@@ -160,7 +145,7 @@ export default class ResetPasswordScreen extends Component {
                             </View>
 
                             <TouchableOpacity style={styles.loginbutton} onPress={() => this.validate()}>
-                                <Text style={styles.buttontext}>SUBMIT</Text>
+                                {this.state.Loading ? <ActivityIndicator size="large" color="red" /> : <Text style={styles.buttontext}>SUBMIT</Text>}
 
                             </TouchableOpacity>
 

@@ -21,10 +21,10 @@ export default class Editprofile extends Component {
         this.focusNextField = this.focusNextField.bind(this);
         this.inputs = {};
         this.state = {
-            FirstName: '',
-            LastName: '',
-            Email: '',
-            PhoneNumber: '',
+            FirstName: this.props.navigation.state.params.data.first_name,
+            LastName: this.props.navigation.state.params.data.last_name,
+            Email: this.props.navigation.state.params.data.email,
+            PhoneNumber: this.props.navigation.state.params.data.phone_no,
             DOB: '',
             avatarSource: null,
             Loading: false,
@@ -32,7 +32,7 @@ export default class Editprofile extends Component {
             DateText: "16 - 10 - 1996",
             DateHolder: null
         }
-        console.log("profileimage", this.props.navigation.state.params.data.profile_pic)
+        console.log("profileimae", this.state.FirstName)
     }
 
     focusNextField(id) {
@@ -40,34 +40,34 @@ export default class Editprofile extends Component {
     }
 
     // Validation
-    validate = (FirstName, LastName, Email, PhoneNumber, DOB) => {
-        var namereg = /^[A-Za-z]+$/;
-        var emailreg = /\S+@\S+\.\S+/;
-        var phonenoreg = /^\+?([0-9]{2})\)?[-. ]?([0-9]{5})[-. ]?([0-9]{5})$/;
-        var dobreg = /^([0-9]{2})-([0-9]{2})-([0-9]{4})$/;
-        if (this.state.FirstName == "" || !this.state.FirstName.match(namereg)) {
-            alert("Please Enter Valid First Name with no wide spaces & Numbers.")
-            return false
-        }
-        else
-            if (this.state.LastName == "" || !this.state.LastName.match(namereg)) {
-                alert("Please Enter Valid Last Name with no wide spaces & Numbers.")
-                return false
-            }
-            else
-                if (this.state.Email == "" || !this.state.Email.match(emailreg)) {
-                    alert("Please Enter Valid Email.")
-                    return false
-                }
-                else
-                    if (this.state.PhoneNumber == "" || !this.state.PhoneNumber.match(phonenoreg)) {
-                        alert("Please enter 10 digit phone no with country code(eg.+91).")
-                        return false
-                    }
-                    else
+    // validate = (FirstName, LastName, Email, PhoneNumber, DOB) => {
+    //     var namereg = /^[A-Za-z]+$/;
+    //     var emailreg = /\S+@\S+\.\S+/;
+    //     var phonenoreg = /^\+?([0-9]{2})\)?[-. ]?([0-9]{5})[-. ]?([0-9]{5})$/;
+    //     var dobreg = /^([0-9]{2})-([0-9]{2})-([0-9]{4})$/;
+    //     if (this.state.FirstName == "" || !this.state.FirstName.match(namereg)) {
+    //         alert("Please Enter Valid First Name with no wide spaces & Numbers.")
+    //         return false
+    //     }
+    //     else
+    //         if (this.state.LastName == "" || !this.state.LastName.match(namereg)) {
+    //             alert("Please Enter Valid Last Name with no wide spaces & Numbers.")
+    //             return false
+    //         }
+    //         else
+    //             if (this.state.Email == "" || !this.state.Email.match(emailreg)) {
+    //                 alert("Please Enter Valid Email.")
+    //                 return false
+    //             }
+    //             else
+    //                 if (this.state.PhoneNumber == "" || !this.state.PhoneNumber.match(phonenoreg)) {
+    //                     alert("Please enter 10 digit phone no with country code(eg.+91).")
+    //                     return false
+    //                 }
+    //                 else
 
-                        this.submit()
-    }
+    //                     this.submit()
+    // }
 
     // sending updated data to API
     submit() {
@@ -79,7 +79,7 @@ export default class Editprofile extends Component {
         formData.append('dob', this.state.DateText);
         formData.append('profile_pic', this.state.avatarSource.uri);
         formData.append('phone_no', this.state.PhoneNumber);
-        // console.log("formdata", formData)
+        console.log("formdata", formData)
 
         GlobalAPI(updateaccountdetail, "POST", formData, null, response => {
 
@@ -154,8 +154,8 @@ export default class Editprofile extends Component {
     }
 
     render() {
-        if (this.state.Loading)
-            return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
+        // if (this.state.Loading)
+        //     return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
         return (
             // <View style={{ height: Dimensions.get('window').height }}>
             <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
@@ -212,8 +212,8 @@ export default class Editprofile extends Component {
                                 <DatePickerDialog ref="DatePickerDialog" onDatePicked={(d) => this.onDatePickedFunction(d)} />
                             </View>
 
-                            <TouchableOpacity style={styles.loginbutton} onPress={() => this.validate(this.state.FirstName, this.state.LastName, this.state.Email, this.state.PhoneNumber, this.state.DOB)}>
-                                <Text onSubmitEditing={() => { this.focusNextField('six'); }} returnKeyType={"next"} ref={input => { this.inputs['five'] = input; }} style={styles.buttontext}>SUBMIT</Text>
+                            <TouchableOpacity style={styles.loginbutton} onPress={() => this.submit()}>
+                                {this.state.Loading ? <ActivityIndicator size="large" color="red" /> : <Text onSubmitEditing={() => { this.focusNextField('six'); }} returnKeyType={"next"} ref={input => { this.inputs['five'] = input; }} style={styles.buttontext}>SUBMIT</Text>}
                             </TouchableOpacity>
                         </View>
                     </KeyboardAvoidingView>

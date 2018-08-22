@@ -31,11 +31,6 @@ const MyApp = createDrawerNavigator({
             header: null,
         }
     }
-
-
-
-
-
 },
     {
         contentComponent: Drawer
@@ -43,7 +38,6 @@ const MyApp = createDrawerNavigator({
     }
 
 );
-
 const RootStack = createStackNavigator(
     {
         Login: {
@@ -52,19 +46,16 @@ const RootStack = createStackNavigator(
                 header: null,
             }
         },
-
         Forgotpassword: {
             screen: Forgotpassword,
             navigationOptions: {
                 header: null,
-
             }
         },
         Registration: {
             screen: Registration,
             navigationOptions: {
                 header: null,
-
             }
         },
         //  Homescreen: {
@@ -130,34 +121,17 @@ const RootStack = createStackNavigator(
             }
 
         }
-
-
-
-
-
     },
-
-
     {
 
         initialRouteName: 'StartUp',
     }
 );
 
-
-
 export default class App extends Component {
-
-
-
-
     render() {
         return (
-
-
             <RootStack />
-
-
         )
     }
 }
