@@ -50,13 +50,16 @@ export default class Drawer extends Component {
         return (
             <View style={styles.mainview}>
 
-                <View style={{ alignItems: 'center', padding: 20 }}>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Myaccount')}>
+                {/* <View style={{ alignItems: 'center', padding: 20 }}> */}
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Myaccount')}>
+                    <View style={{ alignItems: 'center', padding: 20 }}>
                         <Image style={styles.profileimage} source={{ uri: this.state.profileimage }} />
-                    </TouchableOpacity>
-                    <Text style={styles.username}>{this.state.FirstName} {this.state.LastName}</Text>
-                    <Text style={styles.useremail}>{this.state.Email}</Text>
-                </View>
+
+                        <Text style={styles.username}>{this.state.FirstName} {this.state.LastName}</Text>
+                        <Text style={styles.useremail}>{this.state.Email}</Text></View>
+
+                </TouchableOpacity>
+                {/* </View> */}
                 {/* <ScrollView> */}
                 <View style={styles.drawerview}>
 
@@ -112,7 +115,7 @@ export default class Drawer extends Component {
                 <View style={styles.drawerview}>
 
                     <Icon name="location-arrow" style={styles.drawericon} size={30} color="#FFFFFF" />
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Swiper')}>
                         <Text style={styles.drawertext}>Store Locators</Text>
                     </TouchableOpacity>
                 </View>

@@ -29,7 +29,7 @@ export default styles = StyleSheet.create({
     useremail: {
         color: 'white',
         fontWeight: '400',
-        fontSize: 16
+        fontSize: 16,
     },
     drawerview: {
         flex: 1,

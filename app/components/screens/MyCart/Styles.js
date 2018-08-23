@@ -108,6 +108,11 @@ export default styles = StyleSheet.create({
     countlist: {
         paddingLeft: 5
 
+    },
+    quantitylist: {
+        paddingLeft: 40,
+        // fontSizes: 15,
+        // width: 10
     }
 
 

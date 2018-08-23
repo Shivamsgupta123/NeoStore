@@ -4,11 +4,12 @@ import styles from './Styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
-
+// import SplashScreen from 'react-native-splash-screen';
 import { AsyncStorage } from 'react-native';
 // import { login } from '../../../lib/api';
 import { _login, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
+import SplashScreen from 'react-native-splash-screen';
 
 
 export default class Login extends Component {
@@ -23,6 +24,9 @@ export default class Login extends Component {
 
     componentWillMount = async () => {
         let user = await AsyncStorage.getItem('Username')
+    }
+    componentDidMount() {
+        SplashScreen.hide();
     }
 
     // validing input field
@@ -45,6 +49,7 @@ export default class Login extends Component {
 
 
     userdetails = (access_token) => {
+        SplashScreen.hide();
         this.setState({ Loading: true })
         GlobalAPI(fetchaccountdetail, "GET", null, access_token, (response) => {
             if (response.status == 200) {

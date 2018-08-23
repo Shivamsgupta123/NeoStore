@@ -31,6 +31,7 @@ public class MainApplication extends Application implements ReactApplication {
             new ImagePickerPackage(),
             new VectorIconsPackage(),
             new PickerPackage()
+            
       );
     }
 

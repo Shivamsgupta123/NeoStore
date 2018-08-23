@@ -37,7 +37,7 @@ export default class MyCart extends Component {
     }
 
     quantitylist() {
-        <ModalDropdown options={['1', '2', '3', '4', '5']} />
+
 
     }
 
@@ -75,10 +75,16 @@ export default class MyCart extends Component {
                                     <Text style={styles.productname}>{item.product.name}</Text>
                                     <Text style={styles.productcategory}>({item.product.product_category})</Text>
                                     <View style={styles.subview}>
-                                        <Text style={styles.quantity}>{item.quantity}</Text>
-                                        <TouchableOpacity onPress={() => this.quantitylist()}>
+                                        {/* <Text style={styles.quantity}>{item.quantity}</Text> */}
+                                        {/* <TouchableOpacity onPress={() => this.quantitylist()}>
                                             <Icon name="angle-down" style={styles.countlist} size={25} color="#1C1C1C" />
-                                        </TouchableOpacity>
+                                        </TouchableOpacity> */}
+                                        <ModalDropdown
+                                            style={styles.quantitylist}
+                                            // textStyle={fontSize: 15}
+                                            options={['1', '2', '3', '4', '5', '6', '7', '8']}
+                                            defaultValue={item.quantity}
+                                        />
                                         <Text style={styles.productcost}>Rs. {item.product.sub_total}</Text>
                                     </View>
                                 </View>

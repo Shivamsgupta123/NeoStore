@@ -10,7 +10,7 @@ import { Calendar } from 'react-native-calendars';
 import Productlist from '../Productlist/Productlist';
 import { AsyncStorage } from 'react-native';
 import { _login, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
-
+import SplashScreen from 'react-native-splash-screen';
 export default class Home extends Component {
 
     state = {
@@ -20,6 +20,9 @@ export default class Home extends Component {
         super(props)
         console.log('Home', props)
         // console.log(this.props.navigation.state.params.data.product_categories[1].icon_image)
+    }
+    componentDidMount() {
+        SplashScreen.hide();
     }
 
     render() {

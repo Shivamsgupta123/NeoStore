@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import Login from './app/components/screens/Login/Login';
@@ -21,6 +19,8 @@ import StartUp from './app/components/screens/StartUp/StartUp';
 // import {White,ButtonText,PlusIconBackground,HeaderColor} from '../../../utils/Colors';
 // import {LogoSize,LogoFontWeight,LogoPadding,TextInputFont,RegularFon,HeaderTextFontWeight,HeaderText,ButtonTextSize} from '../../../utils/FontSizes';
 import MyCart from './app/components/screens/MyCart/MyCart';
+import Swiper from './app/containers/Swiper';
+import SplashScreen from 'react-native-splash-screen';
 
 
 const MyApp = createDrawerNavigator({
@@ -120,8 +120,16 @@ const RootStack = createStackNavigator(
                 header: null
             }
 
+        },
+        Swiper: {
+            screen: Swiper,
+            navigationOptions: {
+                header: null
+            }
         }
     },
+
+
     {
 
         initialRouteName: 'StartUp',
@@ -129,6 +137,9 @@ const RootStack = createStackNavigator(
 );
 
 export default class App extends Component {
+    // componentDidMount(){
+    //     SplashScreen.hide()
+    // }
     render() {
         return (
             <RootStack />

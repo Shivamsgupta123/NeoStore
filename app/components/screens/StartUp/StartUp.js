@@ -3,12 +3,14 @@ import { View, Image, Text, ImageBackground, TextInput, TouchableOpacity, Platfo
 import { AsyncStorage } from 'react-native';
 import { login, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
+import SplashScreen from 'react-native-splash-screen';
 
 export default class StartUp extends Component {
     constructor(props) {
         super(props);
     }
     componentDidMount() {
+        // SplashScreen.hide();
         AsyncStorage.getItem("access_token").then((value) => {
             console.log(value)
             if (value !== null) {
@@ -18,6 +20,7 @@ export default class StartUp extends Component {
                     if (response.status == 200) {
                         // console.log("123")
                         this.props.navigation.replace('MyApp', response);
+                        // SplashScreen.hide();
                     }
                     else {
                         AsyncStorage.removeItem("access_token")
@@ -42,6 +45,7 @@ export default class StartUp extends Component {
 
 
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+
                 <Text>Please Wait...</Text>
             </View>
 

@@ -71,31 +71,35 @@ export default class Editprofile extends Component {
 
     // sending updated data to API
     submit() {
-        this.setState({ Loading: true })
-        let formData = new FormData();
-        formData.append('first_name', this.state.FirstName);
-        formData.append('last_name', this.state.LastName);
-        formData.append('email', this.state.Email);
-        formData.append('dob', this.state.DateText);
-        formData.append('profile_pic', this.state.avatarSource.uri);
-        formData.append('phone_no', this.state.PhoneNumber);
-        console.log("formdata", formData)
+        if (this.state.avatarSource == null)
+            alert("Upload profile image")
+        else {
+            this.setState({ Loading: true })
+            let formData = new FormData();
+            formData.append('first_name', this.state.FirstName);
+            formData.append('last_name', this.state.LastName);
+            formData.append('email', this.state.Email);
+            formData.append('dob', this.state.DateText);
+            formData.append('profile_pic', this.state.avatarSource.uri);
+            formData.append('phone_no', this.state.PhoneNumber);
+            console.log("formdata", formData)
 
-        GlobalAPI(updateaccountdetail, "POST", formData, null, response => {
+            GlobalAPI(updateaccountdetail, "POST", formData, null, response => {
 
-            if (response.status == 200) {
-                this.setState({ Loading: false })
-                alert("Account detail updated successfully.")
-                this.props.navigation.navigate('Myaccount')
+                if (response.status == 200) {
+                    this.setState({ Loading: false })
+                    alert("Account detail updated successfully.")
+                    this.props.navigation.navigate('Myaccount')
 
-            }
-            else
-                alert(response.user_msg)
-        },
-            error => {
-                console.log(error)
-            }
-        )
+                }
+                else
+                    alert(response.user_msg)
+            },
+                error => {
+                    console.log(error)
+                }
+            )
+        }
     }
 
     // ImagePicker
