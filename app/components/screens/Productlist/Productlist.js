@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AppRegistry, FlatList, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity, ActivityIndicator } from 'react-native';
-// import StarRatingBar from 'react-native-star-rating-view/StarRatingBar';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import styles from './Styles';
@@ -11,7 +11,6 @@ import Productdetail from '../Productdetail/Productdetail';
 import { login, detail, productlimit, productid, product_category, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
 import { GlobalAPI, Console } from '../../../lib/Globals';
 import ReactList from 'react-list';
-import LazyLoading from 'react-list-lazy-load';
 import Loader from '../../Loader/Loader';
 
 

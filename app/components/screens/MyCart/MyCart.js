@@ -9,7 +9,6 @@ import { cartitem } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import { AsyncStorage } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
-import { Dropdown } from 'react-native-material-dropdown';
 
 
 export default class MyCart extends Component {
@@ -79,12 +78,15 @@ export default class MyCart extends Component {
                                         {/* <TouchableOpacity onPress={() => this.quantitylist()}>
                                             <Icon name="angle-down" style={styles.countlist} size={25} color="#1C1C1C" />
                                         </TouchableOpacity> */}
+
                                         <ModalDropdown
                                             style={styles.quantitylist}
                                             // textStyle={fontSize: 15}
                                             options={['1', '2', '3', '4', '5', '6', '7', '8']}
                                             defaultValue={item.quantity}
+                                            textStyle={{ fontSize: 20, color: "green" }}
                                         />
+
                                         <Text style={styles.productcost}>Rs. {item.product.sub_total}</Text>
                                     </View>
                                 </View>

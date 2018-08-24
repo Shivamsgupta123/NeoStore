@@ -102,7 +102,7 @@ export default class Login extends Component {
 
         return (
 
-            <View style={styles.mainview}>
+            <View pointerEvents={this.state.Loading ? "none" : "auto"} style={styles.mainview}>
 
                 <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
                     {/* {this.state.Loading ? <ActivityIndicator style={{ alignSelf: 'center', margin: "100%" }} size="large" color="white" /> : null} */}

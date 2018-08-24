@@ -105,55 +105,57 @@ export default class ResetPasswordScreen extends Component {
         // if (this.state.Loading)
         //     return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
         return (
+            <View pointerEvents={this.state.Loading ? "none" : "auto"} style={{ flex: 1 }}>
 
-            <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
+                <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
 
-                <Header style={{ backgroundColor: HeaderColor }}>
-                    <Left>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="chevron-left" size={22} color="#f9fbff" />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Text style={styles.headertitle}>Reset Password</Text>
-                    </Body>
-                    <Right>
+                    <Header style={{ backgroundColor: HeaderColor }}>
+                        <Left>
+                            <Button transparent onPress={() => this.props.navigation.goBack()}>
+                                <Icon name="chevron-left" size={22} color="#f9fbff" />
+                            </Button>
+                        </Left>
+                        <Body>
+                            <Text style={styles.headertitle}>Reset Password</Text>
+                        </Body>
+                        <Right>
 
-                    </Right>
+                        </Right>
 
-                </Header>
-                <ScrollView >
-                    <KeyboardAvoidingView behavior="padding" enabled>
+                    </Header>
+                    <ScrollView >
+                        <KeyboardAvoidingView behavior="padding" enabled>
 
-                        <View style={styles.view1}>
-                            <Text style={styles.neostore}>NeoSTORE</Text>
+                            <View style={styles.view1}>
+                                <Text style={styles.neostore}>NeoSTORE</Text>
 
-                            <View style={styles.view3}>
-                                <Icon name="lock" size={30} color="#FFFFFF" style={styles.icon} />
-                                <TextInput onChangeText={(text) => this.setState({ CurrentPassword: text })} style={styles.textinput} placeholder="Current Password" placeholderTextColor="white" ></TextInput>
+                                <View style={styles.view3}>
+                                    <Icon name="lock" size={30} color="#FFFFFF" style={styles.icon} />
+                                    <TextInput onChangeText={(text) => this.setState({ CurrentPassword: text })} style={styles.textinput} placeholder="Current Password" placeholderTextColor="white" ></TextInput>
+
+                                </View>
+
+                                <View style={styles.view3}>
+                                    <Icon name="unlock" size={27} color="#FFFFFF" style={styles.icon} />
+                                    <TextInput onChangeText={(text) => this.setState({ NewPassword: text })} style={styles.textinput} placeholder="Enter New Password" placeholderTextColor="white" ></TextInput>
+                                </View>
+
+                                <View style={styles.view3}>
+                                    <Icon name="lock" size={30} color="#FFFFFF" style={styles.icon} />
+                                    <TextInput onChangeText={(text) => this.setState({ ConfirmPassword: text })} style={styles.textinput} placeholder="Confirm Password" placeholderTextColor="white" ></TextInput>
+                                </View>
+
+                                <TouchableOpacity style={styles.loginbutton} onPress={() => this.validate()}>
+                                    {this.state.Loading ? <ActivityIndicator size="large" color="red" /> : <Text style={styles.buttontext}>SUBMIT</Text>}
+
+                                </TouchableOpacity>
 
                             </View>
+                        </KeyboardAvoidingView>
+                    </ScrollView>
 
-                            <View style={styles.view3}>
-                                <Icon name="unlock" size={27} color="#FFFFFF" style={styles.icon} />
-                                <TextInput onChangeText={(text) => this.setState({ NewPassword: text })} style={styles.textinput} placeholder="Enter New Password" placeholderTextColor="white" ></TextInput>
-                            </View>
-
-                            <View style={styles.view3}>
-                                <Icon name="lock" size={30} color="#FFFFFF" style={styles.icon} />
-                                <TextInput onChangeText={(text) => this.setState({ ConfirmPassword: text })} style={styles.textinput} placeholder="Confirm Password" placeholderTextColor="white" ></TextInput>
-                            </View>
-
-                            <TouchableOpacity style={styles.loginbutton} onPress={() => this.validate()}>
-                                {this.state.Loading ? <ActivityIndicator size="large" color="red" /> : <Text style={styles.buttontext}>SUBMIT</Text>}
-
-                            </TouchableOpacity>
-
-                        </View>
-                    </KeyboardAvoidingView>
-                </ScrollView>
-
-            </ImageBackground>
+                </ImageBackground>
+            </View>
 
 
 

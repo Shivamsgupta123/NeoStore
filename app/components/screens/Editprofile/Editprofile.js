@@ -161,69 +161,69 @@ export default class Editprofile extends Component {
         // if (this.state.Loading)
         //     return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
         return (
-            // <View style={{ height: Dimensions.get('window').height }}>
-            <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
-                <Header style={{ backgroundColor: HeaderColor }}>
-                    <Left>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="chevron-left" size={22} color={White} />
-                        </Button>
-                    </Left>
-                    <Text style={styles.headertext}>Edit Profile</Text>
-                    <Right>
-                        <Icon name="search" size={22} color={White} />
-                    </Right>
-                </Header>
+            <View pointerEvents={this.state.Loading ? "none" : "auto"} style={{ flex: 1 }}>
+                <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
+                    <Header style={{ backgroundColor: HeaderColor }}>
+                        <Left>
+                            <Button transparent onPress={() => this.props.navigation.goBack()}>
+                                <Icon name="chevron-left" size={22} color={White} />
+                            </Button>
+                        </Left>
+                        <Text style={styles.headertext}>Edit Profile</Text>
+                        <Right>
+                            <Icon name="search" size={22} color={White} />
+                        </Right>
+                    </Header>
 
-                <ScrollView >
-                    <KeyboardAvoidingView style={styles.keyboardview} behavior="padding" enabled>
-                        <View style={styles.mainview}>
+                    <ScrollView >
+                        <KeyboardAvoidingView style={styles.keyboardview} behavior="padding" enabled>
+                            <View style={styles.mainview}>
 
-                            <TouchableOpacity onPress={() => this.takeimage()} >
-                                <View style={styles.profileimage}>
-                                    {this.state.avatarSource === null ? <Image style={styles.profileimage} source={{ uri: this.props.navigation.state.params.data.profile_pic }} /> :
-                                        <Image style={styles.profileimage} source={this.state.avatarSource} />
-                                    }
-                                </View>
-                                {/* <Image style={styles.profileimage} source={require('../../../assets/images/lion.jpg')} /> */}
-                            </TouchableOpacity>
-
-                            <View style={styles.view3}>
-                                <Icon name="user" size={25} color="#FFFFFF" style={styles.iconpadding} />
-                                <TextInput onSubmitEditing={() => { this.focusNextField('two'); }} returnKeyType={"next"} ref={input => { this.inputs['one'] = input; }} onChangeText={(text) => this.setState({ FirstName: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.first_name} placeholderTextColor="white" ></TextInput>
-                            </View>
-
-                            <View style={styles.view3}>
-                                <Icon name="user" size={25} color="#FFFFFF" style={styles.iconpadding} />
-                                <TextInput onSubmitEditing={() => { this.focusNextField('three'); }} returnKeyType={"next"} ref={input => { this.inputs['two'] = input; }} onChangeText={(text) => this.setState({ LastName: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.last_name} placeholderTextColor="white" ></TextInput>
-                            </View>
-
-                            <View style={styles.view3}>
-                                <Icon name="envelope" size={20} color="#FFFFFF" style={styles.iconpadding} />
-                                <TextInput onSubmitEditing={() => { this.focusNextField('four'); }} returnKeyType={"next"} ref={input => { this.inputs['three'] = input; }} onChangeText={(text) => this.setState({ Email: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.email} placeholderTextColor="white" ></TextInput>
-                            </View>
-
-                            <View style={styles.view3}>
-                                <Icon name="mobile" size={35} color="#FFFFFF" style={styles.mobileicon} />
-                                <TextInput onSubmitEditing={() => { this.focusNextField('five'); }} returnKeyType={"next"} ref={input => { this.inputs['four'] = input; }} keyboardType="phone-pad" onChangeText={(text) => this.setState({ PhoneNumber: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.phone_no} placeholderTextColor="white" ></TextInput>
-                            </View>
-
-                            <View style={styles.view3}>
-                                <Icon name="birthday-cake" size={20} color="#FFFFFF" style={styles.iconpadding} />
-                                <TouchableOpacity onPress={() => this.DatePickerMainFunctionCall()}>
-                                    <Text style={styles.dob}>{this.state.DateText}</Text>
+                                <TouchableOpacity onPress={() => this.takeimage()} >
+                                    <View style={styles.profileimage}>
+                                        {this.state.avatarSource === null ? <Image style={styles.profileimage} source={{ uri: this.props.navigation.state.params.data.profile_pic }} /> :
+                                            <Image style={styles.profileimage} source={this.state.avatarSource} />
+                                        }
+                                    </View>
+                                    {/* <Image style={styles.profileimage} source={require('../../../assets/images/lion.jpg')} /> */}
                                 </TouchableOpacity>
-                                <DatePickerDialog ref="DatePickerDialog" onDatePicked={(d) => this.onDatePickedFunction(d)} />
-                            </View>
 
-                            <TouchableOpacity style={styles.loginbutton} onPress={() => this.submit()}>
-                                {this.state.Loading ? <ActivityIndicator size="large" color="red" /> : <Text onSubmitEditing={() => { this.focusNextField('six'); }} returnKeyType={"next"} ref={input => { this.inputs['five'] = input; }} style={styles.buttontext}>SUBMIT</Text>}
-                            </TouchableOpacity>
-                        </View>
-                    </KeyboardAvoidingView>
-                </ScrollView>
-            </ImageBackground >
-            // </View>
+                                <View style={styles.view3}>
+                                    <Icon name="user" size={25} color="#FFFFFF" style={styles.iconpadding} />
+                                    <TextInput onSubmitEditing={() => { this.focusNextField('two'); }} returnKeyType={"next"} ref={input => { this.inputs['one'] = input; }} onChangeText={(text) => this.setState({ FirstName: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.first_name} placeholderTextColor="white" ></TextInput>
+                                </View>
+
+                                <View style={styles.view3}>
+                                    <Icon name="user" size={25} color="#FFFFFF" style={styles.iconpadding} />
+                                    <TextInput onSubmitEditing={() => { this.focusNextField('three'); }} returnKeyType={"next"} ref={input => { this.inputs['two'] = input; }} onChangeText={(text) => this.setState({ LastName: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.last_name} placeholderTextColor="white" ></TextInput>
+                                </View>
+
+                                <View style={styles.view3}>
+                                    <Icon name="envelope" size={20} color="#FFFFFF" style={styles.iconpadding} />
+                                    <TextInput onSubmitEditing={() => { this.focusNextField('four'); }} returnKeyType={"next"} ref={input => { this.inputs['three'] = input; }} onChangeText={(text) => this.setState({ Email: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.email} placeholderTextColor="white" ></TextInput>
+                                </View>
+
+                                <View style={styles.view3}>
+                                    <Icon name="mobile" size={35} color="#FFFFFF" style={styles.mobileicon} />
+                                    <TextInput onSubmitEditing={() => { this.focusNextField('five'); }} returnKeyType={"next"} ref={input => { this.inputs['four'] = input; }} keyboardType="phone-pad" onChangeText={(text) => this.setState({ PhoneNumber: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.phone_no} placeholderTextColor="white" ></TextInput>
+                                </View>
+
+                                <View style={styles.view3}>
+                                    <Icon name="birthday-cake" size={20} color="#FFFFFF" style={styles.iconpadding} />
+                                    <TouchableOpacity onPress={() => this.DatePickerMainFunctionCall()}>
+                                        <Text style={styles.dob}>{this.state.DateText}</Text>
+                                    </TouchableOpacity>
+                                    <DatePickerDialog ref="DatePickerDialog" onDatePicked={(d) => this.onDatePickedFunction(d)} />
+                                </View>
+
+                                <TouchableOpacity style={styles.loginbutton} onPress={() => this.submit()}>
+                                    {this.state.Loading ? <ActivityIndicator size="large" color="red" /> : <Text onSubmitEditing={() => { this.focusNextField('six'); }} returnKeyType={"next"} ref={input => { this.inputs['five'] = input; }} style={styles.buttontext}>SUBMIT</Text>}
+                                </TouchableOpacity>
+                            </View>
+                        </KeyboardAvoidingView>
+                    </ScrollView>
+                </ImageBackground >
+            </View>
 
         );
     }

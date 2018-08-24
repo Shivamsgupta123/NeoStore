@@ -3,10 +3,10 @@ import { View, Image, Text, ImageBackground, TextInput, ScrollView, Platform, To
 import styles from './Styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 // import { Container, Header, Content, ListItem, Text, Radio, Right, Left } from 'native-base';
-import RadioGroup from 'react-native-radio-buttons-group';
+
 import CheckBox from '../../CheckBox/CheckBox';
 // import {Header  } from "react-native-elements";
-// import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
+
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';

@@ -7,7 +7,7 @@ import styles from './Styles';
 import { White, ProductProducer, DetailScreenFont, ButtonText, PlusIconBackground, HeaderColor, ProductlistFont } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize, ProductlistTitle } from '../../../utils/FontSizes';
 import { AsyncStorage } from 'react-native';
-// import Modal from 'react-native-modalbox';
+
 import Modal from "react-native-modal";
 import { login, productid, addtocart, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';

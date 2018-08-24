@@ -58,7 +58,7 @@ export default styles = StyleSheet.create({
         fontSize: 19,
         fontWeight: "300",
         color: "#1C1C1C",
-        paddingLeft: Platform.OS === 'ios' ? 110 : 100,
+        paddingLeft: Platform.OS === 'ios' ? 110 : 120,
 
 
     },
