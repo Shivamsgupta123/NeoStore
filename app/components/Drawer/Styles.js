@@ -31,7 +31,7 @@ export default styles = StyleSheet.create({
         fontWeight: '400',
         fontSize: 16,
     },
-    drawerview: {
+    drawerview1: {
         flex: 1,
         flexDirection: 'row',
         // justifyContent:'center'
@@ -41,6 +41,15 @@ export default styles = StyleSheet.create({
         borderColor: "grey",
 
 
+    },
+    drawerview: {
+        flex: 1,
+        flexDirection: 'row',
+        // justifyContent:'center'
+        padding: 2,
+        // borderColor:'white'
+        // borderBottomWidth: 1,
+        // borderColor: "grey",
     },
     profileimage: {
         width: 80,

@@ -29,6 +29,7 @@ export default class Myaccount extends Component {
     }
     render() {
         return (
+            // <View style={{ height: Dimensions.get('window').height }}>
             <View style={{ flex: 1, height: Dimensions.get('window').height }}>
                 <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
                     <Header style={{ backgroundColor: HeaderColor }}>
@@ -78,13 +79,16 @@ export default class Myaccount extends Component {
                             <Text style={styles.buttontext}>Edit Profile</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.resetpasswordbutton} onPress={() => this.props.navigation.navigate('ResetPasswordScreen')}>
-                            <Text style={styles.resetpasswordbuttontext}>RESET PASSWORD</Text>
-                        </TouchableOpacity>
+
                     </View>
 
+
                 </ImageBackground>
+                <TouchableOpacity style={styles.resetpasswordbutton} onPress={() => this.props.navigation.navigate('ResetPasswordScreen')}>
+                    <Text style={styles.resetpasswordbuttontext}>RESET PASSWORD</Text>
+                </TouchableOpacity>
             </View>
+            // </View>
 
 
         );

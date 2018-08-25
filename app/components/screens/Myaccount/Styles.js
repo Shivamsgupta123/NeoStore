@@ -25,6 +25,7 @@ export default styles = StyleSheet.create({
 
     },
     profileimage: {
+
         width: 120,
         height: 120,
         borderRadius: 66.6,
@@ -78,7 +79,7 @@ export default styles = StyleSheet.create({
         backgroundColor: White,
         height: 55,
         width: Dimensions.get('window').width,
-        marginTop: 18,
+        // marginTop: 18,
 
         fontSize: 5,
         borderColor: "white",
@@ -96,7 +97,7 @@ export default styles = StyleSheet.create({
     },
     mainview: {
         alignItems: 'center',
-        padding: Platform.OS === 'ios' ? 20 : 0,
+        padding: Platform.OS === 'ios' ? 10 : 10,
         height: Dimensions.get('window').height
     },
     mobileicon: {

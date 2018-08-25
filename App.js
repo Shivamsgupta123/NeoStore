@@ -20,7 +20,8 @@ import StartUp from './app/components/screens/StartUp/StartUp';
 // import {LogoSize,LogoFontWeight,LogoPadding,TextInputFont,RegularFon,HeaderTextFontWeight,HeaderText,ButtonTextSize} from '../../../utils/FontSizes';
 import MyCart from './app/components/screens/MyCart/MyCart';
 import Swiper from './app/containers/Swiper';
-import SplashScreen from 'react-native-splash-screen';
+import Myorder from './app/components/screens/Myorder/Myorder';
+import Orderdetail from './app/components/screens/Orderdetail/Orderdetail';
 
 
 const MyApp = createDrawerNavigator({
@@ -126,7 +127,19 @@ const RootStack = createStackNavigator(
             navigationOptions: {
                 header: null
             }
-        }
+        },
+        Myorder: {
+            screen: Myorder,
+            navigationOptions: {
+                header: null
+            }
+        },
+        Orderdetail: {
+            screen: Orderdetail,
+            navigationOptions: {
+                header: null
+            }
+        },
     },
 
 

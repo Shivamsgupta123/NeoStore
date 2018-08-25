@@ -37,13 +37,13 @@ export default class Login extends Component {
             alert("Enter Valid User Name.")
             return false
         }
+        // else
+        //     if (this.state.Password == "" || !this.state.Password.match(passwordreg) || this.state.Password.length < 8) {
+        //         alert("Enter alphanumeric password having atleast 8 characters.")
+        //         return false
+        //     }
         else
-            if (this.state.Password == "" || !this.state.Password.match(passwordreg) || this.state.Password.length < 8) {
-                alert("Enter alphanumeric password having atleast 8 characters.")
-                return false
-            }
-            else
-                this.login()
+            this.login()
 
     }
 
@@ -89,7 +89,7 @@ export default class Login extends Component {
         }, error => {
             console.log(error.error)
             alert("Connection Failed!")
-
+            this.setState({ Loading: false })
         })
 
     }

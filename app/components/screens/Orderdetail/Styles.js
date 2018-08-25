@@ -25,14 +25,14 @@ export default styles = StyleSheet.create({
         borderColor: "grey"
     },
     productname: {
-        fontSize: 23,
+        fontSize: Platform.OS === 'ios' ? 21 : 19,
         color: "#1C1C1C",
         fontWeight: "300",
-        paddingLeft: 30
+        paddingLeft: 15
 
     },
     productcategory: {
-        paddingLeft: 30,
+        paddingLeft: 15,
         fontWeight: "200",
         fontSize: 19,
         color: "#606163"
@@ -73,6 +73,7 @@ export default styles = StyleSheet.create({
         paddingRight: 11,
         // borderTopWidth: 1,
         borderColor: "grey",
+        borderBottomWidth: 1
 
     },
     producttotal: {
@@ -111,23 +112,13 @@ export default styles = StyleSheet.create({
 
     },
     quantitylist: {
-        paddingLeft: 40,
-
+        paddingLeft: 15,
+        fontSize: 18,
+        fontWeight: "200",
+        color: "#333333"
         // fontSizes: 15,
         // width: 10
     },
-    productquantitytext: {
-        fontSize: Platform.OS === "ios" ? 18 : 20,
-        fontWeight: "100",
-        color: "#606163"
-
-    },
-    dropdowntext: {
-        fontSize: Platform.OS === "ios" ? 16 : 19,
-        fontWeight: "100",
-        color: "#606163",
-        width: 35
-    }
 
 
 
