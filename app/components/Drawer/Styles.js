@@ -4,15 +4,21 @@ import { Platform, StyleSheet, Dimensions } from 'react-native';
 export default styles = StyleSheet.create({
 
     drawericon: {
-        paddingTop: Platform.OS === 'ios' ? 13 : 5,
+        paddingTop: Platform.OS === 'ios' ? 9 : 3,
+        paddingLeft: 20
+    },
+    drawericon1: {
+        paddingTop: Platform.OS === 'ios' ? 11 : 6,
         paddingLeft: 20
     },
     drawertext: {
         color: 'white',
         fontSize: 18,
-        paddingTop: Platform.OS === 'ios' ? 16 : 8,
+        paddingTop: Platform.OS === 'ios' ? 11 : 3,
         marginLeft: 20,
         fontWeight: '400',
+
+
 
     },
     mainview: {

@@ -85,21 +85,21 @@ export default class Drawer extends Component {
 
                 <View style={styles.drawerview1}>
                     <TouchableOpacity style={styles.drawerview} onPress={() => this.props.navigation.navigate('Productlist', { Title: 'Chairs', Id: "2" })}>
-                        <Icon name="wheelchair" style={styles.drawericon} size={30} color="#FFFFFF" />
+                        <Icon name="wheelchair" style={styles.drawericon} size={28} color="#FFFFFF" />
                         <Text style={styles.drawertext}>Chairs</Text>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.drawerview1}>
                     <TouchableOpacity style={styles.drawerview} onPress={() => this.props.navigation.navigate('Productlist', { Title: 'Cupboards', Id: "5" })}>
-                        <Icon name="stop" style={styles.drawericon} size={30} color="#FFFFFF" />
+                        <Icon name="stop" style={styles.drawericon} size={28} color="#FFFFFF" />
                         <Text style={styles.drawertext}>Cupboards</Text>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.drawerview1}>
                     <TouchableOpacity style={styles.drawerview} onPress={() => this.props.navigation.navigate('Myaccount')}>
-                        <Icon name="user" style={styles.drawericon} size={32} color="#FFFFFF" />
+                        <Icon name="user" style={styles.drawericon} size={30} color="#FFFFFF" />
                         <Text style={styles.drawertext}>My Account</Text>
                     </TouchableOpacity>
                 </View>
@@ -113,7 +113,7 @@ export default class Drawer extends Component {
 
                 <View style={styles.drawerview1}>
                     <TouchableOpacity style={styles.drawerview} onPress={() => this.props.navigation.navigate('Myorder')}>
-                        <Icon name="list" style={styles.drawericon} size={26} color="#FFFFFF" />
+                        <Icon name="list" style={styles.drawericon1} size={25} color="#FFFFFF" />
                         <Text style={styles.drawertext}>My Orders</Text>
                     </TouchableOpacity>
                 </View>
