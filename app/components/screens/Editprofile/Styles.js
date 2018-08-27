@@ -96,10 +96,11 @@ export default styles = StyleSheet.create({
         padding: 20
     },
     mobileicon: {
-        height: 50,
+        height: 45,
         width: Platform.OS === 'ios' ? 30 : 35,
         justifyContent: "center",
-        paddingBottom: 7,
-        paddingLeft: Platform.OS === 'ios' ? 0 : 8
+        alignItems: "center",
+        paddingLeft: Platform.OS === 'ios' ? 0 : 3,
+        paddingTop: Platform.OS === "ios" ? 0 : 6
     }
 });

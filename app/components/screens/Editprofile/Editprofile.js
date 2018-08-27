@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry, ActivityIndicator, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import { AsyncStorage } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Icon } from '../../../utils/Icon/Icon';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import styles from './Styles';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
@@ -38,36 +38,8 @@ export default class Editprofile extends Component {
     focusNextField(id) {
         this.inputs[id].focus()
     }
+    c
 
-    // Validation
-    // validate = (FirstName, LastName, Email, PhoneNumber, DOB) => {
-    //     var namereg = /^[A-Za-z]+$/;
-    //     var emailreg = /\S+@\S+\.\S+/;
-    //     var phonenoreg = /^\+?([0-9]{2})\)?[-. ]?([0-9]{5})[-. ]?([0-9]{5})$/;
-    //     var dobreg = /^([0-9]{2})-([0-9]{2})-([0-9]{4})$/;
-    //     if (this.state.FirstName == "" || !this.state.FirstName.match(namereg)) {
-    //         alert("Please Enter Valid First Name with no wide spaces & Numbers.")
-    //         return false
-    //     }
-    //     else
-    //         if (this.state.LastName == "" || !this.state.LastName.match(namereg)) {
-    //             alert("Please Enter Valid Last Name with no wide spaces & Numbers.")
-    //             return false
-    //         }
-    //         else
-    //             if (this.state.Email == "" || !this.state.Email.match(emailreg)) {
-    //                 alert("Please Enter Valid Email.")
-    //                 return false
-    //             }
-    //             else
-    //                 if (this.state.PhoneNumber == "" || !this.state.PhoneNumber.match(phonenoreg)) {
-    //                     alert("Please enter 10 digit phone no with country code(eg.+91).")
-    //                     return false
-    //                 }
-    //                 else
-
-    //                     this.submit()
-    // }
 
     // sending updated data to API
     submit() {
@@ -87,6 +59,7 @@ export default class Editprofile extends Component {
             GlobalAPI(updateaccountdetail, "POST", formData, null, response => {
 
                 if (response.status == 200) {
+                    console.log("afs", response)
                     this.setState({ Loading: false })
                     alert("Account detail updated successfully.")
                     this.props.navigation.navigate('Myaccount')
@@ -149,12 +122,13 @@ export default class Editprofile extends Component {
     }
 
     onDatePickedFunction(date) {
+        console.log("date", date)
 
         this.setState({
             dobDate: date,
             DateText: moment(date).format('DD-MM-YYYY')
         });
-        console.log("date", this.state.DateText)
+        console.log("date1", this.state.DateText)
     }
 
     render() {
@@ -166,7 +140,7 @@ export default class Editprofile extends Component {
                     <Header style={{ backgroundColor: HeaderColor }}>
                         <Left>
                             <Button transparent onPress={() => this.props.navigation.goBack()}>
-                                <Icon name="chevron-left" size={22} color={White} />
+                                <Icon name="angle-left" size={22} color={White} />
                             </Button>
                         </Left>
                         <Text style={styles.headertext}>Edit Profile</Text>
@@ -199,17 +173,17 @@ export default class Editprofile extends Component {
                                 </View>
 
                                 <View style={styles.view3}>
-                                    <Icon name="envelope" size={20} color="#FFFFFF" style={styles.iconpadding} />
+                                    <Icon name="mail" size={25} color="#FFFFFF" style={styles.iconpadding} />
                                     <TextInput onSubmitEditing={() => { this.focusNextField('four'); }} returnKeyType={"next"} ref={input => { this.inputs['three'] = input; }} onChangeText={(text) => this.setState({ Email: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.email} placeholderTextColor="white" ></TextInput>
                                 </View>
 
                                 <View style={styles.view3}>
-                                    <Icon name="mobile" size={35} color="#FFFFFF" style={styles.mobileicon} />
+                                    <Icon name="mobile" size={25} color="#FFFFFF" style={styles.mobileicon} />
                                     <TextInput onSubmitEditing={() => { this.focusNextField('five'); }} returnKeyType={"next"} ref={input => { this.inputs['four'] = input; }} keyboardType="phone-pad" onChangeText={(text) => this.setState({ PhoneNumber: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.phone_no} placeholderTextColor="white" ></TextInput>
                                 </View>
 
                                 <View style={styles.view3}>
-                                    <Icon name="birthday-cake" size={20} color="#FFFFFF" style={styles.iconpadding} />
+                                    <Icon name="cake" size={20} color="#FFFFFF" style={styles.iconpadding} />
                                     <TouchableOpacity onPress={() => this.DatePickerMainFunctionCall()}>
                                         <Text style={styles.dob}>{this.state.DateText}</Text>
                                     </TouchableOpacity>

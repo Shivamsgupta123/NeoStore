@@ -15,7 +15,7 @@ export default styles = StyleSheet.create({
         color: 'white',
         fontSize: 18,
         paddingTop: Platform.OS === 'ios' ? 11 : 3,
-        marginLeft: 20,
+        marginLeft: 25,
         fontWeight: '400',
 
 
@@ -81,7 +81,7 @@ export default styles = StyleSheet.create({
         // flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: Platform.OS === 'ios' ? 16 : 10,
+        marginTop: Platform.OS === 'ios' ? 10 : 8,
         height: 26,
         width: 26,
         marginLeft: 100,

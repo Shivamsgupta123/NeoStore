@@ -3,7 +3,7 @@ import { View, FlatList, Dimensions, ActivityIndicator, Image, Text, TouchableOp
 import styles from './Styles';
 import { HeaderColor } from '../../../utils/Colors';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Icon } from '../../../utils/Icon/Icon';
 import { cartitem, editcart, deletecartitem } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import ModalDropdown from 'react-native-modal-dropdown';
@@ -13,19 +13,21 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 export default class MyCart extends Component {
     constructor(props) {
         super(props)
-        this.state = { fetcheddata: [], Loading: true, Quantity: '', product_ID: '' }
+        this.state = { fetcheddata: [], Loading: true, Quantity: null, product_ID: '' }
     }
 
     componentDidMount() {
         GlobalAPI(cartitem, "GET", null, null, response => {
             if (response.status == 200) {
-                // console.log("mycart123", response)
+
+                console.log("mycart123", response)
                 this.setState({
                     fetcheddata: response,
-                    Loading: false
+                    Loading: false,
+                    // Quantity: this.state.fetcheddata.data[0].quantity
                 }
                 );
-                console.log("mycart", this.state.fetcheddata)
+                console.log("fetchdata", this.state.fetcheddata)
             }
         },
             error => {
@@ -34,24 +36,41 @@ export default class MyCart extends Component {
         )
     }
 
-    setquantity(index, value) {
-        this.setState({ Quantity: value })
-
-        console.log("value", this.state.Quantity)
-
+    setquantity(index, id, value, item) {
+        console.log("index", index)
+        console.log("id", id)
+        console.log("value", value)
+        console.log("item", item)
+        this.setState({})
+        this.state.fetcheddata.data[index].quantity = value
+        console.log("sss")
+        this.setState({ Loading: true })
+        // console.log("value", value)
+        // console.log("value1", this.state.Quantity)
         let formData = new FormData();
-        formData.append("product_id", index)
+        formData.append("product_id", id)
         // console.log("index", index)
         formData.append("quantity", value)
         GlobalAPI(editcart, "POST", formData, null, response => {
             if (response.status == 200) {
+
+                this.state.fetcheddata.total = this.state.fetcheddata.total - this.state.fetcheddata.data[index].product.sub_total
+                // console.log("subtotal", this.state.fetcheddata.data[index].product.sub_total)
+                var cost = this.state.fetcheddata.data[index].product.cost
+                var total = cost * value
+
+                // this.state.fetcheddata.total = this.state.fetcheddata.total - this.state.fetcheddata.total - this.state.fetcheddata.data[index].product.sub_total
+
+                item.product.sub_total = total
+                this.state.fetcheddata.total = this.state.fetcheddata.total + total
+                // console.log("cost", total)
                 alert("Quantity Updated")
                 this.setState({
+                    Loading: false,
 
-                    Loading: false
                 }
                 );
-                console.log("mycart", this.state.fetcheddata)
+                // console.log("mycart", this.state.fetcheddata)
             }
         },
             error => {
@@ -61,21 +80,24 @@ export default class MyCart extends Component {
         return true
     }
 
-    deleteItem(item) {
+    deleteItem(index, item) {
+        this.setState({ Loading: true })
         console.log("item", item)
+        // console.log("index", item.item.product_id)
         let formData = new FormData();
-        formData.append("product_id", item.item.product.id)
-        console.log("formData", formData)
+        formData.append("product_id", item.item.product_id)
+        // console.log("formData", formData)
         GlobalAPI(deletecartitem, "POST", formData, null, response => {
             if (response.status == 200) {
-                console.log("deletd")
-                // alert("Item Deleted")
-                this.setState({
+                this.state.fetcheddata.data.splice(item.index, 1)
 
-                    Loading: false
+                console.log("deletd")
+                alert("Item Deleted")
+                this.setState({
+                    Loading: false,
                 }
                 );
-                console.log("mycart", this.state.fetcheddata)
+
             }
         },
             error => {
@@ -87,20 +109,20 @@ export default class MyCart extends Component {
     render() {
         this.leftOpenValue = Dimensions.get('window').width;
         this.rightOpenValue = -Dimensions.get('window').width;
-        if (this.state.Loading)
-            return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
+        // if (this.state.Loading)
+        //     return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
         return (
             <View pointerEvents={this.state.Loading ? "none" : "auto"} style={{ flex: 1, backgroundColor: "white" }}>
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left>
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="chevron-left" size={22} color="#f9fbff" />
+                            <Icon name="angle-left" size={22} color="#f9fbff" />
                         </Button>
                     </Left>
                     <Body>
                         <Text style={styles.headertitle}>My Cart</Text>
                     </Body>
-                    <Right>
+                    <Right style={{ paddingRight: 5 }}>
                         <Icon name="search" size={22} color="#f9fbff" />
                     </Right>
 
@@ -115,7 +137,7 @@ export default class MyCart extends Component {
                         useFlatList
                         data={this.state.fetcheddata.data}
                         disableRightSwipe={true}
-                        renderItem={({ item }, rowMap) => (
+                        renderItem={({ item, index }) => (
                             <View style={styles.mainview}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Image source={{ uri: item.product.product_images }} style={styles.productimage} />
@@ -130,12 +152,14 @@ export default class MyCart extends Component {
                                             options={['1', '2', '3', '4', '5', '6', '7', '8']}
                                             // defaultValue={item.quantity}
                                             textStyle={styles.productquantitytext}
-                                            onSelect={(index, value) => { return this.setquantity(item.product.id, value) }}
+                                            onSelect={(i, value) => { return this.setquantity(index, item.product_id, value, item) }}
                                             dropdownTextStyle={styles.dropdowntext}
                                         >
-                                            <View style={{ flexDirection: "row" }}>
+                                            <View style={styles.quantitysubview}>
                                                 <Text>{item.quantity}</Text>
-                                                <Icon name="angle-down" style={styles.countlist} size={25} color="#1C1C1C" />
+                                                <View style={{ paddingTop: 5 }} >
+                                                    <Icon name="angle-down" style={styles.countlist} size={12} color="#1C1C1C" />
+                                                </View>
                                             </View>
                                         </ModalDropdown>
                                         {/* </View> */}
@@ -146,11 +170,11 @@ export default class MyCart extends Component {
 
 
                         )}
-                        renderHiddenItem={(item, rowMap) => (
+                        renderHiddenItem={(item, index) => (
                             <View style={styles.deletebutton}>
 
-                                <TouchableOpacity onPress={() => this.deleteItem(item)}>
-                                    <Icon style={styles.del} name="trash" size={30} color="white" />
+                                <TouchableOpacity onPress={() => this.deleteItem(index, item)}>
+                                    <Icon style={styles.del} name="delete" size={25} color="white" />
                                 </TouchableOpacity>
                             </View>
                         )}
@@ -165,7 +189,7 @@ export default class MyCart extends Component {
                     </View>
                     <View style={styles.buttonview}>
                         <TouchableOpacity style={styles.orderbutton}>
-                            {this.state.Loading ? <ActivityIndicator size="large" color="red" /> : <Text style={styles.orderbuttontext}>ORDER NOW</Text>}
+                            {this.state.Loading ? <ActivityIndicator size="large" color="White" /> : <Text style={styles.orderbuttontext}>ORDER NOW</Text>}
                         </TouchableOpacity>
                     </View>
                 </View>

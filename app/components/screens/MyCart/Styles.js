@@ -13,7 +13,7 @@ export default styles = StyleSheet.create({
     mainview: {
         flex: 1,
         flexDirection: 'row',
-        padding: 15,
+        padding: 10,
         borderBottomWidth: 1,
         borderColor: 'grey',
         backgroundColor: "white"
@@ -30,11 +30,11 @@ export default styles = StyleSheet.create({
         fontSize: 23,
         color: "#1C1C1C",
         fontWeight: "300",
-        paddingLeft: 30
+        paddingLeft: 15
 
     },
     productcategory: {
-        paddingLeft: 30,
+        paddingLeft: 15,
         fontWeight: "200",
         fontSize: 19,
         color: "#606163"
@@ -60,7 +60,7 @@ export default styles = StyleSheet.create({
         fontSize: 19,
         fontWeight: "300",
         color: "#1C1C1C",
-        paddingLeft: Platform.OS === 'ios' ? 110 : 100,
+        paddingLeft: Platform.OS === 'ios' ? 130 : 111,
 
 
     },
@@ -108,12 +108,13 @@ export default styles = StyleSheet.create({
 
     },
     countlist: {
-        paddingLeft: 0,
+        paddingLeft: 3,
+
         color: "#1C1C1C"
 
     },
     quantitylist: {
-        paddingLeft: 40,
+        paddingLeft: 28,
 
         // fontSizes: 15,
         // width: 10
@@ -140,10 +141,16 @@ export default styles = StyleSheet.create({
     del: {
         borderRadius: 17,
         backgroundColor: 'red',
-        padding: 2,
+        padding: 4,
         width: 35,
         height: 35,
         textAlign: 'center',
+    },
+    quantitysubview: {
+        flexDirection: "row",
+        backgroundColor: "#b3b5b7",
+        paddingLeft: 6,
+        paddingRight: 6
     }
 
 

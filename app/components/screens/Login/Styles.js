@@ -172,7 +172,9 @@ export default styles = StyleSheet.create({
         width: Dimensions.get('window').width
     },
     icon: {
-        padding: Platform.OS === 'ios' ? 0 : 5
+        paddingTop: Platform.OS === 'ios' ? 0 : 8,
+        paddingLeft: Platform.OS === 'ios' ? 0 : 5
+
     }
 
 

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { View, Image, Text, ImageBackground, TextInput, TouchableOpacity, Platform, Dimensions, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
+import { View, Text, ImageBackground, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import styles from './Styles';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Icon } from '../../../utils/Icon/Icon';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 // import SplashScreen from 'react-native-splash-screen';
 import { AsyncStorage } from 'react-native';
 // import { login } from '../../../lib/api';
-import { _login, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
+import { _login, fetchaccountdetail } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import SplashScreen from 'react-native-splash-screen';
 
@@ -115,12 +115,12 @@ export default class Login extends Component {
                         <Text style={styles.neostore}>NeoSTORE</Text>
 
                         <View style={styles.view3}>
-                            <Icon name="user" size={30} color="#FFFFFF" style={styles.icon} />
+                            <Icon name="user" size={25} color="#FFFFFF" style={styles.icon} />
                             <TextInput returnKeyType={"next"} onChangeText={(text) => this.setState({ Username: text })} style={styles.textinput} placeholder="Username" placeholderTextColor={White} ></TextInput>
                         </View>
 
                         <View style={styles.view3}>
-                            <Icon name="lock" size={30} color="#FFFFFF" style={styles.icon} />
+                            <Icon name="lock" size={25} color="#FFFFFF" style={styles.icon} />
                             <TextInput onChangeText={(text) => this.setState({ Password: text })} style={styles.textinput} secureTextEntry={true} placeholder="Password" placeholderTextColor={White} ></TextInput>
                         </View>
                         {/* {this.state.Loading ? <ActivityIndicator size="large" color="white" /> : null} */}

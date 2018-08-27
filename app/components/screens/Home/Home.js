@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, Platform, View, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
 import styles from './Styles';
 import Swiper from 'react-native-swiper';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Icon } from '../../../utils/Icon/Icon';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
-import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
-import { LogoSize, LogoHeaderText, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
-import { Calendar } from 'react-native-calendars';
-import Productlist from '../Productlist/Productlist';
-import { AsyncStorage } from 'react-native';
-import { _login, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
+import { HeaderColor } from '../../../utils/Colors';
 import SplashScreen from 'react-native-splash-screen';
 export default class Home extends Component {
 
@@ -31,7 +26,7 @@ export default class Home extends Component {
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left>
                         <Button transparent onPress={() => this.props.navigation.openDrawer()}>
-                            <Icon name="bars" size={22} color="#f9fbff" style={styles.headreicon1} />
+                            <Icon name="menu" size={22} color="#f9fbff" style={styles.headreicon1} />
                         </Button>
                     </Left>
                     <Text style={styles.headerText}>NeoSTORE</Text>
@@ -62,17 +57,17 @@ export default class Home extends Component {
 
                                 </TouchableOpacity >
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { Title: 'Sofas', Id: "3" })} style={[styles.boxtop2,]}>
-                                    <Icon style={{ textAlign: 'right' }} name='lock' color="#ffffff" size={80} />
+                                    <Icon style={{ textAlign: 'right' }} name='sofa' color="#ffffff" size={80} />
                                     <Text style={styles.icontext2}>Sofas</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.boxrow}>
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { Title: 'Chairs', Id: "2" })} style={[styles.boxbottom1,]}>
                                     <Text style={styles.icontext2}>Chairs</Text>
-                                    <Icon name='wheelchair' color="#ffffff" style={{ textAlign: 'right' }} size={75} />
+                                    <Icon name='chair' color="#ffffff" style={{ textAlign: 'right', }} size={70} />
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { Title: 'Cupboards', Id: "5" })} style={[styles.boxbottom2,]}>
-                                    <Icon name='lock' style={{ textAlign: 'left' }} color="#ffffff" size={80} />
+                                    <Icon name='cupboard' style={{ textAlign: 'left' }} color="#ffffff" size={65} />
                                     <Text style={styles.icontext1}>Cupboards</Text>
                                 </TouchableOpacity>
                             </View>
