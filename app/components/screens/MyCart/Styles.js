@@ -15,7 +15,9 @@ export default styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 15,
         borderBottomWidth: 1,
-        borderColor: 'grey'
+        borderColor: 'grey',
+        backgroundColor: "white"
+
 
     },
     productimage: {
@@ -127,6 +129,21 @@ export default styles = StyleSheet.create({
         fontWeight: "100",
         color: "#606163",
         width: 35
+    },
+    deletebutton: {
+        justifyContent: 'center',
+        alignSelf: 'flex-end',
+        height: 110,
+        width: 50,
+
+    },
+    del: {
+        borderRadius: 17,
+        backgroundColor: 'red',
+        padding: 2,
+        width: 35,
+        height: 35,
+        textAlign: 'center',
     }
 
 

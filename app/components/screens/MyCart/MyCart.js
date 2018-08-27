@@ -4,7 +4,7 @@ import styles from './Styles';
 import { HeaderColor } from '../../../utils/Colors';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { cartitem, editcart } from '../../../lib/api';
+import { cartitem, editcart, deletecartitem } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import ModalDropdown from 'react-native-modal-dropdown';
 import { SwipeListView } from 'react-native-swipe-list-view';
@@ -13,7 +13,7 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 export default class MyCart extends Component {
     constructor(props) {
         super(props)
-        this.state = { fetcheddata: [], Loading: true, Quantity: '' }
+        this.state = { fetcheddata: [], Loading: true, Quantity: '', product_ID: '' }
     }
 
     componentDidMount() {
@@ -35,13 +35,17 @@ export default class MyCart extends Component {
     }
 
     setquantity(index, value) {
-        console.log("value", index)
+        this.setState({ Quantity: value })
+
+        console.log("value", this.state.Quantity)
+
         let formData = new FormData();
         formData.append("product_id", index)
+        // console.log("index", index)
         formData.append("quantity", value)
         GlobalAPI(editcart, "POST", formData, null, response => {
             if (response.status == 200) {
-                alert("sucessful")
+                alert("Quantity Updated")
                 this.setState({
 
                     Loading: false
@@ -54,10 +58,30 @@ export default class MyCart extends Component {
                 console.log(error)
             }
         )
-
         return true
+    }
 
+    deleteItem(item) {
+        console.log("item", item)
+        let formData = new FormData();
+        formData.append("product_id", item.item.product.id)
+        console.log("formData", formData)
+        GlobalAPI(deletecartitem, "POST", formData, null, response => {
+            if (response.status == 200) {
+                console.log("deletd")
+                // alert("Item Deleted")
+                this.setState({
 
+                    Loading: false
+                }
+                );
+                console.log("mycart", this.state.fetcheddata)
+            }
+        },
+            error => {
+                console.log(error)
+            }
+        )
     }
 
     render() {
@@ -66,7 +90,7 @@ export default class MyCart extends Component {
         if (this.state.Loading)
             return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
         return (
-            <View pointerEvents={this.state.Loading ? "none" : "auto"} style={{ flex: 1 }}>
+            <View pointerEvents={this.state.Loading ? "none" : "auto"} style={{ flex: 1, backgroundColor: "white" }}>
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left>
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
@@ -86,10 +110,12 @@ export default class MyCart extends Component {
 
                     {/* Display cart items */}
 
-                    <FlatList
-                        data={this.state.fetcheddata.data}
-                        renderItem={({ item }) => (
 
+                    <SwipeListView
+                        useFlatList
+                        data={this.state.fetcheddata.data}
+                        disableRightSwipe={true}
+                        renderItem={({ item }, rowMap) => (
                             <View style={styles.mainview}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Image source={{ uri: item.product.product_images }} style={styles.productimage} />
@@ -118,26 +144,19 @@ export default class MyCart extends Component {
                                 </View>
                             </View>
 
-                        )}
 
-                        keyExtractor={(item, index) => '' + index}
-                    />
-                    <SwipeListView
-                        useFlatList
-                        data={this.state.listViewData}
-                        renderItem={(data, rowMap) => (
-                            <View style={styles.rowFront}>
-                                <Text>I am {data.item} in a SwipeListView</Text>
+                        )}
+                        renderHiddenItem={(item, rowMap) => (
+                            <View style={styles.deletebutton}>
+
+                                <TouchableOpacity onPress={() => this.deleteItem(item)}>
+                                    <Icon style={styles.del} name="trash" size={30} color="white" />
+                                </TouchableOpacity>
                             </View>
                         )}
-                        renderHiddenItem={(data, rowMap) => (
-                            <View style={styles.rowBack}>
-                                <Text>Left</Text>
-                                <Text>Right</Text>
-                            </View>
-                        )}
-                        leftOpenValue={75}
+                        // leftOpenValue={75}
                         rightOpenValue={-75}
+                        keyExtractor={(item, index) => '' + index}
                     />
 
                     <View style={styles.totalview}>

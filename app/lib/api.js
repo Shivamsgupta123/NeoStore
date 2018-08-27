@@ -17,6 +17,7 @@ export const cartitem = StagingAPI + "cart";
 export const productlimit = "&limit=6&page=1";
 export const orderlist = StagingAPI + "orderList";
 export const orderdetail = StagingAPI + "orderDetail";
-export const editcart = StagingAPI + "editCart"
-// http://staging.php-dev.in:8844/trainingapp/api/orderList
+export const editcart = StagingAPI + "editCart";
+export const deletecartitem = StagingAPI + "deleteCart"
+// http://staging.php-dev.in:8844/trainingapp/api/deleteCart
 
