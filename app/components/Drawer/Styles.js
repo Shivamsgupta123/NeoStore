@@ -23,7 +23,7 @@ export default styles = StyleSheet.create({
     },
     mainview: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: '#2a2a2b',
     },
     username: {
         color: 'white',
@@ -44,7 +44,7 @@ export default styles = StyleSheet.create({
         padding: 2,
         // borderColor:'white'
         borderBottomWidth: 1,
-        borderColor: "grey",
+        borderColor: "#020202",
 
 
     },
@@ -81,7 +81,7 @@ export default styles = StyleSheet.create({
         // flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: Platform.OS === 'ios' ? 10 : 8,
+        marginTop: Platform.OS === 'ios' ? 10 : 5,
         height: 26,
         width: 26,
         marginLeft: 100,

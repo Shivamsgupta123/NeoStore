@@ -7,7 +7,8 @@ import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, Heade
 export default styles = StyleSheet.create({
 
     iconpadding: {
-        padding: Platform.OS === 'ios' ? 0 : 7,
+        paddingLeft: Platform.OS === 'ios' ? 0 : 7,
+        paddingTop: Platform.OS === 'ios' ? 0 : 6,
         height: 50,
         width: Platform.OS === 'ios' ? 30 : 35,
         // textAlign:Platform.OS === 'ios' ? ,'center'
@@ -104,8 +105,8 @@ export default styles = StyleSheet.create({
         height: 50,
         width: Platform.OS === 'ios' ? 30 : 35,
         justifyContent: "center",
-        paddingBottom: 7,
-        paddingLeft: Platform.OS === 'ios' ? 0 : 8
+        paddingTop: Platform.OS === 'ios' ? 0 : 6,
+        paddingLeft: Platform.OS === 'ios' ? 0 : 5
     }
 
 

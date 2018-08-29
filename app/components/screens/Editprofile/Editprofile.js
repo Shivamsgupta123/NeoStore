@@ -11,25 +11,26 @@ import moment from 'moment';
 import ImagePicker from 'react-native-image-picker';
 import { updateaccountdetail } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
+import { UserProvider, UserObject } from '../../../lib/UserProvider';
 
 
 
 export default class Editprofile extends Component {
     constructor(props) {
         super(props);
-        console.log("editprofilr123", props)
+        console.log("editprofile888", UserObject)
         this.focusNextField = this.focusNextField.bind(this);
         this.inputs = {};
         this.state = {
-            FirstName: this.props.navigation.state.params.data.first_name,
-            LastName: this.props.navigation.state.params.data.last_name,
-            Email: this.props.navigation.state.params.data.email,
-            PhoneNumber: this.props.navigation.state.params.data.phone_no,
-            DOB: '',
+            FirstName: UserObject.user_data.first_name,
+            LastName: UserObject.user_data.last_name,
+            Email: UserObject.user_data.email,
+            PhoneNumber: UserObject.user_data.phone_no,
+            // DOB: UserObject.state.params.dob,
             avatarSource: null,
             Loading: false,
-            // profileimage: 'abc'
-            DateText: "16 - 10 - 1996",
+            profileimage: UserObject.user_data.profile_pic,
+            DateText: UserObject.user_data.dob,
             DateHolder: null
         }
         console.log("profileimae", this.state.FirstName)
@@ -38,7 +39,7 @@ export default class Editprofile extends Component {
     focusNextField(id) {
         this.inputs[id].focus()
     }
-    c
+
 
 
     // sending updated data to API
@@ -60,10 +61,11 @@ export default class Editprofile extends Component {
 
                 if (response.status == 200) {
                     console.log("afs", response)
+                    UserProvider.setUserInfo("user_data", response.data)
+                    console.log("updated", UserObject)
+
                     this.setState({ Loading: false })
                     alert("Account detail updated successfully.")
-                    this.props.navigation.navigate('Myaccount')
-
                 }
                 else
                     alert(response.user_msg)
@@ -155,7 +157,7 @@ export default class Editprofile extends Component {
 
                                 <TouchableOpacity onPress={() => this.takeimage()} >
                                     <View style={styles.profileimage}>
-                                        {this.state.avatarSource === null ? <Image style={styles.profileimage} source={{ uri: this.props.navigation.state.params.data.profile_pic }} /> :
+                                        {this.state.avatarSource === null ? <Image style={styles.profileimage} source={{ uri: this.state.profileimage }} /> :
                                             <Image style={styles.profileimage} source={this.state.avatarSource} />
                                         }
                                     </View>
@@ -164,22 +166,22 @@ export default class Editprofile extends Component {
 
                                 <View style={styles.view3}>
                                     <Icon name="user" size={25} color="#FFFFFF" style={styles.iconpadding} />
-                                    <TextInput onSubmitEditing={() => { this.focusNextField('two'); }} returnKeyType={"next"} ref={input => { this.inputs['one'] = input; }} onChangeText={(text) => this.setState({ FirstName: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.first_name} placeholderTextColor="white" ></TextInput>
+                                    <TextInput onSubmitEditing={() => { this.focusNextField('two'); }} returnKeyType={"next"} ref={input => { this.inputs['one'] = input; }} onChangeText={(text) => this.setState({ FirstName: text })} style={styles.textinput} defaultValue={this.state.FirstName} placeholderTextColor="white" ></TextInput>
                                 </View>
 
                                 <View style={styles.view3}>
                                     <Icon name="user" size={25} color="#FFFFFF" style={styles.iconpadding} />
-                                    <TextInput onSubmitEditing={() => { this.focusNextField('three'); }} returnKeyType={"next"} ref={input => { this.inputs['two'] = input; }} onChangeText={(text) => this.setState({ LastName: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.last_name} placeholderTextColor="white" ></TextInput>
+                                    <TextInput onSubmitEditing={() => { this.focusNextField('three'); }} returnKeyType={"next"} ref={input => { this.inputs['two'] = input; }} onChangeText={(text) => this.setState({ LastName: text })} style={styles.textinput} defaultValue={this.state.LastName} placeholderTextColor="white" ></TextInput>
                                 </View>
 
                                 <View style={styles.view3}>
                                     <Icon name="mail" size={25} color="#FFFFFF" style={styles.iconpadding} />
-                                    <TextInput onSubmitEditing={() => { this.focusNextField('four'); }} returnKeyType={"next"} ref={input => { this.inputs['three'] = input; }} onChangeText={(text) => this.setState({ Email: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.email} placeholderTextColor="white" ></TextInput>
+                                    <TextInput onSubmitEditing={() => { this.focusNextField('four'); }} returnKeyType={"next"} ref={input => { this.inputs['three'] = input; }} onChangeText={(text) => this.setState({ Email: text })} style={styles.textinput} defaultValue={this.state.Email} placeholderTextColor="white" ></TextInput>
                                 </View>
 
                                 <View style={styles.view3}>
                                     <Icon name="mobile" size={25} color="#FFFFFF" style={styles.mobileicon} />
-                                    <TextInput onSubmitEditing={() => { this.focusNextField('five'); }} returnKeyType={"next"} ref={input => { this.inputs['four'] = input; }} keyboardType="phone-pad" onChangeText={(text) => this.setState({ PhoneNumber: text })} style={styles.textinput} defaultValue={this.props.navigation.state.params.data.phone_no} placeholderTextColor="white" ></TextInput>
+                                    <TextInput onSubmitEditing={() => { this.focusNextField('five'); }} returnKeyType={"next"} ref={input => { this.inputs['four'] = input; }} keyboardType="phone-pad" onChangeText={(text) => this.setState({ PhoneNumber: text })} style={styles.textinput} defaultValue={this.state.PhoneNumber} placeholderTextColor="white" ></TextInput>
                                 </View>
 
                                 <View style={styles.view3}>

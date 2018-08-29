@@ -1,5 +1,5 @@
 package com.neostore;
-
+import com.airbnb.android.react.maps.MapsPackage;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
@@ -28,7 +28,8 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new ImagePickerPackage(),
             new SplashScreenReactPackage(),
-            new VectorIconsPackage()
+            new VectorIconsPackage(),
+            new MapsPackage()
             
       );
     }
@@ -49,4 +50,6 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
   }
+
+  
 }

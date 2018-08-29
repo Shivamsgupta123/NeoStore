@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Image, Text, ImageBackground, TextInput, TouchableOpacity, Platform, Dimensions, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
+import { View, Text, } from 'react-native';
 import { AsyncStorage } from 'react-native';
-import { login, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
+import { fetchaccountdetail, } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
-import SplashScreen from 'react-native-splash-screen';
+import { UserProvider } from '../../../lib/UserProvider';
 
 export default class StartUp extends Component {
     constructor(props) {
@@ -14,13 +14,13 @@ export default class StartUp extends Component {
         AsyncStorage.getItem("access_token").then((value) => {
             console.log(value)
             if (value !== null) {
-                // console.log(access_token)
+                console.log("welcome")
                 GlobalAPI(fetchaccountdetail, "GET", null, value, (response) => {
 
                     if (response.status == 200) {
-                        // console.log("123")
+                        UserProvider.setUserData(response.data)
                         this.props.navigation.replace('MyApp', response);
-                        // SplashScreen.hide();
+
                     }
                     else {
                         AsyncStorage.removeItem("access_token")

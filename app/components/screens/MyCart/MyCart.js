@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList, Dimensions, ActivityIndicator, Image, Text, TouchableOpacity } from 'react-native';
+import { View, Alert, FlatList, Dimensions, ActivityIndicator, Image, Text, TouchableOpacity } from 'react-native';
 import styles from './Styles';
 import { HeaderColor } from '../../../utils/Colors';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
@@ -81,12 +81,24 @@ export default class MyCart extends Component {
     }
 
     deleteItem(index, item) {
-        this.setState({ Loading: true })
+        // this.setState({ Loading: true })
         console.log("item", item)
-        // console.log("index", item.item.product_id)
+
+        Alert.alert(
+            'Delete!',
+            'Remove Item From Cart?',
+            [
+                { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                { text: 'OK', onPress: () => this.delete(index, item) },
+            ],
+            { cancelable: false }
+        )
+
+    }
+    delete(index, item) {
+        this.setState({ Loading: true })
         let formData = new FormData();
         formData.append("product_id", item.item.product_id)
-        // console.log("formData", formData)
         GlobalAPI(deletecartitem, "POST", formData, null, response => {
             if (response.status == 200) {
                 this.state.fetcheddata.data.splice(item.index, 1)
@@ -97,7 +109,6 @@ export default class MyCart extends Component {
                     Loading: false,
                 }
                 );
-
             }
         },
             error => {
@@ -114,7 +125,7 @@ export default class MyCart extends Component {
         return (
             <View pointerEvents={this.state.Loading ? "none" : "auto"} style={{ flex: 1, backgroundColor: "white" }}>
                 <Header style={{ backgroundColor: HeaderColor }}>
-                    <Left>
+                    <Left >
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
                             <Icon name="angle-left" size={22} color="#f9fbff" />
                         </Button>
@@ -122,7 +133,7 @@ export default class MyCart extends Component {
                     <Body>
                         <Text style={styles.headertitle}>My Cart</Text>
                     </Body>
-                    <Right style={{ paddingRight: 5 }}>
+                    <Right style={{ paddingRight: 7 }}>
                         <Icon name="search" size={22} color="#f9fbff" />
                     </Right>
 
@@ -188,7 +199,7 @@ export default class MyCart extends Component {
                         <Text style={styles.producttotal}>Rs. {this.state.fetcheddata.total}</Text>
                     </View>
                     <View style={styles.buttonview}>
-                        <TouchableOpacity style={styles.orderbutton}>
+                        <TouchableOpacity style={styles.orderbutton} onPress={() => this.props.navigation.navigate('AddressList')}>
                             {this.state.Loading ? <ActivityIndicator size="large" color="White" /> : <Text style={styles.orderbuttontext}>ORDER NOW</Text>}
                         </TouchableOpacity>
                     </View>

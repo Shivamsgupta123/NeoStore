@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import { AppRegistry, FlatList, ActivityIndicator, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity, Share } from 'react-native';
+import { ActivityIndicator, Platform, TextInput, Text, View, Image, ScrollView, Dimensions, TouchableOpacity, Share } from 'react-native';
 import { Rating } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
+import { Icon } from '../../../utils/Icon/Icon';
+import { Container, Header, Left, Body, Right, Button, } from 'native-base';
 import styles from './Styles';
-import { White, ProductProducer, DetailScreenFont, ButtonText, PlusIconBackground, HeaderColor, ProductlistFont } from '../../../utils/Colors';
-import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize, ProductlistTitle } from '../../../utils/FontSizes';
+import { White, HeaderColor, } from '../../../utils/Colors';
 import { AsyncStorage } from 'react-native';
-
 import Modal from "react-native-modal";
-import { login, productid, addtocart, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
+import { login, productid, addtocart, productdetail, productrating, } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
+import Stars from 'react-native-stars';
 
 
 export default class Productdetail extends Component {
@@ -28,7 +27,8 @@ export default class Productdetail extends Component {
             datafetched: false,
             Quntity: '',
             isModalVisible1: false,
-            Loading: true
+            Loading: true,
+            stars: ''
         }
     }
     closeRatePopup = () =>
@@ -66,7 +66,7 @@ export default class Productdetail extends Component {
         this.state.fetcheddata.product_images.forEach((img, index) => {
             image.push(
                 <TouchableOpacity key={index} onPress={() => { this.setState({ img1: img.image }) }}>
-                    <Image source={{ uri: img.image }} style={{ width: 100, height: 65, marginLeft: 12, borderWidth: 1, borderColor: HeaderColor }} />
+                    <Image source={{ uri: img.image }} style={styles.productsubimage} />
                 </TouchableOpacity>
             )
         })
@@ -75,15 +75,15 @@ export default class Productdetail extends Component {
     }
 
     // set ratting
-    ratingCompleted = (rating) => {
-        console.log("Rating is: " + rating)
-        this.setState(
-            {
-                Rating: rating
-            }
-        )
-        // console.log( this.state.Rating)
-    }
+    // ratingCompleted = (rating) => {
+    //     console.log("Rating is: " + rating)
+    //     this.setState(
+    //         {
+    //             Rating: rating
+    //         }
+    //     )
+    //     // console.log( this.state.Rating)
+    // }
 
     quantitySubmit = () => {
         // alert("Thanks for rating.")
@@ -94,10 +94,10 @@ export default class Productdetail extends Component {
         this.setState({ isModalVisible: false })
     }
 
-    ratingsubmit = () => {
+    ratingsubmit() {
         let formData = new FormData();
         formData.append(' product_id', this.state.fetcheddata.id);
-        formData.append('rating', this.state.Rating);
+        formData.append('rating', this.state.stars);
         GlobalAPI(productrating, "POST", formData, null, response => {
             if (response.status == 200) {
                 alert(response.message)
@@ -165,16 +165,16 @@ export default class Productdetail extends Component {
                 <View style={styles.mainview}>
 
                     <Header style={{ backgroundColor: HeaderColor }}>
-                        <Left>
+                        <Left style={{ marginLeft: Platform.OS === 'ios' ? 10 : -10 }}>
                             <Button transparent onPress={() => this.props.navigation.goBack()}>
-                                <Icon name="chevron-left" size={22} color={White} />
+                                <Icon name="angle-left" size={22} color={White} />
                             </Button>
                         </Left>
                         <Body>
                             <Text style={styles.headertitle}>{this.props.navigation.state.params.Title}</Text>
                         </Body>
                         <Right>
-                            <Icon name="search" size={22} color="#f9fbff" style={{ marginRight: 10 }} />
+                            <Icon name="search" size={22} color="#f9fbff" style={{ marginRight: 6 }} />
                         </Right>
                     </Header>
 
@@ -198,7 +198,7 @@ export default class Productdetail extends Component {
                             <View style={styles.subview2}>
                                 <Text style={styles.productcost}>Rs. {this.state.fetcheddata.cost}</Text>
                                 <TouchableOpacity onPress={() => this.shareon()}>
-                                    <Icon name="share-alt" size={27} color="#7F7F7F" style={{ marginTop: 35 }} />
+                                    <Icon name="share" size={27} color="#7F7F7F" style={{ marginTop: 35 }} />
                                 </TouchableOpacity>
                             </View>
 
@@ -234,7 +234,7 @@ export default class Productdetail extends Component {
                                         <Image source={{ uri: this.state.img1 }} style={styles.modalimage} />
 
 
-                                        <Rating
+                                        {/* <Rating
                                             type='custom'
                                             showRating
                                             fractions={0}
@@ -244,7 +244,19 @@ export default class Productdetail extends Component {
                                             imageSize={47}
                                             onFinishRating={this.ratingCompleted}
                                             style={{ paddingVertical: 10 }}
+                                        /> */}
+
+                                        <Stars
+                                            half={false}
+                                            default={this.state.fetcheddata.rating}
+                                            update={(val) => { this.setState({ stars: val }) }}
+                                            spacing={4}
+                                            starSize={40}
+                                            count={5}
+                                            fullStar={<Icon name="star" size={27} color="#e2d628" style={{ marginTop: 35 }} />}
+                                            emptyStar={<Icon name="star" size={27} color="#7F7F7F" style={{ marginTop: 35 }} />}
                                         />
+                                        {console.log("rate", this.state.stars)}
 
                                         <View style={{ flexDirection: 'row', }}>
                                             <TouchableOpacity onPress={() => this.ratingsubmit()} style={styles.ratingbutton}>

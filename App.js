@@ -15,13 +15,13 @@ import Productdetail from './app/components/screens/Productdetail/Productdetail'
 import { productdetail } from './app/lib/api';
 import ResetPasswordScreen from './app/components/screens/ResetPassword/ResetPasswordScreen';
 import StartUp from './app/components/screens/StartUp/StartUp';
-//  import MyHomeScreen from './app/components/screens/demo';
-// import {White,ButtonText,PlusIconBackground,HeaderColor} from '../../../utils/Colors';
-// import {LogoSize,LogoFontWeight,LogoPadding,TextInputFont,RegularFon,HeaderTextFontWeight,HeaderText,ButtonTextSize} from '../../../utils/FontSizes';
+import Addaddress from './app/components/screens/Addaddress/Addaddress';
 import MyCart from './app/components/screens/MyCart/MyCart';
 import Swiper from './app/containers/Swiper';
 import Myorder from './app/components/screens/Myorder/Myorder';
 import Orderdetail from './app/components/screens/Orderdetail/Orderdetail';
+import StoreLocator from './app/components/screens/StoreLocator/StoreLocator';
+import AddressList from './app/components/screens/AddressList/AddressList';
 
 
 const MyApp = createDrawerNavigator({
@@ -59,20 +59,7 @@ const RootStack = createStackNavigator(
                 header: null,
             }
         },
-        //  Homescreen: {
-        //   screen: Home,
-        //   navigationOptions:{
-        //     header:null,
-        //   }
 
-        // },
-        // Homescreen:{
-        //   screen:MyApp,
-        //   navigationOptions:{
-        //     header:null,
-        //   }
-
-        // },
         Myaccount: {
             screen: Myaccount,
             navigationOptions: {
@@ -140,6 +127,24 @@ const RootStack = createStackNavigator(
                 header: null
             }
         },
+        Addaddress: {
+            screen: Addaddress,
+            navigationOptions: {
+                header: null
+            }
+        },
+        StoreLocator: {
+            screen: StoreLocator,
+            navigationOptions: {
+                header: null
+            }
+        },
+        AddressList: {
+            screen: AddressList,
+            navigationOptions: {
+                header: null
+            }
+        }
     },
 
 

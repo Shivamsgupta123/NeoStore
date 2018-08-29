@@ -24,13 +24,18 @@ export default styles = StyleSheet.create({
     mainview: {
         flex: 1,
         flexDirection: 'row',
-        padding: 15,
+        paddingTop: 13,
+        paddingLeft: 13,
+        paddingBottom: 10,
+        paddingRight: 15,
         borderBottomWidth: 1,
         borderColor: 'grey'
     },
     productimage: {
         height: 90,
-        width: 90
+        width: 90,
+        borderColor: "grey",
+        borderWidth: 1
     },
     productname: {
         fontSize: Platform.OS === 'ios' ? 22 : 20,
@@ -47,7 +52,7 @@ export default styles = StyleSheet.create({
     headertext: {
         color: White,
         fontSize: HeaderText,
-        marginLeft: Platform.OS === 'ios' ? -3 : 65,
+        marginLeft: Platform.OS === 'ios' ? -3 : 75,
         marginTop: Platform.OS === 'ios' ? 10 : 13,
         fontWeight: HeaderTextFontWeight,
     },

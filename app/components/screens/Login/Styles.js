@@ -29,10 +29,11 @@ export default styles = StyleSheet.create({
 
     textinput: {
         flex: 1,
-
+        height: 50,
         marginLeft: 10,
         color: White,
         fontSize: TextInputFont,
+        paddingBottom: Platform.OS === "ios" ? 30 : 15
 
     },
     loginbutton: {
@@ -176,12 +177,4 @@ export default styles = StyleSheet.create({
         paddingLeft: Platform.OS === 'ios' ? 0 : 5
 
     }
-
-
-
-
-
-
-
-
 });

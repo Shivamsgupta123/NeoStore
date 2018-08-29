@@ -103,6 +103,7 @@ export default styles = StyleSheet.create({
     buttonview: {
         padding: 15,
         justifyContent: 'center',
+        alignItems: "center",
         borderTopWidth: 1,
         borderColor: "grey",
 

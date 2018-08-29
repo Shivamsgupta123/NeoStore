@@ -1,41 +1,47 @@
 import React, { Component } from 'react';
 import { AppRegistry, ActivityIndicator, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import Editprofile from '../Editprofile/Editprofile'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Icon } from '../../../utils/Icon/Icon';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import styles from './Styles';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
 import ResetPasswordScreen from '../ResetPassword/ResetPasswordScreen';
-import { AsyncStorage } from 'react-native';
+import { UserObject } from '../../../lib/UserProvider';
 
 var getdata
 export default class Myaccount extends Component {
     state = {
-        FirstName: '',
-        LastName: '',
-        Email: '',
-        PhoneNumber: '',
-        DOB: '',
-        ProfileImage: 'abc',
+        autoplay: true
     }
 
     // getting users data
-    componentWillMount = async () => {
-        getdata = await AsyncStorage.getItem('ResponseData');
-        // console.log("data123", getdata)
-        getdata = JSON.parse(getdata)
-        this.setState({ FirstName: getdata.data.first_name, LastName: getdata.data.last_name, Email: getdata.data.email, PhoneNumber: getdata.data.phone_no, DOB: getdata.data.dob, ProfileImage: getdata.data.profile_pic })
+    // componentWillMount = async () => {
+
+    //     this.setState({ FirstName: UserObject.data.user_data.first_name, LastName: UserObject.data.user_data.last_name, Email: UserObject.data.user_data.email, PhoneNumber: UserObject.data.user_data.phone_no, DOB: UserObject.data.user_data.dob, ProfileImage: UserObject.data.user_data.profile_pic })
+    // }
+    componentDidMount() {
+        console.log("25")
+        const didBlurSubscription = this.props.navigation.addListener(
+            'willFocus',
+            payload => {
+
+                this.setState({ autoplay: false })
+            }
+        );
+
     }
+
     render() {
+        console.log("101010")
         return (
             // <View style={{ height: Dimensions.get('window').height }}>
-            <View style={{ flex: 1, height: Dimensions.get('window').height }}>
+            <View style={{ flex: 1 }}>
                 <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
                     <Header style={{ backgroundColor: HeaderColor }}>
                         <Left>
                             <Button transparent onPress={() => this.props.navigation.goBack()}>
-                                <Icon name="chevron-left" size={22} color="#f9fbff" />
+                                <Icon name="angle-left" size={22} color="#f9fbff" />
                             </Button>
                         </Left>
                         <Body>
@@ -49,34 +55,34 @@ export default class Myaccount extends Component {
 
                         <View style={styles.mainview}>
 
-                            <Image style={styles.profileimage} source={{ uri: this.state.ProfileImage }} />
+                            <Image style={styles.profileimage} source={{ uri: UserObject.user_data.profile_pic }} />
                             <View style={styles.view3}>
                                 <Icon name="user" size={25} color="#FFFFFF" style={styles.iconpadding} />
-                                <TextInput style={styles.textinput} editable={false} placeholder={this.state.FirstName} placeholderTextColor="white" ></TextInput>
+                                <TextInput style={styles.textinput} editable={false} placeholder={UserObject.user_data.first_name} placeholderTextColor="white" ></TextInput>
                             </View>
 
                             <View style={styles.view3}>
                                 <Icon name="user" size={25} color="#FFFFFF" style={styles.iconpadding} />
-                                <TextInput style={styles.textinput} editable={false} placeholder={this.state.LastName} placeholderTextColor="white" ></TextInput>
+                                <TextInput style={styles.textinput} editable={false} placeholder={UserObject.user_data.last_name} placeholderTextColor="white" ></TextInput>
                             </View>
 
                             <View style={styles.view3}>
-                                <Icon name="envelope" size={20} color="#FFFFFF" style={styles.iconpadding} />
-                                <TextInput style={styles.textinput} editable={false} placeholder={this.state.Email} placeholderTextColor="white" ></TextInput>
+                                <Icon name="mail" size={26} color="#FFFFFF" style={styles.iconpadding} />
+                                <TextInput style={styles.textinput} editable={false} placeholder={UserObject.user_data.email} placeholderTextColor="white" ></TextInput>
 
                             </View>
 
                             <View style={styles.view3}>
-                                <Icon name="mobile" size={35} color="#FFFFFF" style={styles.mobileicon} />
-                                <TextInput style={styles.textinput} editable={false} placeholder={this.state.PhoneNumber} placeholderTextColor="white" ></TextInput>
+                                <Icon name="mobile" size={25} color="#FFFFFF" style={styles.mobileicon} />
+                                <TextInput style={styles.textinput} editable={false} placeholder={UserObject.user_data.phone_no} placeholderTextColor="white" ></TextInput>
                             </View>
 
                             <View style={styles.view3}>
-                                <Icon name="birthday-cake" size={20} color="#FFFFFF" style={styles.iconpadding} />
-                                <TextInput style={styles.textinput} editable={false} placeholder={this.state.DOB} placeholderTextColor="white" ></TextInput>
+                                <Icon name="cake" size={20} color="#FFFFFF" style={styles.iconpadding} />
+                                <TextInput style={styles.textinput} editable={false} placeholder={UserObject.user_data.dob} placeholderTextColor="white" ></TextInput>
                             </View>
 
-                            <TouchableOpacity style={styles.loginbutton} onPress={() => this.props.navigation.navigate('Editprofile', getdata)}>
+                            <TouchableOpacity style={styles.loginbutton} onPress={() => this.props.navigation.navigate('Editprofile')}>
                                 <Text style={styles.buttontext}>Edit Profile</Text>
                             </TouchableOpacity>
 

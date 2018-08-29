@@ -3,6 +3,8 @@ import { Text, Platform, View, Image, ScrollView, Dimensions, TouchableOpacity }
 import { Icon } from '../../utils/Icon/Icon';
 import styles from './Styles';
 import { AsyncStorage } from 'react-native';
+import { UserObject } from '../../lib/UserProvider';
+// import { UserProvider } from '../../lib/Globals';
 
 export default class Drawer extends Component {
     state = {
@@ -14,18 +16,18 @@ export default class Drawer extends Component {
 
     componentWillMount = async () => {
         var getdata = await AsyncStorage.getItem('ResponseData');
+        console.log("userobj21", UserObject)
 
         getdata = JSON.parse(getdata)
         console.log("drawer", getdata)
-        this.setState({ FirstName: getdata.data.first_name })
-        this.setState({ LastName: getdata.data.last_name })
-        this.setState({ Email: getdata.data.email })
-        this.setState({ profileimage: getdata.data.profile_pic })
-        // console.log("pi", this.state.profileimage)
+        this.setState({ FirstName: UserObject.user_data.first_name })
+        this.setState({ LastName: UserObject.user_data.last_name })
+        this.setState({ Email: UserObject.user_data.email })
+        this.setState({ profileimage: UserObject.user_data.profile_pic })
+
     }
 
     logout = async () => {
-
         try {
             AsyncStorage.removeItem("access_token");
         }
@@ -33,14 +35,8 @@ export default class Drawer extends Component {
             alert("failed.")
 
         }
-
-
-
         this.props.navigation.replace('Login')
-
     }
-
-
 
     render() {
         return (
@@ -49,10 +45,10 @@ export default class Drawer extends Component {
                 {/* <View style={{ alignItems: 'center', padding: 20 }}> */}
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Myaccount')}>
                     <View style={{ alignItems: 'center', padding: 20 }}>
-                        <Image style={styles.profileimage} source={{ uri: this.state.profileimage }} />
+                        <Image style={styles.profileimage} source={{ uri: UserObject.user_data.profile_pic }} />
 
-                        <Text style={styles.username}>{this.state.FirstName} {this.state.LastName}</Text>
-                        <Text style={styles.useremail}>{this.state.Email}</Text></View>
+                        <Text style={styles.username}>{UserObject.user_data.first_name} {UserObject.user_data.last_name}</Text>
+                        <Text style={styles.useremail}>{UserObject.user_data.email}</Text></View>
 
                 </TouchableOpacity>
                 {/* </View> */}
@@ -62,7 +58,7 @@ export default class Drawer extends Component {
                         <Icon name="cart" style={styles.drawericon} size={28} color="#FFFFFF" />
                         <Text style={styles.drawertext}>My Cart</Text>
                         <View style={styles.cartitemview}>
-                            <Text style={styles.cartitemcount}>10</Text>
+                            <Text style={styles.cartitemcount}>{UserObject.total_carts}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -103,7 +99,7 @@ export default class Drawer extends Component {
                 </View>
 
                 <View style={styles.drawerview1}>
-                    <TouchableOpacity style={styles.drawerview} onPress={() => this.props.navigation.navigate('Swiper')}>
+                    <TouchableOpacity style={styles.drawerview} onPress={() => this.props.navigation.navigate('StoreLocator')}>
                         <Icon name="location" style={styles.drawericon} size={25} color="#FFFFFF" />
                         <Text style={styles.drawertext}>Store Locators</Text>
                     </TouchableOpacity>

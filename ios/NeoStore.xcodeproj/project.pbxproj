@@ -24,6 +24,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		14C70C3BAB0244DEB01900D8 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF2BD71C609B46BC92E1F01A /* Zocial.ttf */; };
 		15AEEFC8620345D2A27F3AB7 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 466E40B2A0CA4C889B8B452C /* EvilIcons.ttf */; };
+		1F22BB5BBC73F0614110C137 /* libPods-NeoStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A094B031EE447DA3EA2C61E /* libPods-NeoStore.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -54,9 +55,9 @@
 		BDCF8DC7804F4F428ECF107E /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C43624FFB4D46D4ABCA043F /* libRNImagePicker.a */; };
 		D10EC2B2060942CEA3FDE9A7 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 563ACEAE46CE442A95A2D6F7 /* FontAwesome.ttf */; };
 		D99DC2340E184A80A747EF02 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADDBF187617C438492C92AB8 /* libRNVectorIcons.a */; };
+		E927D7C921357CF800FA5538 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E927D7C821357CF800FA5538 /* icomoon.ttf */; };
 		E98F23BE210B072800CE95E4 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E98F2397210B072700CE95E4 /* Feather.ttf */; };
 		E98F23BF210B072800CE95E4 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E98F23BD210B072800CE95E4 /* FontAwesome.ttf */; };
-		E9B0B0952134463000ACABBF /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9B0B0942134463000ACABBF /* icomoon.ttf */; };
 		F1FA76F4958A45339B6CB037 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A6131D15C3BD49FAB204D770 /* rubicon-icon-font.ttf */; };
 /* End PBXBuildFile section */
 
@@ -385,6 +386,7 @@
 		2D02E4901E0B4A5D006451C7 /* NeoStore-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NeoStore-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3725F6660BC9495FA2051576 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		41AB1402C2033D67B1C270AC /* Pods-NeoStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoStore.release.xcconfig"; path = "Pods/Target Support Files/Pods-NeoStore/Pods-NeoStore.release.xcconfig"; sourceTree = "<group>"; };
 		455777DC5EBB4DDA946619A9 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		45D67C2C409443A982CD25DF /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		466E40B2A0CA4C889B8B452C /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
@@ -395,16 +397,18 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		844190AD0C89423F8CB2FA4A /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		8A094B031EE447DA3EA2C61E /* libPods-NeoStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NeoStore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F732D92A644784BCD3A4B1 /* libSplashScreen.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libSplashScreen.a; sourceTree = "<group>"; };
 		9C43624FFB4D46D4ABCA043F /* libRNImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNImagePicker.a; sourceTree = "<group>"; };
 		A6131D15C3BD49FAB204D770 /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		ADDBF187617C438492C92AB8 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
+		B4AB83407FF3A0F51B70B70E /* Pods-NeoStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeoStore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NeoStore/Pods-NeoStore.debug.xcconfig"; sourceTree = "<group>"; };
 		BB7CBD43E54540B6B1878331 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		D0FCAD378A034D59B61FF59B /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
+		E927D7C821357CF800FA5538 /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = icomoon.ttf; path = ../../../../Downloads/icomoon/fonts/icomoon.ttf; sourceTree = "<group>"; };
 		E98F2397210B072700CE95E4 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		E98F23BD210B072800CE95E4 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
-		E9B0B0942134463000ACABBF /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = icomoon.ttf; path = ../../../../Downloads/icomoon/fonts/icomoon.ttf; sourceTree = "<group>"; };
 		EA9D7A50473B476E89BE622B /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		FF2BD71C609B46BC92E1F01A /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -438,6 +442,7 @@
 				D99DC2340E184A80A747EF02 /* libRNVectorIcons.a in Frameworks */,
 				8C11453F0BBA44DC8CA1AC83 /* libSplashScreen.a in Frameworks */,
 				BDCF8DC7804F4F428ECF107E /* libRNImagePicker.a in Frameworks */,
+				1F22BB5BBC73F0614110C137 /* libPods-NeoStore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,8 +592,18 @@
 			isa = PBXGroup;
 			children = (
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
+				8A094B031EE447DA3EA2C61E /* libPods-NeoStore.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		45205AE81DFF310343570B34 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B4AB83407FF3A0F51B70B70E /* Pods-NeoStore.debug.xcconfig */,
+				41AB1402C2033D67B1C270AC /* Pods-NeoStore.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
@@ -643,7 +658,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				E9B0B0942134463000ACABBF /* icomoon.ttf */,
+				E927D7C821357CF800FA5538 /* icomoon.ttf */,
 				E98F2397210B072700CE95E4 /* Feather.ttf */,
 				E98F23BD210B072800CE95E4 /* FontAwesome.ttf */,
 				13B07FAE1A68108700A75B9A /* NeoStore */,
@@ -653,6 +668,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				B848CF093A604B758DC259F0 /* Resources */,
 				E9D45EC9212A9C810084D55B /* Recovered References */,
+				45205AE81DFF310343570B34 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -759,10 +775,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "NeoStore" */;
 			buildPhases = (
+				17A99D14AE82CAAC37E6649C /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				5505A11C8F076B8E56B54338 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1214,7 +1232,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				E98F23BE210B072800CE95E4 /* Feather.ttf in Resources */,
-				E9B0B0952134463000ACABBF /* icomoon.ttf in Resources */,
+				E927D7C921357CF800FA5538 /* icomoon.ttf in Resources */,
 				E98F23BF210B072800CE95E4 /* FontAwesome.ttf in Resources */,
 				3077E865C59D4D828125C818 /* Entypo.ttf in Resources */,
 				15AEEFC8620345D2A27F3AB7 /* EvilIcons.ttf in Resources */,
@@ -1265,6 +1283,28 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		17A99D14AE82CAAC37E6649C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NeoStore-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1278,6 +1318,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		5505A11C8F076B8E56B54338 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-NeoStore/Pods-NeoStore-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NeoStore/Pods-NeoStore-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1403,6 +1465,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4AB83407FF3A0F51B70B70E /* Pods-NeoStore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1427,6 +1490,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41AB1402C2033D67B1C270AC /* Pods-NeoStore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;

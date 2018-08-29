@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import { AppRegistry, FlatList, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity, ActivityIndicator } from 'react-native';
-
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Icon } from '../../../utils/Icon/Icon';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import styles from './Styles';
 import { Rating } from 'react-native-elements';
 import { White, ButtonText, PlusIconBackground, HeaderColor, ProductlistFont } from '../../../utils/Colors';
-import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize, ProductlistTitle } from '../../../utils/FontSizes';
-import Productdetail from '../Productdetail/Productdetail';
 import { login, detail, productlimit, productid, product_category, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
 import { GlobalAPI, Console } from '../../../lib/Globals';
-import ReactList from 'react-list';
 import Loader from '../../Loader/Loader';
 
 
@@ -62,13 +58,15 @@ export default class Productlist extends Component {
         return (
             <View style={{ flex: 1, }}>
                 <Header style={{ backgroundColor: HeaderColor }}>
-                    <Left>
+                    <Left style={{ marginLeft: Platform.OS === 'ios' ? 10 : -10 }}>
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="chevron-left" size={22} color={White} />
+                            <Icon name="angle-left" size={22} color={White} />
                         </Button>
                     </Left>
+
                     <Text style={styles.headertext}>{this.props.navigation.state.params.Title}</Text>
-                    <Right>
+
+                    <Right style={{ paddingRight: 10 }}>
                         <Icon name="search" size={20} color="#f9fbff" />
                     </Right>
                 </Header>

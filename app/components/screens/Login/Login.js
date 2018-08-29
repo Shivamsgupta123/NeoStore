@@ -10,7 +10,7 @@ import { AsyncStorage } from 'react-native';
 import { _login, fetchaccountdetail } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import SplashScreen from 'react-native-splash-screen';
-
+import { UserProvider } from '../../../lib/UserProvider';
 
 export default class Login extends Component {
     constructor(props) {
@@ -37,11 +37,6 @@ export default class Login extends Component {
             alert("Enter Valid User Name.")
             return false
         }
-        // else
-        //     if (this.state.Password == "" || !this.state.Password.match(passwordreg) || this.state.Password.length < 8) {
-        //         alert("Enter alphanumeric password having atleast 8 characters.")
-        //         return false
-        //     }
         else
             this.login()
 
@@ -53,13 +48,12 @@ export default class Login extends Component {
         this.setState({ Loading: true })
         GlobalAPI(fetchaccountdetail, "GET", null, access_token, (response) => {
             if (response.status == 200) {
+                UserProvider.setUserData(response.data)
                 this.props.navigation.replace('MyApp', response)
             }
             else {
                 alert(response.user_msg)
-
             }
-
         }, error => {
             console.log(error)
         }
@@ -91,9 +85,7 @@ export default class Login extends Component {
             alert("Connection Failed!")
             this.setState({ Loading: false })
         })
-
     }
-
 
     render() {
 

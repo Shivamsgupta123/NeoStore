@@ -172,6 +172,8 @@ export default styles = StyleSheet.create({
         width: 250,
         height: 150,
         marginTop: 12,
+        borderColor: "grey",
+        borderWidth: 1
     },
     subview4: {
         flex: 1,
@@ -204,7 +206,7 @@ export default styles = StyleSheet.create({
         alignItems: 'center'
     },
     modalview2: {
-        fontSize: 30,
+        fontSize: 25,
         fontWeight: "700",
         paddingBottom: 40
     },
@@ -238,8 +240,15 @@ export default styles = StyleSheet.create({
     },
     mainview: {
         flex: 1,
-        paddingBottom: 10,
+
         height: Dimensions.get('window').height
+    },
+    productsubimage: {
+        width: 100,
+        height: 65,
+        marginLeft: 12,
+        borderWidth: 1,
+        borderColor: "grey"
     }
 
 
