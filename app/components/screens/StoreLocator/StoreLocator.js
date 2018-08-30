@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Alert, FlatList, Dimensions, ActivityIndicator, Image, Text, TouchableOpacity } from 'react-native';
+import { View, Alert, FlatList, Dimensions, ActivityIndicator, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
 import styles from './Styles';
 import { HeaderColor } from '../../../utils/Colors';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
@@ -62,6 +62,7 @@ export default class StoreLocator extends Component {
                     </MapView>
 
                 </View>
+                {/* <ScrollView> */}
                 <View style={styles.addressview}>
                     <View style={styles.iconView}>
                         <Icon name="location" size={25} color="black" />
@@ -99,6 +100,7 @@ export default class StoreLocator extends Component {
                         <Text style={styles.address}>Ravi Nagar, Amravati</Text>
                     </View>
                 </View>
+                {/* </ScrollView> */}
 
             </View>
         )

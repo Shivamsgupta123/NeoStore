@@ -4,7 +4,8 @@ import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, Heade
 
 export default styles = StyleSheet.create({
     mainview: {
-        flex: 1
+        flex: 1,
+        height: Dimensions.get('window').height
     },
     header: {
         backgroundColor: HeaderColor

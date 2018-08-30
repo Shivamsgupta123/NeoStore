@@ -27,7 +27,7 @@ export default styles = StyleSheet.create({
         borderColor: "grey"
     },
     productname: {
-        fontSize: 23,
+        fontSize: 20,
         color: "#1C1C1C",
         fontWeight: "300",
         paddingLeft: 15
@@ -36,7 +36,7 @@ export default styles = StyleSheet.create({
     productcategory: {
         paddingLeft: 15,
         fontWeight: "200",
-        fontSize: 19,
+        fontSize: 17,
         color: "#606163"
 
     },
@@ -60,7 +60,7 @@ export default styles = StyleSheet.create({
         fontSize: 19,
         fontWeight: "300",
         color: "#1C1C1C",
-        paddingLeft: Platform.OS === 'ios' ? 130 : 111,
+        paddingLeft: Platform.OS === 'ios' ? 115 : 111,
 
 
     },

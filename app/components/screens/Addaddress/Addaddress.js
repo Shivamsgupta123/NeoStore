@@ -6,9 +6,6 @@ import { Container, Header, Left, Body, Right, Button, Title } from 'native-base
 import { Icon } from '../../../utils/Icon/Icon';
 import { AsyncStorage } from 'react-native';
 import { UserObject } from '../../../lib/UserProvider'
-// import { cartitem, editcart, deletecartitem } from '../../../lib/api';
-// import { GlobalAPI } from '../../../lib/Globals';
-
 
 export default class Addaddress extends Component {
     constructor(props) {
@@ -21,8 +18,17 @@ export default class Addaddress extends Component {
     focusNextField(id) {
         this.inputs[id].focus()
     }
+    componentDidMount() {
+        AsyncStorage.getItem("address").then((add) => {
+            if (add == null)
+                return
+            this.address = this.address.concat(JSON.parse(add))
+            console.log("565", this.address)
+        })
+    }
 
-    async saveAddress() {
+    saveAddress() {
+
         if (this.state.Address == '')
             alert("Enter Address")
         else
@@ -44,18 +50,12 @@ export default class Addaddress extends Component {
                                 if (this.state.Country == '')
                                     alert("Enter Country")
                                 else {
-                                    // console.log(this.address)
-                                    var address1 = [{ Name: UserObject.user_data.first_name, address: this.state.Address + "," + this.state.Landark + "," + this.state.City + "-" + this.state.STATE + this.state.Zipcode + "." + this.state.Country }]
+                                    var address1 = [{ Name: UserObject.user_data.first_name + " " + UserObject.user_data.last_name, address: this.state.Address + ", " + this.state.Landark + ", " + this.state.City + "-" + this.state.STATE + " " + this.state.Zipcode + ". " + this.state.Country }]
                                     this.address = this.address.concat(address1)
-                                    this.address = JSON.stringify(this.address)
-                                    console.log("adress", this.address)
-
-                                    AsyncStorage.setItem("address", this.address)
-                                    // console.log("address", address)
-                                    // var address1 = await AsyncStorage.getItem("address")
-                                    // address1 = JSON.parse(address1)
-                                    // console.log("async", address1)
+                                    console.log("787", this.address)
+                                    AsyncStorage.setItem("address", JSON.stringify(this.address))
                                     alert("Address Saved")
+
                                 }
 
     }

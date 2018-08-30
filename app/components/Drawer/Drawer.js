@@ -11,7 +11,8 @@ export default class Drawer extends Component {
         FirstName: '',
         LastName: '',
         Email: '',
-        profileimage: 'abc'
+        profileimage: 'abc',
+        autoplay: true
     }
 
     componentWillMount = async () => {
@@ -24,6 +25,16 @@ export default class Drawer extends Component {
         this.setState({ LastName: UserObject.user_data.last_name })
         this.setState({ Email: UserObject.user_data.email })
         this.setState({ profileimage: UserObject.user_data.profile_pic })
+    }
+    componentDidMount() {
+        // console.log("25")
+        const didBlurSubscription = this.props.navigation.addListener(
+            'willFocus',
+            payload => {
+
+                this.setState({ autoplay: false })
+            }
+        );
 
     }
 
