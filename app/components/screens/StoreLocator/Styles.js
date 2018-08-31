@@ -1,6 +1,7 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
+import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 
 export default styles = StyleSheet.create({
     mainview: {
@@ -19,7 +20,8 @@ export default styles = StyleSheet.create({
         fontSize: HeaderText,
         width: 250,
         fontWeight: HeaderTextFontWeight,
-        paddingRight: Platform.OS === 'ios' ? 0 : 14
+        paddingRight: Platform.OS === 'ios' ? 0 : 14,
+        fontFamily: FontBold
 
     },
     headerright: {
@@ -38,12 +40,15 @@ export default styles = StyleSheet.create({
     },
     storename: {
         fontWeight: "500",
-        color: "#1C1C1C",
-        fontSize: 17
+        color: "#333333",
+        fontSize: 17,
+        fontFamily: FontBold
     },
     address: {
-        fontSize: 15,
-        paddingTop: 5
+        fontSize: 14,
+        paddingTop: 5,
+        color: "#4f4f4f",
+        fontFamily: FontMedium
 
     },
     addressview: {

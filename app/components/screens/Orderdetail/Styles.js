@@ -2,13 +2,15 @@ import { Platform, StyleSheet, Dimensions } from 'react-native';
 // import { ButtonText } from '../../../Utils/Colors';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
+import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 
 export default styles = StyleSheet.create({
     headertitle: {
         color: White, textAlign: 'center',
         fontSize: HeaderText,
         width: 250,
-        fontWeight: HeaderTextFontWeight
+        fontWeight: HeaderTextFontWeight,
+        fontFamily: FontBold
     },
     mainview: {
         // height: Dimensions.get('window').height,
@@ -29,14 +31,15 @@ export default styles = StyleSheet.create({
         fontSize: Platform.OS === 'ios' ? 21 : 19,
         color: "#1C1C1C",
         fontWeight: "300",
-        paddingLeft: 15
+        paddingLeft: 15,
+        fontFamily: FontBook
 
     },
     productcategory: {
         paddingLeft: 15,
         fontWeight: "200",
         fontSize: 19,
-        color: "#606163"
+        color: "#6b6b6b"
 
     },
     quantity: {
@@ -78,10 +81,11 @@ export default styles = StyleSheet.create({
 
     },
     producttotal: {
-        fontSize: 21,
+        fontSize: 18,
         fontWeight: "300",
         color: "#1C1C1C",
-        fontWeight: "500"
+        fontWeight: "500",
+        fontFamily: FontBold
     },
     orderbutton: {
         borderWidth: 1,
@@ -116,7 +120,8 @@ export default styles = StyleSheet.create({
         paddingLeft: 15,
         fontSize: 18,
         fontWeight: "200",
-        color: "#333333"
+        color: "#333333",
+        fontFamily: FontBook
         // fontSizes: 15,
         // width: 10
     },

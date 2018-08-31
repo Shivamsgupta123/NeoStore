@@ -5,6 +5,7 @@ import { Icon } from '../../../utils/Icon/Icon';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import { forgotpassword } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
+import { White } from '../../../utils/Colors';
 
 export default class Forgotpassword extends Component {
 
@@ -52,7 +53,7 @@ export default class Forgotpassword extends Component {
                 <Header style={{ backgroundColor: 'red' }}>
                     <Left>
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="angle-left" size={26} color="#f9fbff" />
+                            <Icon name="angle-left" size={26} style={styles.backicon} />
                         </Button>
                     </Left>
                     <Body>
@@ -64,8 +65,8 @@ export default class Forgotpassword extends Component {
                 <View style={styles.view1}>
                     <Text style={styles.neostore}>NeoSTORE</Text>
                     <View style={styles.view3}>
-                        <Icon name="user" size={30} color="#FFFFFF" style={styles.icon} />
-                        <TextInput onChangeText={(text) => this.setState({ Username: text })} style={styles.textinput} placeholder="Username" placeholderTextColor="white" ></TextInput>
+                        <Icon name="user" size={30} style={styles.icon} />
+                        <TextInput onChangeText={(text) => this.setState({ Username: text })} style={styles.textinput} placeholder="Username" placeholderTextColor={White} ></TextInput>
                     </View>
 
                     <TouchableOpacity style={styles.loginbutton} onPress={() => this.validate()}>

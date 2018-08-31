@@ -1,6 +1,7 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { LogoSize, LogoHeaderText, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
+import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 
 
 export default styles = StyleSheet.create({
@@ -106,7 +107,8 @@ export default styles = StyleSheet.create({
         fontSize: LogoHeaderText,
         marginLeft: Platform.OS === 'ios' ? 0 : 65,
         fontWeight: HeaderTextFontWeight,
-        marginTop: Platform.OS === 'ios' ? 5 : 10
+        marginTop: Platform.OS === 'ios' ? 5 : 10,
+        fontFamily: FontMedium
     },
 
     containerbottom: {
@@ -190,15 +192,17 @@ export default styles = StyleSheet.create({
     icontext1: {
         textAlign: 'right',
         fontWeight: '500',
-        fontSize: Platform.OS === 'ios' ? 25 : 23,
+        fontSize: Platform.OS === 'ios' ? 23 : 23,
         color: '#ffffff',
+        fontFamily: FontMedium
         // marginTop: 5
     },
     icontext2: {
         textAlign: 'left',
         fontWeight: '500',
         fontSize: 25,
-        color: '#ffffff'
+        color: '#ffffff',
+        fontFamily: FontMedium
 
     },
     headreicon1: {

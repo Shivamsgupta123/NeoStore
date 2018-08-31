@@ -1,7 +1,7 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { LogoSize, LogoHeaderText, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
-
+import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 
 export default styles = StyleSheet.create({
     headreicon1: {
@@ -17,7 +17,8 @@ export default styles = StyleSheet.create({
         fontSize: HeaderText,
         marginLeft: Platform.OS === 'ios' ? 0 : 65,
         fontWeight: HeaderTextFontWeight,
-        marginTop: Platform.OS === 'ios' ? 5 : 10
+        marginTop: Platform.OS === 'ios' ? 10 : 10,
+        fontFamily: FontMedium
     },
     mainview: {
         flex: 1,
@@ -29,12 +30,14 @@ export default styles = StyleSheet.create({
     },
     orderid: {
         fontSize: 20,
-        color: "#1C1C1C",
-        fontWeight: "400"
+        color: "#1c1c1c",
+        fontWeight: "400",
+        fontFamily: FontBook
     },
     orderdate: {
-        color: "#606163",
+        color: "#4f4f4f",
         fontSize: 15,
+        fontFamily: FontBook
 
     },
     costview: {
@@ -46,7 +49,8 @@ export default styles = StyleSheet.create({
     cost: {
         fontSize: 20,
         fontWeight: "400",
-        color: "#1C1C1C",
+        color: "#333333",
+        fontFamily: FontBook
     },
     orderidview: {
         paddingBottom: 5

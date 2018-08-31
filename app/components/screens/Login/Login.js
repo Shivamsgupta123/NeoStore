@@ -97,17 +97,12 @@ export default class Login extends Component {
             <View pointerEvents={this.state.Loading ? "none" : "auto"} style={styles.mainview}>
 
                 <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
-                    {/* {this.state.Loading ? <ActivityIndicator style={{ alignSelf: 'center', margin: "100%" }} size="large" color="white" /> : null} */}
-
-                    {/* {this.state.Loading ? <ActivityIndicator size="large" color="white" /> : null} */}
-
-
 
                     <View style={styles.view1}>
                         <Text style={styles.neostore}>NeoSTORE</Text>
 
                         <View style={styles.view3}>
-                            <Icon name="user" size={25} color="#FFFFFF" style={styles.icon} />
+                            <Icon name="user" size={25} style={styles.icon} />
                             <TextInput returnKeyType={"next"} onChangeText={(text) => this.setState({ Username: text })} style={styles.textinput} placeholder="Username" placeholderTextColor={White} ></TextInput>
                         </View>
 
@@ -134,7 +129,7 @@ export default class Login extends Component {
                             <Text style={styles.newaccount}>DONT HAVE AN ACCOUNT?</Text>
                             {this.state.Loading ? <FeatherIcon style={{ marginRight: 15, backgroundColor: PlusIconBackground, padding: 2 }} name="plus" size={40} color="#FFFFFF" /> :
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Registration')}>
-                                    <FeatherIcon style={{ marginRight: 15, backgroundColor: PlusIconBackground, padding: 2 }} name="plus" size={40} color="#FFFFFF" />
+                                    <Icon style={styles.addaccount} name="plus" size={35} />
 
                                 </TouchableOpacity>
                             }

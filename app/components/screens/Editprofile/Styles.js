@@ -2,7 +2,7 @@ import { Platform, StyleSheet, Dimensions } from 'react-native';
 // import { ButtonText } from '../../../Utils/Colors';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
-
+import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 
 export default styles = StyleSheet.create({
 
@@ -35,7 +35,8 @@ export default styles = StyleSheet.create({
         fontWeight: Platform.OS === 'ios' ? '500' : '500',
         height: Platform.OS === 'ios' ? 37 : 48,
         width: Platform.OS === 'ios' ? 37 : 47,
-        marginTop: -5
+        marginTop: -5,
+        fontFamily: FontMedium
 
     },
     loginbutton: {
@@ -56,7 +57,9 @@ export default styles = StyleSheet.create({
 
         color: ButtonText,
         fontWeight: "bold",
-        fontSize: ButtonTextSize
+        fontSize: ButtonTextSize,
+        fontFamily: FontBold,
+        paddingTop: Platform.OS === 'ios' ? 7 : 0
 
     },
     profileimage: {

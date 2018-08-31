@@ -58,15 +58,13 @@ export default class Addaddress extends Component {
                                     this.props.navigation.replace('AddressList')
 
                                 }
-
     }
-
     render() {
         return (
             <View style={{ flex: 1 }}>
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left style={{ paddingRight: -10 }}>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
+                        <Button transparent onPress={() => this.props.navigation.replace("AddressList")}>
                             <Icon name="angle-left" size={22} color="#f9fbff" />
                         </Button>
                     </Left>

@@ -1,6 +1,7 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
+import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 
 export default styles = StyleSheet.create({
     headertitle: {
@@ -9,48 +10,56 @@ export default styles = StyleSheet.create({
         fontSize: HeaderText,
         width: 250,
         fontWeight: HeaderTextFontWeight,
-        paddingRight: Platform.OS === 'ios' ? 0 : 14
+        paddingRight: Platform.OS === 'ios' ? 0 : 14,
+        fontFamily: FontMedium
 
     },
     address: {
         fontSize: 17,
         color: "#1C1C1C",
-        fontWeight: "400"
+        fontWeight: "400",
+        fontFamily: FontMedium
     },
     textinput: {
         height: 80,
         backgroundColor: "white",
-        padding: 5
+        padding: 5,
+        fontFamily: FontBook
     },
     landmarktextinput: {
         height: 45,
         backgroundColor: "white",
-        padding: 5
+        padding: 5,
+        fontFamily: FontMedium
     },
     state: {
         fontSize: 17,
         color: "#1C1C1C",
         fontWeight: "400",
-        paddingLeft: 140
+        paddingLeft: 135,
+        fontFamily: FontMedium
     },
     citytextinput: {
         height: 45,
         backgroundColor: "white",
         width: 155,
-        padding: 5
+        padding: 5,
+        fontFamily: FontMedium
     },
     statetextinput: {
         height: 45,
         backgroundColor: "white",
         marginLeft: 20,
         width: Platform.OS === 'ios' ? 170 : 155,
-        padding: 5
+        padding: 5,
+        fontFamily: FontMedium
     },
     country: {
         fontSize: 17,
         color: "#1C1C1C",
         fontWeight: "400",
-        paddingLeft: 102
+        paddingLeft: 92,
+        fontFamily: FontMedium
     },
     buttonview: {
         justifyContent: 'center',
@@ -70,10 +79,13 @@ export default styles = StyleSheet.create({
     saveaddressbuttontext: {
         color: White,
         fontWeight: "bold",
-        fontSize: ButtonTextSize
+        fontSize: ButtonTextSize,
+        fontFamily: FontMedium,
+        paddingTop: Platform.OS === 'ios' ? 7 : 0
     },
     keyboard: {
         flex: 1,
-        height: Dimensions.get('window').height
+        height: Dimensions.get('window').height,
+
     }
 })

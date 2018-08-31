@@ -2,13 +2,14 @@ import { Platform, StyleSheet, Dimensions } from 'react-native';
 // import { ButtonText } from '../../../Utils/Colors';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
-
+import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 export default styles = StyleSheet.create({
     headertitle: {
         color: White, textAlign: 'center',
         fontSize: HeaderText,
         width: 250,
-        fontWeight: HeaderTextFontWeight
+        fontWeight: HeaderTextFontWeight,
+        paddingRight: Platform.OS === 'ios' ? 0 : 15
     },
     mainview: {
         flex: 1,
@@ -30,14 +31,16 @@ export default styles = StyleSheet.create({
         fontSize: 20,
         color: "#1C1C1C",
         fontWeight: "300",
-        paddingLeft: 15
+        paddingLeft: 15,
+        fontFamily: FontBook
 
     },
     productcategory: {
         paddingLeft: 15,
         fontWeight: "200",
         fontSize: 17,
-        color: "#606163"
+        color: "#606163",
+        fontFamily: FontBook
 
     },
     quantity: {
@@ -60,7 +63,8 @@ export default styles = StyleSheet.create({
         fontSize: 19,
         fontWeight: "300",
         color: "#1C1C1C",
-        paddingLeft: Platform.OS === 'ios' ? 115 : 111,
+        paddingLeft: Platform.OS === 'ios' ? 115 : 102,
+        fontFamily: FontBook
 
 
     },
@@ -81,7 +85,8 @@ export default styles = StyleSheet.create({
         fontSize: 21,
         fontWeight: "300",
         color: "#1C1C1C",
-        fontWeight: "500"
+        fontWeight: "500",
+        fontFamily: FontMedium
     },
     orderbutton: {
         borderWidth: 1,
@@ -98,7 +103,9 @@ export default styles = StyleSheet.create({
     orderbuttontext: {
         color: White,
         fontWeight: "bold",
-        fontSize: ButtonTextSize
+        fontSize: ButtonTextSize,
+        fontFamily: FontMedium,
+        paddingTop: Platform.OS === 'ios' ? 7 : 0
     },
     buttonview: {
         padding: 15,
@@ -123,7 +130,8 @@ export default styles = StyleSheet.create({
     productquantitytext: {
         fontSize: Platform.OS === "ios" ? 18 : 20,
         fontWeight: "100",
-        color: "#606163"
+        color: "#606163",
+        fontFamily: FontBook
 
     },
     dropdowntext: {

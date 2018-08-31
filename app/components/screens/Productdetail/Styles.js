@@ -1,6 +1,8 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 import { ProductProducer, White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { DetailScreenFont, HeaderTextFontWeight, HeaderText, LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFont, ButtonTextSize } from '../../../utils/FontSizes';
+import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
+// import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 
 export default styles = StyleSheet.create({
 
@@ -26,7 +28,9 @@ export default styles = StyleSheet.create({
 
         color: White,
         fontWeight: "bold",
-        fontSize: ButtonTextSize
+        fontSize: ButtonTextSize,
+        fontFamily: FontMedium,
+        paddingTop: Platform.OS === 'ios' ? 7 : 0
 
     },
     headertitle: {
@@ -34,7 +38,8 @@ export default styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: HeaderText,
         width: 230,
-        fontWeight: HeaderTextFontWeight
+        fontWeight: HeaderTextFontWeight,
+        fontFamily: FontBold
     },
 
     button1: {
@@ -59,7 +64,9 @@ export default styles = StyleSheet.create({
 
         color: "#7F7F7F",
         fontWeight: "bold",
-        fontSize: ButtonTextSize
+        fontSize: ButtonTextSize,
+        fontFamily: FontMedium,
+        paddingTop: Platform.OS == 'ios' ? 7 : 0,
 
     },
     popupbutton: {
@@ -67,7 +74,10 @@ export default styles = StyleSheet.create({
         color: "#7F7F7F",
         fontWeight: "bold",
         fontSize: ButtonTextSize,
-        paddingLeft: 10
+        paddingLeft: 10,
+        // fontFamily: FontMedium,
+        // paddingTop: Platform.OS === 'ios' ?  : 0
+
 
 
     },
@@ -115,13 +125,18 @@ export default styles = StyleSheet.create({
 
         color: White,
         fontWeight: "bold",
-        fontSize: ButtonTextSize
+        fontSize: ButtonTextSize,
+        fontFamily: FontMedium,
+        paddingTop: Platform.OS === 'ios' ? 7 : 0
+
 
     },
     buypopuptext: {
-        fontSize: 25,
+        fontSize: 23,
         paddingTop: 12,
-        paddingBottom: 10
+        paddingBottom: 10,
+        fontFamily: FontBook,
+        color: "#2C2B2B"
     },
     textinput: {
         textAlign: 'center',
@@ -134,10 +149,11 @@ export default styles = StyleSheet.create({
     },
     productname: {
         color: "#111111",
-        fontSize: 25,
+        fontSize: Platform.OS === 'ios' ? 23 : 25,
         fontWeight: '600',
         marginLeft: 8,
-        marginTop: 4
+        marginTop: 4,
+        fontFamily: FontBold
     },
     subview1: {
         flexDirection: 'row',
@@ -147,7 +163,8 @@ export default styles = StyleSheet.create({
     productproducer: {
         color: ProductProducer,
         fontSize: 17,
-        marginLeft: 8
+        marginLeft: 8,
+        fontFamily: FontBook
     },
     subview2: {
         flex: 1,
@@ -183,15 +200,18 @@ export default styles = StyleSheet.create({
     },
     productdescription: {
         color: "#111111",
-        fontSize: 25,
+        fontSize: 23,
         fontWeight: '600',
-        marginLeft: 12
+        marginLeft: 12,
+        fontFamily: FontMedium
     },
     productdetail: {
         color: "#333333",
-        fontSize: Platform.OS === 'ios' ? 20 : 16,
+        fontSize: Platform.OS === 'ios' ? 16 : 15,
         marginLeft: 12,
-        marginRight: 12
+        marginRight: 12,
+        paddingTop: 5,
+        fontFamily: FontMedium
     },
     subview5: {
         flex: 1,
@@ -208,12 +228,17 @@ export default styles = StyleSheet.create({
     modalview2: {
         fontSize: 25,
         fontWeight: "700",
-        paddingBottom: 40
+        paddingBottom: 40,
+        fontFamily: FontBook,
+        color: "#2C2B2B"
     },
     modalimage: {
         width: 250,
         height: 160,
         marginTop: 12,
+        borderColor: "grey",
+        borderWidth: 1
+
     },
     modalview3: {
         flex: 1,
@@ -228,9 +253,11 @@ export default styles = StyleSheet.create({
         height: "50%"
     },
     buypopupname: {
-        fontSize: 30,
+        fontSize: 25,
         fontWeight: "700",
-        paddingBottom: 40
+        paddingBottom: 40,
+        fontFamily: FontBook,
+        color: "#2C2B2B"
     },
     modalview5: {
         flex: 1,

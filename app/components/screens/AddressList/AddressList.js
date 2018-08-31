@@ -16,6 +16,7 @@ export default class AddressList extends Component {
         this.address1 = []
         this.state = { autoplay: true, Select: 0, Loading: false }
         this.addressindex = 0
+        this.index
     }
 
     async componentDidMount() {
@@ -23,31 +24,41 @@ export default class AddressList extends Component {
         this.address1 = JSON.parse(this.address1)
         // this.address1.splice(0, 1)
         // console.log("list", this.address1)
+        console.log("pqr", this.address1.length)
+        this.index = this.address1.length
         this.setState({ autoplay: false })
     }
     removeAddress(item, index) {
         this.address1.splice(index, 1)
         AsyncStorage.setItem("address", JSON.stringify(this.address1))
         this.setState({ autoplay: true })
+        // console.log("lmn", this.address1.length)
     }
 
     placeOrder() {
         let formData = new FormData();
-        this.setState({ Loading: true })
-        // var useraddress = this.address1[this.addressindex].address
-        formData.append("address", this.address1[this.addressindex].address);
-        GlobalAPI(placeorder, "POST", formData, null, response => {
-            if (response.status == 200) {
-                alert(response.user_msg)
-                this.setState({ Loading: true })
-                this.props.navigation.replace("MyApp")
-            }
-            else {
-                alert(response.user_msg)
-            }
-        }, error => {
-            console.log(error)
-        })
+        // this.setState({ Loading: true })
+        //// var useraddress = this.address1[this.addressindex].address
+
+        if (this.index == 0)
+            alert("Please Add Address")
+        // console.log("index", this.addressindex)
+        else {
+            formData.append("address", this.address1[this.addressindex].address);
+            GlobalAPI(placeorder, "POST", formData, null, response => {
+                if (response.status == 200) {
+                    alert(response.user_msg)
+                    this.setState({ Loading: true })
+                    this.props.navigation.replace("MyApp")
+                }
+                else {
+                    alert(response.user_msg)
+                }
+            }, error => {
+                console.log(error)
+            })
+        }
+
 
     }
     selectAddress(item, index) {
@@ -73,7 +84,7 @@ export default class AddressList extends Component {
                             <Text style={styles.headertitle}>Address List</Text>
                         </Body>
                         <Right style={{ paddingRight: 0 }}>
-                            <Button transparent onPress={() => this.props.navigation.navigate("Addaddress")}>
+                            <Button transparent onPress={() => this.props.navigation.navigate('Addaddress')}>
                                 <Icon name="plus" size={22} style={styles.headericon} />
                             </Button>
                         </Right>

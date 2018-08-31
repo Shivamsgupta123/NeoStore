@@ -1,6 +1,7 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 import { White, ButtonText, PlusIconBackground } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFont, ButtonTextSize } from '../../../utils/FontSizes';
+import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 
 export default styles = StyleSheet.create({
 
@@ -9,7 +10,8 @@ export default styles = StyleSheet.create({
         fontWeight: LogoFontWeight,
         color: White,
         padding: LogoPadding,
-        alignItems: 'center'
+        alignItems: 'center',
+        fontFamily: FontBold
 
 
     },
@@ -29,11 +31,12 @@ export default styles = StyleSheet.create({
 
     textinput: {
         flex: 1,
-        height: 50,
+        height: 55,
         marginLeft: 10,
         color: White,
         fontSize: TextInputFont,
-        paddingBottom: Platform.OS === "ios" ? 30 : 15
+        paddingBottom: Platform.OS === "ios" ? 30 : 20,
+        fontFamily: FontMedium
 
     },
     loginbutton: {
@@ -54,13 +57,18 @@ export default styles = StyleSheet.create({
 
         color: ButtonText,
         fontWeight: "bold",
-        fontSize: ButtonTextSize
+        fontSize: ButtonTextSize,
+        fontFamily: FontMedium,
+        paddingTop: Platform.OS === 'ios' ? 7 : 0
 
     },
     forgotpassword: {
         color: White,
         fontSize: 20,
-        marginTop: 6
+        marginTop: 6,
+        fontFamily: FontMedium,
+        paddingTop: Platform.OS === 'ios' ? 3 : 0
+
     },
     newaccount: {
         color: White,
@@ -68,7 +76,8 @@ export default styles = StyleSheet.create({
         fontSize: RegularFont,
         // marginTop:90,
         marginLeft: 2,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        fontFamily: FontMedium,
 
     },
     view1: {
@@ -174,7 +183,14 @@ export default styles = StyleSheet.create({
     },
     icon: {
         paddingTop: Platform.OS === 'ios' ? 0 : 8,
-        paddingLeft: Platform.OS === 'ios' ? 0 : 5
+        paddingLeft: Platform.OS === 'ios' ? 0 : 5,
+        color: White
 
+    },
+    addaccount: {
+        marginRight: 15,
+        backgroundColor: PlusIconBackground,
+        padding: 2,
+        color: White
     }
 });

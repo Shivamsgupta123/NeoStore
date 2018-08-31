@@ -1,7 +1,7 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFont, ButtonTextSize } from '../../../utils/FontSizes';
-
+import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 
 
 export default styles = StyleSheet.create({
@@ -13,13 +13,14 @@ export default styles = StyleSheet.create({
         paddingBottom: LogoPadding,
         alignItems: 'center',
         // marginTop:20,
+        fontFamily: FontBold
 
 
     },
     view3: {
         height: 45,
         width: 280,
-        borderColor: 'white',
+        borderColor: White,
         borderWidth: 1,
         padding: Platform.OS === 'ios' ? 10 : 0,
         margin: 6,
@@ -32,20 +33,21 @@ export default styles = StyleSheet.create({
     textinput: {
         flex: 1,
         marginLeft: 10,
-        color: "white",
-        fontSize: 20
+        color: White,
+        fontSize: 20,
+        fontFamily: FontMedium
 
     },
     loginbutton: {
 
         borderWidth: 1,
-        backgroundColor: "white",
+        backgroundColor: White,
         height: 55,
         width: 280,
         marginTop: 18,
         borderRadius: 10,
         fontSize: 5,
-        borderColor: "white",
+        borderColor: White,
         justifyContent: "center",
         alignItems: "center"
 
@@ -54,16 +56,18 @@ export default styles = StyleSheet.create({
 
         color: ButtonText,
         fontWeight: "bold",
-        fontSize: ButtonTextSize
+        fontSize: ButtonTextSize,
+        fontFamily: FontMedium,
+        paddingTop: Platform.OS === 'ios' ? 7 : 0
 
     },
     forgotpassword: {
-        color: "white",
+        color: White,
         fontSize: 20,
         marginTop: 6
     },
     newaccount: {
-        color: "white",
+        color: White,
         fontWeight: "bold",
         fontSize: 18,
         // marginTop:90,
@@ -165,11 +169,15 @@ export default styles = StyleSheet.create({
     },
     icon: {
         padding: Platform.OS === 'ios' ? 0 : 5,
-        width: 35
+        width: 35,
+        color: White
     },
     backgroungimage: {
         flex: 1, borderColor: "red",
         borderWidth: 1
+    },
+    backicon: {
+        color: White
     }
 
 

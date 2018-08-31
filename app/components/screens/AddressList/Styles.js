@@ -1,6 +1,7 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
+import { FontBook, FontMedium } from '../../../utils/Fonts';
 
 export default styles = StyleSheet.create({
     headertitle: {
@@ -25,7 +26,8 @@ export default styles = StyleSheet.create({
         color: "#1C1C1C",
         paddingBottom: 12,
         // borderBottomWidth: 1,
-        borderColor: "grey"
+        borderColor: "grey",
+        fontFamily: FontBook
     },
     radiobutton: {
         borderWidth: 3,
@@ -74,14 +76,16 @@ export default styles = StyleSheet.create({
         paddingLeft: 6,
         color: "#1C1C1C",
         fontWeight: "500",
-        fontSize: 17
+        fontSize: 17,
+        fontFamily: FontMedium
         // padd
     },
     add: {
         color: "#1C1C1C",
         paddingLeft: 6,
         paddingTop: 3,
-        fontSize: 15
+        fontSize: 15,
+        fontFamily: FontBook
     },
     buttonview: {
         // flex: 1,
@@ -115,6 +119,8 @@ export default styles = StyleSheet.create({
     orderbuttontext: {
         color: White,
         fontWeight: "bold",
-        fontSize: ButtonTextSize
+        fontSize: ButtonTextSize,
+        fontFamily: FontMedium,
+        paddingTop: Platform.OS === "ios" ? 7 : 0
     },
 })

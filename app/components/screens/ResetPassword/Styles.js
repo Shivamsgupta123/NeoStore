@@ -1,7 +1,7 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { HeaderText, LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFont, ButtonTextSize } from '../../../utils/FontSizes';
-
+import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 
 
 export default styles = StyleSheet.create({
@@ -22,7 +22,8 @@ export default styles = StyleSheet.create({
         color: White,
         fontSize: HeaderText,
         textAlign: 'center', width: 250,
-        fontWeight: "700"
+        fontWeight: "700",
+        fontFamily: FontBook
 
     },
     icon: {
@@ -53,7 +54,8 @@ export default styles = StyleSheet.create({
         fontSize: 20,
         height: Platform.OS === 'ios' ? 37 : 48,
         width: Platform.OS === 'ios' ? 37 : 47,
-        marginTop: -5
+        marginTop: Platform.OS === 'ios' ? -5 : -3,
+        fontFamily: FontMedium
 
     },
     loginbutton: {
@@ -74,7 +76,9 @@ export default styles = StyleSheet.create({
 
         color: ButtonText,
         fontWeight: "bold",
-        fontSize: ButtonTextSize
+        fontSize: ButtonTextSize,
+        fontFamily: FontBook,
+        paddingTop: Platform.OS === 'ios' ? 7 : 0
 
     },
     forgotpassword: {

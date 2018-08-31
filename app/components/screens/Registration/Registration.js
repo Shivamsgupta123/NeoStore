@@ -134,27 +134,27 @@ export default class Registration extends Component {
                                     <Text style={styles.neostore}>NeoSTORE</Text>
                                     <View style={styles.view3}>
                                         <Icon name="user" size={25} style={styles.lockicon} />
-                                        <TextInput onSubmitEditing={() => { this.focusNextField('two'); }} returnKeyType={"next"} ref={input => { this.inputs['one'] = input; }} onChangeText={(text) => this.setState({ FirstName: text })} style={styles.textinput} placeholder="First Name" placeholderTextColor="white" ></TextInput>
+                                        <TextInput onSubmitEditing={() => { this.focusNextField('two'); }} returnKeyType={"next"} ref={input => { this.inputs['one'] = input; }} onChangeText={(text) => this.setState({ FirstName: text })} style={styles.textinput} placeholder="First Name" placeholderTextColor={White} ></TextInput>
 
                                     </View>
                                     <View style={styles.view3}>
                                         <Icon name="user" size={25} style={styles.lockicon} />
-                                        <TextInput onSubmitEditing={() => { this.focusNextField('three'); }} returnKeyType={"next"} ref={input => { this.inputs['two'] = input; }} onChangeText={(text) => this.setState({ LastName: text })} style={styles.textinput} placeholder="Last Name" placeholderTextColor="white" ></TextInput>
+                                        <TextInput onSubmitEditing={() => { this.focusNextField('three'); }} returnKeyType={"next"} ref={input => { this.inputs['two'] = input; }} onChangeText={(text) => this.setState({ LastName: text })} style={styles.textinput} placeholder="Last Name" placeholderTextColor={White} ></TextInput>
 
                                     </View>
                                     <View style={styles.view3}>
                                         <Icon name="mail" size={23} style={styles.lockicon} />
-                                        <TextInput onSubmitEditing={() => { this.focusNextField('four'); }} returnKeyType={"next"} ref={input => { this.inputs['three'] = input; }} onChangeText={(text) => this.setState({ Email: text })} style={styles.textinput} placeholder="Email" placeholderTextColor="white" ></TextInput>
+                                        <TextInput onSubmitEditing={() => { this.focusNextField('four'); }} returnKeyType={"next"} ref={input => { this.inputs['three'] = input; }} onChangeText={(text) => this.setState({ Email: text })} style={styles.textinput} placeholder="Email" placeholderTextColor={White} ></TextInput>
 
                                     </View>
                                     <View style={styles.view3}>
                                         <Icon name="unlock" size={23} style={styles.unlockicon} />
-                                        <TextInput onSubmitEditing={() => { this.focusNextField('five'); }} returnKeyType={"next"} ref={input => { this.inputs['four'] = input; }} onChangeText={(text) => this.setState({ Password: text })} style={styles.textinput} secureTextEntry={true} placeholder="Password" placeholderTextColor="white" ></TextInput>
+                                        <TextInput onSubmitEditing={() => { this.focusNextField('five'); }} returnKeyType={"next"} ref={input => { this.inputs['four'] = input; }} onChangeText={(text) => this.setState({ Password: text })} style={styles.textinput} secureTextEntry={true} placeholder="Password" placeholderTextColor={White} ></TextInput>
                                     </View>
 
                                     <View style={styles.view3}>
                                         <Icon name="lock" size={23} style={styles.lockicon} />
-                                        <TextInput onSubmitEditing={() => { this.focusNextField('six'); }} returnKeyType={"next"} ref={input => { this.inputs['five'] = input; }} onChangeText={(text) => this.setState({ ConfirmPassword: text })} style={styles.textinput} secureTextEntry={true} placeholder="Confirm Password" placeholderTextColor="white" ></TextInput>
+                                        <TextInput onSubmitEditing={() => { this.focusNextField('six'); }} returnKeyType={"next"} ref={input => { this.inputs['five'] = input; }} onChangeText={(text) => this.setState({ ConfirmPassword: text })} style={styles.textinput} secureTextEntry={true} placeholder="Confirm Password" placeholderTextColor={White} ></TextInput>
                                     </View>
 
                                     <View style={styles.radio}>
@@ -181,7 +181,7 @@ export default class Registration extends Component {
                                                 <View style={[styles.square, this.state.Ischecked ? { backgroundColor: 'rgba(256,256,256,1.0)', } : { backgroundColor: 'rgba(256,256,256,0)', },]} ></View>
                                             </View>
                                             <View>
-                                                <Text style={{ color: this.props.color, fontSize: 17, marginRight: 10, fontWeight: 'bold' }}>{this.props.label}</Text>
+                                                <Text style={styles.checkboxlable}>{this.props.label}</Text>
                                             </View>
                                         </TouchableOpacity>
 
@@ -190,7 +190,7 @@ export default class Registration extends Component {
                                         <Text style={{ color: "white", fontWeight: 'bold', fontSize: 14 }}>I agree the Terms & Condtition</Text>
                                     </View>
                                     <TouchableOpacity style={styles.loginbutton} onPress={() => this.validate()}>
-                                        {this.state.Loading ? <ActivityIndicator size="large" color="red" /> : <Text style={styles.buttontext}>REGISTER</Text>}
+                                        {this.state.Loading ? <ActivityIndicator size="large" color={HeaderColor} /> : <Text style={styles.buttontext}>REGISTER</Text>}
                                     </TouchableOpacity>
                                 </View>
                             </View>

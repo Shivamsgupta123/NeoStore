@@ -54,7 +54,7 @@ export default class Productlist extends Component {
     }
 
     render() {
-        if (this.state.loader1) { return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" /> }
+        if (this.state.loader1) { return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color={HeaderColor} /> }
         return (
             <View style={{ flex: 1, }}>
                 <Header style={{ backgroundColor: HeaderColor }}>
@@ -93,11 +93,8 @@ export default class Productlist extends Component {
                                                     startingValue={item.rating}
                                                     readonly
                                                     imageSize={20}
-
                                                     ratingBackgroundColor='#7F7F7F'
-                                                // style={{ paddingVertical: 10 ,marginLeft:30}}
                                                 />
-                                                {/* </View> */}
                                             </View>
                                         </View>
                                     </View>

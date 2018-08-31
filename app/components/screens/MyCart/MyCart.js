@@ -27,7 +27,6 @@ export default class MyCart extends Component {
                     // Quantity: this.state.fetcheddata.data[0].quantity
                 }
                 );
-                console.log("fetchdata", this.state.fetcheddata)
             }
         },
             error => {
@@ -37,13 +36,13 @@ export default class MyCart extends Component {
     }
 
     setquantity(index, id, value, item) {
-        console.log("index", index)
-        console.log("id", id)
-        console.log("value", value)
-        console.log("item", item)
+        // console.log("index", index)
+        // console.log("id", id)
+        // console.log("value", value)
+        // console.log("item", item)
         this.setState({})
         this.state.fetcheddata.data[index].quantity = value
-        console.log("sss")
+
         this.setState({ Loading: true })
         // console.log("value", value)
         // console.log("value1", this.state.Quantity)
@@ -82,7 +81,7 @@ export default class MyCart extends Component {
 
     deleteItem(index, item) {
         // this.setState({ Loading: true })
-        console.log("item", item)
+        // console.log("item", item)
 
         Alert.alert(
             'Delete!',
@@ -118,6 +117,8 @@ export default class MyCart extends Component {
     }
 
     render() {
+        // console.log("fetchdata", this.state.fetcheddata)
+        // console.log("data lenght", this.state.fetcheddata.data)
         this.leftOpenValue = Dimensions.get('window').width;
         this.rightOpenValue = -Dimensions.get('window').width;
         // if (this.state.Loading)

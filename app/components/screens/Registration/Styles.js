@@ -1,7 +1,7 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
-
+import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 
 
 export default styles = StyleSheet.create({
@@ -11,7 +11,8 @@ export default styles = StyleSheet.create({
         fontWeight: 'bold',
         color: White,
         padding: 15,
-        alignItems: 'center'
+        alignItems: 'center',
+        fontFamily: FontBold
 
 
     },
@@ -35,7 +36,8 @@ export default styles = StyleSheet.create({
         fontSize: Platform.OS === 'ios' ? 20 : 15,
         height: Platform.OS === 'ios' ? 37 : 48,
         width: Platform.OS === 'ios' ? 37 : 47,
-        marginTop: -5
+        marginTop: -5,
+        fontFamily: FontMedium
 
     },
     loginbutton: {
@@ -54,13 +56,17 @@ export default styles = StyleSheet.create({
     buttontext: {
         color: ButtonText,
         fontWeight: 'bold',
-        fontSize: 25
+        fontSize: 25,
+        fontFamily: FontBold,
+        paddingTop: Platform.OS === 'ios' ? 7 : 0
 
     },
     forgotpassword: {
         color: White,
         fontSize: 20,
-        marginTop: 6
+        marginTop: 6,
+
+
     },
     newaccount: {
         color: White,
@@ -106,7 +112,8 @@ export default styles = StyleSheet.create({
     lockicon: {
         paddingLeft: Platform.OS === 'ios' ? 0 : 5,
         paddingTop: Platform.OS === 'ios' ? 0 : 5,
-        color: "#FFFFFF"
+        color: White,
+
 
     },
     unlockicon: {
@@ -134,6 +141,7 @@ export default styles = StyleSheet.create({
         paddingBottom: 5,
         paddingRight: 20,
         paddingLeft: 5,
+        fontFamily: FontMedium
         // fontWeight:'bold',
     },
     HeaderText: {
@@ -141,12 +149,14 @@ export default styles = StyleSheet.create({
         fontSize: HeaderText,
         marginLeft: Platform.OS === 'ios' ? 0 : 65,
         fontWeight: HeaderTextFontWeight,
-        marginTop: Platform.OS === 'ios' ? 5 : 10
+        marginTop: Platform.OS === 'ios' ? 5 : 10,
+        fontFamily: FontBold
 
     },
     radiobuttonlable: {
         fontSize: Platform.OS === 'ios' ? 20 : 17,
-        color: "#ffffff", padding: 4
+        color: "#ffffff", padding: 4,
+        fontFamily: FontMedium
     },
     circle: {
         width: 15,
@@ -175,6 +185,13 @@ export default styles = StyleSheet.create({
         alignItems: 'center',
 
     },
+    checkboxlable: {
+        fontSize: 17,
+        marginRight: 10,
+        fontWeight: 'bold',
+        fontFamily: FontMedium,
+        padding: 1
+    }
 
 
 

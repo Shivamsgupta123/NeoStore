@@ -1,5 +1,5 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
-
+import { FontBold, FontMedium, FontBook } from '../../utils/Fonts';
 
 export default styles = StyleSheet.create({
 
@@ -8,15 +8,16 @@ export default styles = StyleSheet.create({
         paddingLeft: 20
     },
     drawericon1: {
-        paddingTop: Platform.OS === 'ios' ? 11 : 6,
+        paddingTop: Platform.OS === 'ios' ? 13 : 6,
         paddingLeft: 20
     },
     drawertext: {
         color: 'white',
         fontSize: 18,
-        paddingTop: Platform.OS === 'ios' ? 11 : 3,
+        paddingTop: Platform.OS === 'ios' ? 11 : 5,
         marginLeft: 25,
         fontWeight: '400',
+        fontFamily: FontMedium
 
 
 
@@ -29,13 +30,15 @@ export default styles = StyleSheet.create({
         color: 'white',
         fontWeight: '500',
         fontSize: 25,
-        paddingTop: 10
+        paddingTop: 10,
+        fontFamily: FontMedium
 
     },
     useremail: {
         color: 'white',
         fontWeight: '400',
-        fontSize: 16,
+        fontSize: 14,
+        fontFamily: FontBook
     },
     drawerview1: {
         flex: 1,
@@ -71,6 +74,7 @@ export default styles = StyleSheet.create({
         // height: 35,
         // width: 35,
         fontSize: 15,
+        fontFamily: FontBook
         // marginLeft: 100,
         // backgroundColor: "red",
         // backgroundColor: "red",

@@ -4,7 +4,7 @@ import styles from './Styles';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Icon } from '../../../utils/Icon/Icon';
 import { orderdetail } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import { AsyncStorage } from 'react-native';
@@ -53,7 +53,7 @@ export default class Orderdetail extends Component {
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left>
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="chevron-left" size={22} color="#f9fbff" />
+                            <Icon name="angle-left" size={22} color="#f9fbff" />
                         </Button>
                     </Left>
                     <Body>

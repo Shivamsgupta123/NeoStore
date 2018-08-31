@@ -1,6 +1,7 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 import { White, ProductlistFont, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { LogoSize, ProductlistTitle, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
+import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 
 export default styles = StyleSheet.create({
     productList: {
@@ -38,9 +39,10 @@ export default styles = StyleSheet.create({
         borderWidth: 1
     },
     productname: {
-        fontSize: Platform.OS === 'ios' ? 22 : 20,
+        fontSize: Platform.OS === 'ios' ? 20 : 18,
         color: ProductlistFont,
-        padding: 2
+        padding: 2,
+        fontFamily: FontMedium
     },
     itemcount: {
         fontSize: 20,
@@ -55,10 +57,12 @@ export default styles = StyleSheet.create({
         marginLeft: Platform.OS === 'ios' ? -3 : 75,
         marginTop: Platform.OS === 'ios' ? 10 : 13,
         fontWeight: HeaderTextFontWeight,
+        fontFamily: FontMedium
     },
     productproducer: {
         fontSize: 15,
-        color: ProductlistFont, paddingLeft: 9
+        color: ProductlistFont, paddingLeft: 9,
+        fontFamily: FontBook
     },
     ratingview: {
         flexDirection: 'row',
@@ -67,9 +71,10 @@ export default styles = StyleSheet.create({
         width: "77%"
     },
     productcost1: {
-        fontSize: ProductlistTitle,
+        fontSize: 18,
         color: HeaderColor,
-        padding: 7
+        padding: 7,
+        fontFamily: FontMedium
     }
 
 });
