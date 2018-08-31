@@ -152,7 +152,11 @@ export default styles = StyleSheet.create({
         backgroundColor: "#b3b5b7",
         paddingLeft: 6,
         paddingRight: 6
+    },
+    iconback: {
+        color: "#f9fbff"
     }
+
 
 
 

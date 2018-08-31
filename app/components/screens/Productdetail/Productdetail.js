@@ -15,13 +15,9 @@ import Stars from 'react-native-stars';
 export default class Productdetail extends Component {
     constructor(props) {
         super(props)
-        // console.log('shivam', props)
         this.state = {
             fetcheddata: [],
             img1: '',
-            img2: '',
-            img3: '',
-            img4: '',
             isModalVisible: false,
             Rating: 0,
             datafetched: false,
@@ -34,29 +30,26 @@ export default class Productdetail extends Component {
     closeRatePopup = () =>
         this.setState({ isModalVisible: !this.state.isModalVisible });
 
+
     closeBuyPopup = () =>
         this.setState({ isModalVisible1: !this.state.isModalVisible1 });
 
     // getting product detail
     componentDidMount() {
+        console.log("a")
         let url = productdetail + productid + this.props.navigation.state.params.Id;
         return GlobalAPI(url, "GET", null, null, response => {
-
             if (response.status == 200) {
-
                 this.setState({
                     fetcheddata: response.data,
                     datafetched: true,
                     Loading: false,
-                    // {this.state.fetcheddata.map(img =>() )}
                     img1: response.data.product_images[0].image,
-
                 }
                 );
-                console.log("203", this.state.fetcheddata)
             }
         }, error => {
-            console.log(error.error)
+            console.log(error)
         }
         )
     }
@@ -70,27 +63,13 @@ export default class Productdetail extends Component {
                 </TouchableOpacity>
             )
         })
-
         return image
     }
 
-    // set ratting
-    // ratingCompleted = (rating) => {
-    //     console.log("Rating is: " + rating)
-    //     this.setState(
-    //         {
-    //             Rating: rating
-    //         }
-    //     )
-    //     // console.log( this.state.Rating)
-    // }
-
     quantitySubmit = () => {
-        // alert("Thanks for rating.")
         let formData = new FormData();
         formData.append(' product_id', this.state.fetcheddata.id);
         formData.append(' quantity', this.state.Quntity);
-
         this.setState({ isModalVisible: false })
     }
 
@@ -102,6 +81,7 @@ export default class Productdetail extends Component {
             if (response.status == 200) {
                 alert(response.message)
                 this.setState({ isModalVisible: false, Loading: false })
+                // alert(response.message)
             }
             else
                 alert(response.user_msg)
@@ -118,7 +98,6 @@ export default class Productdetail extends Component {
         let formData = new FormData();
         formData.append(' product_id', this.state.fetcheddata.id);
         formData.append(' quantity', this.state.Quntity);
-
         await GlobalAPI(addtocart, "POST", formData, getdata.data.access_token, response => {
             if (response.status == 200) {
                 alert(response.message)
@@ -126,7 +105,6 @@ export default class Productdetail extends Component {
             }
             else
                 alert(response.user_msg)
-
         }, error => {
             console.log(error)
         })
@@ -191,7 +169,6 @@ export default class Productdetail extends Component {
                                     readonly
                                     imageSize={20}
                                     ratingBackgroundColor='#7F7F7F'
-
                                 />
                             </View>
 
@@ -215,7 +192,6 @@ export default class Productdetail extends Component {
                                 <Text style={styles.productdescription}>DESCRIPTION</Text>
                                 <Text style={styles.productdetail}>{this.state.fetcheddata.description}</Text>
                             </View>
-
                             <View style={styles.subview5}>
                                 <TouchableOpacity style={styles.button} onPress={this.closeBuyPopup}>
                                     <Text style={styles.buttontext}>BUY NOW</Text>
@@ -233,19 +209,6 @@ export default class Productdetail extends Component {
                                         <Text style={styles.modalview2}>{this.state.fetcheddata.name}</Text>
                                         <Image source={{ uri: this.state.img1 }} style={styles.modalimage} />
 
-
-                                        {/* <Rating
-                                            type='custom'
-                                            showRating
-                                            fractions={0}
-                                            onFinishRating={this.ratingCompleted}
-                                            ratingColor='#e91b1a'
-                                            ratingBackgroundColor='#7F7F7F'
-                                            imageSize={47}
-                                            onFinishRating={this.ratingCompleted}
-                                            style={{ paddingVertical: 10 }}
-                                        /> */}
-
                                         <Stars
                                             half={false}
                                             default={this.state.fetcheddata.rating}
@@ -256,8 +219,6 @@ export default class Productdetail extends Component {
                                             fullStar={<Icon name="star" size={27} color="#e2d628" style={{ marginTop: 35 }} />}
                                             emptyStar={<Icon name="star" size={27} color="#7F7F7F" style={{ marginTop: 35 }} />}
                                         />
-                                        {console.log("rate", this.state.stars)}
-
                                         <View style={{ flexDirection: 'row', }}>
                                             <TouchableOpacity onPress={() => this.ratingsubmit()} style={styles.ratingbutton}>
                                                 <Text style={styles.ratingbuttontext}>SUBMIT</Text>
@@ -270,8 +231,9 @@ export default class Productdetail extends Component {
                                         </View>
                                     </View>
                                 </Modal>
+                                {console.log("b")}
                             </View>
-
+                            {console.log("c")}
                             {/* Buy Modal */}
 
                             <View style={styles.modalview4}>

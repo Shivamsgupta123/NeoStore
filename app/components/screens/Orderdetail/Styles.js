@@ -11,6 +11,7 @@ export default styles = StyleSheet.create({
         fontWeight: HeaderTextFontWeight
     },
     mainview: {
+        // height: Dimensions.get('window').height,
         flex: 1,
         flexDirection: 'row',
         padding: 15,

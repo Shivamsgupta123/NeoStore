@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { View, Image, Text, ImageBackground, TextInput, Platform, TouchableOpacity } from 'react-native';
 import styles from './Styles';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Icon } from '../../../utils/Icon/Icon';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
-import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
-import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFont } from '../../../utils/FontSizes';
-import { register, forgotpassword } from '../../../lib/api';
+import { forgotpassword } from '../../../lib/api';
+import { GlobalAPI } from '../../../lib/Globals';
 
 export default class Forgotpassword extends Component {
 
@@ -24,39 +23,27 @@ export default class Forgotpassword extends Component {
             return false
         }
         else
-            if (this.state.NewPassword == "" || !this.state.NewPassword.match(passwordreg)) {
-                alert("Enter new alphanumeric password having atleast 8 characters.")
-                return false
-            }
-        if (this.state.ConfirmPassword == "") {
-            alert("Please Confirm Password.")
-            return false
-        }
-        else
             this.submit()
     }
 
-    async submit() {
+    submit() {
         let formData = new FormData();
         formData.append('email', this.state.Username);
+        GlobalAPI(forgotpassword, "POST", formData, null, response => {
 
-        await fetch(
-            forgotpassword
-            , {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(response => {
-                if (response.status == 200) {
-                    alert("Submitted")
-                    this.props.navigation.navigate('Loginscreen')
-                }
-                else
-                    alert(response.user_msg)
-
+            if (response.status == 200) {
+                alert("Password Maild You")
+                this.props.navigation.replace("Login")
             }
-            )
+            else
+                alert(response.user_msg)
+        },
+            error => {
+                console.log(error)
+            }
+        )
+
+
     }
 
     render() {
@@ -65,7 +52,7 @@ export default class Forgotpassword extends Component {
                 <Header style={{ backgroundColor: 'red' }}>
                     <Left>
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="chevron-left" size={26} color="#f9fbff" />
+                            <Icon name="angle-left" size={26} color="#f9fbff" />
                         </Button>
                     </Left>
                     <Body>
@@ -79,16 +66,6 @@ export default class Forgotpassword extends Component {
                     <View style={styles.view3}>
                         <Icon name="user" size={30} color="#FFFFFF" style={styles.icon} />
                         <TextInput onChangeText={(text) => this.setState({ Username: text })} style={styles.textinput} placeholder="Username" placeholderTextColor="white" ></TextInput>
-                    </View>
-
-                    <View style={styles.view3}>
-                        <Icon name="unlock" size={27} color="#FFFFFF" style={styles.icon} />
-                        <TextInput onChangeText={(text) => this.setState({ NewPassword: text })} style={styles.textinput} placeholder="Enter New Password" placeholderTextColor="white" ></TextInput>
-                    </View>
-
-                    <View style={styles.view3}>
-                        <Icon name="lock" size={30} color="#FFFFFF" style={styles.icon} />
-                        <TextInput onChangeText={(text) => this.setState({ ConfirmPassword: text })} style={styles.textinput} placeholder="Confirm Password" placeholderTextColor="white" ></TextInput>
                     </View>
 
                     <TouchableOpacity style={styles.loginbutton} onPress={() => this.validate()}>

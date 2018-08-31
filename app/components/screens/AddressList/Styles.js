@@ -12,6 +12,14 @@ export default styles = StyleSheet.create({
         paddingRight: Platform.OS === 'ios' ? 0 : 14
 
     },
+    headericon: {
+        color: White
+    },
+
+    mainview: {
+        flex: 1,
+        backgroundColor: "white"
+    },
     address: {
         fontSize: 18,
         color: "#1C1C1C",
@@ -42,7 +50,13 @@ export default styles = StyleSheet.create({
         height: 15,
         width: 15,
         borderRadius: 7.5,
-        backgroundColor: "grey",
+        // backgroundColor: "grey",
+    },
+    radiobuttonfill1: {
+        height: 15,
+        width: 15,
+        borderRadius: 7.5,
+        backgroundColor: "white",
     },
     addresssubview: {
         borderColor: "grey",

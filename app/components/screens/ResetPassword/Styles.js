@@ -14,8 +14,9 @@ export default styles = StyleSheet.create({
         paddingBottom: LogoPadding,
         alignItems: 'center',
         // marginTop:20,
-
-
+    },
+    backbutton: {
+        color: "#FFFFFF"
     },
     headertitle: {
         color: White,
@@ -25,8 +26,12 @@ export default styles = StyleSheet.create({
 
     },
     icon: {
-        padding: Platform.OS === 'ios' ? 0 : 5,
-        width: 35
+        // padding: Platform.OS === 'ios' ? 0 : 5,
+        paddingTop: Platform.OS === 'ios' ? 0 : 10,
+        paddingLeft: Platform.OS === 'ios' ? 0 : 7,
+        width: 35,
+        color: "#FFFFFF"
+        // color="#FFFFFF"
     },
     view3: {
         height: 45,

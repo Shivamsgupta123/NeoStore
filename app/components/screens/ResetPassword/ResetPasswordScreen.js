@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { View, Image, ActivityIndicator, Text, ImageBackground, TextInput, Platform, TouchableOpacity, KeyboardAvoidingView, Dimensions, ScrollView } from 'react-native';
 import styles from './Styles';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Icon } from '../../../utils/Icon/Icon';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import { White, ButtonText, PlusIconBackground, HeaderColor, HeaderTextFontWeight } from '../../../utils/Colors';
-import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFont, HeaderText } from '../../../utils/FontSizes';
 import { AsyncStorage } from 'react-native';
 import { changepassword } from '../../../lib/api';
 // import { Globals } from '../../../lib/Globals';
@@ -20,9 +19,6 @@ export default class ResetPasswordScreen extends Component {
         token: '',
         Loading: false
     }
-
-
-
     validate() {
         var emailreg = /\S+@\S+\.\S+/;
         var passwordreg = /^[0-9a-zA-Z]+$/;
@@ -44,7 +40,6 @@ export default class ResetPasswordScreen extends Component {
 
 
     }
-
     async submit() {
         this.setState({ Loading: true })
         var getdata = await AsyncStorage.getItem('ResponseData');
@@ -63,47 +58,15 @@ export default class ResetPasswordScreen extends Component {
             if (response.status == 200) {
                 this.setState({ Loading: false })
                 alert("Password Changed Successfully")
-                this.props.navigation.replace('Login')
+                this.props.navigation.replace('Myaccount')
                 this.setState({ Loading: true })
             }
             else
                 alert(response.user_msg)
         })
-        // await Globals(changepassword, { method: 'POST', body: formData, headers: { access_token: getdata.data.access_token } }, response => {
-        //     console.log('reset password', response)
-        //     if (response.status == 200) {
-        //         alert("Submitted")
-        //         this.props.navigation.navigate('Login')
-        //     }
-        //     else
-        //         alert(response.user_msg)
-        // })
-        // await fetch(
-        //     changepassword
-        //     , {
-        //         method: 'POST',
-        //         body: formData,
-        //         headers: {
-        //             access_token: getdata.data.access_token
-
-        //         }
-        //     })
-        //     .then(response => response.json())
-        //     .then(response => {
-        //         if (response.status == 200) {
-        //             alert("Submitted")
-        //             this.props.navigation.navigate('Loginscreen')
-        //         }
-        //         else
-        //             alert(response.user_msg)
-
-        //     }
-        //     )
 
     }
     render() {
-        // if (this.state.Loading)
-        //     return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
         return (
             <View pointerEvents={this.state.Loading ? "none" : "auto"} style={{ flex: 1 }}>
 
@@ -112,7 +75,7 @@ export default class ResetPasswordScreen extends Component {
                     <Header style={{ backgroundColor: HeaderColor }}>
                         <Left>
                             <Button transparent onPress={() => this.props.navigation.goBack()}>
-                                <Icon name="chevron-left" size={22} color="#f9fbff" />
+                                <Icon name="angle-left" size={22} style={styles.backbutton} />
                             </Button>
                         </Left>
                         <Body>
@@ -130,18 +93,18 @@ export default class ResetPasswordScreen extends Component {
                                 <Text style={styles.neostore}>NeoSTORE</Text>
 
                                 <View style={styles.view3}>
-                                    <Icon name="lock" size={30} color="#FFFFFF" style={styles.icon} />
+                                    <Icon name="lock" size={22} style={styles.icon} />
                                     <TextInput onChangeText={(text) => this.setState({ CurrentPassword: text })} style={styles.textinput} placeholder="Current Password" placeholderTextColor="white" ></TextInput>
 
                                 </View>
 
                                 <View style={styles.view3}>
-                                    <Icon name="unlock" size={27} color="#FFFFFF" style={styles.icon} />
+                                    <Icon name="unlock" size={22} style={styles.icon} />
                                     <TextInput onChangeText={(text) => this.setState({ NewPassword: text })} style={styles.textinput} placeholder="Enter New Password" placeholderTextColor="white" ></TextInput>
                                 </View>
 
                                 <View style={styles.view3}>
-                                    <Icon name="lock" size={30} color="#FFFFFF" style={styles.icon} />
+                                    <Icon name="lock" size={22} style={styles.icon} />
                                     <TextInput onChangeText={(text) => this.setState({ ConfirmPassword: text })} style={styles.textinput} placeholder="Confirm Password" placeholderTextColor="white" ></TextInput>
                                 </View>
 

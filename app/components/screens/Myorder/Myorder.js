@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Image, FlatList, Text, ImageBackground, TextInput, TouchableOpacity, Platform, Dimensions, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
 import styles from './Styles';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Icon } from '../../../utils/Icon/Icon';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { orderlist } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
@@ -36,12 +36,12 @@ export default class Myorder extends Component {
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left>
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="chevron-left" size={22} color="#f9fbff" style={styles.headreicon1} />
+                            <Icon name="angle-left" size={22} style={styles.headreicon1} />
                         </Button>
                     </Left>
                     <Text style={styles.headerText}>My Orders</Text>
                     <Right>
-                        <Icon name="search" size={22} color="#f9fbff" style={styles.headericon2} />
+                        <Icon name="search" size={22} style={styles.headericon2} />
                     </Right>
                 </Header>
 

@@ -127,14 +127,14 @@ export default class MyCart extends Component {
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left >
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="angle-left" size={22} color="#f9fbff" />
+                            <Icon name="angle-left" size={22} style={styles.iconback} />
                         </Button>
                     </Left>
                     <Body>
                         <Text style={styles.headertitle}>My Cart</Text>
                     </Body>
                     <Right style={{ paddingRight: 7 }}>
-                        <Icon name="search" size={22} color="#f9fbff" />
+                        <Icon name="search" size={22} style={styles.iconback} />
                     </Right>
 
                 </Header>

@@ -67,6 +67,7 @@ export default class Orderdetail extends Component {
 
                 <View>
 
+
                     {/* Display cart items */}
                     <FlatList
                         data={this.state.fetcheddata.data.order_details}

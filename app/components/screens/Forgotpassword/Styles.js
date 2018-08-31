@@ -72,7 +72,8 @@ export default styles = StyleSheet.create({
 
     },
     view1: {
-        justifyContent: "center",
+        // justifyContent: "center",
+        paddingTop: 60,
         alignItems: "center",
         flex: 1
 

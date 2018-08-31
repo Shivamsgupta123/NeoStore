@@ -9,7 +9,7 @@ export default styles = StyleSheet.create({
     neostore: {
         fontSize: 40,
         fontWeight: 'bold',
-        color: 'white',
+        color: White,
         padding: 15,
         alignItems: 'center'
 
@@ -18,7 +18,7 @@ export default styles = StyleSheet.create({
     view3: {
         height: Platform.OS === 'ios' ? 45 : 38,
         width: 280,
-        borderColor: 'white',
+        borderColor: White,
         borderWidth: 1,
         padding: Platform.OS === 'ios' ? 10 : 0,
         margin: 6,
@@ -31,7 +31,7 @@ export default styles = StyleSheet.create({
     textinput: {
         flex: 1,
         marginLeft: 10,
-        color: "white",
+        color: White,
         fontSize: Platform.OS === 'ios' ? 20 : 15,
         height: Platform.OS === 'ios' ? 37 : 48,
         width: Platform.OS === 'ios' ? 37 : 47,
@@ -39,33 +39,31 @@ export default styles = StyleSheet.create({
 
     },
     loginbutton: {
-
         borderWidth: 1,
-        backgroundColor: "white",
+        backgroundColor: White,
         height: 55,
         width: 280,
         marginTop: 18,
         borderRadius: 10,
         fontSize: 5,
-        borderColor: "white",
+        borderColor: White,
         justifyContent: "center",
         alignItems: "center"
 
     },
     buttontext: {
-
         color: ButtonText,
         fontWeight: 'bold',
         fontSize: 25
 
     },
     forgotpassword: {
-        color: "white",
+        color: White,
         fontSize: 20,
         marginTop: 6
     },
     newaccount: {
-        color: "white",
+        color: White,
         fontWeight: "bold",
         fontSize: 18,
         // marginTop:90,
@@ -100,72 +98,21 @@ export default styles = StyleSheet.create({
         // height:"100%",
         flex: 1
     },
-    swiperimage: {
-        height: 300,
-        width: Dimensions.get('window').width,
-
-    },
 
 
-    containerbottom: {
-        flex: 3,
-        justifyContent: 'space-between',
-
-        flexDirection: 'column',
-        marginHorizontal: 40 / 3,
-        marginVertical: 45 / 3,
-        marginBottom: 15,
-
-    },
-    boxrow: {
-
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        width: '100%',
-
-    },
-    boxrow: {
-
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%',
-
-    },
-    boxtop: {
-        padding: 60 / 3,
-
-        justifyContent: 'space-between',
-        width: '48%',
-        height: '90%',
-
-
-        backgroundColor: '#e91c1a',
-    },
-    boxbottom: {
-        padding: 60 / 3,
-        justifyContent: 'space-between',
-
-        width: '48%',
-        height: '90%',
-        backgroundColor: '#e91c1a',
-    },
-    homescreenboxtext1: {
-        textAlign: 'right',
-        fontWeight: '500',
-        fontSize: 25,
-        color: '#ffffff'
-    },
-    homescreenboxtext2: {
-        textAlign: 'left',
-        fontWeight: '500',
-        fontSize: 25,
-        color: '#ffffff'
-
-    },
     iconpadding: {
         padding: Platform.OS === 'ios' ? 0 : 5,
+    },
+    lockicon: {
+        paddingLeft: Platform.OS === 'ios' ? 0 : 5,
+        paddingTop: Platform.OS === 'ios' ? 0 : 5,
+        color: "#FFFFFF"
+
+    },
+    unlockicon: {
+        paddingLeft: Platform.OS === 'ios' ? 0 : 8,
+        paddingTop: Platform.OS === 'ios' ? 0 : 5,
+        color: "#FFFFFF"
     },
     rowFlex: {
 
@@ -200,7 +147,34 @@ export default styles = StyleSheet.create({
     radiobuttonlable: {
         fontSize: Platform.OS === 'ios' ? 20 : 17,
         color: "#ffffff", padding: 4
-    }
+    },
+    circle: {
+        width: 15,
+        height: 15,
+        marginRight: 10,
+        borderColor: '#ffffff',
+        borderWidth: 1,
+        borderRadius: 15 / 2,
+    },
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    square: {
+        width: 7,
+        height: 7,
+    },
+    checkboxContainer: {
+        width: 12,
+        height: 12,
+        borderColor: '#ffffff',
+        borderWidth: 1,
+        padding: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
 
 
 

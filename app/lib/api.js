@@ -19,6 +19,6 @@ export const orderlist = StagingAPI + "orderList";
 export const orderdetail = StagingAPI + "orderDetail";
 export const editcart = StagingAPI + "editCart";
 export const deletecartitem = StagingAPI + "deleteCart"
-export const placeorder = StagingAPI + order
+export const placeorder = StagingAPI + "order"
 // http://staging.php-dev.in:8844/trainingapp/api/order
 

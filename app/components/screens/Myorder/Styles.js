@@ -5,10 +5,12 @@ import { LogoSize, LogoHeaderText, LogoFontWeight, LogoPadding, TextInputFont, R
 
 export default styles = StyleSheet.create({
     headreicon1: {
-        marginLeft: Platform.OS === 'ios' ? 10 : 0
+        marginLeft: Platform.OS === 'ios' ? 10 : 0,
+        color: "#f9fbff"
     },
     headericon2: {
-        marginRight: 13.3
+        marginRight: 13.3,
+        color: "#f9fbff"
     },
     headerText: {
         color: "white",

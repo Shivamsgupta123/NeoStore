@@ -6,14 +6,12 @@ import { Icon } from '../../../utils/Icon/Icon';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import { HeaderColor } from '../../../utils/Colors';
 import SplashScreen from 'react-native-splash-screen';
-export default class Home extends Component {
+import { UserObject } from '../../../lib/UserProvider';
 
-    state = {
-        length: 5
-    }
+export default class Home extends Component {
     constructor(props) {
         super(props)
-        console.log('Home', props)
+        console.log('userobj', UserObject.product_categories)
         // console.log(this.props.navigation.state.params.data.product_categories[1].icon_image)
     }
     componentDidMount() {
@@ -40,7 +38,7 @@ export default class Home extends Component {
                 <View>
                     <View style={styles.swiperimage}>
                         <Swiper dotColor={HeaderColor} activeDotColor="grey">
-                            {this.props.navigation.state.params.data.product_categories.map(img => (
+                            {UserObject.product_categories.map(img => (
                                 <View key={img.icon_image} style={{ flex: 1 }}>
                                     <Image resizeMode="stretch" style={styles.swiperimage} source={{ uri: img.icon_image }} />
                                 </View>

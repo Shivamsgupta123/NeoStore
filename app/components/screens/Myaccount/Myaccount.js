@@ -14,12 +14,6 @@ export default class Myaccount extends Component {
     state = {
         autoplay: true
     }
-
-    // getting users data
-    // componentWillMount = async () => {
-
-    //     this.setState({ FirstName: UserObject.data.user_data.first_name, LastName: UserObject.data.user_data.last_name, Email: UserObject.data.user_data.email, PhoneNumber: UserObject.data.user_data.phone_no, DOB: UserObject.data.user_data.dob, ProfileImage: UserObject.data.user_data.profile_pic })
-    // }
     componentDidMount() {
         console.log("25")
         const didBlurSubscription = this.props.navigation.addListener(
@@ -29,26 +23,22 @@ export default class Myaccount extends Component {
                 this.setState({ autoplay: false })
             }
         );
-
     }
-
     render() {
-        console.log("101010")
         return (
-            // <View style={{ height: Dimensions.get('window').height }}>
             <View style={{ flex: 1 }}>
                 <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
                     <Header style={{ backgroundColor: HeaderColor }}>
                         <Left>
                             <Button transparent onPress={() => this.props.navigation.goBack()}>
-                                <Icon name="angle-left" size={22} color="#f9fbff" />
+                                <Icon name="angle-left" size={22} style={styles.icon} />
                             </Button>
                         </Left>
                         <Body>
                             <Text style={styles.headertitle}>My Account</Text>
                         </Body>
                         <Right>
-                            <Icon name="search" size={22} color="#f9fbff" />
+                            <Icon name="search" size={22} style={styles.icon} />
                         </Right>
                     </Header>
                     <ScrollView>
@@ -57,28 +47,28 @@ export default class Myaccount extends Component {
 
                             <Image style={styles.profileimage} source={{ uri: UserObject.user_data.profile_pic }} />
                             <View style={styles.view3}>
-                                <Icon name="user" size={25} color="#FFFFFF" style={styles.iconpadding} />
+                                <Icon name="user" size={25} style={styles.iconpadding} />
                                 <TextInput style={styles.textinput} editable={false} placeholder={UserObject.user_data.first_name} placeholderTextColor="white" ></TextInput>
                             </View>
 
                             <View style={styles.view3}>
-                                <Icon name="user" size={25} color="#FFFFFF" style={styles.iconpadding} />
+                                <Icon name="user" size={25} style={styles.iconpadding} />
                                 <TextInput style={styles.textinput} editable={false} placeholder={UserObject.user_data.last_name} placeholderTextColor="white" ></TextInput>
                             </View>
 
                             <View style={styles.view3}>
-                                <Icon name="mail" size={26} color="#FFFFFF" style={styles.iconpadding} />
+                                <Icon name="mail" size={22} style={styles.mailicon} />
                                 <TextInput style={styles.textinput} editable={false} placeholder={UserObject.user_data.email} placeholderTextColor="white" ></TextInput>
 
                             </View>
 
                             <View style={styles.view3}>
-                                <Icon name="mobile" size={25} color="#FFFFFF" style={styles.mobileicon} />
+                                <Icon name="mobile" size={25} style={styles.mobileicon} />
                                 <TextInput style={styles.textinput} editable={false} placeholder={UserObject.user_data.phone_no} placeholderTextColor="white" ></TextInput>
                             </View>
 
                             <View style={styles.view3}>
-                                <Icon name="cake" size={20} color="#FFFFFF" style={styles.iconpadding} />
+                                <Icon name="cake" size={20} style={styles.cakeicon} />
                                 <TextInput style={styles.textinput} editable={false} placeholder={UserObject.user_data.dob} placeholderTextColor="white" ></TextInput>
                             </View>
 

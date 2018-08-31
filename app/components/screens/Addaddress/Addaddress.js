@@ -55,6 +55,7 @@ export default class Addaddress extends Component {
                                     console.log("787", this.address)
                                     AsyncStorage.setItem("address", JSON.stringify(this.address))
                                     alert("Address Saved")
+                                    this.props.navigation.replace('AddressList')
 
                                 }
 

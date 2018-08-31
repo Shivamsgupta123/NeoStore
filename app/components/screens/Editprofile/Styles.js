@@ -100,7 +100,24 @@ export default styles = StyleSheet.create({
         width: Platform.OS === 'ios' ? 30 : 35,
         justifyContent: "center",
         alignItems: "center",
-        paddingLeft: Platform.OS === 'ios' ? 0 : 3,
+        paddingLeft: Platform.OS === 'ios' ? 0 : 6,
         paddingTop: Platform.OS === "ios" ? 0 : 6
+    },
+    mailicon: {
+        height: 45,
+        width: Platform.OS === 'ios' ? 30 : 35,
+        justifyContent: "center",
+        alignItems: "center",
+        paddingLeft: Platform.OS === 'ios' ? 0 : 8,
+        paddingTop: Platform.OS === "ios" ? 0 : 6
+    },
+    cakeicon: {
+        color: "#f9fbff",
+        height: 50,
+        width: Platform.OS === 'ios' ? 30 : 35,
+        justifyContent: "center",
+        paddingTop: Platform.OS === 'ios' ? 0 : 8,
+        paddingLeft: Platform.OS === 'ios' ? 0 : 10
     }
+
 });

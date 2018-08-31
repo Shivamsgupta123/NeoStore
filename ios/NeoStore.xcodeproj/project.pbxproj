@@ -58,6 +58,9 @@
 		E98F23BE210B072800CE95E4 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E98F2397210B072700CE95E4 /* Feather.ttf */; };
 		E98F23BF210B072800CE95E4 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E98F23BD210B072800CE95E4 /* FontAwesome.ttf */; };
 		E99A89782137DBC90020FB53 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E99A89772137DBC90020FB53 /* icomoon.ttf */; };
+		E9D901F12139202F006EDC23 /* Gotham-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D901C62139202F006EDC23 /* Gotham-Book.otf */; };
+		E9D901F22139202F006EDC23 /* Gotham-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D901EF2139202F006EDC23 /* Gotham-Medium.otf */; };
+		E9D901F32139202F006EDC23 /* Gotham-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D901F02139202F006EDC23 /* Gotham-Bold.otf */; };
 		F1FA76F4958A45339B6CB037 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A6131D15C3BD49FAB204D770 /* rubicon-icon-font.ttf */; };
 /* End PBXBuildFile section */
 
@@ -409,6 +412,9 @@
 		E98F2397210B072700CE95E4 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		E98F23BD210B072800CE95E4 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		E99A89772137DBC90020FB53 /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = icomoon.ttf; path = "../../../../Downloads/icomoon (1)/fonts/icomoon.ttf"; sourceTree = "<group>"; };
+		E9D901C62139202F006EDC23 /* Gotham-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gotham-Book.otf"; path = "../../../../Downloads/Gotham-Book.otf"; sourceTree = "<group>"; };
+		E9D901EF2139202F006EDC23 /* Gotham-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gotham-Medium.otf"; path = "../../../../Downloads/Gotham-Medium.otf"; sourceTree = "<group>"; };
+		E9D901F02139202F006EDC23 /* Gotham-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gotham-Bold.otf"; path = "../../../../Downloads/Gotham-Bold.otf"; sourceTree = "<group>"; };
 		EA9D7A50473B476E89BE622B /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		FF2BD71C609B46BC92E1F01A /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -658,6 +664,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				E9D901F02139202F006EDC23 /* Gotham-Bold.otf */,
+				E9D901C62139202F006EDC23 /* Gotham-Book.otf */,
+				E9D901EF2139202F006EDC23 /* Gotham-Medium.otf */,
 				E99A89772137DBC90020FB53 /* icomoon.ttf */,
 				E98F2397210B072700CE95E4 /* Feather.ttf */,
 				E98F23BD210B072800CE95E4 /* FontAwesome.ttf */,
@@ -1231,8 +1240,11 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				E9D901F12139202F006EDC23 /* Gotham-Book.otf in Resources */,
+				E9D901F22139202F006EDC23 /* Gotham-Medium.otf in Resources */,
 				E98F23BE210B072800CE95E4 /* Feather.ttf in Resources */,
 				E99A89782137DBC90020FB53 /* icomoon.ttf in Resources */,
+				E9D901F32139202F006EDC23 /* Gotham-Bold.otf in Resources */,
 				E98F23BF210B072800CE95E4 /* FontAwesome.ttf in Resources */,
 				3077E865C59D4D828125C818 /* Entypo.ttf in Resources */,
 				15AEEFC8620345D2A27F3AB7 /* EvilIcons.ttf in Resources */,

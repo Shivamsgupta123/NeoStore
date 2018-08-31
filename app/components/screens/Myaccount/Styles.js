@@ -12,7 +12,11 @@ export default styles = StyleSheet.create({
         height: 50,
         width: Platform.OS === 'ios' ? 30 : 35,
         // textAlign:Platform.OS === 'ios' ? ,'center'
-        justifyContent: "center"
+        justifyContent: "center",
+        color: "#f9fbff"
+    },
+    icon: {
+        color: "#f9fbff"
     },
 
     view3: {
@@ -86,15 +90,11 @@ export default styles = StyleSheet.create({
         borderColor: "white",
         justifyContent: "center",
         alignItems: "center"
-
     },
-
     resetpasswordbuttontext: {
-
         color: "#7F7F7F",
         // fontWeight: "bold",
         fontSize: ButtonTextSize
-
     },
     mainview: {
         alignItems: 'center',
@@ -102,13 +102,31 @@ export default styles = StyleSheet.create({
         height: Dimensions.get('window').height
     },
     mobileicon: {
+        color: "#f9fbff",
+        height: 45,
+        width: Platform.OS === 'ios' ? 30 : 35,
+        justifyContent: "center",
+        alignItems: "center",
+        paddingLeft: Platform.OS === 'ios' ? 0 : 6,
+        paddingTop: Platform.OS === "ios" ? 0 : 6
+    },
+    mailicon: {
+        color: "#f9fbff",
+        height: 45,
+        width: Platform.OS === 'ios' ? 30 : 35,
+        justifyContent: "center",
+        alignItems: "center",
+        paddingLeft: Platform.OS === 'ios' ? 0 : 8,
+        paddingTop: Platform.OS === "ios" ? 0 : 6
+    },
+    cakeicon: {
+        color: "#f9fbff",
         height: 50,
         width: Platform.OS === 'ios' ? 30 : 35,
         justifyContent: "center",
-        paddingTop: Platform.OS === 'ios' ? 0 : 6,
-        paddingLeft: Platform.OS === 'ios' ? 0 : 5
+        paddingTop: Platform.OS === 'ios' ? 0 : 8,
+        paddingLeft: Platform.OS === 'ios' ? 0 : 10
     }
-
 
 
 

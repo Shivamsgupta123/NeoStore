@@ -63,9 +63,9 @@ export default class Editprofile extends Component {
                     console.log("afs", response)
                     UserProvider.setUserInfo("user_data", response.data)
                     console.log("updated", UserObject)
-
                     this.setState({ Loading: false })
                     alert("Account detail updated successfully.")
+                    this.props.navigation.replace('Myaccount')
                 }
                 else
                     alert(response.user_msg)
@@ -134,8 +134,7 @@ export default class Editprofile extends Component {
     }
 
     render() {
-        // if (this.state.Loading)
-        //     return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
+
         return (
             <View pointerEvents={this.state.Loading ? "none" : "auto"} style={{ flex: 1 }}>
                 <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
@@ -175,7 +174,7 @@ export default class Editprofile extends Component {
                                 </View>
 
                                 <View style={styles.view3}>
-                                    <Icon name="mail" size={25} color="#FFFFFF" style={styles.iconpadding} />
+                                    <Icon name="mail" size={22} color="#FFFFFF" style={styles.mailicon} />
                                     <TextInput onSubmitEditing={() => { this.focusNextField('four'); }} returnKeyType={"next"} ref={input => { this.inputs['three'] = input; }} onChangeText={(text) => this.setState({ Email: text })} style={styles.textinput} defaultValue={this.state.Email} placeholderTextColor="white" ></TextInput>
                                 </View>
 
@@ -185,7 +184,7 @@ export default class Editprofile extends Component {
                                 </View>
 
                                 <View style={styles.view3}>
-                                    <Icon name="cake" size={20} color="#FFFFFF" style={styles.iconpadding} />
+                                    <Icon name="cake" size={20} color="#FFFFFF" style={styles.cakeicon} />
                                     <TouchableOpacity onPress={() => this.DatePickerMainFunctionCall()}>
                                         <Text style={styles.dob}>{this.state.DateText}</Text>
                                     </TouchableOpacity>
