@@ -10,7 +10,7 @@ export default styles = StyleSheet.create({
 
         borderWidth: 1,
         backgroundColor: HeaderColor,
-        height: 60,
+        height: Platform.OS === 'ios' ? "90%" : "75%",
         width: 170,
         marginTop: 18,
         borderRadius: 10,
@@ -46,7 +46,7 @@ export default styles = StyleSheet.create({
 
         borderWidth: 1,
         backgroundColor: "#c8cbd1",
-        height: 60,
+        height: 58,
         width: 170,
         marginTop: 18,
         borderRadius: 10,
@@ -181,12 +181,12 @@ export default styles = StyleSheet.create({
         fontWeight: '600'
     },
     subview3: {
-        flex: 1,
+        // flex: 1,
         alignItems: 'center',
         padding: 10
     },
     productimage: {
-        width: 250,
+        width: "80%",
         height: 150,
         marginTop: 12,
         borderColor: "grey",
@@ -217,7 +217,8 @@ export default styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: Platform.OS == 'ios' ? 10 : 0
+        padding: Platform.OS == 'ios' ? "3%" : 0,
+        height: "25%"
     },
     modalview1: {
         flex: 1,
@@ -267,8 +268,9 @@ export default styles = StyleSheet.create({
     },
     mainview: {
         flex: 1,
+        // backgroundColor: "red"
 
-        height: Dimensions.get('window').height
+        // height: Dimensions.get('window').height
     },
     productsubimage: {
         width: 100,

@@ -55,8 +55,8 @@ export default class Addaddress extends Component {
                                     console.log("787", this.address)
                                     AsyncStorage.setItem("address", JSON.stringify(this.address))
                                     alert("Address Saved")
-                                    this.props.navigation.replace('AddressList')
-
+                                    // this.props.navigation.replace("AddressList")
+                                    this.props.navigation.goBack()
                                 }
     }
     render() {
@@ -64,7 +64,7 @@ export default class Addaddress extends Component {
             <View style={{ flex: 1 }}>
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left style={{ paddingRight: -10 }}>
-                        <Button transparent onPress={() => this.props.navigation.replace("AddressList")}>
+                        <Button transparent onPress={() => this.props.navigation.pop()}>
                             <Icon name="angle-left" size={22} color="#f9fbff" />
                         </Button>
                     </Left>

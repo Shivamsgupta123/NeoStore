@@ -11,6 +11,7 @@ import { _login, fetchaccountdetail } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import SplashScreen from 'react-native-splash-screen';
 import { UserProvider } from '../../../lib/UserProvider';
+import { Validation } from '../../../lib/Validation';
 
 export default class Login extends Component {
     constructor(props) {
@@ -33,6 +34,10 @@ export default class Login extends Component {
     validate() {
         var emailreg = /\S+@\S+\.\S+/;
         var passwordreg = /^[0-9a-zA-Z]+$/;
+        console.log('asdas', Validation(this.state.Username))
+        // if (!Validation(this.state.Username))
+        //     alert("Enter User Name")
+
         if (this.state.Username == "" || !this.state.Username.match(emailreg)) {
             alert("Enter Valid User Name.")
             return false

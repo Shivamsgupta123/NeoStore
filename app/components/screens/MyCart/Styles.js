@@ -91,9 +91,9 @@ export default styles = StyleSheet.create({
     orderbutton: {
         borderWidth: 1,
         backgroundColor: ButtonText,
-        height: 55,
-        width: Platform.OS === 'ios' ? 347 : 330,
-        marginTop: 18,
+        height: Platform.OS === 'ios' ? "45%" : "50%",
+        width: "94%",
+        // marginTop: "4%",
         borderRadius: 10,
         fontSize: 5,
         borderColor: White,
@@ -108,7 +108,8 @@ export default styles = StyleSheet.create({
         paddingTop: Platform.OS === 'ios' ? 7 : 0
     },
     buttonview: {
-        padding: 15,
+        // padding: "5%",
+        height: "20%",
         justifyContent: 'center',
         alignItems: "center",
         borderTopWidth: 1,

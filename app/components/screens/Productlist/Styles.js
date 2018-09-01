@@ -54,7 +54,7 @@ export default styles = StyleSheet.create({
     headertext: {
         color: White,
         fontSize: HeaderText,
-        marginLeft: Platform.OS === 'ios' ? -3 : 75,
+        marginLeft: Platform.OS === 'ios' ? -3 : "29%",
         marginTop: Platform.OS === 'ios' ? 10 : 13,
         fontWeight: HeaderTextFontWeight,
         fontFamily: FontMedium

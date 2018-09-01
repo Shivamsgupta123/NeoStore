@@ -30,21 +30,21 @@ export default styles = StyleSheet.create({
         height: 45,
         backgroundColor: "white",
         padding: 5,
-        fontFamily: FontMedium
+        fontFamily: FontBook
     },
     state: {
         fontSize: 17,
         color: "#1C1C1C",
         fontWeight: "400",
         paddingLeft: 135,
-        fontFamily: FontMedium
+        fontFamily: FontBook
     },
     citytextinput: {
         height: 45,
         backgroundColor: "white",
         width: 155,
         padding: 5,
-        fontFamily: FontMedium
+        fontFamily: FontBook
     },
     statetextinput: {
         height: 45,
@@ -52,7 +52,7 @@ export default styles = StyleSheet.create({
         marginLeft: 20,
         width: Platform.OS === 'ios' ? 170 : 155,
         padding: 5,
-        fontFamily: FontMedium
+        fontFamily: FontBook
     },
     country: {
         fontSize: 17,
@@ -63,13 +63,14 @@ export default styles = StyleSheet.create({
     },
     buttonview: {
         justifyContent: 'center',
+        alignItems: "center"
     },
     saveaddressbutton: {
         borderWidth: 1,
         backgroundColor: ButtonText,
-        height: 55,
-        width: Platform.OS === 'ios' ? 347 : 330,
-        marginTop: 25,
+        height: "30%",
+        width: Platform.OS === 'ios' ? "99%" : "99%",
+        // marginTop: 25,
         borderRadius: 10,
         fontSize: 5,
         borderColor: White,

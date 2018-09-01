@@ -14,19 +14,31 @@ export default class AddressList extends Component {
         super(props)
         console.log("addresslist", UserObject)
         this.address1 = []
-        this.state = { autoplay: true, Select: 0, Loading: false }
+        this.state = { autoplay: true, autoplay1: true, Select: 0, Loading: false }
         this.addressindex = 0
         this.index
     }
 
-    async componentDidMount() {
+    async getAddress() {
         this.address1 = await AsyncStorage.getItem("address")
         this.address1 = JSON.parse(this.address1)
         // this.address1.splice(0, 1)
-        // console.log("list", this.address1)
+        console.log("list", this.address1)
         console.log("pqr", this.address1.length)
         this.index = this.address1.length
         this.setState({ autoplay: false })
+
+
+    }
+    async componentDidMount() {
+        const didBlurSubscription = this.props.navigation.addListener(
+            'willFocus',
+            payload => {
+
+                this.getAddress()
+            }
+        );
+        // this.getAddress()
     }
     removeAddress(item, index) {
         this.address1.splice(index, 1)
@@ -36,14 +48,18 @@ export default class AddressList extends Component {
     }
 
     placeOrder() {
+        console.log('called')
         let formData = new FormData();
-        // this.setState({ Loading: true })
-        //// var useraddress = this.address1[this.addressindex].address
 
-        if (this.index == 0)
+        if (this.index == 0 || this.address1 == null || this.address1.length == 0) {
             alert("Please Add Address")
-        // console.log("index", this.addressindex)
+        }
+
         else {
+            console.log("null", this.addressindex)
+            console.log("01010", this.address1)
+            console.log("20202", this.address1[this.addressindex].address)
+
             formData.append("address", this.address1[this.addressindex].address);
             GlobalAPI(placeorder, "POST", formData, null, response => {
                 if (response.status == 200) {
@@ -99,7 +115,7 @@ export default class AddressList extends Component {
 
                             <FlatList
                                 data={this.address1}
-                                extraData={this.state.Select}
+                                extraData={this.state}
                                 renderItem={({ item, index }) =>
                                     (
                                         <View style={styles.addressview}>
