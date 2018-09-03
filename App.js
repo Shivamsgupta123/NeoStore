@@ -154,6 +154,8 @@ const RootStack = createStackNavigator(
     }
 );
 
+// const SubStack = createStackNavigator()
+
 export default class App extends Component {
     // componentDidMount(){
     //     SplashScreen.hide()

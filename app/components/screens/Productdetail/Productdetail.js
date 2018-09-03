@@ -10,7 +10,7 @@ import Modal from "react-native-modal";
 import { login, productid, addtocart, productdetail, productrating, } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import Stars from 'react-native-stars';
-
+import { UserProvider, UserObject } from '../../../lib/UserProvider';
 
 export default class Productdetail extends Component {
     constructor(props) {
@@ -24,6 +24,7 @@ export default class Productdetail extends Component {
             Quntity: '',
             isModalVisible1: false,
             Loading: true,
+            Loader: false,
             stars: ''
         }
     }
@@ -92,6 +93,7 @@ export default class Productdetail extends Component {
     }
 
     async buysubmit() {
+        this.setState({ Loader: true })
         var getdata = await AsyncStorage.getItem('ResponseData');
         console.log(getdata)
         getdata = JSON.parse(getdata)
@@ -100,7 +102,10 @@ export default class Productdetail extends Component {
         formData.append(' quantity', this.state.Quntity);
         await GlobalAPI(addtocart, "POST", formData, getdata.data.access_token, response => {
             if (response.status == 200) {
+                this.setState({ Loader: false })
+                console.log("buysubmit", response)
                 alert(response.message)
+                UserProvider.setUserInfo("total_carts", response.total_carts)
                 this.setState({ isModalVisible1: false, Loading: false })
             }
             else
@@ -244,7 +249,7 @@ export default class Productdetail extends Component {
                                         <Image source={{ uri: this.state.img1 }} style={styles.buypopupimage} />
                                         <Text style={styles.buypopuptext}>Enter Qty</Text>
                                         <TextInput onChangeText={(text) => this.setState({ Quntity: text })} style={styles.textinput} keyboardType="phone-pad" />
-                                        <View style={{ flexDirection: 'row', }}>
+                                        {this.state.Loader ? <ActivityIndicator size="large" color="red" /> : <View style={{ flexDirection: 'row', }}>
                                             <TouchableOpacity onPress={() => this.buysubmit()} style={styles.ratingbutton}>
                                                 <Text style={styles.ratingbuttontext}>SUBMIT</Text>
                                             </TouchableOpacity>
@@ -254,6 +259,7 @@ export default class Productdetail extends Component {
                                                 </TouchableOpacity>
                                             </View>
                                         </View>
+                                        }
                                     </View>
                                 </Modal>
 

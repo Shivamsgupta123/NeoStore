@@ -32,7 +32,7 @@ export default styles = StyleSheet.create({
         marginLeft: 10,
         color: "white",
         fontSize: Platform.OS === 'ios' ? 20 : 15,
-        fontWeight: Platform.OS === 'ios' ? '500' : '500',
+        // fontWeight: Platform.OS === 'ios' ? '500' : '500',
         height: Platform.OS === 'ios' ? 37 : 48,
         width: Platform.OS === 'ios' ? 37 : 47,
         marginTop: -5,

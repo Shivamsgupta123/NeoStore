@@ -155,6 +155,7 @@ export default styles = StyleSheet.create({
         width: 35,
         height: 35,
         textAlign: 'center',
+        color: "white"
     },
     quantitysubview: {
         flexDirection: "row",

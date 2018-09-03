@@ -26,7 +26,8 @@ export default styles = StyleSheet.create({
         padding: 15,
         borderBottomWidth: 1,
         borderColor: 'grey',
-        width: "100%"
+        width: "100%",
+        justifyContent: 'space-between'
     },
     orderid: {
         fontSize: 20,
@@ -63,7 +64,8 @@ export default styles = StyleSheet.create({
     },
     costview: {
         justifyContent: 'center',
-        marginLeft: 60
+        // marginLeft: 60
+
     }
 
 })

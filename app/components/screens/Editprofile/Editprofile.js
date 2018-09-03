@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AppRegistry, ActivityIndicator, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
-import { AsyncStorage } from 'react-native';
+// import { AsyncStorage } from 'react-native';
 import { Icon } from '../../../utils/Icon/Icon';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import styles from './Styles';
@@ -18,7 +18,7 @@ import { UserProvider, UserObject } from '../../../lib/UserProvider';
 export default class Editprofile extends Component {
     constructor(props) {
         super(props);
-        console.log("editprofile888", UserObject)
+        console.log("editprofile888", UserObject.user_data.first_name)
         this.focusNextField = this.focusNextField.bind(this);
         this.inputs = {};
         this.state = {
@@ -33,6 +33,7 @@ export default class Editprofile extends Component {
             DateText: UserObject.user_data.dob,
             DateHolder: null
         }
+        console.log("name", UserObject.user_data.first_name)
         console.log("profileimae", this.state.FirstName)
     }
 
@@ -65,7 +66,7 @@ export default class Editprofile extends Component {
                     console.log("updated", UserObject)
                     this.setState({ Loading: false })
                     alert("Account detail updated successfully.")
-                    this.props.navigation.replace('Myaccount')
+                    this.props.navigation.goBack()
                 }
                 else
                     alert(response.user_msg)

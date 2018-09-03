@@ -21,6 +21,6 @@ export const UserProvider = {
     },
     setUserInfo: (key, value) => {
         UserObject[key] = value
-        // console.log("updated", UserObject)
+        console.log("updated", UserObject)
     }
 }

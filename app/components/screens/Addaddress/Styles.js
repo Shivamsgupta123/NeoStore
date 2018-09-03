@@ -37,7 +37,10 @@ export default styles = StyleSheet.create({
         color: "#1C1C1C",
         fontWeight: "400",
         paddingLeft: 135,
-        fontFamily: FontBook
+        fontFamily: FontMedium,
+
+
+
     },
     citytextinput: {
         height: 45,

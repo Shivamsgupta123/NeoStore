@@ -19,7 +19,6 @@ export default class Myaccount extends Component {
         const didBlurSubscription = this.props.navigation.addListener(
             'willFocus',
             payload => {
-
                 this.setState({ autoplay: false })
             }
         );

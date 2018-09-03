@@ -52,9 +52,9 @@ export default styles = StyleSheet.create({
         paddingTop: 10,
         flex: 1,
         flexDirection: 'row',
-        // justifyContent: "space-between",
+        justifyContent: "space-between",
         alignItems: 'center',
-        // width: "65%"
+        width: "100%"
 
 
     },
@@ -62,7 +62,8 @@ export default styles = StyleSheet.create({
         fontSize: 19,
         fontWeight: "300",
         color: "#1C1C1C",
-        paddingLeft: Platform.OS === 'ios' ? 110 : 100,
+        // paddingLeft: Platform.OS === 'ios' ? 110 : 100,
+        marginRight: "38%"
 
 
     },
@@ -74,10 +75,11 @@ export default styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingLeft: 15,
-        paddingRight: 11,
+        paddingRight: 20,
         // borderTopWidth: 1,
         borderColor: "grey",
-        borderBottomWidth: 1
+        borderBottomWidth: 1,
+        width: "100%"
 
     },
     producttotal: {
@@ -85,7 +87,8 @@ export default styles = StyleSheet.create({
         fontWeight: "300",
         color: "#1C1C1C",
         fontWeight: "500",
-        fontFamily: FontBold
+        fontFamily: FontBold,
+        // marginRight: "5%"
     },
     orderbutton: {
         borderWidth: 1,

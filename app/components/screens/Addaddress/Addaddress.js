@@ -105,7 +105,7 @@ export default class Addaddress extends Component {
                                     <Text style={styles.country}>COUNTRY</Text>
                                 </View>
                                 <View style={{ flexDirection: "row", paddingTop: 10 }}>
-                                    <TextInput onSubmitEditing={() => { this.focusNextField('six'); }} returnKeyType={"next"} ref={input => { this.inputs['five'] = input; }} onChangeText={(text) => this.setState({ Zipcode: text })} placeholder="ZIP CODE" style={styles.citytextinput} ></TextInput>
+                                    <TextInput onSubmitEditing={() => { this.focusNextField('six'); }} returnKeyType={"next"} ref={input => { this.inputs['five'] = input; }} onChangeText={(text) => this.setState({ Zipcode: text })} keyboardType="phone-pad" placeholder="ZIP CODE" style={styles.citytextinput} ></TextInput>
                                     <TextInput ref={input => { this.inputs['six'] = input; }} onChangeText={(text) => this.setState({ Country: text })} placeholder="COUNTRY" style={styles.statetextinput} />
                                 </View>
                                 <View style={styles.buttonview}>

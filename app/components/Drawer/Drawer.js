@@ -12,7 +12,8 @@ export default class Drawer extends Component {
         LastName: '',
         Email: '',
         profileimage: 'abc',
-        autoplay: true
+        autoplay: true,
+        TotalCart: ''
     }
 
     componentWillMount = async () => {
@@ -25,6 +26,7 @@ export default class Drawer extends Component {
         this.setState({ LastName: UserObject.user_data.last_name })
         this.setState({ Email: UserObject.user_data.email })
         this.setState({ profileimage: UserObject.user_data.profile_pic })
+        this.setState({ TotalCart: UserObject.total_carts })
     }
 
     closeScreen = (screen, params = {}) => {
@@ -35,12 +37,14 @@ export default class Drawer extends Component {
     }
 
     componentDidMount() {
-        // console.log("25")
+        console.log("25")
         const didBlurSubscription = this.props.navigation.addListener(
             'willFocus',
             payload => {
-                console.log('called')
+
                 this.setState({ autoplay: false })
+                console.log("autoplay", this.state.autoplay)
+                // console.log('called25')
             }
         );
 
@@ -60,7 +64,7 @@ export default class Drawer extends Component {
     }
 
     render() {
-        // console.log('ajdshjahhh')
+        console.log('ajdshjahhh')
         return (
             <View style={styles.mainview}>
 
@@ -75,7 +79,7 @@ export default class Drawer extends Component {
                 </TouchableOpacity>
                 {/* </View> */}
                 {/* <ScrollView> */}
-                <View style={styles.drawerview1}>
+                <View style={styles.drawerview2}>
                     <TouchableOpacity style={styles.drawerview} onPress={() => this.closeScreen('MyCart')}>
                         <Icon name="cart" style={styles.drawericon} size={28} color="#FFFFFF" />
                         <Text style={styles.drawertext}>My Cart</Text>

@@ -45,12 +45,26 @@ export default styles = StyleSheet.create({
         flexDirection: 'row',
         // justifyContent:'center'
         padding: 2,
-        // borderColor:'white'
+        // borderColor: 'white',
         borderBottomWidth: 1,
         borderColor: "#020202",
+        // borderTopWidth: 1
 
 
     },
+    drawerview2: {
+        flex: 1,
+        flexDirection: 'row',
+        // justifyContent:'center'
+        padding: 2,
+        // borderColor: 'white',
+        borderBottomWidth: 1,
+        borderColor: "#020202",
+        borderTopWidth: 1
+
+
+    },
+
     drawerview: {
         flex: 1,
         flexDirection: 'row',
