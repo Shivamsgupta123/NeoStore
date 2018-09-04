@@ -45,6 +45,9 @@ export default class Editprofile extends Component {
 
     // sending updated data to API
     submit() {
+        var today = new Date();
+        console.log("todays date", today);
+        // console.log("date", date)
         if (this.state.avatarSource == null)
             alert("Upload profile image")
         else {
@@ -77,7 +80,6 @@ export default class Editprofile extends Component {
             )
         }
     }
-
     // ImagePicker
     takeimage() {
         var options = {
@@ -121,6 +123,7 @@ export default class Editprofile extends Component {
         //To open the dialog
         this.refs.DatePickerDialog.open({
             date: DateHolder,
+            maxDate: new Date()
         });
     }
 

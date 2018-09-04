@@ -14,6 +14,7 @@ export default class Addaddress extends Component {
         this.inputs = {};
         this.state = { Loading: true, Address: '', Landark: '', City: '', STATE: '', Zipcode: '', Country: '' }
         this.address = []
+        console.log("addaddress", props)
     }
     focusNextField(id) {
         this.inputs[id].focus()

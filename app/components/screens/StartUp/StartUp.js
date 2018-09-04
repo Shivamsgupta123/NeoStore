@@ -23,19 +23,22 @@ export default class StartUp extends Component {
 
                     }
                     else {
+                        console.log("456", response)
                         AsyncStorage.removeItem("access_token")
                         this.props.navigation.replace('Login')
-                        // console.log("456")
+
 
                     }
                 }, error => {
-                    console.log(error.error)
+                    alert("No Internet Connection")
+                    this.props.navigation.replace('Login')
+                    console.log(error)
                 }
                 )
 
             }
             else {
-                // console.log("login")
+                console.log("login")
                 this.props.navigation.replace('Login')
             }
         });

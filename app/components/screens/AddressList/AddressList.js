@@ -41,16 +41,29 @@ export default class AddressList extends Component {
         // this.getAddress()
     }
     removeAddress(item, index) {
+        Alert.alert(
+            'Delete!',
+            'Delete Address?',
+            [
+                { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                { text: 'OK', onPress: () => this.deleteAddress(index, item) },
+            ],
+            { cancelable: false }
+        )
+        // this.address1.splice(index, 1)
+        // AsyncStorage.setItem("address", JSON.stringify(this.address1))
+        // this.setState({ autoplay: true })
+
+    }
+    deleteAddress(index, item) {
         this.address1.splice(index, 1)
         AsyncStorage.setItem("address", JSON.stringify(this.address1))
         this.setState({ autoplay: true })
-        // console.log("lmn", this.address1.length)
     }
 
     placeOrder() {
         console.log('called')
         let formData = new FormData();
-
         if (this.index == 0 || this.address1 == null || this.address1.length == 0) {
             alert("Please Add Address")
         }
@@ -74,14 +87,18 @@ export default class AddressList extends Component {
                 console.log(error)
             })
         }
-
-
     }
     selectAddress(item, index) {
         // console.log("item", item)
-        console.log("index", index)
+        // console.log("index", index)
         this.setState({ Select: index })
         this.addressindex = index
+    }
+    editAddress(item, index) {
+        var editAdd = { "item": item, "index": index }
+        // console.log("item", item)
+        // console.log("index", index)
+        this.props.navigation.navigate('Addaddress', editAdd)
 
     }
 
@@ -130,10 +147,19 @@ export default class AddressList extends Component {
                                                     <TouchableOpacity style={styles.closeicon} onPress={() => this.removeAddress(item, index)}>
                                                         <Icon name="close" size={15} color="#1C1C1C" />
                                                     </TouchableOpacity>
-                                                </View>
 
+
+                                                </View>
+                                                {/* <View style={{ flex: 1, flexDirection: "row" }}> */}
                                                 <Text style={styles.add}>{item.address}</Text>
+                                                <TouchableOpacity onPress={() => this.editAddress(item, index)}>
+                                                    <Icon name="edit" style={styles.editicon} size={15} color="#1C1C1C" />
+                                                </TouchableOpacity>
+                                                {/* </View> */}
+
                                             </View>
+
+
                                         </View>
 
                                     )

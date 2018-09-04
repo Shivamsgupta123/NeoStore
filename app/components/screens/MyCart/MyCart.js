@@ -132,7 +132,7 @@ export default class MyCart extends Component {
 
     render() {
         // console.log("fetchdata", this.state.fetcheddata)
-        // console.log("data lenght", this.state.fetcheddata.data)
+        console.log("data lenght", this.state.fetcheddata.data)
         this.leftOpenValue = Dimensions.get('window').width;
         this.rightOpenValue = -Dimensions.get('window').width;
         // if (this.state.Loading)
@@ -153,7 +153,10 @@ export default class MyCart extends Component {
                     </Right>
 
                 </Header>
+
+
                 {this.state.fetcheddata.data == null || this.state.fetcheddata.data.length == 0 ? <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}><Text>Cart Is Empty!</Text></View> :
+                    // <View>
                     <View style={{ flex: 1 }}>
 
 
@@ -222,6 +225,7 @@ export default class MyCart extends Component {
                         </View>
 
                     </View>
+                    // </View>
                 }
             </View>
 

@@ -11,7 +11,9 @@ import { login, productid, addtocart, productdetail, productrating, } from '../.
 import { GlobalAPI } from '../../../lib/Globals';
 import Stars from 'react-native-stars';
 import { UserProvider, UserObject } from '../../../lib/UserProvider';
-
+// import Vibration from 'react-native-vibration;'
+// var Vibration = require('react-native-vibration');
+// const DURATION = 10000
 export default class Productdetail extends Component {
     constructor(props) {
         super(props)
@@ -50,6 +52,8 @@ export default class Productdetail extends Component {
                 );
             }
         }, error => {
+            alert("No Internet Connection!")
+            this.setState({ Loading: false })
             console.log(error)
         }
         )
@@ -75,12 +79,14 @@ export default class Productdetail extends Component {
     }
 
     ratingsubmit() {
+        this.setState({ Loader: true })
         let formData = new FormData();
         formData.append(' product_id', this.state.fetcheddata.id);
         formData.append('rating', this.state.stars);
         GlobalAPI(productrating, "POST", formData, null, response => {
             if (response.status == 200) {
-                alert(response.message)
+                this.setState({ Loader: false })
+                // alert(response.message)
                 this.setState({ isModalVisible: false, Loading: false })
                 // alert(response.message)
             }
@@ -104,12 +110,16 @@ export default class Productdetail extends Component {
             if (response.status == 200) {
                 this.setState({ Loader: false })
                 console.log("buysubmit", response)
-                alert(response.message)
+                // alert(response.message)
                 UserProvider.setUserInfo("total_carts", response.total_carts)
+                // Vibration.cancel()
                 this.setState({ isModalVisible1: false, Loading: false })
             }
-            else
+            else {
                 alert(response.user_msg)
+                this.setState({ Loader: false })
+            }
+
         }, error => {
             console.log(error)
         })
@@ -224,7 +234,7 @@ export default class Productdetail extends Component {
                                             fullStar={<Icon name="star" size={27} color="#e2d628" style={{ marginTop: 35 }} />}
                                             emptyStar={<Icon name="star" size={27} color="#7F7F7F" style={{ marginTop: 35 }} />}
                                         />
-                                        <View style={{ flexDirection: 'row', }}>
+                                        {this.state.Loader ? <ActivityIndicator size="large" color="red" /> : <View style={{ flexDirection: 'row', }}>
                                             <TouchableOpacity onPress={() => this.ratingsubmit()} style={styles.ratingbutton}>
                                                 <Text style={styles.ratingbuttontext}>SUBMIT</Text>
                                             </TouchableOpacity>
@@ -234,6 +244,7 @@ export default class Productdetail extends Component {
                                                 </TouchableOpacity>
                                             </View>
                                         </View>
+                                        }
                                     </View>
                                 </Modal>
                                 {console.log("b")}

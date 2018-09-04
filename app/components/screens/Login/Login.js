@@ -51,6 +51,7 @@ export default class Login extends Component {
     userdetails = (access_token) => {
         SplashScreen.hide();
         this.setState({ Loading: true })
+
         GlobalAPI(fetchaccountdetail, "GET", null, access_token, (response) => {
             if (response.status == 200) {
                 UserProvider.setUserData(response.data)
@@ -61,8 +62,10 @@ export default class Login extends Component {
             }
         }, error => {
             console.log(error)
+            alert("Connetion Failed!")
         }
         )
+
     }
 
     // user Authentication
@@ -86,7 +89,7 @@ export default class Login extends Component {
                 // alert("Connection Failed!")
             }
         }, error => {
-            console.log(error.error)
+            console.log(error)
             alert("Connection Failed!")
             this.setState({ Loading: false })
         })

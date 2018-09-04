@@ -46,8 +46,9 @@ export default class Productlist extends Component {
                 }
             },
                 error => {
+                    alert("No Internet Connection!")
+                    this.setState({ loader: false })
                     console.log("res2", error)
-
                 }
             )
         }
@@ -70,6 +71,7 @@ export default class Productlist extends Component {
                         <Icon name="search" size={20} color="#f9fbff" />
                     </Right>
                 </Header>
+
                 <View style={{ flex: 1, backgroundColor: White }}>
                     <FlatList
                         onEndReached={() => this.fetchResult()}

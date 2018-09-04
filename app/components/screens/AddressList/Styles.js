@@ -63,7 +63,7 @@ export default styles = StyleSheet.create({
     addresssubview: {
         borderColor: "grey",
         borderWidth: 1,
-        height: 90,
+        height: "75%",
         width: "88%",
         margin: 10,
 
@@ -89,6 +89,7 @@ export default styles = StyleSheet.create({
     },
     buttonview: {
         // flex: 1,
+        paddingTop: "2%",
         flexDirection: "row",
         justifyContent: "space-between"
     },
@@ -123,4 +124,8 @@ export default styles = StyleSheet.create({
         fontFamily: FontMedium,
         paddingTop: Platform.OS === "ios" ? 7 : 0
     },
+    editicon: {
+        paddingLeft: "93%",
+        paddingBottom: "8%"
+    }
 })
