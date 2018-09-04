@@ -53,7 +53,6 @@ export default class AddressList extends Component {
         // this.address1.splice(index, 1)
         // AsyncStorage.setItem("address", JSON.stringify(this.address1))
         // this.setState({ autoplay: true })
-
     }
     deleteAddress(index, item) {
         this.address1.splice(index, 1)

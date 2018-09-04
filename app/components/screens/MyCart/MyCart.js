@@ -129,7 +129,6 @@ export default class MyCart extends Component {
             }
         )
     }
-
     render() {
         // console.log("fetchdata", this.state.fetcheddata)
         console.log("data lenght", this.state.fetcheddata.data)
