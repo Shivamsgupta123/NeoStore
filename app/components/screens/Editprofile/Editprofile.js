@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
-import { AppRegistry, ActivityIndicator, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
-// import { AsyncStorage } from 'react-native';
+import { ActivityIndicator, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import { Icon } from '../../../utils/Icon/Icon';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import styles from './Styles';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
-import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
 import { DatePickerDialog } from 'react-native-datepicker-dialog'
 import moment from 'moment';
 import ImagePicker from 'react-native-image-picker';
 import { updateaccountdetail } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import { UserProvider, UserObject } from '../../../lib/UserProvider';
+import { connect } from "react-redux";
 
-
-
-export default class Editprofile extends Component {
+const addUpdateData = (data) => {
+    return {
+        type: 'ADD_UPDATE_DATA',
+        data
+    }
+}
+class Editprofile extends Component {
     constructor(props) {
         super(props);
-        console.log("editprofile888", UserObject.user_data.first_name)
+        console.log("editprofile888", props)
         this.focusNextField = this.focusNextField.bind(this);
         this.inputs = {};
         this.state = {
@@ -26,22 +29,19 @@ export default class Editprofile extends Component {
             LastName: UserObject.user_data.last_name,
             Email: UserObject.user_data.email,
             PhoneNumber: UserObject.user_data.phone_no,
-            // DOB: UserObject.state.params.dob,
             avatarSource: null,
             Loading: false,
             profileimage: UserObject.user_data.profile_pic,
             DateText: UserObject.user_data.dob,
             DateHolder: null
         }
-        console.log("name", UserObject.user_data.first_name)
-        console.log("profileimae", this.state.FirstName)
+        // console.log("name", UserObject.user_data.first_name)
+        // console.log("profileimae", this.state.FirstName)
     }
 
     focusNextField(id) {
         this.inputs[id].focus()
     }
-
-
 
     // sending updated data to API
     submit() {
@@ -61,10 +61,13 @@ export default class Editprofile extends Component {
             formData.append('phone_no', this.state.PhoneNumber);
             console.log("formdata", formData)
 
+
+
             GlobalAPI(updateaccountdetail, "POST", formData, null, response => {
 
                 if (response.status == 200) {
-                    console.log("afs", response)
+                    this.props.addUpdateData({ user_data: response.data })
+                    // console.log("afs", response)
                     UserProvider.setUserInfo("user_data", response.data)
                     console.log("updated", UserObject)
                     this.setState({ Loading: false })
@@ -87,7 +90,6 @@ export default class Editprofile extends Component {
             storageOptions: {
                 skipBackup: true,
                 path: 'images'
-
             }
         };
         ImagePicker.showImagePicker(options, (response) => {
@@ -136,9 +138,8 @@ export default class Editprofile extends Component {
         });
         console.log("date1", this.state.DateText)
     }
-
     render() {
-
+        console.log("123", this.props.first_name)
         return (
             <View pointerEvents={this.state.Loading ? "none" : "auto"} style={{ flex: 1 }}>
                 <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>
@@ -157,7 +158,6 @@ export default class Editprofile extends Component {
                     <ScrollView >
                         <KeyboardAvoidingView style={styles.keyboardview} behavior="padding" enabled>
                             <View style={styles.mainview}>
-
                                 <TouchableOpacity onPress={() => this.takeimage()} >
                                     <View style={styles.profileimage}>
                                         {this.state.avatarSource === null ? <Image style={styles.profileimage} source={{ uri: this.state.profileimage }} /> :
@@ -203,7 +203,16 @@ export default class Editprofile extends Component {
                     </ScrollView>
                 </ImageBackground >
             </View>
-
         );
     }
 }
+const mapStateToProps = (state) => {
+    console.log("state1", state)
+    return {
+        state
+    }
+}
+export default connect(mapStateToProps, { addUpdateData })(Editprofile)
+
+
+

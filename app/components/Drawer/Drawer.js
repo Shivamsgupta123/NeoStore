@@ -5,23 +5,27 @@ import styles from './Styles';
 import { AsyncStorage } from 'react-native';
 import { UserObject } from '../../lib/UserProvider';
 // import { UserProvider } from '../../lib/Globals';
+import { connect } from "react-redux";
 
-export default class Drawer extends Component {
-    state = {
-        FirstName: '',
-        LastName: '',
-        Email: '',
-        profileimage: 'abc',
-        autoplay: true,
-        TotalCart: ''
+class Drawer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            FirstName: '',
+            LastName: '',
+            Email: '',
+            profileimage: 'abc',
+            autoplay: true,
+            TotalCart: ''
+        }
+        console.log("Drawer props", props)
     }
 
     componentWillMount = async () => {
         var getdata = await AsyncStorage.getItem('ResponseData');
-        console.log("userobj21", UserObject)
-
+        // console.log("userobj21", UserObject)
         getdata = JSON.parse(getdata)
-        console.log("drawer", getdata)
+        // console.log("drawer", getdata)
         this.setState({ FirstName: UserObject.user_data.first_name })
         this.setState({ LastName: UserObject.user_data.last_name })
         this.setState({ Email: UserObject.user_data.email })
@@ -37,21 +41,17 @@ export default class Drawer extends Component {
     }
 
     componentDidMount() {
-        console.log("25")
-        const didBlurSubscription = this.props.navigation.addListener(
-            'willFocus',
-            payload => {
 
-                this.setState({ autoplay: false })
-                console.log("autoplay", this.state.autoplay)
-                // console.log('called25')
-            }
-        );
+        // const didBlurSubscription = this.props.navigation.addListener(
+        //     'willFocus',
+        //     payload => {
 
+        //         this.setState({ autoplay: false })
+        //         // console.log("autoplay", this.state.autoplay)
+        //         // console.log('called25')
+        //     }
+        // );
     }
-
-
-
     logout = async () => {
         try {
             AsyncStorage.removeItem("access_token");
@@ -62,19 +62,15 @@ export default class Drawer extends Component {
         }
         this.props.navigation.replace('Login')
     }
-
     render() {
-        console.log('ajdshjahhh')
         return (
             <View style={styles.mainview}>
-
                 {/* <View style={{ alignItems: 'center', padding: 20 }}> */}
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Myaccount')}>
                     <View style={{ alignItems: 'center', padding: 20 }}>
                         <Image style={styles.profileimage} source={{ uri: UserObject.user_data.profile_pic }} />
-
-                        <Text style={styles.username}>{UserObject.user_data.first_name} {UserObject.user_data.last_name}</Text>
-                        <Text style={styles.useremail}>{UserObject.user_data.email}</Text></View>
+                        <Text style={styles.username}>{this.props.state.user_data.first_name} {UserObject.user_data.last_name}</Text>
+                        <Text style={styles.useremail}>{this.props.state.user_data.email}</Text></View>
 
                 </TouchableOpacity>
                 {/* </View> */}
@@ -84,7 +80,7 @@ export default class Drawer extends Component {
                         <Icon name="cart" style={styles.drawericon} size={28} color="#FFFFFF" />
                         <Text style={styles.drawertext}>My Cart</Text>
                         <View style={styles.cartitemview}>
-                            <Text style={styles.cartitemcount}>{UserObject.total_carts}</Text>
+                            <Text style={styles.cartitemcount}>{this.props.state.total_carts}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -145,10 +141,14 @@ export default class Drawer extends Component {
                     </TouchableOpacity>
                 </View>
                 {/* </ScrollView> */}
-
-
             </View>
-
         );
     }
 }
+const mapStateToProps = (state) => {
+    // console.log("state5", state)
+    return {
+        state
+    }
+}
+export default connect(mapStateToProps)(Drawer)

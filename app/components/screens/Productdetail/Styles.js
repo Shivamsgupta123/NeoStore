@@ -270,7 +270,7 @@ export default styles = StyleSheet.create({
         flex: 1,
         // backgroundColor: "red"
 
-        // height: Dimensions.get('window').height
+        height: Dimensions.get('window').height
     },
     productsubimage: {
         width: 100,

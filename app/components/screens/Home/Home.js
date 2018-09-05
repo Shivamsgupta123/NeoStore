@@ -37,7 +37,7 @@ export default class Home extends Component {
 
                 <View>
                     <View style={styles.swiperimage}>
-                        <Swiper dotColor={HeaderColor} activeDotColor="grey">
+                        <Swiper dotColor={HeaderColor} autoplay={true} activeDotColor="grey">
                             {UserObject.product_categories.map(img => (
                                 <View key={img.icon_image} style={{ flex: 1 }}>
                                     <Image resizeMode="stretch" style={styles.swiperimage} source={{ uri: img.icon_image }} />

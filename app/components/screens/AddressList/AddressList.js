@@ -59,7 +59,6 @@ export default class AddressList extends Component {
         AsyncStorage.setItem("address", JSON.stringify(this.address1))
         this.setState({ autoplay: true })
     }
-
     placeOrder() {
         console.log('called')
         let formData = new FormData();

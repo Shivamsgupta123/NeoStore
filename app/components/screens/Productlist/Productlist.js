@@ -53,7 +53,6 @@ export default class Productlist extends Component {
             )
         }
     }
-
     render() {
         if (this.state.loader1) { return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color={HeaderColor} /> }
         return (

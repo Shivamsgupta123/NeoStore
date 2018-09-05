@@ -12,8 +12,16 @@ import { GlobalAPI } from '../../../lib/Globals';
 import SplashScreen from 'react-native-splash-screen';
 import { UserProvider } from '../../../lib/UserProvider';
 import { Validation } from '../../../lib/Validation';
+import { connect } from "react-redux";
 
-export default class Login extends Component {
+const addUserData = (data) => {
+    return {
+        type: 'ADD_USER-DATA',
+        data
+    }
+}
+
+class Login extends Component {
     constructor(props) {
         super(props)
     }
@@ -54,6 +62,7 @@ export default class Login extends Component {
 
         GlobalAPI(fetchaccountdetail, "GET", null, access_token, (response) => {
             if (response.status == 200) {
+                this.props.addUserData(response.data)
                 UserProvider.setUserData(response.data)
                 this.props.navigation.replace('MyApp', response)
             }
@@ -142,15 +151,16 @@ export default class Login extends Component {
                                 </TouchableOpacity>
                             }
                         </View>
-
                     </View>
-
                 </ImageBackground>
             </View>
-
-
         );
     }
-
-
 }
+const mapStateToProps = (state) => {
+    console.log("state2", state)
+    return {
+        //    first_name: state.first_name,
+    }
+}
+export default connect(mapStateToProps, { addUserData })(Login)

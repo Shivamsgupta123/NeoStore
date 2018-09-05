@@ -9,8 +9,9 @@ import { GlobalAPI } from '../../../lib/Globals';
 import ModalDropdown from 'react-native-modal-dropdown';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { UserProvider, UserObject } from '../../../lib/UserProvider';
+import { connect } from "react-redux";
 
-export default class MyCart extends Component {
+class MyCart extends Component {
     constructor(props) {
         super(props)
         this.state = { fetcheddata: [], autoplay: true, Loading: true, Quantity: null, product_ID: '' }
@@ -33,27 +34,14 @@ export default class MyCart extends Component {
                 console.log(error)
             }
         )
-        const didBlurSubscription = this.props.navigation.addListener(
-            'willFocus',
-            payload => {
-                this.setState({ autoplay: false })
-            }
-        );
 
     }
     componentWillUnmount() {
         console.log("welcome")
     }
-
-
     setquantity(index, id, value, item) {
-        // console.log("index", index)
-        // console.log("id", id)
-        // console.log("value", value)
-        // console.log("item", item)
         this.setState({})
         this.state.fetcheddata.data[index].quantity = value
-
         this.setState({ Loading: true })
         // console.log("value", value)
         // console.log("value1", this.state.Quantity)
@@ -63,23 +51,19 @@ export default class MyCart extends Component {
         formData.append("quantity", value)
         GlobalAPI(editcart, "POST", formData, null, response => {
             if (response.status == 200) {
-
                 this.state.fetcheddata.total = this.state.fetcheddata.total - this.state.fetcheddata.data[index].product.sub_total
                 // console.log("subtotal", this.state.fetcheddata.data[index].product.sub_total)
                 var cost = this.state.fetcheddata.data[index].product.cost
                 var total = cost * value
                 // this.state.fetcheddata.total = this.state.fetcheddata.total - this.state.fetcheddata.total - this.state.fetcheddata.data[index].product.sub_total
-
                 item.product.sub_total = total
                 this.state.fetcheddata.total = this.state.fetcheddata.total + total
                 // console.log("cost", total)
                 alert("Quantity Updated")
                 this.setState({
                     Loading: false,
-
                 }
                 );
-                // console.log("mycart", this.state.fetcheddata)
             }
         },
             error => {
@@ -88,13 +72,11 @@ export default class MyCart extends Component {
         )
         return true
     }
-
     deleteItem(index, item) {
         // this.setState({ Loading: true })
         console.log("item23", item)
         console.log("item", this.state.fetcheddata.total)
         console.log("item1", item.item.product.cost)
-
         console.log("item2", this.state.fetcheddata.total)
         Alert.alert(
             'Delete!',
@@ -105,7 +87,6 @@ export default class MyCart extends Component {
             ],
             { cancelable: false }
         )
-
     }
     delete(index, item) {
         this.setState({ Loading: true })
@@ -150,9 +131,7 @@ export default class MyCart extends Component {
                     <Right style={{ paddingRight: 7 }}>
                         <Icon name="search" size={22} style={styles.iconback} />
                     </Right>
-
                 </Header>
-
 
                 {this.state.fetcheddata.data == null || this.state.fetcheddata.data.length == 0 ? <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}><Text>Cart Is Empty!</Text></View> :
                     // <View>
@@ -231,3 +210,10 @@ export default class MyCart extends Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+    console.log("state3", state)
+    return {
+        state
+    }
+}
+export default connect(mapStateToProps)(MyCart)

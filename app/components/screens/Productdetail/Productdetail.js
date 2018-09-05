@@ -86,7 +86,7 @@ export default class Productdetail extends Component {
         GlobalAPI(productrating, "POST", formData, null, response => {
             if (response.status == 200) {
                 this.setState({ Loader: false })
-                // alert(response.message)
+                alert(response.message)
                 this.setState({ isModalVisible: false, Loading: false })
                 // alert(response.message)
             }
@@ -94,6 +94,7 @@ export default class Productdetail extends Component {
                 alert(response.user_msg)
         },
             error => {
+                alert("No Internet Connection!")
                 console.log(error)
             })
     }
@@ -110,18 +111,21 @@ export default class Productdetail extends Component {
             if (response.status == 200) {
                 this.setState({ Loader: false })
                 console.log("buysubmit", response)
-                // alert(response.message)
+                alert(response.message)
                 UserProvider.setUserInfo("total_carts", response.total_carts)
                 // Vibration.cancel()
                 this.setState({ isModalVisible1: false, Loading: false })
             }
             else {
+                alert("No Internet Connection!")
                 alert(response.user_msg)
                 this.setState({ Loader: false })
             }
 
         }, error => {
+            alert("No Internet Connection!")
             console.log(error)
+            this.setState({ Loader: false })
         })
     }
 

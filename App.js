@@ -22,10 +22,35 @@ import Myorder from './app/components/screens/Myorder/Myorder';
 import Orderdetail from './app/components/screens/Orderdetail/Orderdetail';
 import StoreLocator from './app/components/screens/StoreLocator/StoreLocator';
 import AddressList from './app/components/screens/AddressList/AddressList';
+import { UserObject } from './app/lib/UserProvider';
+import { createStore } from "redux";
+import { Provider } from 'react-redux'
+import { connect } from "react-redux";
 
+// const istate = {}
+const store = createStore(changeData);
+function changeData(state, action) {
+    switch (action.type) {
+        case 'ADD_UPDATE_DATA':
+            return { ...state, ...action.data }
+        case 'ADD_USER-DATA':
+            return { ...state, ...action.data }
+        default:
+            return state
+    }
+}
+// console.log("state4", state.user_data)
+// ...state.user_data, ...action.data
+// store.dispatch({
+//     type: 'first_name',
+//     text: 'Shivam'
+// })
+// store.dispatch({
+//     type: 'last_name',
+//     text: 'Gupta'
+// })
 
 const MyApp = createDrawerNavigator({
-
     Home: {
         screen: Home,
         navigationOptions: {
@@ -161,8 +186,12 @@ export default class App extends Component {
     //     SplashScreen.hide()
     // }
     render() {
+        console.log("store", store.getState())
         return (
-            <RootStack />
+            // console.log("store", store.getState())
+            <Provider store={store}>
+                <RootStack />
+            </Provider>
         )
     }
 }

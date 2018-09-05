@@ -8,20 +8,25 @@ import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../uti
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
 import ResetPasswordScreen from '../ResetPassword/ResetPasswordScreen';
 import { UserObject } from '../../../lib/UserProvider';
+import { connect } from "react-redux";
 
 var getdata
-export default class Myaccount extends Component {
-    state = {
-        autoplay: true
+class Myaccount extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            autoplay: true
+        }
+        console.log("Myacc props", props.state.user_data.first_name)
     }
     componentDidMount() {
         console.log("25")
-        const didBlurSubscription = this.props.navigation.addListener(
-            'willFocus',
-            payload => {
-                this.setState({ autoplay: false })
-            }
-        );
+        // const didBlurSubscription = this.props.navigation.addListener(
+        //     'willFocus',
+        //     payload => {
+        //         this.setState({ autoplay: false })
+        //     }
+        // );
     }
     render() {
         return (
@@ -44,31 +49,31 @@ export default class Myaccount extends Component {
 
                         <View style={styles.mainview}>
 
-                            <Image style={styles.profileimage} source={{ uri: UserObject.user_data.profile_pic }} />
+                            <Image style={styles.profileimage} source={{ uri: this.props.state.user_data.profile_pic }} />
                             <View style={styles.view3}>
                                 <Icon name="user" size={25} style={styles.iconpadding} />
-                                <TextInput style={styles.textinput} editable={false} placeholder={UserObject.user_data.first_name} placeholderTextColor="white" ></TextInput>
+                                <TextInput style={styles.textinput} editable={false} placeholder={this.props.state.user_data.first_name} placeholderTextColor="white" ></TextInput>
                             </View>
 
                             <View style={styles.view3}>
                                 <Icon name="user" size={25} style={styles.iconpadding} />
-                                <TextInput style={styles.textinput} editable={false} placeholder={UserObject.user_data.last_name} placeholderTextColor="white" ></TextInput>
+                                <TextInput style={styles.textinput} editable={false} placeholder={this.props.state.user_data.last_name} placeholderTextColor="white" ></TextInput>
                             </View>
 
                             <View style={styles.view3}>
                                 <Icon name="mail" size={22} style={styles.mailicon} />
-                                <TextInput style={styles.textinput} editable={false} placeholder={UserObject.user_data.email} placeholderTextColor="white" ></TextInput>
+                                <TextInput style={styles.textinput} editable={false} placeholder={this.props.state.user_data.email} placeholderTextColor="white" ></TextInput>
 
                             </View>
 
                             <View style={styles.view3}>
                                 <Icon name="mobile" size={25} style={styles.mobileicon} />
-                                <TextInput style={styles.textinput} editable={false} placeholder={UserObject.user_data.phone_no} placeholderTextColor="white" ></TextInput>
+                                <TextInput style={styles.textinput} editable={false} placeholder={this.props.state.user_data.phone_no} placeholderTextColor="white" ></TextInput>
                             </View>
 
                             <View style={styles.view3}>
                                 <Icon name="cake" size={20} style={styles.cakeicon} />
-                                <TextInput style={styles.textinput} editable={false} placeholder={UserObject.user_data.dob} placeholderTextColor="white" ></TextInput>
+                                <TextInput style={styles.textinput} editable={false} placeholder={this.props.state.user_data.dob} placeholderTextColor="white" ></TextInput>
                             </View>
 
                             <TouchableOpacity style={styles.loginbutton} onPress={() => this.props.navigation.navigate('Editprofile')}>
@@ -85,8 +90,13 @@ export default class Myaccount extends Component {
                 </TouchableOpacity>
             </View>
             // </View>
-
-
         );
     }
 }
+const mapStateToProps = (state) => {
+    console.log("state3", state)
+    return {
+        state
+    }
+}
+export default connect(mapStateToProps)(Myaccount)
