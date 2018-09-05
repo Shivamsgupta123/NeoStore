@@ -93,7 +93,7 @@ export default class AddressList extends Component {
         this.addressindex = index
     }
     editAddress(item, index) {
-        var editAdd = { "item": item, "index": index }
+        var editAdd = { item: item, index: index }
         // console.log("item", item)
         // console.log("index", index)
         this.props.navigation.navigate('Addaddress', editAdd)
@@ -146,10 +146,9 @@ export default class AddressList extends Component {
                                                         <Icon name="close" size={15} color="#1C1C1C" />
                                                     </TouchableOpacity>
 
-
                                                 </View>
                                                 {/* <View style={{ flex: 1, flexDirection: "row" }}> */}
-                                                <Text style={styles.add}>{item.address}</Text>
+                                                <Text style={styles.add}>{item.address}, {item.landmark}, {item.city}, {item.state}, {item.zipcode}, {item.country}.</Text>
                                                 <TouchableOpacity onPress={() => this.editAddress(item, index)}>
                                                     <Icon name="edit" style={styles.editicon} size={15} color="#1C1C1C" />
                                                 </TouchableOpacity>
