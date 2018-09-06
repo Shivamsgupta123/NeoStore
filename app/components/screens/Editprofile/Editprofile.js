@@ -61,14 +61,12 @@ class Editprofile extends Component {
             formData.append('phone_no', this.state.PhoneNumber);
             console.log("formdata", formData)
 
-
-
             GlobalAPI(updateaccountdetail, "POST", formData, null, response => {
 
                 if (response.status == 200) {
                     this.props.addUpdateData({ user_data: response.data })
                     // console.log("afs", response)
-                    UserProvider.setUserInfo("user_data", response.data)
+                    // UserProvider.setUserInfo("user_data", response.data)
                     console.log("updated", UserObject)
                     this.setState({ Loading: false })
                     alert("Account detail updated successfully.")
@@ -207,7 +205,7 @@ class Editprofile extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    console.log("state1", state)
+    // console.log(" productdetail state", state)
     return {
         state
     }

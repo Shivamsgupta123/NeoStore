@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, Image, Dimensions, TouchableOpacity, Vibration, BackHandler, ScrollView, Platform, Alert } from 'react-native';
 import styles from './Styles';
 import Swiper from 'react-native-swiper';
 import { Icon } from '../../../utils/Icon/Icon';
@@ -11,11 +11,37 @@ import { UserObject } from '../../../lib/UserProvider';
 export default class Home extends Component {
     constructor(props) {
         super(props)
-        console.log('userobj', UserObject.product_categories)
+        // console.log('userobj', UserObject.product_categories)
         // console.log(this.props.navigation.state.params.data.product_categories[1].icon_image)
     }
+
+    handleBackButton = () => {
+        if (!this.props.navigation.isFocused()) return false;
+        Vibration.vibrate(100)
+        Alert.alert(
+            'Exit App',
+            'Exiting the application?', [{
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel'
+            }, {
+                text: 'OK',
+                onPress: () => BackHandler.exitApp()
+            },], {
+                cancelable: false
+            }
+        )
+        return true;
+    }
+
     componentDidMount() {
-        SplashScreen.hide();
+        console.log("method")
+        SplashScreen.hide()
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
     }
 
     render() {
@@ -49,6 +75,7 @@ export default class Home extends Component {
                     <View style={styles.iconview}>
                         <View style={styles.containerbottom}>
                             <View style={styles.boxrow}>
+                                {/* <TouchableOpacity onPress={this.move} style={[styles.boxtop1,]}> */}
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Productlist', { Title: 'Tables', Id: "1" })} style={[styles.boxtop1,]} >
                                     <Text style={styles.icontext1}>Tables</Text>
                                     <Icon name='table' style={{ textAlign: 'left' }} color="#ffffff" size={80} />

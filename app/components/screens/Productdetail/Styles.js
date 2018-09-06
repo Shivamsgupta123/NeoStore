@@ -10,7 +10,7 @@ export default styles = StyleSheet.create({
 
         borderWidth: 1,
         backgroundColor: HeaderColor,
-        height: Platform.OS === 'ios' ? "90%" : "75%",
+        height: Platform.OS === 'ios' ? "90%" : "77%",
         width: 170,
         marginTop: 18,
         borderRadius: 10,
@@ -218,7 +218,7 @@ export default styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         padding: Platform.OS == 'ios' ? "3%" : 0,
-        height: "25%"
+        height: "26%"
     },
     modalview1: {
         flex: 1,
@@ -251,7 +251,8 @@ export default styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         width: "95%",
-        height: "50%"
+        height: "50%",
+        // backgroundColor: "white"
     },
     buypopupname: {
         fontSize: 25,
@@ -278,6 +279,27 @@ export default styles = StyleSheet.create({
         marginLeft: 12,
         borderWidth: 1,
         borderColor: "grey"
+    },
+    imazezoom: {
+        width: 280,
+        height: 280,
+        marginTop: Platform.OS === 'ios' ? 5 : 12,
+        // borderWidth: 2,
+        // borderColor: "#7F7F7F"
+    },
+    imagezoomclose: {
+        backgroundColor: 'red',
+        width: 30,
+        height: 30,
+        textAlign: 'center',
+        color: "white",
+        marginLeft: "90%",
+        marginBottom: "5%"
+    },
+    imagezoomview: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
     }
 
 

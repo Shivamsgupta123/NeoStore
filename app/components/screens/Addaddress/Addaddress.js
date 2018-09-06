@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Alert, FlatList, ScrollView, KeyboardAvoidingView, Dimensions, ActivityIndicator, Image, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, Alert, FlatList, ScrollView, KeyboardAvoidingView, Vibration, Dimensions, ActivityIndicator, Image, Text, TouchableOpacity } from 'react-native';
 import styles from './Styles';
 import { HeaderColor } from '../../../utils/Colors';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
@@ -30,7 +30,6 @@ export default class Addaddress extends Component {
     componentDidMount() {
         if (this.props.navigation.state.params != undefined) {
             // splice(item.index, 1)
-
             this.setState({
                 Address: this.props.navigation.state.params.item.address,
                 Landmark: this.props.navigation.state.params.item.landmark,
@@ -85,6 +84,7 @@ export default class Addaddress extends Component {
                                     this.address = this.address.concat(address1)
                                     console.log("787", this.address)
                                     AsyncStorage.setItem("address", JSON.stringify(this.address))
+                                    Vibration.vibrate(200)
                                     alert("Address Saved")
                                     // this.props.navigation.replace("AddressList")
                                     this.props.navigation.goBack()

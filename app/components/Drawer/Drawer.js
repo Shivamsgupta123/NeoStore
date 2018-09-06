@@ -25,12 +25,7 @@ class Drawer extends Component {
         var getdata = await AsyncStorage.getItem('ResponseData');
         // console.log("userobj21", UserObject)
         getdata = JSON.parse(getdata)
-        // console.log("drawer", getdata)
-        this.setState({ FirstName: UserObject.user_data.first_name })
-        this.setState({ LastName: UserObject.user_data.last_name })
-        this.setState({ Email: UserObject.user_data.email })
-        this.setState({ profileimage: UserObject.user_data.profile_pic })
-        this.setState({ TotalCart: UserObject.total_carts })
+
     }
 
     closeScreen = (screen, params = {}) => {
@@ -68,8 +63,8 @@ class Drawer extends Component {
                 {/* <View style={{ alignItems: 'center', padding: 20 }}> */}
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Myaccount')}>
                     <View style={{ alignItems: 'center', padding: 20 }}>
-                        <Image style={styles.profileimage} source={{ uri: UserObject.user_data.profile_pic }} />
-                        <Text style={styles.username}>{this.props.state.user_data.first_name} {UserObject.user_data.last_name}</Text>
+                        <Image style={styles.profileimage} source={{ uri: this.props.state.user_data.profile_pic }} />
+                        <Text style={styles.username}>{this.props.state.user_data.first_name} {this.props.state.user_data.last_name}</Text>
                         <Text style={styles.useremail}>{this.props.state.user_data.email}</Text></View>
 
                 </TouchableOpacity>
@@ -146,7 +141,7 @@ class Drawer extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    // console.log("state5", state)
+    console.log("Drawer state", state)
     return {
         state
     }

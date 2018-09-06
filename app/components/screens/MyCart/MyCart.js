@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Alert, FlatList, Dimensions, ActivityIndicator, Image, Text, TouchableOpacity } from 'react-native';
+import { View, Alert, FlatList, Dimensions, ActivityIndicator, Image, Text, TouchableOpacity, Vibration } from 'react-native';
 import styles from './Styles';
 import { HeaderColor } from '../../../utils/Colors';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
@@ -8,8 +8,14 @@ import { cartitem, editcart, deletecartitem } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import ModalDropdown from 'react-native-modal-dropdown';
 import { SwipeListView } from 'react-native-swipe-list-view';
-import { UserProvider, UserObject } from '../../../lib/UserProvider';
 import { connect } from "react-redux";
+
+const addUpdateData = (data) => {
+    return {
+        type: 'ADD_UPDATE_DATA',
+        data
+    }
+}
 
 class MyCart extends Component {
     constructor(props) {
@@ -20,7 +26,7 @@ class MyCart extends Component {
     componentDidMount() {
         GlobalAPI(cartitem, "GET", null, null, response => {
             if (response.status == 200) {
-                console.log("mycart123", response)
+                // console.log("mycart123", response)
                 this.setState({
                     fetcheddata: response,
                     Loading: false,
@@ -34,7 +40,6 @@ class MyCart extends Component {
                 console.log(error)
             }
         )
-
     }
     componentWillUnmount() {
         console.log("welcome")
@@ -51,6 +56,7 @@ class MyCart extends Component {
         formData.append("quantity", value)
         GlobalAPI(editcart, "POST", formData, null, response => {
             if (response.status == 200) {
+                Vibration.vibrate(200)
                 this.state.fetcheddata.total = this.state.fetcheddata.total - this.state.fetcheddata.data[index].product.sub_total
                 // console.log("subtotal", this.state.fetcheddata.data[index].product.sub_total)
                 var cost = this.state.fetcheddata.data[index].product.cost
@@ -74,10 +80,10 @@ class MyCart extends Component {
     }
     deleteItem(index, item) {
         // this.setState({ Loading: true })
-        console.log("item23", item)
-        console.log("item", this.state.fetcheddata.total)
-        console.log("item1", item.item.product.cost)
-        console.log("item2", this.state.fetcheddata.total)
+        // console.log("item23", item)
+        // console.log("item", this.state.fetcheddata.total)
+        // console.log("item1", item.item.product.cost)
+        // console.log("item2", this.state.fetcheddata.total)
         Alert.alert(
             'Delete!',
             'Remove Item From Cart?',
@@ -94,9 +100,10 @@ class MyCart extends Component {
         formData.append("product_id", item.item.product_id)
         GlobalAPI(deletecartitem, "POST", formData, null, response => {
             if (response.status == 200) {
+                Vibration.vibrate(200)
+                this.props.addUpdateData({ total_carts: response.total_carts })
                 this.state.fetcheddata.total = this.state.fetcheddata.total - item.item.product.sub_total
-                UserProvider.setUserInfo("total_carts", response.total_carts)
-                console.log("deletd", response)
+                // console.log("deletd", response)
                 this.state.fetcheddata.data.splice(item.index, 1)
                 alert("Item Deleted")
                 this.setState({
@@ -211,9 +218,9 @@ class MyCart extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    console.log("state3", state)
+    console.log("mycart state", state)
     return {
         state
     }
 }
-export default connect(mapStateToProps)(MyCart)
+export default connect(mapStateToProps, { addUpdateData })(MyCart)

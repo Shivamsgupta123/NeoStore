@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Alert, FlatList, ScrollView, KeyboardAvoidingView, Dimensions, ActivityIndicator, Image, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, Alert, FlatList, ScrollView, KeyboardAvoidingView, Dimensions, ActivityIndicator, Image, Text, TouchableOpacity, Vibration } from 'react-native';
 import styles from './Styles';
 import { HeaderColor } from '../../../utils/Colors';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
@@ -55,6 +55,7 @@ export default class AddressList extends Component {
         // this.setState({ autoplay: true })
     }
     deleteAddress(index, item) {
+        Vibration.vibrate(200)
         this.address1.splice(index, 1)
         AsyncStorage.setItem("address", JSON.stringify(this.address1))
         this.setState({ autoplay: true })
@@ -74,6 +75,7 @@ export default class AddressList extends Component {
             formData.append("address", this.address1[this.addressindex].address);
             GlobalAPI(placeorder, "POST", formData, null, response => {
                 if (response.status == 200) {
+                    Vibration.vibrate(200)
                     alert(response.user_msg)
                     this.setState({ Loading: true })
                     this.props.navigation.replace("MyApp")

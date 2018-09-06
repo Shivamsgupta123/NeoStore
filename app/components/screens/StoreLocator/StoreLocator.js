@@ -2,18 +2,72 @@ import React, { Component } from 'react';
 import { View, Alert, FlatList, Dimensions, ActivityIndicator, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
 import styles from './Styles';
 import { HeaderColor } from '../../../utils/Colors';
-import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
+import { Header, Left, Body, Right, Button, Title } from 'native-base';
 import { Icon } from '../../../utils/Icon/Icon';
-import { cartitem, editcart, deletecartitem } from '../../../lib/api';
-import { GlobalAPI } from '../../../lib/Globals';
-import ModalDropdown from 'react-native-modal-dropdown';
-import { SwipeListView } from 'react-native-swipe-list-view';
 import MapView, { Marker } from 'react-native-maps';
+import Polyline from '@mapbox/polyline';
 
 export default class StoreLocator extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            latitude: null,
+            longitude: null,
+            error: null,
+            coords: [],
+            x: 'false',
+            // cordLatitude: "-6.23",
+            // cordLongitude: "106.75",
+            concat: null
+
+        }
+        // this.mergeLot = this.mergeLot.bind(this);
+
+    } async getDirections(startLoc, destinationLoc) {
+
+        try {
+            let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${destinationLoc}`)
+            let respJson = await resp.json();
+            let points = Polyline.decode(respJson.routes[0].overview_polyline.points);
+            console.log(points)
+            let coords = points.map((point, index) => {
+                return {
+                    latitude: point[0],
+                    longitude: point[1]
+                }
+            })
+            console.log(coords)
+            this.setState({ coords: coords })
+            this.setState({ x: "true" })
+            return coords
+        } catch (error) {
+            console.log('masuk fungsi')
+            this.setState({ x: "error" })
+            return error
+        }
     }
+
+    componentDidMount() {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                console.log("wokeeey");
+                console.log("position", position);
+                this.setState({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    error: null,
+                });
+            },
+            (error) => this.setState({ error: error.message }),
+            console.log(this.state.error),
+            { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 },
+        );
+    }
+
+    findRoute(latitude, longitude) {
+        this.getDirections(`${this.state.latitude},${this.state.longitude}`, `${latitude},${longitude}`)
+    }
+
     render() {
         const { region } = this.props;
         console.log(region);
@@ -37,69 +91,93 @@ export default class StoreLocator extends Component {
                 <View style={styles.container}>
                     <MapView
                         style={styles.map}
+                        initialRegion={{
+                            latitude: 19.137048,
+                            longitude: 73.006706,
+                            latitudeDelta: 1.1922,
+                            longitudeDelta: 0.1421
+                        }}
                     >
                         <Marker
-                            coordinate={{ latitude: 18.957045, longitude: -5327.199201 }}
+                            coordinate={{ latitude: 19.060298, longitude: 73.012019 }}
                             title={"SKYLAND STORE"}
                             description={"Unit No 501, Sigma IT Park,MIDC,Rabale"}
                         />
                         <Marker
-                            coordinate={{ latitude: 18.518659, longitude: -5326.145559 }}
+                            coordinate={{ latitude: 19.043276, longitude: 73.019278 }}
                             title={"WOODMOUNT STORE"}
                             description={"1st Floor, Rajiv Gandhi-Infotech Park, Pune"}
                         />
                         <Marker
-                            coordinate={{ latitude: 18.938422, longitude: -5327.165179 }}
+                            coordinate={{ latitude: 19.027566, longitude: 73.041950 }}
                             title={"NEO STORE"}
                             description={"Ruby, shivam-Infotech Park, Mumbai"}
                         />
                         <Marker
-                            coordinate={{ latitude: 19.019543, longitude: -5326.929107 }}
+                            coordinate={{ latitude: 19.013751, longitude: 73.016312 }}
                             title={"FURNITURE STORE"}
-                            description={"Ravi Nagar, Amravati"}
+                            description={"Ravi Nagar, Mumbai"}
                         />
+                        {!!this.state.latitude && !!this.state.longitude && <Marker
+                            coordinate={{ "latitude": this.state.latitude, "longitude": this.state.longitude }}
+                            title={"Your Location"}
+                        />}
+
+                        {!!this.state.latitude && !!this.state.longitude && this.state.x == 'true' && <MapView.Polyline
+                            coordinates={this.state.coords}
+                            strokeWidth={2}
+                            strokeColor="red" />
+                        }
 
                     </MapView>
 
                 </View>
-                {/* <ScrollView> */}
-                <View style={styles.addressview}>
-                    <View style={styles.iconView}>
-                        <Icon name="location" size={25} color="black" />
-                    </View>
-                    <View>
-                        <Text style={styles.storename}>SKYLAND STORE</Text>
-                        <Text style={styles.address}> Unit No 501, Sigma IT Park,MIDC,Rabale </Text>
-                    </View>
+                <TouchableOpacity onPress={() => this.findRoute(19.060298, 73.012019)}>
+                    {/* <ScrollView> */}
+                    <View style={styles.addressview}>
+                        <View style={styles.iconView}>
+                            <Icon name="location" size={25} color="black" />
+                        </View>
+                        <View>
+                            <Text style={styles.storename}>SKYLAND STORE</Text>
+                            <Text style={styles.address}> Unit No 501, Sigma IT Park,MIDC,Rabale </Text>
+                        </View>
 
-                </View>
-                <View style={styles.addresssubview}>
-                    <View style={{ padding: 15 }}>
-                        <Icon name="location" size={25} color="black" />
                     </View>
-                    <View style={styles.addressview1}>
-                        <Text style={styles.storename}>WOODMOUNT STORE</Text>
-                        <Text style={styles.address}>1st Floor, Rajiv Gandhi-Infotech Park, Pune</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.findRoute(19.043276, 73.019278)} >
+                    <View style={styles.addresssubview}>
+                        <View style={{ padding: 15 }}>
+                            <Icon name="location" size={25} color="black" />
+                        </View>
+                        <View style={styles.addressview1}>
+                            <Text style={styles.storename}>WOODMOUNT STORE</Text>
+                            <Text style={styles.address}>1st Floor, Rajiv Gandhi-Infotech Park, Pune</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.addresssubview}>
-                    <View style={{ padding: 15 }}>
-                        <Icon name="location" size={25} color="black" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.findRoute(19.027566, 73.041950)}>
+                    <View style={styles.addresssubview}>
+                        <View style={{ padding: 15 }}>
+                            <Icon name="location" size={25} color="black" />
+                        </View>
+                        <View style={styles.addressview1}>
+                            <Text style={styles.storename}>NEO STORE</Text>
+                            <Text style={styles.address}>Ruby, shivam-Infotech Park, Mumbai</Text>
+                        </View>
                     </View>
-                    <View style={styles.addressview1}>
-                        <Text style={styles.storename}>NEO STORE</Text>
-                        <Text style={styles.address}>Ruby, shivam-Infotech Park, Mumbai</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.findRoute(19.013751, 73.016312)}>
+                    <View style={styles.addresssubview}>
+                        <View style={{ padding: 15 }}>
+                            <Icon name="location" size={25} color="black" />
+                        </View>
+                        <View style={styles.addressview1}>
+                            <Text style={styles.storename}>FURNITURE STORE</Text>
+                            <Text style={styles.address}>Ravi Nagar, Mumbai</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.addresssubview}>
-                    <View style={{ padding: 15 }}>
-                        <Icon name="location" size={25} color="black" />
-                    </View>
-                    <View style={styles.addressview1}>
-                        <Text style={styles.storename}>FURNITURE STORE</Text>
-                        <Text style={styles.address}>Ravi Nagar, Amravati</Text>
-                    </View>
-                </View>
+                </TouchableOpacity>
                 {/* </ScrollView> */}
 
             </View>
