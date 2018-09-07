@@ -77,7 +77,7 @@ class Productdetail extends Component {
                 'Failed!',
                 'No Internet Connection.',
                 [
-                    { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                    // { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
                     { text: 'Retry', onPress: () => this.fetchResult() },
                 ],
                 { cancelable: false }
@@ -131,11 +131,21 @@ class Productdetail extends Component {
                 alert(response.user_msg)
         },
             error => {
-                alert("No Internet Connection!")
+                // alert("No Internet Connection!")
+                this.setState({ Loading: false })
+                Alert.alert(
+                    'Failed!',
+                    'No Internet Connection.',
+                    [
+                        // { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                        { text: 'Retry', onPress: () => this.ratingsubmit() },
+                    ],
+                    { cancelable: false }
+                )
                 console.log(error)
-            })
+            }
+        )
     }
-
     async buysubmit() {
         // if (this.state.Quntity == '' || this.state.Quntity.match(/^[0-9a-zA-Z]+$/))
         //     alert('No Internet Connection!')
@@ -165,13 +175,18 @@ class Productdetail extends Component {
             }
 
         }, error => {
-            Toast.show({
-                text: 'No Internet Connection!',
-                duration: 3000,
 
-            })
+            this.setState({ Loading: false })
+            Alert.alert(
+                'Failed!',
+                'No Internet Connection.',
+                [
+                    // { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                    { text: 'Retry', onPress: () => this.buysubmit() },
+                ],
+                { cancelable: false }
+            )
             console.log(error)
-            this.setState({ Loader: false })
         })
         // }
     }
@@ -201,8 +216,8 @@ class Productdetail extends Component {
     }
 
     render() {
-        if (this.state.Loading)
-            return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
+        // if (this.state.Loading)
+        //     return <ActivityIndicator size="large" color="#e91b1a" />
         return (
             this.state.datafetched ?
                 <View style={styles.mainview}>
@@ -220,138 +235,139 @@ class Productdetail extends Component {
                             <Icon name="search" size={22} color="#f9fbff" style={{ marginRight: 6 }} />
                         </Right>
                     </Header>
+                    {this.state.Loading ? <View style={{ flex: 1, justifyContent: "center" }}><ActivityIndicator size="large" color="#e91b1a" /></View> :
+                        <ScrollView  >
+                            <View style={{ flex: 1, backgroundColor: White }}>
+                                <Text style={styles.productname}>{this.state.fetcheddata.name}</Text>
+                                <View style={styles.subview1}>
+                                    <Text style={styles.productproducer}>{this.state.fetcheddata.producer} </Text>
 
-                    <ScrollView  >
-                        <View style={{ flex: 1, backgroundColor: White }}>
-                            <Text style={styles.productname}>{this.state.fetcheddata.name}</Text>
-                            <View style={styles.subview1}>
-                                <Text style={styles.productproducer}>{this.state.fetcheddata.producer} </Text>
-
-                                <Rating
-                                    type="custom"
-                                    fractions={0}
-                                    startingValue={this.state.fetcheddata.rating}
-                                    readonly
-                                    imageSize={20}
-                                    ratingBackgroundColor='#7F7F7F'
-                                />
-                            </View>
-
-                            <View style={styles.subview2}>
-                                <Text style={styles.productcost}>Rs. {this.state.fetcheddata.cost}</Text>
-                                <TouchableOpacity onPress={() => this.shareon()}>
-                                    <Icon name="share" size={27} color="#7F7F7F" style={{ marginTop: 35 }} />
-                                </TouchableOpacity>
-                            </View>
-                            <TouchableOpacity onPress={this.openImageModal}>
-                                <View style={styles.subview3}>
-                                    <Image source={{ uri: this.state.img1 }} style={styles.productimage} />
+                                    <Rating
+                                        type="custom"
+                                        fractions={0}
+                                        startingValue={this.state.fetcheddata.rating}
+                                        readonly
+                                        imageSize={20}
+                                        ratingBackgroundColor='#7F7F7F'
+                                    />
                                 </View>
-                            </TouchableOpacity>
-                            <ScrollView horizontal={true}>
-                                <View style={styles.subview4}>
-                                    {this.getimage()}
+
+                                <View style={styles.subview2}>
+                                    <Text style={styles.productcost}>Rs. {this.state.fetcheddata.cost}</Text>
+                                    <TouchableOpacity onPress={() => this.shareon()}>
+                                        <Icon name="share" size={27} color="#7F7F7F" style={{ marginTop: 35 }} />
+                                    </TouchableOpacity>
                                 </View>
-                            </ScrollView>
-                            <View styel={{ flex: 1, paddingBottom: 15 }}>
-                                <Text style={styles.productdescription}>DESCRIPTION</Text>
-                                <Text style={styles.productdetail}>{this.state.fetcheddata.description}</Text>
-                            </View>
-                            <View style={styles.subview5}>
-                                <TouchableOpacity style={styles.button} onPress={this.closeBuyPopup}>
-                                    <Text style={styles.buttontext}>BUY NOW</Text>
-                                </TouchableOpacity>
-
-                                <TouchableOpacity style={styles.button1} onPress={this.closeRatePopup}>
-                                    <Text style={styles.buttontext1}>RATE</Text>
-                                </TouchableOpacity>
-                            </View>
-
-                            {/* Rating modal                  */}
-                            <View style={styles.subview5}>
-                                <Modal isVisible={this.state.isModalVisible}>
-                                    <View style={styles.modalview1}>
-                                        <Text style={styles.modalview2}>{this.state.fetcheddata.name}</Text>
-                                        <Image source={{ uri: this.state.img1 }} style={styles.modalimage} />
-
-                                        <Stars
-                                            half={false}
-                                            default={this.state.fetcheddata.rating}
-                                            update={(val) => { this.setState({ stars: val }) }}
-                                            spacing={4}
-                                            starSize={40}
-                                            count={5}
-                                            fullStar={<Icon name="star" size={27} color="#e2d628" style={{ marginTop: 35 }} />}
-                                            emptyStar={<Icon name="star" size={27} color="#7F7F7F" style={{ marginTop: 35 }} />}
-                                        />
-                                        {this.state.Loader ? <ActivityIndicator size="large" color="red" /> : <View style={{ flexDirection: 'row', }}>
-                                            <TouchableOpacity onPress={() => this.ratingsubmit()} style={styles.ratingbutton}>
-                                                <Text style={styles.ratingbuttontext}>SUBMIT</Text>
-                                            </TouchableOpacity>
-                                            <View style={styles.popupbutton}>
-                                                <TouchableOpacity style={styles.popupback} onPress={() => this.ratingmodalback()}>
-                                                    <Text style={styles.popupbutton}>BACK</Text>
-                                                </TouchableOpacity>
-                                            </View>
-                                        </View>
-                                        }
+                                <TouchableOpacity onPress={this.openImageModal}>
+                                    <View style={styles.subview3}>
+                                        <Image source={{ uri: this.state.img1 }} style={styles.productimage} />
                                     </View>
-                                </Modal>
-                                {/* {console.log("b")} */}
-                            </View>
-                            {/* {console.log("c")} */}
-                            {/* Buy Modal */}
-
-                            <View style={styles.modalview4}>
-
-                                <Modal isVisible={this.state.isModalVisible1}>
-                                    <View style={styles.modalview5}>
-                                        <Text style={styles.buypopupname}>{this.state.fetcheddata.name}</Text>
-                                        <Image source={{ uri: this.state.img1 }} style={styles.buypopupimage} />
-                                        <Text style={styles.buypopuptext}>Enter Qty</Text>
-                                        <TextInput onChangeText={(text) => this.setState({ Quntity: text })} style={styles.textinput} keyboardType="phone-pad" />
-                                        {this.state.Loader ? <ActivityIndicator size="large" color="red" /> : <View style={{ flexDirection: 'row', }}>
-                                            <TouchableOpacity onPress={() => this.buysubmit()} style={styles.ratingbutton}>
-                                                <Text style={styles.ratingbuttontext}>SUBMIT</Text>
-                                            </TouchableOpacity>
-                                            <View style={styles.popupbutton}>
-                                                <TouchableOpacity style={styles.popupback} onPress={() => this.buymodalback()}>
-                                                    <Text style={styles.popupbutton}>BACK</Text>
-                                                </TouchableOpacity>
-                                            </View>
-                                        </View>
-                                        }
+                                </TouchableOpacity>
+                                <ScrollView horizontal={true}>
+                                    <View style={styles.subview4}>
+                                        {this.getimage()}
                                     </View>
-                                </Modal>
-                            </View>
-                            {/* </KeyboardAvoidingView> */}
-                            {/* </ScrollView> */}
-
-                            {/* Image Zoom Modal */}
-                            {/* <View style={{ flex: 1, height: "50%", width: "80%", justifyContent: "center", alignItems: "center", backgroundColor: "white" }}> */}
-                            <Modal isVisible={this.state.isModalVisible2}>
-                                <View style={styles.imagezoomview}>
-                                    <TouchableOpacity onPress={this.closeImageModal} >
-                                        <Icon name="close" size={27} style={styles.imagezoomclose} />
+                                </ScrollView>
+                                <View styel={{ flex: 1, paddingBottom: 15 }}>
+                                    <Text style={styles.productdescription}>DESCRIPTION</Text>
+                                    <Text style={styles.productdetail}>{this.state.fetcheddata.description}</Text>
+                                </View>
+                                <View style={styles.subview5}>
+                                    <TouchableOpacity style={styles.button} onPress={this.closeBuyPopup}>
+                                        <Text style={styles.buttontext}>BUY NOW</Text>
                                     </TouchableOpacity>
 
-                                    <ImageZoom cropWidth={350}
-                                        cropHeight={280}
-                                        imageWidth={450}
-                                        imageHeight={280}>
-                                        <Image style={{ width: 450, height: 280 }}
-                                            source={{ uri: this.state.img1 }} />
-                                    </ImageZoom>
+                                    <TouchableOpacity style={styles.button1} onPress={this.closeRatePopup}>
+                                        <Text style={styles.buttontext1}>RATE</Text>
+                                    </TouchableOpacity>
+                                </View>
 
-                                    {/* <View>
+                                {/* Rating modal                  */}
+                                <View style={styles.subview5}>
+                                    <Modal isVisible={this.state.isModalVisible}>
+                                        <View style={styles.modalview1}>
+                                            <Text style={styles.modalview2}>{this.state.fetcheddata.name}</Text>
+                                            <Image source={{ uri: this.state.img1 }} style={styles.modalimage} />
+
+                                            <Stars
+                                                half={false}
+                                                default={this.state.fetcheddata.rating}
+                                                update={(val) => { this.setState({ stars: val }) }}
+                                                spacing={4}
+                                                starSize={40}
+                                                count={5}
+                                                fullStar={<Icon name="star" size={27} color="#e2d628" style={{ marginTop: 35 }} />}
+                                                emptyStar={<Icon name="star" size={27} color="#7F7F7F" style={{ marginTop: 35 }} />}
+                                            />
+                                            {this.state.Loader ? <ActivityIndicator size="large" color="red" /> : <View style={{ flexDirection: 'row', }}>
+                                                <TouchableOpacity onPress={() => this.ratingsubmit()} style={styles.ratingbutton}>
+                                                    <Text style={styles.ratingbuttontext}>SUBMIT</Text>
+                                                </TouchableOpacity>
+                                                <View style={styles.popupbutton}>
+                                                    <TouchableOpacity style={styles.popupback} onPress={() => this.ratingmodalback()}>
+                                                        <Text style={styles.popupbutton}>BACK</Text>
+                                                    </TouchableOpacity>
+                                                </View>
+                                            </View>
+                                            }
+                                        </View>
+                                    </Modal>
+                                    {/* {console.log("b")} */}
+                                </View>
+                                {/* {console.log("c")} */}
+                                {/* Buy Modal */}
+
+                                <View style={styles.modalview4}>
+
+                                    <Modal isVisible={this.state.isModalVisible1}>
+                                        <View style={styles.modalview5}>
+                                            <Text style={styles.buypopupname}>{this.state.fetcheddata.name}</Text>
+                                            <Image source={{ uri: this.state.img1 }} style={styles.buypopupimage} />
+                                            <Text style={styles.buypopuptext}>Enter Qty</Text>
+                                            <TextInput onChangeText={(text) => this.setState({ Quntity: text })} style={styles.textinput} keyboardType="phone-pad" />
+                                            {this.state.Loader ? <ActivityIndicator size="large" color="red" /> : <View style={{ flexDirection: 'row', }}>
+                                                <TouchableOpacity onPress={() => this.buysubmit()} style={styles.ratingbutton}>
+                                                    <Text style={styles.ratingbuttontext}>SUBMIT</Text>
+                                                </TouchableOpacity>
+                                                <View style={styles.popupbutton}>
+                                                    <TouchableOpacity style={styles.popupback} onPress={() => this.buymodalback()}>
+                                                        <Text style={styles.popupbutton}>BACK</Text>
+                                                    </TouchableOpacity>
+                                                </View>
+                                            </View>
+                                            }
+                                        </View>
+                                    </Modal>
+                                </View>
+                                {/* </KeyboardAvoidingView> */}
+                                {/* </ScrollView> */}
+
+                                {/* Image Zoom Modal */}
+                                {/* <View style={{ flex: 1, height: "50%", width: "80%", justifyContent: "center", alignItems: "center", backgroundColor: "white" }}> */}
+                                <Modal isVisible={this.state.isModalVisible2}>
+                                    <View style={styles.imagezoomview}>
+                                        <TouchableOpacity onPress={this.closeImageModal} >
+                                            <Icon name="close" size={27} style={styles.imagezoomclose} />
+                                        </TouchableOpacity>
+
+                                        <ImageZoom cropWidth={350}
+                                            cropHeight={280}
+                                            imageWidth={450}
+                                            imageHeight={280}>
+                                            <Image style={{ width: 450, height: 280 }}
+                                                source={{ uri: this.state.img1 }} />
+                                        </ImageZoom>
+
+                                        {/* <View>
                                         <Image source={{ uri: this.state.img1 }} style={styles.imazezoom} />
                                     </View> */}
-                                </View>
-                            </Modal>
-                            {/* </View> */}
+                                    </View>
+                                </Modal>
+                                {/* </View> */}
 
-                        </View>
-                    </ScrollView>
+                            </View>
+                        </ScrollView>
+                    }
                 </View >
                 :
                 null

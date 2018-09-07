@@ -126,7 +126,7 @@ export default class StoreLocator extends Component {
                             title={"FURNITURE STORE"}
                             description={"Ravi Nagar, Mumbai"}
                         />
-                        {!!this.state.latitude && !!this.state.longitude && <Marker
+                        {!!this.state.latitude && !!this.state.longitude && <Marker pinColor="green"
                             coordinate={{ "latitude": this.state.latitude, "longitude": this.state.longitude }}
                             title={"Your Location"}
                         />}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList, ActivityIndicator, Image, Text, ImageBackground, TextInput, TouchableOpacity, Platform, Dimensions, KeyboardAvoidingView, ScrollView, } from 'react-native';
+import { View, FlatList, ActivityIndicator, Image, Text, ImageBackground, TextInput, TouchableOpacity, Platform, Dimensions, KeyboardAvoidingView, ScrollView, Alert } from 'react-native';
 import styles from './Styles';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
@@ -19,6 +19,9 @@ export default class Orderdetail extends Component {
     }
 
     componentDidMount() {
+        this.fetchResult()
+    }
+    fetchResult() {
         let url = orderdetail + "?order_id=" + this.props.navigation.state.params;
         GlobalAPI(url, "GET", null, null, response => {
             if (response.status == 200) {
@@ -32,6 +35,19 @@ export default class Orderdetail extends Component {
             }
         },
             error => {
+                this.setState({
+                    Loading: false
+                }
+                );
+                Alert.alert(
+                    'Failed!',
+                    'No Internet Connection.',
+                    [
+                        // { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                        { text: 'Retry', onPress: () => this.fetchResult() },
+                    ],
+                    { cancelable: false }
+                )
                 console.log(error)
             }
         )

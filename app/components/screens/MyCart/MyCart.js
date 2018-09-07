@@ -16,11 +16,11 @@ const addUpdateData = (data) => {
         data
     }
 }
-
 class MyCart extends Component {
     constructor(props) {
         super(props)
         this.state = { fetcheddata: [], autoplay: true, Loading: true, Quantity: null, product_ID: '' }
+        console.log("cart", props)
     }
 
     componentDidMount() {
@@ -44,7 +44,7 @@ class MyCart extends Component {
                     'Failed!',
                     'No Internet Connection.',
                     [
-                        { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                        // { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
                         { text: 'Retry', onPress: () => this.fetchResult() },
                     ],
                     { cancelable: false }
@@ -89,6 +89,14 @@ class MyCart extends Component {
             }
         },
             error => {
+                this.setState({
+                    Loading: false,
+                })
+                Toast.show({
+                    text: 'No Internet Connection.',
+                    duration: 2000,
+                    type: "danger"
+                })
                 console.log(error)
             }
         )
@@ -128,6 +136,14 @@ class MyCart extends Component {
             }
         },
             error => {
+                this.setState({
+                    Loading: false,
+                })
+                Toast.show({
+                    text: 'No Internet Connection.',
+                    duration: 2000,
+                    type: "danger"
+                })
                 console.log(error)
             }
         )
@@ -197,8 +213,6 @@ class MyCart extends Component {
                                         </View>
                                     </View>
                                 </View>
-
-
                             )}
                             renderHiddenItem={(item, index) => (
                                 <View style={styles.deletebutton}>

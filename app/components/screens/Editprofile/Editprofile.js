@@ -80,7 +80,7 @@ class Editprofile extends Component {
                         'Failed!',
                         'No Internet Connection.',
                         [
-                            { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                            { text: 'Cancle', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
                             { text: 'Retry', onPress: () => this.submit() },
                         ],
                         { cancelable: false }

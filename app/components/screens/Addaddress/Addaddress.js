@@ -110,10 +110,15 @@ export default class Addaddress extends Component {
                                 var address1 = [{ Name: UserObject.user_data.first_name + " " + UserObject.user_data.last_name, address: this.state.Address, landmark: this.state.Landmark, city: this.state.City, state: this.state.STATE, zipcode: this.state.Zipcode, country: this.state.Country }]
                                 // var address1 = [{ Name: UserObject.user_data.first_name + " " + UserObject.user_data.last_name, address: this.state.Address + ", " + this.state.Landark + ", " + this.state.City + "-" + this.state.STATE + " " + this.state.Zipcode + ". " + this.state.Country }]
                                 this.address = this.address.concat(address1)
-                                console.log("787", this.address)
+                                console.log("787", this.address1)
+                                // var v1 = JSON.stringify(this.address)
+                                // console.log("v1", v1)
+                                // var v2 = JSON.parse(v1)
+                                // console.log("v2", v2)
                                 AsyncStorage.setItem("address", JSON.stringify(this.address))
+                                console.log("787", JSON.stringify(this.address))
                                 Vibration.vibrate(200)
-                                alert("Address Saved")
+                                // alert("Address Saved")
                                 Toast.show({
                                     text: "Address Saved",
                                     duration: 2000,

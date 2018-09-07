@@ -57,6 +57,7 @@ export default class Forgotpassword extends Component {
                         </Button>
                     </Left>
                     <Body>
+                        <Text style={styles.headertitle}>Forgot Password</Text>
                         {/* <Title style = {{color:'white',fontWeight:'bold',fontSize:25, textAlign:'center'}}>Register</Title> */}
                     </Body>
                     <Right></Right>

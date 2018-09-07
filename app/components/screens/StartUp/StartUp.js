@@ -45,7 +45,7 @@ class StartUp extends Component {
                         'Failed!',
                         'No Internet Connection.',
                         [
-                            { text: 'Ok', onPress: () => BackHandler.exitApp(), style: 'cancel' },
+                            { text: 'Exit', onPress: () => BackHandler.exitApp(), style: 'cancel' },
                             { text: 'Retry', onPress: () => this.starter() },
                         ],
                         { cancelable: false }

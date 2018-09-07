@@ -1,7 +1,7 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
-import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFont, ButtonTextSize } from '../../../utils/FontSizes';
-import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
+import { LogoSize, LogoFontWeight, LogoPadding, HeaderText, HeaderTextFontWeight, TextInputFont, RegularFont, ButtonTextSize } from '../../../utils/FontSizes';
+import { FontBold, FontMedium, FontBook, } from '../../../utils/Fonts';
 
 
 export default styles = StyleSheet.create({
@@ -16,6 +16,14 @@ export default styles = StyleSheet.create({
         fontFamily: FontBold
 
 
+    },
+    headertitle: {
+        color: White,
+        textAlign: 'center',
+        fontSize: HeaderText,
+        width: 250,
+        fontWeight: HeaderTextFontWeight,
+        paddingRight: Platform.OS === 'ios' ? 0 : 15
     },
     view3: {
         height: 45,

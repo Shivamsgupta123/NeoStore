@@ -8,11 +8,19 @@ import { AsyncStorage } from 'react-native';
 import { UserObject } from '../../../lib/UserProvider';
 import { placeorder } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
+import { connect } from "react-redux";
+import { StackActions, NavigationActions } from 'react-navigation';
 
-export default class AddressList extends Component {
+const addUpdateData = (data) => {
+    return {
+        type: 'ADD_UPDATE_DATA',
+        data
+    }
+}
+class AddressList extends Component {
     constructor(props) {
         super(props)
-        console.log("addresslist", UserObject)
+        console.log("addresslist", props)
         this.address1 = []
         this.state = { autoplay: true, autoplay1: true, Select: 0, Loading: false }
         this.addressindex = 0
@@ -82,7 +90,9 @@ export default class AddressList extends Component {
             formData.append("address", this.address1[this.addressindex].address);
             GlobalAPI(placeorder, "POST", formData, null, response => {
                 if (response.status == 200) {
+                    console.log("adree;ist", response)
                     Vibration.vibrate(200)
+                    this.props.addUpdateData({ total_carts: 0 })
                     // alert(response.user_msg)
                     Toast.show({
                         text: response.user_msg,
@@ -90,7 +100,13 @@ export default class AddressList extends Component {
                         type: "success"
                     })
                     this.setState({ Loading: true })
-                    this.props.navigation.replace("MyApp")
+                    // this.props.navigation.replace("MyApp")
+                    const resetAction = StackActions.reset({
+                        index: 0,
+                        actions: [NavigationActions.navigate({ routeName: 'MyApp' })],
+                    });
+                    this.props.navigation.dispatch(resetAction);
+
                 }
                 else {
                     alert(response.user_msg)
@@ -193,3 +209,10 @@ export default class AddressList extends Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+    console.log("mycart state", state)
+    return {
+        state
+    }
+}
+export default connect(mapStateToProps, { addUpdateData })(AddressList)

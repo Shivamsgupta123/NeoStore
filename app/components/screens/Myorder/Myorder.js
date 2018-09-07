@@ -29,11 +29,15 @@ export default class Myorder extends Component {
             }
         },
             error => {
+                this.setState({
+                    Loading: false
+                }
+                );
                 Alert.alert(
                     'Failed!',
                     'No Internet Connection.',
                     [
-                        { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                        // { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
                         { text: 'Retry', onPress: () => this.fetchResult() },
                     ],
                     { cancelable: false }
