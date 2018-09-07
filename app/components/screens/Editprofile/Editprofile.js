@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity, Alert } from 'react-native';
 import { Icon } from '../../../utils/Icon/Icon';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import styles from './Styles';
@@ -62,7 +62,6 @@ class Editprofile extends Component {
             console.log("formdata", formData)
 
             GlobalAPI(updateaccountdetail, "POST", formData, null, response => {
-
                 if (response.status == 200) {
                     this.props.addUpdateData({ user_data: response.data })
                     // console.log("afs", response)
@@ -76,6 +75,16 @@ class Editprofile extends Component {
                     alert(response.user_msg)
             },
                 error => {
+                    this.setState({ Loading: false })
+                    Alert.alert(
+                        'Failed!',
+                        'No Internet Connection.',
+                        [
+                            { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                            { text: 'Retry', onPress: () => this.submit() },
+                        ],
+                        { cancelable: false }
+                    )
                     console.log(error)
                 }
             )

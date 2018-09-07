@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, } from 'react-native';
+import { View, Text, Alert, BackHandler } from 'react-native';
 import { AsyncStorage } from 'react-native';
 import { fetchaccountdetail, } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
@@ -18,7 +18,11 @@ class StartUp extends Component {
         super(props);
     }
     componentDidMount() {
+        this.starter()
         // SplashScreen.hide();
+
+    }
+    starter() {
         AsyncStorage.getItem("access_token").then((value) => {
             // console.log(value)
             if (value !== null) {
@@ -35,8 +39,17 @@ class StartUp extends Component {
                         this.props.navigation.replace('Login')
                     }
                 }, error => {
-                    alert("No Internet Connection")
-                    this.props.navigation.replace('Login')
+                    // alert("No Internet Connection")
+                    // this.props.navigation.replace('Login')
+                    Alert.alert(
+                        'Failed!',
+                        'No Internet Connection.',
+                        [
+                            { text: 'Ok', onPress: () => BackHandler.exitApp(), style: 'cancel' },
+                            { text: 'Retry', onPress: () => this.starter() },
+                        ],
+                        { cancelable: false }
+                    )
                     console.log(error)
                 }
                 )

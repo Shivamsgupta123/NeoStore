@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, FlatList, Text, ImageBackground, TextInput, TouchableOpacity, Platform, Dimensions, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
+import { View, Alert, Image, FlatList, Text, ImageBackground, TextInput, TouchableOpacity, Platform, Dimensions, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
 import styles from './Styles';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import { Icon } from '../../../utils/Icon/Icon';
@@ -14,6 +14,9 @@ export default class Myorder extends Component {
     }
 
     componentDidMount() {
+        this.fetchResult()
+    }
+    fetchResult() {
         GlobalAPI(orderlist, "GET", null, null, response => {
             if (response.status == 200) {
                 // console.log("myorder", response)
@@ -26,6 +29,15 @@ export default class Myorder extends Component {
             }
         },
             error => {
+                Alert.alert(
+                    'Failed!',
+                    'No Internet Connection.',
+                    [
+                        { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                        { text: 'Retry', onPress: () => this.fetchResult() },
+                    ],
+                    { cancelable: false }
+                )
                 console.log(error)
             }
         )

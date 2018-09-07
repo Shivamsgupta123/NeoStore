@@ -74,10 +74,6 @@ export default class StoreLocator extends Component {
             animated: true,
         });
     }
-    // fitPadding() {
-
-    // }
-
 
     render() {
         const { region } = this.props;

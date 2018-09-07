@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, FlatList, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { AppRegistry, FlatList, ImageBackground, Alert, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Icon } from '../../../utils/Icon/Icon';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import styles from './Styles';
@@ -46,7 +46,15 @@ export default class Productlist extends Component {
                 }
             },
                 error => {
-                    alert("No Internet Connection!")
+                    Alert.alert(
+                        'Failed!',
+                        'No Internet Connection.',
+                        [
+                            { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                            { text: 'Retry', onPress: () => this.fetchResult() },
+                        ],
+                        { cancelable: false }
+                    )
                     this.setState({ loader: false })
                     console.log("res2", error)
                 }

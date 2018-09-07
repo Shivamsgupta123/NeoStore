@@ -21,12 +21,6 @@ class Myaccount extends Component {
     }
     componentDidMount() {
         console.log("25")
-        // const didBlurSubscription = this.props.navigation.addListener(
-        //     'willFocus',
-        //     payload => {
-        //         this.setState({ autoplay: false })
-        //     }
-        // );
     }
     render() {
         return (

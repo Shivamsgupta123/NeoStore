@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, Platform, TextInput, Text, View, Image, ScrollView, Dimensions, TouchableOpacity, Share, Vibration } from 'react-native';
+import { ActivityIndicator, Alert, Platform, TextInput, Text, View, Image, ScrollView, Dimensions, TouchableOpacity, Share, Vibration } from 'react-native';
 import { Rating } from 'react-native-elements';
 import { Icon } from '../../../utils/Icon/Icon';
 import { Container, Header, Left, Body, Right, Button, Toast } from 'native-base';
@@ -57,7 +57,9 @@ class Productdetail extends Component {
 
     // getting product detail
     componentDidMount() {
-        console.log("a")
+        this.fetchResult()
+    }
+    fetchResult() {
         let url = productdetail + productid + this.props.navigation.state.params.Id;
         return GlobalAPI(url, "GET", null, null, response => {
             if (response.status == 200) {
@@ -70,11 +72,21 @@ class Productdetail extends Component {
                 );
             }
         }, error => {
-            alert("No Internet Connection!")
+            // alert("No Internet Connection!")
+            Alert.alert(
+                'Failed!',
+                'No Internet Connection.',
+                [
+                    { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                    { text: 'Retry', onPress: () => this.fetchResult() },
+                ],
+                { cancelable: false }
+            )
             this.setState({ Loading: false })
             console.log(error)
         }
         )
+
     }
 
     getimage() {

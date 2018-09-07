@@ -24,6 +24,9 @@ class MyCart extends Component {
     }
 
     componentDidMount() {
+        this.fetchResult()
+    }
+    fetchResult() {
         GlobalAPI(cartitem, "GET", null, null, response => {
             if (response.status == 200) {
                 // console.log("mycart123", response)
@@ -37,6 +40,15 @@ class MyCart extends Component {
             }
         },
             error => {
+                Alert.alert(
+                    'Failed!',
+                    'No Internet Connection.',
+                    [
+                        { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                        { text: 'Retry', onPress: () => this.fetchResult() },
+                    ],
+                    { cancelable: false }
+                )
                 console.log(error)
             }
         )

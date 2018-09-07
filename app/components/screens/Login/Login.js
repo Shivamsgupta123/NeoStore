@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ImageBackground, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, ImageBackground, Alert, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import styles from './Styles';
 import { Icon } from '../../../utils/Icon/Icon';
 import FeatherIcon from 'react-native-vector-icons/Feather';
@@ -71,7 +71,16 @@ class Login extends Component {
             }
         }, error => {
             console.log(error)
-            alert("Connetion Failed!")
+            // alert("Connetion Failed!")
+            Alert.alert(
+                'Failed!',
+                'No Internet Connection.',
+                [
+                    { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                    { text: 'Retry', onPress: () => this.userdetails() },
+                ],
+                { cancelable: false }
+            )
         }
         )
 
@@ -99,7 +108,17 @@ class Login extends Component {
             }
         }, error => {
             console.log(error)
-            alert("Connection Failed!")
+            this.setState({ Loading: false })
+            // alert("Connection Failed!")
+            Alert.alert(
+                'Failed!',
+                'No Internet Connection.',
+                [
+                    { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                    { text: 'Retry', onPress: () => this.login() },
+                ],
+                { cancelable: false }
+            )
             this.setState({ Loading: false })
         })
     }
