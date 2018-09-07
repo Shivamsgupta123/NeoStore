@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Alert, FlatList, Dimensions, ActivityIndicator, Image, Text, TouchableOpacity, Vibration } from 'react-native';
 import styles from './Styles';
 import { HeaderColor } from '../../../utils/Colors';
-import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
+import { Container, Header, Left, Body, Right, Button, Title, Toast } from 'native-base';
 import { Icon } from '../../../utils/Icon/Icon';
 import { cartitem, editcart, deletecartitem } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
@@ -65,7 +65,11 @@ class MyCart extends Component {
                 item.product.sub_total = total
                 this.state.fetcheddata.total = this.state.fetcheddata.total + total
                 // console.log("cost", total)
-                alert("Quantity Updated")
+                Toast.show({
+                    text: 'Quantity Updated.',
+                    duration: 2000,
+                    type: "success"
+                })
                 this.setState({
                     Loading: false,
                 }
@@ -79,11 +83,6 @@ class MyCart extends Component {
         return true
     }
     deleteItem(index, item) {
-        // this.setState({ Loading: true })
-        // console.log("item23", item)
-        // console.log("item", this.state.fetcheddata.total)
-        // console.log("item1", item.item.product.cost)
-        // console.log("item2", this.state.fetcheddata.total)
         Alert.alert(
             'Delete!',
             'Remove Item From Cart?',
@@ -105,7 +104,11 @@ class MyCart extends Component {
                 this.state.fetcheddata.total = this.state.fetcheddata.total - item.item.product.sub_total
                 // console.log("deletd", response)
                 this.state.fetcheddata.data.splice(item.index, 1)
-                alert("Item Deleted")
+                Toast.show({
+                    text: 'Item Deleted',
+                    duration: 2000,
+                    type: "success"
+                })
                 this.setState({
                     Loading: false,
                 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, TextInput, Alert, FlatList, ScrollView, KeyboardAvoidingView, Vibration, Dimensions, ActivityIndicator, Image, Text, TouchableOpacity } from 'react-native';
 import styles from './Styles';
 import { HeaderColor } from '../../../utils/Colors';
-import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
+import { Container, Header, Left, Body, Right, Button, Title, Toast } from 'native-base';
 import { Icon } from '../../../utils/Icon/Icon';
 import { AsyncStorage } from 'react-native';
 import { UserObject } from '../../../lib/UserProvider'
@@ -58,37 +58,70 @@ export default class Addaddress extends Component {
 
     saveAddress() {
 
-        if (this.state.Address == '')
-            alert("Enter Address")
+        if (this.state.Address == '') {
+            // alert("Enter Address")
+            Toast.show({
+                text: "Enter Address",
+                duration: 1500,
+                type: "warning"
+            })
+        }
         else
-            if (this.state.Landmark == '')
-                alert("Enter LandMark")
+            if (this.state.Landmark == '') {
+                Toast.show({
+                    text: "Enter LandMark",
+                    duration: 1500,
+                    type: "warning"
+                })
+            }
             else
-                if (this.state.City == '')
-                    alert("Enter City")
+                if (this.state.City == '') {
+                    Toast.show({
+                        text: "Enter City",
+                        duration: 1500,
+                        type: "warning"
+                    })
+                }
                 else
-                    if (this.state.STATE == '')
-                        alert("Enter State")
+                    if (this.state.STATE == '') {
+                        Toast.show({
+                            text: "Enter State",
+                            duration: 1500,
+                            type: "warning"
+                        })
+                    }
                     else
-                        if (this.state.Zipcode == '')
-                            alert("Enter ZipCode")
+                        if (this.state.Zipcode == '') {
+                            Toast.show({
+                                text: "Enter ZipCode",
+                                duration: 1500,
+                                type: "warning"
+                            })
+                        }
                         else
-                            if (!this.state.Zipcode.match(/^\d+/))
-                                alert("Zip Code Must be a Number")
-                            else
-                                if (this.state.Country == '')
-                                    alert("Enter Country")
-                                else {
-                                    var address1 = [{ Name: UserObject.user_data.first_name + " " + UserObject.user_data.last_name, address: this.state.Address, landmark: this.state.Landmark, city: this.state.City, state: this.state.STATE, zipcode: this.state.Zipcode, country: this.state.Country }]
-                                    // var address1 = [{ Name: UserObject.user_data.first_name + " " + UserObject.user_data.last_name, address: this.state.Address + ", " + this.state.Landark + ", " + this.state.City + "-" + this.state.STATE + " " + this.state.Zipcode + ". " + this.state.Country }]
-                                    this.address = this.address.concat(address1)
-                                    console.log("787", this.address)
-                                    AsyncStorage.setItem("address", JSON.stringify(this.address))
-                                    Vibration.vibrate(200)
-                                    alert("Address Saved")
-                                    // this.props.navigation.replace("AddressList")
-                                    this.props.navigation.goBack()
-                                }
+                            if (this.state.Country == '') {
+                                Toast.show({
+                                    text: "Enter Country",
+                                    duration: 1500,
+                                    type: "warning"
+                                })
+                            }
+                            else {
+                                var address1 = [{ Name: UserObject.user_data.first_name + " " + UserObject.user_data.last_name, address: this.state.Address, landmark: this.state.Landmark, city: this.state.City, state: this.state.STATE, zipcode: this.state.Zipcode, country: this.state.Country }]
+                                // var address1 = [{ Name: UserObject.user_data.first_name + " " + UserObject.user_data.last_name, address: this.state.Address + ", " + this.state.Landark + ", " + this.state.City + "-" + this.state.STATE + " " + this.state.Zipcode + ". " + this.state.Country }]
+                                this.address = this.address.concat(address1)
+                                console.log("787", this.address)
+                                AsyncStorage.setItem("address", JSON.stringify(this.address))
+                                Vibration.vibrate(200)
+                                alert("Address Saved")
+                                Toast.show({
+                                    text: "Address Saved",
+                                    duration: 2000,
+                                    type: "success"
+                                })
+                                // this.props.navigation.replace("AddressList")
+                                this.props.navigation.goBack()
+                            }
     }
     render() {
         return (

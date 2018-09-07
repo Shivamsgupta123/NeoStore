@@ -26,6 +26,7 @@ import { UserObject } from './app/lib/UserProvider';
 import { createStore } from "redux";
 import { Provider } from 'react-redux'
 import { connect } from "react-redux";
+import { Root } from 'native-base'
 
 // const istate = {}
 const store = createStore(changeData);
@@ -190,7 +191,9 @@ export default class App extends Component {
         return (
             // console.log("store", store.getState())
             <Provider store={store}>
-                <RootStack />
+                <Root>
+                    <RootStack />
+                </Root>
             </Provider>
         )
     }

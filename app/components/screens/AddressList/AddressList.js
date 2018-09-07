@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, TextInput, Alert, FlatList, ScrollView, KeyboardAvoidingView, Dimensions, ActivityIndicator, Image, Text, TouchableOpacity, Vibration } from 'react-native';
 import styles from './Styles';
 import { HeaderColor } from '../../../utils/Colors';
-import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
+import { Container, Header, Left, Body, Right, Button, Title, Toast } from 'native-base';
 import { Icon } from '../../../utils/Icon/Icon';
 import { AsyncStorage } from 'react-native';
 import { UserObject } from '../../../lib/UserProvider';
@@ -18,7 +18,6 @@ export default class AddressList extends Component {
         this.addressindex = 0
         this.index
     }
-
     async getAddress() {
         this.address1 = await AsyncStorage.getItem("address")
         this.address1 = JSON.parse(this.address1)
@@ -27,8 +26,6 @@ export default class AddressList extends Component {
         console.log("pqr", this.address1.length)
         this.index = this.address1.length
         this.setState({ autoplay: false })
-
-
     }
     async componentDidMount() {
         const didBlurSubscription = this.props.navigation.addListener(
@@ -58,13 +55,23 @@ export default class AddressList extends Component {
         Vibration.vibrate(200)
         this.address1.splice(index, 1)
         AsyncStorage.setItem("address", JSON.stringify(this.address1))
+        Toast.show({
+            text: 'Address Deleted.',
+            duration: 2000,
+            type: "success"
+
+        })
         this.setState({ autoplay: true })
     }
     placeOrder() {
         console.log('called')
         let formData = new FormData();
         if (this.index == 0 || this.address1 == null || this.address1.length == 0) {
-            alert("Please Add Address")
+            Toast.show({
+                text: 'Please Add Address.',
+                duration: 1500,
+                type: "danger"
+            })
         }
 
         else {
@@ -76,7 +83,12 @@ export default class AddressList extends Component {
             GlobalAPI(placeorder, "POST", formData, null, response => {
                 if (response.status == 200) {
                     Vibration.vibrate(200)
-                    alert(response.user_msg)
+                    // alert(response.user_msg)
+                    Toast.show({
+                        text: response.user_msg,
+                        duration: 2000,
+                        type: "success"
+                    })
                     this.setState({ Loading: true })
                     this.props.navigation.replace("MyApp")
                 }

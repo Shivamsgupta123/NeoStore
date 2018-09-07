@@ -26,6 +26,7 @@ export default class StoreLocator extends Component {
     } async getDirections(startLoc, destinationLoc) {
 
         try {
+
             let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${destinationLoc}`)
             let respJson = await resp.json();
             let points = Polyline.decode(respJson.routes[0].overview_polyline.points);
@@ -40,7 +41,9 @@ export default class StoreLocator extends Component {
             this.setState({ coords: coords })
             this.setState({ x: "true" })
             return coords
-        } catch (error) {
+            this.fitPadding()
+        }
+        catch (error) {
             console.log('masuk fungsi')
             this.setState({ x: "error" })
             return error
@@ -64,9 +67,17 @@ export default class StoreLocator extends Component {
         );
     }
 
-    findRoute(latitude, longitude) {
-        this.getDirections(`${this.state.latitude},${this.state.longitude}`, `${latitude},${longitude}`)
+    findRoute = (Latitude, Longitude) => {
+        this.getDirections(`${this.state.latitude},${this.state.longitude}`, `${Latitude},${Longitude}`)
+        this.map.fitToCoordinates([{ latitude: Latitude, longitude: Longitude }], {
+            edgePadding: { top: 100, right: 100, bottom: 100, left: 100 },
+            animated: true,
+        });
     }
+    // fitPadding() {
+
+    // }
+
 
     render() {
         const { region } = this.props;
@@ -90,6 +101,7 @@ export default class StoreLocator extends Component {
 
                 <View style={styles.container}>
                     <MapView
+                        ref={ref => { this.map = ref; }}
                         style={styles.map}
                         initialRegion={{
                             latitude: 19.137048,
@@ -104,7 +116,7 @@ export default class StoreLocator extends Component {
                             description={"Unit No 501, Sigma IT Park,MIDC,Rabale"}
                         />
                         <Marker
-                            coordinate={{ latitude: 19.043276, longitude: 73.019278 }}
+                            coordinate={{ latitude: 18.519608, longitude: 73.856285 }}
                             title={"WOODMOUNT STORE"}
                             description={"1st Floor, Rajiv Gandhi-Infotech Park, Pune"}
                         />
@@ -145,7 +157,7 @@ export default class StoreLocator extends Component {
 
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.findRoute(19.043276, 73.019278)} >
+                <TouchableOpacity onPress={() => this.findRoute(18.519608, 73.856285)} >
                     <View style={styles.addresssubview}>
                         <View style={{ padding: 15 }}>
                             <Icon name="location" size={25} color="black" />

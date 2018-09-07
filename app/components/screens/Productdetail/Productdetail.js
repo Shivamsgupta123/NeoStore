@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ActivityIndicator, Platform, TextInput, Text, View, Image, ScrollView, Dimensions, TouchableOpacity, Share, Vibration } from 'react-native';
 import { Rating } from 'react-native-elements';
 import { Icon } from '../../../utils/Icon/Icon';
-import { Container, Header, Left, Body, Right, Button, } from 'native-base';
+import { Container, Header, Left, Body, Right, Button, Toast } from 'native-base';
 import styles from './Styles';
 import { White, HeaderColor, } from '../../../utils/Colors';
 import { AsyncStorage } from 'react-native';
@@ -36,7 +36,9 @@ class Productdetail extends Component {
             Loading: true,
             Loader: false,
             stars: '',
-            isModalVisible2: false
+            isModalVisible2: false,
+            showToast: false
+
 
         }
     }
@@ -103,9 +105,15 @@ class Productdetail extends Component {
             if (response.status == 200) {
                 Vibration.vibrate(200)
                 this.setState({ Loader: false })
-                alert(response.message)
+                Toast.show({
+                    text: response.message,
+                    duration: 3000,
+                    type: "success"
+
+                })
                 this.setState({ isModalVisible: false, Loading: false })
                 // alert(response.message)
+
             }
             else
                 alert(response.user_msg)
@@ -117,9 +125,11 @@ class Productdetail extends Component {
     }
 
     async buysubmit() {
+        // if (this.state.Quntity == '' || this.state.Quntity.match(/^[0-9a-zA-Z]+$/))
+        //     alert('No Internet Connection!')
+        // else {
         this.setState({ Loader: true })
         var getdata = await AsyncStorage.getItem('ResponseData');
-        // console.log(getdata)
         getdata = JSON.parse(getdata)
         let formData = new FormData();
         formData.append(' product_id', this.state.fetcheddata.id);
@@ -128,26 +138,31 @@ class Productdetail extends Component {
             if (response.status == 200) {
                 Vibration.vibrate(200)
                 this.setState({ Loader: false })
-                // console.log("buysubmit", response)
-                alert(response.message)
+                Toast.show({
+                    text: response.message,
+                    duration: 3000,
+                    type: "success"
+                })
                 this.props.addUpdateData({ total_carts: response.total_carts })
-                // UserProvider.setUserInfo("total_carts", response.total_carts)
-                // Vibration.cancel()
                 this.setState({ isModalVisible1: false, Loading: false })
+
             }
             else {
-                alert("No Internet Connection!")
                 alert(response.user_msg)
                 this.setState({ Loader: false })
             }
 
         }, error => {
-            alert("No Internet Connection!")
+            Toast.show({
+                text: 'No Internet Connection!',
+                duration: 3000,
+
+            })
             console.log(error)
             this.setState({ Loader: false })
         })
+        // }
     }
-
     buymodalback() {
         this.setState({ isModalVisible1: !this.state.isModalVisible1 })
 
