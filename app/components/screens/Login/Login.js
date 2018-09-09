@@ -13,13 +13,14 @@ import SplashScreen from 'react-native-splash-screen';
 import { UserProvider } from '../../../lib/UserProvider';
 import { Validation } from '../../../lib/Validation';
 import { connect } from "react-redux";
+import { addUserData } from '../../../redux/actions/UserData_Action';
 
-const addUserData = (data) => {
-    return {
-        type: 'ADD_USER-DATA',
-        data
-    }
-}
+// const addUserData = (data) => {
+//     return {
+//         type: 'ADD_USER-DATA',
+//         data
+//     }
+// }
 
 class Login extends Component {
     constructor(props) {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, Image, Text, ImageBackground, TextInput, Platform, TouchableOpacity } from 'react-native';
+import { View, Image, Text, Alert, ImageBackground, TextInput, BackHandler, Platform, TouchableOpacity, ActivityIndicator } from 'react-native';
 import styles from './Styles';
 import { Icon } from '../../../utils/Icon/Icon';
-import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
+import { Container, Header, Left, Body, Right, Button, Title, Toast } from 'native-base';
 import { forgotpassword } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import { White } from '../../../utils/Colors';
@@ -11,16 +11,19 @@ export default class Forgotpassword extends Component {
 
     state = {
         Username: '',
-        NewPassword: '',
-        ConfirmPassword: ''
-
+        Loading: false
     }
 
     validate() {
         var emailreg = /\S+@\S+\.\S+/;
         var passwordreg = /^[0-9a-zA-Z]+$/;
         if (this.state.Username == "" || !this.state.Username.match(emailreg)) {
-            alert("Enter Valid User Name.")
+            // alert("Enter Valid User Name.")
+            Toast.show({
+                text: 'Enter Valid User Name.',
+                duration: 2000,
+                type: "warning"
+            })
             return false
         }
         else
@@ -28,18 +31,43 @@ export default class Forgotpassword extends Component {
     }
 
     submit() {
+        this.setState({ Loading: true })
         let formData = new FormData();
         formData.append('email', this.state.Username);
         GlobalAPI(forgotpassword, "POST", formData, null, response => {
 
             if (response.status == 200) {
-                alert("Password Maild You")
+                this.setState({ Loading: false })
+                // alert("Password Maild You")
+                Toast.show({
+                    text: 'Password Maild You',
+                    duration: 2000,
+                    type: "success"
+                })
                 this.props.navigation.replace("Login")
             }
-            else
-                alert(response.user_msg)
+            else {
+                this.setState({ Loading: false })
+                // alert(response.user_msg)
+                Toast.show({
+                    text: response.user_msg,
+                    duration: 2000,
+                    type: "danger"
+                })
+            }
+            alert(response.user_msg)
         },
             error => {
+                this.setState({ Loading: false })
+                Alert.alert(
+                    'Failed!',
+                    'No Internet Connection.',
+                    [
+                        { text: 'Exit', onPress: () => BackHandler.exitApp(), style: 'cancel' },
+                        { text: 'Retry', onPress: () => this.submit() },
+                    ],
+                    { cancelable: false }
+                )
                 console.log(error)
             }
         )
@@ -71,7 +99,7 @@ export default class Forgotpassword extends Component {
                     </View>
 
                     <TouchableOpacity style={styles.loginbutton} onPress={() => this.validate()}>
-                        <Text style={styles.buttontext}>SUBMIT</Text>
+                        {this.state.Loading ? <ActivityIndicator size="large" color="red" /> : <Text style={styles.buttontext}>SUBMIT</Text>}
                     </TouchableOpacity>
 
                 </View>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, ActivityIndicator, Image, Text, ImageBackground, TextInput, ScrollView, Platform, TouchableOpacity, KeyboardAvoidingView, Keyboard, Dimensions } from 'react-native';
+import { View, ActivityIndicator, Image, Text, ImageBackground, BackHandler, TextInput, ScrollView, Platform, TouchableOpacity, KeyboardAvoidingView, Keyboard, Dimensions, Alert } from 'react-native';
 import styles from './Styles';
 import { Icon } from '../../../utils/Icon/Icon';
-import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
+import { Container, Header, Left, Body, Right, Button, Title, Toast } from 'native-base';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 import { register, } from '../../../lib/api';
@@ -40,41 +40,81 @@ export default class Registration extends Component {
         var phonenoreg = /^\+?([0-9]{2})\)?[-. ]?([0-9]{5})[-. ]?([0-9]{5})$/;
 
         if (this.state.FirstName == "" || !this.state.FirstName.match(namereg)) {
-            alert("Please Enter Valid Name with no wide spaces & Numbers.")
+            // alert("Please Enter Valid Name with no wide spaces & Numbers.")
+            Toast.show({
+                text: 'Please Enter Valid Name with no wide spaces & Numbers.',
+                duration: 2000,
+                type: "warning"
+            })
             return false
         }
         else
             if (this.state.LastName == "" || !this.state.LastName.match(namereg)) {
-                alert("Please Enter Valid Name with no wide spaces & Numbers.")
+                Toast.show({
+                    text: 'Please Enter Valid Name with no wide spaces & Numbers.',
+                    duration: 2000,
+                    type: "warning"
+                })
+                // alert("Please Enter Valid Name with no wide spaces & Numbers.")
                 return false
             }
             else
                 if (this.state.Email == "" || !this.state.Email.match(emailreg)) {
-                    alert("Please Enter Valid Email.")
+                    Toast.show({
+                        text: 'Please Enter Valid Email.',
+                        duration: 2000,
+                        type: "warning"
+                    })
+                    // alert("Please Enter Valid Email.")
                     return false
                 }
                 else
                     if (this.state.Password == "" || !this.state.Password.match(passwordreg) || this.state.Password.length < 8) {
-                        alert("Enter alphanumeric password having atleast 8 characters.")
+                        // alert("Enter alphanumeric password having atleast 8 characters.")
+                        Toast.show({
+                            text: 'Enter alphanumeric password having atleast 8 characters.',
+                            duration: 2000,
+                            type: "warning"
+                        })
                         return false
                     }
                     else
                         if (this.state.ConfirmPassword == "") {
-                            alert("Please Confirm Password.")
+
+                            Toast.show({
+                                text: 'Confirm Password.',
+                                duration: 2000,
+                                type: "warning"
+                            })
                             return false
                         }
                         else
                             if (this.state.ConfirmPassword != this.state.Password) {
-                                alert("Please enter password exactly same as above password")
+                                // alert("Please enter password exactly same as above password")
+                                Toast.show({
+                                    text: 'Please enter password exactly same as above password.',
+                                    duration: 2000,
+                                    type: "warning"
+                                })
                                 return false
                             }
                             else
                                 if (this.state.PhoneNumber == "" || !this.state.PhoneNumber.match(phonenoreg)) {
-                                    alert("Please enter 10 digit phone no with country code(eg.+91).")
+                                    // alert("Please enter 10 digit phone no with country code(eg.+91).")
+                                    Toast.show({
+                                        text: 'Please enter 10 digit phone no with country code(eg.+91).',
+                                        duration: 2000,
+                                        type: "warning"
+                                    })
                                     return false
                                 }
         if (this.state.Ischecked !== true) {
-            alert("Please accept terms & conditions")
+            // alert("Please accept terms & conditions")
+            Toast.show({
+                text: 'Please accept terms & conditions.',
+                duration: 2000,
+                type: "warning"
+            })
         }
         else
             this.register()
@@ -93,16 +133,37 @@ export default class Registration extends Component {
         GlobalAPI(register, "POST", formData, null, response => {
             this.setState({ Loading: false })
             if (response.status == 200) {
+                Toast.show({
+                    text: 'Registration Successfull.',
+                    duration: 2000,
+                    type: "success"
+                })
                 alert("Registration Successfull")
                 this.props.navigation.replace("Login")
             }
-            else
-                alert(response.user_msg)
-            this.setState({ Loading: false })
+            else {
+                Toast.show({
+                    text: response.user_msg,
+                    duration: 2000,
+                    type: "danger"
+                })
+                // alert(response.user_msg)
+                this.setState({ Loading: false })
+            }
+
         },
             error => {
                 console.log(error)
                 this.setState({ Loading: false })
+                Alert.alert(
+                    'Failed!',
+                    'No Internet Connection.',
+                    [
+                        { text: 'Exit', onPress: () => BackHandler.exitApp(), style: 'cancel' },
+                        { text: 'Retry', onPress: () => this.login() },
+                    ],
+                    { cancelable: false }
+                )
             }
         )
     }

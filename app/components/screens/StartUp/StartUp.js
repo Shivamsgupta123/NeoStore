@@ -5,13 +5,14 @@ import { fetchaccountdetail, } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import { UserProvider } from '../../../lib/UserProvider';
 import { connect } from "react-redux";
+import { addUserData } from '../../../redux/actions/UserData_Action';
 
-const addUserData = (data) => {
-    return {
-        type: 'ADD_USER-DATA',
-        data
-    }
-}
+// const addUserData = (data) => {
+//     return {
+//         type: 'ADD_USER-DATA',
+//         data
+//     }
+// }
 
 class StartUp extends Component {
     constructor(props) {

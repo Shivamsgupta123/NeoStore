@@ -1,8 +1,12 @@
-import * as action_types from '../action_types';
-
-export const userData = (userData) => {
+export const addUpdateData = (data) => {
     return {
-        type: action_types.USER_DATA,
-        data: userData
+        type: 'ADD_UPDATE_DATA',
+        data
     }
-};
+}
+export const addUserData = (data) => {
+    return {
+        type: 'ADD_USER-DATA',
+        data
+    }
+}

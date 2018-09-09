@@ -9,13 +9,14 @@ import { GlobalAPI } from '../../../lib/Globals';
 import ModalDropdown from 'react-native-modal-dropdown';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { connect } from "react-redux";
+import { addUpdateData } from '../../../redux/actions/UserData_Action';
 
-const addUpdateData = (data) => {
-    return {
-        type: 'ADD_UPDATE_DATA',
-        data
-    }
-}
+// const addUpdateData = (data) => {
+//     return {
+//         type: 'ADD_UPDATE_DATA',
+//         data
+//     }
+// }
 class MyCart extends Component {
     constructor(props) {
         super(props)

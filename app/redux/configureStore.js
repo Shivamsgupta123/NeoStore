@@ -1,8 +1,5 @@
 import { createStore, combineReducers } from 'redux';
 import { UserDataReducer } from './reducers/UserData_Reducer';
+import { changeData } from './reducers/UserData_Reducer';
 
-const store = createStore(combineReducers({
-    UserDataReducer: UserDataReducer
-}));
-
-export default store;
+export const store = createStore(changeData);

@@ -1,18 +1,11 @@
-import * as action_types from '../action_types';
-
-const initialState = {
-    userData: '',
-};
-
-export const UserDataReducer = (state = initialState, action = {}) => {
+import { addUpdateData } from '../actions/UserData_Action';
+export function changeData(state, action) {
     switch (action.type) {
-        case action_types.USER_DATA:
-            return {
-                ...state,
-                userData: action.data
-            };
-
+        case 'ADD_UPDATE_DATA':
+            return { ...state, ...action.data }
+        case 'ADD_USER-DATA':
+            return { ...state, ...action.data }
         default:
-            return state;
+            return state
     }
-};
+}

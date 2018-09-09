@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity, Alert } from 'react-native';
+import { ActivityIndicator, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity, Alert, Vibration } from 'react-native';
 import { Icon } from '../../../utils/Icon/Icon';
-import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
+import { Container, Header, Left, Body, Right, Button, Toast } from 'native-base';
 import styles from './Styles';
 import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
 import { DatePickerDialog } from 'react-native-datepicker-dialog'
@@ -11,13 +11,13 @@ import { updateaccountdetail } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import { UserProvider, UserObject } from '../../../lib/UserProvider';
 import { connect } from "react-redux";
-
-const addUpdateData = (data) => {
-    return {
-        type: 'ADD_UPDATE_DATA',
-        data
-    }
-}
+import { addUpdateData } from '../../../redux/actions/UserData_Action';
+// const addUpdateData = (data) => {
+//     return {
+//         type: 'ADD_UPDATE_DATA',
+//         data
+//     }
+// }
 class Editprofile extends Component {
     constructor(props) {
         super(props);
@@ -63,12 +63,18 @@ class Editprofile extends Component {
 
             GlobalAPI(updateaccountdetail, "POST", formData, null, response => {
                 if (response.status == 200) {
+                    Vibration.vibrate(200)
                     this.props.addUpdateData({ user_data: response.data })
                     // console.log("afs", response)
                     // UserProvider.setUserInfo("user_data", response.data)
                     console.log("updated", UserObject)
+                    Toast.show({
+                        text: 'Account detail updated successfully.',
+                        duration: 2000,
+                        type: "success"
+                    })
                     this.setState({ Loading: false })
-                    alert("Account detail updated successfully.")
+                    // alert("Account detail updated successfully.")
                     this.props.navigation.goBack()
                 }
                 else

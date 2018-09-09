@@ -27,19 +27,19 @@ import { createStore } from "redux";
 import { Provider } from 'react-redux'
 import { connect } from "react-redux";
 import { Root } from 'native-base'
+import { store } from './app/redux/configureStore';
 
-// const istate = {}
-const store = createStore(changeData);
-function changeData(state, action) {
-    switch (action.type) {
-        case 'ADD_UPDATE_DATA':
-            return { ...state, ...action.data }
-        case 'ADD_USER-DATA':
-            return { ...state, ...action.data }
-        default:
-            return state
-    }
-}
+// const store = createStore(changeData);
+// function changeData(state, action) {
+//     switch (action.type) {
+//         case 'ADD_UPDATE_DATA':
+//             return { ...state, ...action.data }
+//         case 'ADD_USER-DATA':
+//             return { ...state, ...action.data }
+//         default:
+//             return state
+//     }
+// }
 // console.log("state4", state.user_data)
 // ...state.user_data, ...action.data
 // store.dispatch({

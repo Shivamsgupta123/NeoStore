@@ -86,10 +86,11 @@ class AddressList extends Component {
             console.log("null", this.addressindex)
             console.log("01010", this.address1)
             console.log("20202", this.address1[this.addressindex].address)
-
+            this.setState({ Loading: true })
             formData.append("address", this.address1[this.addressindex].address);
             GlobalAPI(placeorder, "POST", formData, null, response => {
                 if (response.status == 200) {
+                    this.setState({ Loading: false })
                     console.log("adree;ist", response)
                     Vibration.vibrate(200)
                     this.props.addUpdateData({ total_carts: 0 })
@@ -99,7 +100,6 @@ class AddressList extends Component {
                         duration: 2000,
                         type: "success"
                     })
-                    this.setState({ Loading: true })
                     // this.props.navigation.replace("MyApp")
                     const resetAction = StackActions.reset({
                         index: 0,
@@ -109,9 +109,20 @@ class AddressList extends Component {
 
                 }
                 else {
+                    this.setState({ Loading: false })
                     alert(response.user_msg)
                 }
             }, error => {
+                this.setState({ Loading: false })
+                Alert.alert(
+                    'Failed!',
+                    'No Internet Connection.',
+                    [
+                        // { text: 'Cancle', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                        { text: 'Retry', onPress: () => this.placeOrder() },
+                    ],
+                    { cancelable: false }
+                )
                 console.log(error)
             })
         }
@@ -198,7 +209,7 @@ class AddressList extends Component {
                         </View>
                         <View style={styles.buttonview}>
                             <TouchableOpacity style={styles.orderbutton} onPress={() => this.placeOrder()}>
-                                {this.state.Loading ? <ActivityIndicator size="large" color="" /> : <Text style={styles.orderbuttontext}>PLACE ORDER</Text>}
+                                {this.state.Loading ? <ActivityIndicator size="large" color="white" /> : <Text style={styles.orderbuttontext}>PLACE ORDER</Text>}
                             </TouchableOpacity>
                         </View>
                     </View>
