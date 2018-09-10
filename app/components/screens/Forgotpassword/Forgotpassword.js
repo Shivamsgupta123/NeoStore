@@ -8,7 +8,6 @@ import { GlobalAPI } from '../../../lib/Globals';
 import { White } from '../../../utils/Colors';
 
 export default class Forgotpassword extends Component {
-
     state = {
         Username: '',
         Loading: false
@@ -18,7 +17,6 @@ export default class Forgotpassword extends Component {
         var emailreg = /\S+@\S+\.\S+/;
         var passwordreg = /^[0-9a-zA-Z]+$/;
         if (this.state.Username == "" || !this.state.Username.match(emailreg)) {
-            // alert("Enter Valid User Name.")
             Toast.show({
                 text: 'Enter Valid User Name.',
                 duration: 2000,
@@ -35,7 +33,6 @@ export default class Forgotpassword extends Component {
         let formData = new FormData();
         formData.append('email', this.state.Username);
         GlobalAPI(forgotpassword, "POST", formData, null, response => {
-
             if (response.status == 200) {
                 this.setState({ Loading: false })
                 // alert("Password Maild You")
@@ -71,8 +68,6 @@ export default class Forgotpassword extends Component {
                 console.log(error)
             }
         )
-
-
     }
 
     render() {
@@ -101,15 +96,9 @@ export default class Forgotpassword extends Component {
                     <TouchableOpacity style={styles.loginbutton} onPress={() => this.validate()}>
                         {this.state.Loading ? <ActivityIndicator size="large" color="red" /> : <Text style={styles.buttontext}>SUBMIT</Text>}
                     </TouchableOpacity>
-
                 </View>
-
             </ImageBackground>
-
-
 
         );
     }
-
-
 }

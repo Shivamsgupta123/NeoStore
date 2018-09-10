@@ -26,12 +26,14 @@ class AddressList extends Component {
         this.addressindex = 0
         this.index
     }
+
+    //Getting addresses from local storage
     async getAddress() {
         this.address1 = await AsyncStorage.getItem("address")
         this.address1 = JSON.parse(this.address1)
         // this.address1.splice(0, 1)
-        console.log("list", this.address1)
-        console.log("pqr", this.address1.length)
+        // console.log("list", this.address1)
+        // console.log("pqr", this.address1.length)
         this.index = this.address1.length
         this.setState({ autoplay: false })
     }
@@ -39,12 +41,11 @@ class AddressList extends Component {
         const didBlurSubscription = this.props.navigation.addListener(
             'willFocus',
             payload => {
-
                 this.getAddress()
             }
         );
-        // this.getAddress()
     }
+
     removeAddress(item, index) {
         Alert.alert(
             'Delete!',
@@ -71,9 +72,10 @@ class AddressList extends Component {
         })
         this.setState({ autoplay: true })
     }
+
     placeOrder() {
-        console.log('called')
         let formData = new FormData();
+        // Checking that Array initially empty or not
         if (this.index == 0 || this.address1 == null || this.address1.length == 0) {
             Toast.show({
                 text: 'Please Add Address.',
@@ -81,7 +83,6 @@ class AddressList extends Component {
                 type: "danger"
             })
         }
-
         else {
             console.log("null", this.addressindex)
             console.log("01010", this.address1)
@@ -127,20 +128,21 @@ class AddressList extends Component {
             })
         }
     }
+
+    // Assigning the address & index of Address from array of addresses to specifying which address is selected from multiple addresses for placing order.
     selectAddress(item, index) {
         // console.log("item", item)
         // console.log("index", index)
         this.setState({ Select: index })
         this.addressindex = index
     }
+    // Assigning the address & index of Address from array of addresses to specifying which address is selected for editing.
     editAddress(item, index) {
-        var editAdd = { item: item, index: index }
         // console.log("item", item)
         // console.log("index", index)
+        var editAdd = { item: item, index: index }
         this.props.navigation.navigate('Addaddress', editAdd)
-
     }
-
 
     render() {
         return (

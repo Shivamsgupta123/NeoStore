@@ -13,7 +13,6 @@ import { addUserData } from '../../../redux/actions/UserData_Action';
 //         data
 //     }
 // }
-
 class StartUp extends Component {
     constructor(props) {
         super(props);
@@ -23,6 +22,7 @@ class StartUp extends Component {
         // SplashScreen.hide();
 
     }
+    // Checking whether user is already login or not... if he's not login then move to login scrreen else move to home screen.
     starter() {
         AsyncStorage.getItem("access_token").then((value) => {
             // console.log(value)
@@ -55,6 +55,7 @@ class StartUp extends Component {
                 }
                 )
             }
+            // Move to login screen if network failed.
             else {
                 // console.log("login")
                 this.props.navigation.replace('Login')

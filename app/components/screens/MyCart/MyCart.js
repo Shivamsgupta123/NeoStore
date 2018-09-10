@@ -27,6 +27,7 @@ class MyCart extends Component {
     componentDidMount() {
         this.fetchResult()
     }
+    //fetching data from API
     fetchResult() {
         GlobalAPI(cartitem, "GET", null, null, response => {
             if (response.status == 200) {
@@ -37,7 +38,7 @@ class MyCart extends Component {
                     // Quantity: this.state.fetcheddata.data[0].quantity
                 }
                 );
-                console.log("value", this.state.fetcheddata)
+                // console.log("value", this.state.fetcheddata)
             }
         },
             error => {
@@ -57,6 +58,7 @@ class MyCart extends Component {
     componentWillUnmount() {
         console.log("welcome")
     }
+    //update the Quantity of perticular product.
     setquantity(index, id, value, item) {
         this.setState({})
         this.state.fetcheddata.data[index].quantity = value
@@ -103,6 +105,7 @@ class MyCart extends Component {
         )
         return true
     }
+    //Delete product from cart.
     deleteItem(index, item) {
         Alert.alert(
             'Delete!',
@@ -149,6 +152,7 @@ class MyCart extends Component {
             }
         )
     }
+
     render() {
         // console.log("fetchdata", this.state.fetcheddata)
         console.log("data lenght", this.state.fetcheddata.data)
@@ -171,15 +175,10 @@ class MyCart extends Component {
                         <Icon name="search" size={22} style={styles.iconback} />
                     </Right>
                 </Header>
-
                 {this.state.fetcheddata.data == null || this.state.fetcheddata.data.length == 0 ? <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}><Text>Cart Is Empty!</Text></View> :
                     // <View>
                     <View style={{ flex: 1 }}>
-
-
                         {/* Display cart items */}
-
-
                         <SwipeListView
                             useFlatList
                             data={this.state.fetcheddata.data}
@@ -193,7 +192,6 @@ class MyCart extends Component {
                                         <Text style={styles.productname}>{item.product.name}</Text>
                                         <Text style={styles.productcategory}>({item.product.product_category})</Text>
                                         <View style={styles.subview}>
-
                                             <ModalDropdown
                                                 style={styles.quantitylist}
                                                 options={['1', '2', '3', '4', '5', '6', '7', '8']}
@@ -243,7 +241,6 @@ class MyCart extends Component {
                     // </View>
                 }
             </View>
-
         )
     }
 }

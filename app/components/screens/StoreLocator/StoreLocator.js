@@ -16,17 +16,14 @@ export default class StoreLocator extends Component {
             error: null,
             coords: [],
             x: 'false',
-            // cordLatitude: "-6.23",
-            // cordLongitude: "106.75",
             concat: null
 
         }
-        // this.mergeLot = this.mergeLot.bind(this);
 
-    } async getDirections(startLoc, destinationLoc) {
-
+    }
+    //Return Route from current location to store.
+    async getDirections(startLoc, destinationLoc) {
         try {
-
             let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${destinationLoc}`)
             let respJson = await resp.json();
             let points = Polyline.decode(respJson.routes[0].overview_polyline.points);
@@ -50,6 +47,7 @@ export default class StoreLocator extends Component {
         }
     }
 
+    //Return Current postion of user.
     componentDidMount() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -66,7 +64,7 @@ export default class StoreLocator extends Component {
             { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 },
         );
     }
-
+    //Passing Latitude, Longitude of store location to getDirection().
     findRoute = (Latitude, Longitude) => {
         this.getDirections(`${this.state.latitude},${this.state.longitude}`, `${Latitude},${Longitude}`)
         this.map.fitToCoordinates([{ latitude: Latitude, longitude: Longitude }], {
@@ -187,7 +185,6 @@ export default class StoreLocator extends Component {
                     </View>
                 </TouchableOpacity>
                 {/* </ScrollView> */}
-
             </View>
         )
     }

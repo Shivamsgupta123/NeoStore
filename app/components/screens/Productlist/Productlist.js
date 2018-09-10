@@ -5,7 +5,7 @@ import { Container, Header, Left, Body, Right, Button, Title } from 'native-base
 import styles from './Styles';
 import { Rating } from 'react-native-elements';
 import { White, ButtonText, PlusIconBackground, HeaderColor, ProductlistFont } from '../../../utils/Colors';
-import { login, detail, productlimit, productid, product_category, fetchaccountdetail, prductlist, productdetail, productrating, register, changepassword } from '../../../lib/api';
+import { product_category, prductlist } from '../../../lib/api';
 import { GlobalAPI, Console } from '../../../lib/Globals';
 import Loader from '../../Loader/Loader';
 

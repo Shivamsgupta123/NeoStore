@@ -12,16 +12,14 @@ import { GlobalAPI } from '../../../lib/Globals';
 import Stars from 'react-native-stars';
 import ImageZoom from 'react-native-image-pan-zoom';
 import { connect } from "react-redux";
-// import Vibration from 'react-native-vibration;'
-// var Vibration = require('react-native-vibration');
-// const DURATION = 10000
+import { addUpdateData } from '../../../redux/actions/UserData_Action';
 
-const addUpdateData = (data) => {
-    return {
-        type: 'ADD_UPDATE_DATA',
-        data
-    }
-}
+// const addUpdateData = (data) => {
+//     return {
+//         type: 'ADD_UPDATE_DATA',
+//         data
+//     }
+// }
 class Productdetail extends Component {
     constructor(props) {
         super(props)
@@ -38,10 +36,9 @@ class Productdetail extends Component {
             stars: '',
             isModalVisible2: false,
             showToast: false
-
-
         }
     }
+
     closeRatePopup = () =>
         this.setState({ isModalVisible: !this.state.isModalVisible });
 
@@ -59,6 +56,7 @@ class Productdetail extends Component {
     componentDidMount() {
         this.fetchResult()
     }
+    // Fetching product detail from API
     fetchResult() {
         let url = productdetail + productid + this.props.navigation.state.params.Id;
         return GlobalAPI(url, "GET", null, null, response => {
@@ -101,12 +99,12 @@ class Productdetail extends Component {
         return image
     }
 
-    quantitySubmit = () => {
-        let formData = new FormData();
-        formData.append(' product_id', this.state.fetcheddata.id);
-        formData.append(' quantity', this.state.Quntity);
-        this.setState({ isModalVisible: false })
-    }
+    // quantitySubmit = () => {
+    //     let formData = new FormData();
+    //     formData.append(' product_id', this.state.fetcheddata.id);
+    //     formData.append(' quantity', this.state.Quntity);
+    //     this.setState({ isModalVisible: false })
+    // }
 
     ratingsubmit() {
         this.setState({ Loader: true })
@@ -121,7 +119,6 @@ class Productdetail extends Component {
                     text: response.message,
                     duration: 3000,
                     type: "success"
-
                 })
                 this.setState({ isModalVisible: false, Loading: false })
                 // alert(response.message)
@@ -146,10 +143,9 @@ class Productdetail extends Component {
             }
         )
     }
+
+    //Prodyct Quantity submit
     async buysubmit() {
-        // if (this.state.Quntity == '' || this.state.Quntity.match(/^[0-9a-zA-Z]+$/))
-        //     alert('No Internet Connection!')
-        // else {
         this.setState({ Loader: true })
         var getdata = await AsyncStorage.getItem('ResponseData');
         getdata = JSON.parse(getdata)
@@ -216,8 +212,6 @@ class Productdetail extends Component {
     }
 
     render() {
-        // if (this.state.Loading)
-        //     return <ActivityIndicator size="large" color="#e91b1a" />
         return (
             this.state.datafetched ?
                 <View style={styles.mainview}>
@@ -312,11 +306,9 @@ class Productdetail extends Component {
                                             }
                                         </View>
                                     </Modal>
-                                    {/* {console.log("b")} */}
                                 </View>
-                                {/* {console.log("c")} */}
-                                {/* Buy Modal */}
 
+                                {/* Buy Modal */}
                                 <View style={styles.modalview4}>
 
                                     <Modal isVisible={this.state.isModalVisible1}>
@@ -339,17 +331,14 @@ class Productdetail extends Component {
                                         </View>
                                     </Modal>
                                 </View>
-                                {/* </KeyboardAvoidingView> */}
-                                {/* </ScrollView> */}
+
 
                                 {/* Image Zoom Modal */}
-                                {/* <View style={{ flex: 1, height: "50%", width: "80%", justifyContent: "center", alignItems: "center", backgroundColor: "white" }}> */}
                                 <Modal isVisible={this.state.isModalVisible2}>
                                     <View style={styles.imagezoomview}>
                                         <TouchableOpacity onPress={this.closeImageModal} >
                                             <Icon name="close" size={27} style={styles.imagezoomclose} />
                                         </TouchableOpacity>
-
                                         <ImageZoom cropWidth={350}
                                             cropHeight={280}
                                             imageWidth={450}
@@ -357,13 +346,8 @@ class Productdetail extends Component {
                                             <Image style={{ width: 450, height: 280 }}
                                                 source={{ uri: this.state.img1 }} />
                                         </ImageZoom>
-
-                                        {/* <View>
-                                        <Image source={{ uri: this.state.img1 }} style={styles.imazezoom} />
-                                    </View> */}
                                     </View>
                                 </Modal>
-                                {/* </View> */}
 
                             </View>
                         </ScrollView>

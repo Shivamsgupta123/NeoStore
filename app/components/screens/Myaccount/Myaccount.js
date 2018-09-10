@@ -17,11 +17,11 @@ class Myaccount extends Component {
         this.state = {
             autoplay: true
         }
-        console.log("Myacc props", props.state.user_data.first_name)
+        // console.log("Myacc props", props.state.user_data.first_name)
     }
-    componentDidMount() {
-        console.log("25")
-    }
+    // componentDidMount() {
+    //     console.log("25")
+    // }
     render() {
         return (
             <View style={{ flex: 1 }}>
@@ -73,8 +73,6 @@ class Myaccount extends Component {
                             <TouchableOpacity style={styles.loginbutton} onPress={() => this.props.navigation.navigate('Editprofile')}>
                                 <Text style={styles.buttontext}>Edit Profile</Text>
                             </TouchableOpacity>
-
-
                         </View>
 
                     </ScrollView>

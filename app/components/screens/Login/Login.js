@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ImageBackground, Alert, BackHandler, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, ImageBackground, Alert, BackHandler, TextInput, TouchableOpacity, ActivityIndicator, } from 'react-native';
 import styles from './Styles';
 import { Icon } from '../../../utils/Icon/Icon';
 import FeatherIcon from 'react-native-vector-icons/Feather';
@@ -7,6 +7,7 @@ import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../uti
 // import SplashScreen from 'react-native-splash-screen';
 import { AsyncStorage } from 'react-native';
 // import { login } from '../../../lib/api';
+import { Toast } from 'native-base';
 import { _login, fetchaccountdetail } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import SplashScreen from 'react-native-splash-screen';
@@ -21,7 +22,6 @@ import { addUserData } from '../../../redux/actions/UserData_Action';
 //         data
 //     }
 // }
-
 class Login extends Component {
     constructor(props) {
         super(props)
@@ -44,18 +44,18 @@ class Login extends Component {
         var emailreg = /\S+@\S+\.\S+/;
         var passwordreg = /^[0-9a-zA-Z]+$/;
         console.log('asdas', Validation(this.state.Username))
-        // if (!Validation(this.state.Username))
-        //     alert("Enter User Name")
-
         if (this.state.Username == "" || !this.state.Username.match(emailreg)) {
-            alert("Enter Valid User Name.")
+
+            Toast.show({
+                text: "Enter Valid User Name.",
+                duration: 1500,
+                type: "warning"
+            })
             return false
         }
         else
             this.login()
-
     }
-
 
     userdetails = (access_token) => {
         SplashScreen.hide();
@@ -68,7 +68,12 @@ class Login extends Component {
                 this.props.navigation.replace('MyApp', response)
             }
             else {
-                alert(response.user_msg)
+                this.setState({ Loading: false })
+                Toast.show({
+                    text: response.user_msg,
+                    duration: 1500,
+                    type: "warning"
+                })
             }
         }, error => {
             console.log(error)
@@ -85,7 +90,6 @@ class Login extends Component {
             )
         }
         )
-
     }
 
     // user Authentication
@@ -103,15 +107,17 @@ class Login extends Component {
                 AsyncStorage.setItem("ResponseData", JSON.stringify(response))
             }
             else {
-                alert(response.user_msg)
                 this.setState({ Loading: false })
+                Toast.show({
+                    text: response.user_msg,
+                    duration: 1500,
+                    type: "warning"
+                })
                 console.log("Loading123", this.state.Loading)
-                // alert("Connection Failed!")
             }
         }, error => {
             console.log(error)
             this.setState({ Loading: false })
-            // alert("Connection Failed!")
             Alert.alert(
                 'Failed!',
                 'No Internet Connection.',
@@ -126,12 +132,7 @@ class Login extends Component {
     }
 
     render() {
-
-        // if (this.state.Loading)
-        //     return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
-
         return (
-
             <View pointerEvents={this.state.Loading ? "none" : "auto"} style={styles.mainview}>
 
                 <ImageBackground source={require('../../../assets/images/red_1.jpg')} style={styles.backgroundimage}>

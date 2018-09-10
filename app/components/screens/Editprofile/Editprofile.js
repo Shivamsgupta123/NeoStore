@@ -38,7 +38,7 @@ class Editprofile extends Component {
         // console.log("name", UserObject.user_data.first_name)
         // console.log("profileimae", this.state.FirstName)
     }
-
+    // for tab to next input field through keypad
     focusNextField(id) {
         this.inputs[id].focus()
     }
@@ -151,6 +151,7 @@ class Editprofile extends Component {
         });
         console.log("date1", this.state.DateText)
     }
+
     render() {
         console.log("123", this.props.first_name)
         return (

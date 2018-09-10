@@ -28,8 +28,8 @@ export default class Addaddress extends Component {
         this.inputs[id].focus()
     }
     componentDidMount() {
+        // Assigned value to state if user came to this screen from edit option in Address listing screen
         if (this.props.navigation.state.params != undefined) {
-            // splice(item.index, 1)
             this.setState({
                 Address: this.props.navigation.state.params.item.address,
                 Landmark: this.props.navigation.state.params.item.landmark,
@@ -40,14 +40,14 @@ export default class Addaddress extends Component {
             })
             AsyncStorage.getItem("address").then((add) => {
                 this.address = this.address.concat(JSON.parse(add))
-                console.log("565", this.address)
+                // console.log("565", this.address)
                 this.address.splice(this.props.navigation.state.params.index, 1)
-                console.log("xyz", this.address)
+                // console.log("xyz", this.address)
                 // AsyncStorage.setItem("address", JSON.stringify(this.address))
             })
             return
         }
-
+        // Getting array of addresses form local storage & Append new address to that array
         AsyncStorage.getItem("address").then((add) => {
             if (add == null)
                 return
@@ -56,8 +56,8 @@ export default class Addaddress extends Component {
         })
     }
 
+    // Checking validations & stroing address to local Storage.
     saveAddress() {
-
         if (this.state.Address == '') {
             // alert("Enter Address")
             Toast.show({
