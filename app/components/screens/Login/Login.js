@@ -12,7 +12,7 @@ import { _login, fetchaccountdetail } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import SplashScreen from 'react-native-splash-screen';
 import { UserProvider } from '../../../lib/UserProvider';
-import { Validation } from '../../../lib/Validation';
+import { EmptyField, Email } from '../../../lib/Validation';
 import { connect } from "react-redux";
 import { addUserData } from '../../../redux/actions/UserData_Action';
 
@@ -43,8 +43,8 @@ class Login extends Component {
     validate() {
         var emailreg = /\S+@\S+\.\S+/;
         var passwordreg = /^[0-9a-zA-Z]+$/;
-        console.log('asdas', Validation(this.state.Username))
-        if (this.state.Username == "" || !this.state.Username.match(emailreg)) {
+        // console.log('asdas', Validation(this.state.Username))
+        if (EmptyField(this.state.Username) || Email(this.state.Username)) {
 
             Toast.show({
                 text: "Enter Valid User Name.",

@@ -1,6 +1,34 @@
+var emailreg = /\S+@\S+\.\S+/;
+var passwordreg = /^[0-9a-zA-Z]+$/;
+var phonenoreg = /^\+?([0-9]{2})\)?[-. ]?([0-9]{5})[-. ]?([0-9]{5})$/;
+var namereg = /^[A-Za-z]+$/;
 
-export const Validation = (data) => {
+export const EmptyField = (data) => {
     if (data == '')
-        return false
-    return true
+        return true
+    return false
+}
+
+export const Email = (data) => {
+    if (!data.match(emailreg))
+        return true
+    return false
+}
+
+export const Name = (data) => {
+    if (!data.match(namereg))
+        return true
+    return false
+}
+
+export const Password = (data) => {
+    if (!data.match(passwordreg))
+        return true
+    return false
+}
+
+export const PhoneNumber = (data) => {
+    if (!data.match(phonenoreg))
+        return true
+    return false
 }

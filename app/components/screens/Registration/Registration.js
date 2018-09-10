@@ -7,6 +7,7 @@ import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../uti
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 import { register, } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
+import { EmptyField, Email, Name, Password, PhoneNumber } from '../../../lib/Validation';
 
 var gender = [
     { label: "Male", value: 0 },
@@ -39,7 +40,7 @@ export default class Registration extends Component {
         var passwordreg = /^[0-9a-zA-Z]+$/;
         var phonenoreg = /^\+?([0-9]{2})\)?[-. ]?([0-9]{5})[-. ]?([0-9]{5})$/;
 
-        if (this.state.FirstName == "" || !this.state.FirstName.match(namereg)) {
+        if (EmptyField(this.state.FirstName) || Name(this.state.FirstName)) {
             // alert("Please Enter Valid Name with no wide spaces & Numbers.")
             Toast.show({
                 text: 'Please Enter Valid Name with no wide spaces & Numbers.',
@@ -49,27 +50,25 @@ export default class Registration extends Component {
             return false
         }
         else
-            if (this.state.LastName == "" || !this.state.LastName.match(namereg)) {
+            if (EmptyField(this.state.FirstName) || Name(this.state.FirstName)) {
                 Toast.show({
                     text: 'Please Enter Valid Name with no wide spaces & Numbers.',
                     duration: 2000,
                     type: "warning"
                 })
-                // alert("Please Enter Valid Name with no wide spaces & Numbers.")
                 return false
             }
             else
-                if (this.state.Email == "" || !this.state.Email.match(emailreg)) {
+                if (EmptyField(this.state.Email) || Email(this.state.Email)) {
                     Toast.show({
                         text: 'Please Enter Valid Email.',
                         duration: 2000,
                         type: "warning"
                     })
-                    // alert("Please Enter Valid Email.")
                     return false
                 }
                 else
-                    if (this.state.Password == "" || !this.state.Password.match(passwordreg) || this.state.Password.length < 8) {
+                    if (EmptyField(this.state.Password) || Password(this.state.Password) || this.state.Password.length < 8) {
                         // alert("Enter alphanumeric password having atleast 8 characters.")
                         Toast.show({
                             text: 'Enter alphanumeric password having atleast 8 characters.',
@@ -79,8 +78,7 @@ export default class Registration extends Component {
                         return false
                     }
                     else
-                        if (this.state.ConfirmPassword == "") {
-
+                        if (EmptyField(this.state.ConfirmPassword)) {
                             Toast.show({
                                 text: 'Confirm Password.',
                                 duration: 2000,
@@ -90,7 +88,6 @@ export default class Registration extends Component {
                         }
                         else
                             if (this.state.ConfirmPassword != this.state.Password) {
-                                // alert("Please enter password exactly same as above password")
                                 Toast.show({
                                     text: 'Please enter password exactly same as above password.',
                                     duration: 2000,
@@ -99,8 +96,7 @@ export default class Registration extends Component {
                                 return false
                             }
                             else
-                                if (this.state.PhoneNumber == "" || !this.state.PhoneNumber.match(phonenoreg)) {
-                                    // alert("Please enter 10 digit phone no with country code(eg.+91).")
+                                if (EmptyField(this.state.PhoneNumber) || PhoneNumber(this.state.PhoneNumber)) {
                                     Toast.show({
                                         text: 'Please enter 10 digit phone no with country code(eg.+91).',
                                         duration: 2000,
@@ -109,7 +105,6 @@ export default class Registration extends Component {
                                     return false
                                 }
         if (this.state.Ischecked !== true) {
-            // alert("Please accept terms & conditions")
             Toast.show({
                 text: 'Please accept terms & conditions.',
                 duration: 2000,

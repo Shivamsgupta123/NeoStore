@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { View, Image, ActivityIndicator, Text, ImageBackground, TextInput, Platform, TouchableOpacity, KeyboardAvoidingView, Dimensions, ScrollView } from 'react-native';
 import styles from './Styles';
 import { Icon } from '../../../utils/Icon/Icon';
-import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
+import { Container, Header, Left, Body, Right, Button, Title, Toast } from 'native-base';
 import { White, ButtonText, PlusIconBackground, HeaderColor, HeaderTextFontWeight } from '../../../utils/Colors';
 import { AsyncStorage } from 'react-native';
 import { changepassword } from '../../../lib/api';
 // import { Globals } from '../../../lib/Globals';
 import { GlobalAPI } from '../../../lib/Globals';
-
+import { EmptyField, Email, Name, Password, PhoneNumber } from '../../../lib/Validation';
 
 export default class ResetPasswordScreen extends Component {
 
@@ -20,19 +20,30 @@ export default class ResetPasswordScreen extends Component {
         Loading: false
     }
     validate() {
-        var emailreg = /\S+@\S+\.\S+/;
-        var passwordreg = /^[0-9a-zA-Z]+$/;
 
-        if (this.state.CurrentPassword == "") {
-            alert("Please Enter Current Password")
+        if (EmptyField(this.state.CurrentPassword)) {
+            Toast.show({
+                text: 'Please Enter Current Password.',
+                duration: 2000,
+                type: "warning"
+            })
             return false
         }
-        if (this.state.NewPassword == "" || !this.state.NewPassword.match(passwordreg)) {
-            alert("Enter new alphanumeric password having atleast 8 characters.")
+        if (EmptyField(this.state.NewPassword) || Password(this.state.NewPassword)) {
+            Toast.show({
+                text: 'Enter new alphanumeric password having atleast 8 characters.',
+                duration: 2000,
+                type: "warning"
+            })
             return false
         }
-        if (this.state.ConfirmPassword == "") {
+        if (EmptyField(this.state.ConfirmPassword)) {
             alert("Please Confirm Password.")
+            Toast.show({
+                text: 'Please Confirm Password.',
+                duration: 2000,
+                type: "warning"
+            })
             return false
         }
         else

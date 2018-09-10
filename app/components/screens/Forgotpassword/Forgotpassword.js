@@ -6,7 +6,7 @@ import { Container, Header, Left, Body, Right, Button, Title, Toast } from 'nati
 import { forgotpassword } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import { White } from '../../../utils/Colors';
-
+import { EmptyField, Email } from '../../../lib/Validation';
 export default class Forgotpassword extends Component {
     state = {
         Username: '',
@@ -14,9 +14,7 @@ export default class Forgotpassword extends Component {
     }
 
     validate() {
-        var emailreg = /\S+@\S+\.\S+/;
-        var passwordreg = /^[0-9a-zA-Z]+$/;
-        if (this.state.Username == "" || !this.state.Username.match(emailreg)) {
+        if (EmptyField(this.state.Username) || Email(this.state.Username)) {
             Toast.show({
                 text: 'Enter Valid User Name.',
                 duration: 2000,
