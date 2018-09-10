@@ -16,6 +16,7 @@ import { addUserData } from '../../../redux/actions/UserData_Action';
 class StartUp extends Component {
     constructor(props) {
         super(props);
+        console.disableYellowBox = true;
     }
     componentDidMount() {
         this.starter()
