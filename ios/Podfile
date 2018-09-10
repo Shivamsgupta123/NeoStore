@@ -2,6 +2,7 @@
 # platform :ios, '9.0'
 
 target 'NeoStore' do
+  pod 'Stripe', '~> 11.2.0'
     rn_path = '../node_modules/react-native'
     rn_maps_path = '../node_modules/react-native-maps'
   
@@ -37,6 +38,8 @@ target 'NeoStore' do
     pod 'react-native-google-maps', path: rn_maps_path  # Remove this line if you don't want to support GoogleMaps on iOS
     pod 'GoogleMaps'  # Remove this line if you don't want to support GoogleMaps on iOS
     pod 'Google-Maps-iOS-Utils' # Remove this line if you don't want to support GoogleMaps on iOS
+    pod 'tipsi-stripe', :path => '../node_modules/tipsi-stripe'
+
   end
   
   post_install do |installer|

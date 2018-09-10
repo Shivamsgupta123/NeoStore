@@ -10,7 +10,7 @@ import { placeorder } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import { connect } from "react-redux";
 import { StackActions, NavigationActions } from 'react-navigation';
-
+import stripe from 'tipsi-stripe';
 const addUpdateData = (data) => {
     return {
         type: 'ADD_UPDATE_DATA',
@@ -25,6 +25,21 @@ class AddressList extends Component {
         this.state = { autoplay: true, autoplay1: true, Select: 0, Loading: false }
         this.addressindex = 0
         this.index
+
+        this.options = {
+            requiredBillingAddressFields: 'full',
+            prefilledInformation: {
+                billingAddress: {
+                    name: 'abc',
+                    line1: 'pqr',
+                    line2: '3',
+                    city: 'Mumbai',
+                    state: 'Maharashtra',
+                    country: 'India',
+                    postalCode: '444605',
+                },
+            },
+        }
     }
 
     //Getting addresses from local storage
@@ -73,7 +88,7 @@ class AddressList extends Component {
         this.setState({ autoplay: true })
     }
 
-    placeOrder() {
+    async placeOrder() {
         let formData = new FormData();
         // Checking that Array initially empty or not
         if (this.index == 0 || this.address1 == null || this.address1.length == 0) {
@@ -84,48 +99,124 @@ class AddressList extends Component {
             })
         }
         else {
-            console.log("null", this.addressindex)
-            console.log("01010", this.address1)
-            console.log("20202", this.address1[this.addressindex].address)
             this.setState({ Loading: true })
-            formData.append("address", this.address1[this.addressindex].address);
-            GlobalAPI(placeorder, "POST", formData, null, response => {
-                if (response.status == 200) {
-                    this.setState({ Loading: false })
-                    console.log("adree;ist", response)
-                    Vibration.vibrate(200)
-                    this.props.addUpdateData({ total_carts: 0 })
-                    // alert(response.user_msg)
-                    Toast.show({
-                        text: response.user_msg,
-                        duration: 2000,
-                        type: "success"
-                    })
-                    // this.props.navigation.replace("MyApp")
-                    const resetAction = StackActions.reset({
-                        index: 0,
-                        actions: [NavigationActions.navigate({ routeName: 'MyApp' })],
-                    });
-                    this.props.navigation.dispatch(resetAction);
-
-                }
-                else {
-                    this.setState({ Loading: false })
-                    alert(response.user_msg)
-                }
-            }, error => {
-                this.setState({ Loading: false })
-                Alert.alert(
-                    'Failed!',
-                    'No Internet Connection.',
-                    [
-                        // { text: 'Cancle', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-                        { text: 'Retry', onPress: () => this.placeOrder() },
-                    ],
-                    { cancelable: false }
-                )
-                console.log(error)
+            stripe.setOptions({
+                publishableKey: 'pk_test_YQp17Dc1izLbcNXXiLn1qYbh',
+                merchantId: 'MERCHANT_ID', // Optional
+                androidPayMode: 'test', // Android only
             })
+            const token = await stripe.paymentRequestWithCardForm(this.options)
+
+            console.log(token)
+            fetch("http://10.0.102.235:9000/charge",
+                {
+                    method: "POST",
+                    body: token.tokenId
+                }
+            )
+                // .then((response) => response.json())
+                .then(response => {
+                    console.log("response", response)
+                    if (response.status == 200) {
+                        console.log("success")
+                        Vibration.vibrate(200)
+                        Toast.show({
+                            text: 'Payment Successful',
+                            duration: 2000,
+                            type: "success"
+                        })
+                        this.setState({ Loading: false })
+                        formData.append("address", this.address1[this.addressindex].address);
+                        GlobalAPI(placeorder, "POST", formData, null, response => {
+                            if (response.status == 200) {
+                                console.log("adree;ist", response)
+                                Vibration.vibrate(200)
+                                this.props.addUpdateData({ total_carts: 0 })
+                                // alert(response.user_msg)
+                                Toast.show({
+                                    text: response.user_msg,
+                                    duration: 2000,
+                                    type: "success"
+                                })
+                                const resetAction = StackActions.reset({
+                                    index: 0,
+                                    actions: [NavigationActions.navigate({ routeName: 'MyApp' })],
+                                });
+                                this.props.navigation.dispatch(resetAction);
+                            }
+                            else {
+                                this.setState({ Loading: false })
+                                alert(response.user_msg)
+                            }
+                        }, error => {
+                            this.setState({ Loading: false })
+                            Alert.alert(
+                                'Failed!',
+                                'No Internet Connection.',
+                                [
+                                    // { text: 'Cancle', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                                    { text: 'Retry', onPress: () => this.placeOrder() },
+                                ],
+                                { cancelable: false }
+                            )
+                            console.log(error)
+                        })
+                    }
+                })
+                .catch(error => {
+                    this.setState({ Loading: false })
+                    Alert.alert(
+                        'Failed!',
+                        'No Internet Connection.',
+                        [
+                            // { text: 'Cancle', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                            { text: 'Retry', onPress: () => this.placeOrder() },
+                        ],
+                        { cancelable: false }
+                    )
+                    console.log(error)
+                })
+
+
+
+            // this.setState({ Loading: true })
+            // formData.append("address", this.address1[this.addressindex].address);
+            // GlobalAPI(placeorder, "POST", formData, null, response => {
+            //     if (response.status == 200) {
+            //         this.setState({ Loading: false })
+            //         console.log("adree;ist", response)
+            //         Vibration.vibrate(200)
+            //         this.props.addUpdateData({ total_carts: 0 })
+            //         // alert(response.user_msg)
+            //         Toast.show({
+            //             text: response.user_msg,
+            //             duration: 2000,
+            //             type: "success"
+            //         })
+            //         const resetAction = StackActions.reset({
+            //             index: 0,
+            //             actions: [NavigationActions.navigate({ routeName: 'MyApp' })],
+            //         });
+            //         this.props.navigation.dispatch(resetAction);
+
+            //     }
+            //     else {
+            //         this.setState({ Loading: false })
+            //         alert(response.user_msg)
+            //     }
+            // }, error => {
+            //     this.setState({ Loading: false })
+            //     Alert.alert(
+            //         'Failed!',
+            //         'No Internet Connection.',
+            //         [
+            //             // { text: 'Cancle', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+            //             { text: 'Retry', onPress: () => this.placeOrder() },
+            //         ],
+            //         { cancelable: false }
+            //     )
+            //     console.log(error)
+            // })
         }
     }
 

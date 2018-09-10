@@ -12,7 +12,6 @@ import Editprofile from './app/components/screens/Editprofile/Editprofile';
 import { AsyncStorage } from 'react-native';
 import Productlist from './app/components/screens/Productlist/Productlist';
 import Productdetail from './app/components/screens/Productdetail/Productdetail';
-import { productdetail } from './app/lib/api';
 import ResetPasswordScreen from './app/components/screens/ResetPassword/ResetPasswordScreen';
 import StartUp from './app/components/screens/StartUp/StartUp';
 import Addaddress from './app/components/screens/Addaddress/Addaddress';
@@ -22,12 +21,10 @@ import Myorder from './app/components/screens/Myorder/Myorder';
 import Orderdetail from './app/components/screens/Orderdetail/Orderdetail';
 import StoreLocator from './app/components/screens/StoreLocator/StoreLocator';
 import AddressList from './app/components/screens/AddressList/AddressList';
-import { UserObject } from './app/lib/UserProvider';
-import { createStore } from "redux";
 import { Provider } from 'react-redux'
-import { connect } from "react-redux";
 import { Root } from 'native-base'
 import { store } from './app/redux/configureStore';
+import MakePayment from './app/components/screens/MakePayment/MakePayment';
 
 // const store = createStore(changeData);
 // function changeData(state, action) {
@@ -167,6 +164,12 @@ const RootStack = createStackNavigator(
         },
         AddressList: {
             screen: AddressList,
+            navigationOptions: {
+                header: null
+            }
+        },
+        MakePayment: {
+            screen: MakePayment,
             navigationOptions: {
                 header: null
             }

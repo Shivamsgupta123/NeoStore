@@ -80,6 +80,10 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - Stripe (11.2.0)
+  - tipsi-stripe (5.6.0):
+    - React
+    - Stripe (~> 11.2.0)
   - yoga (0.56.0.React)
 
 DEPENDENCIES:
@@ -103,6 +107,8 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - Stripe (~> 11.2.0)
+  - tipsi-stripe (from `../node_modules/tipsi-stripe`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
 
 SPEC REPOS:
@@ -110,6 +116,7 @@ SPEC REPOS:
     - boost-for-react-native
     - Google-Maps-iOS-Utils
     - GoogleMaps
+    - Stripe
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -124,6 +131,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
+  tipsi-stripe:
+    :path: "../node_modules/tipsi-stripe"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga/yoga.podspec"
 
@@ -137,8 +146,10 @@ SPEC CHECKSUMS:
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
   react-native-google-maps: 2cfe3b01f8422c7dae51d8764139fd70f888cfce
   react-native-maps: 066c2afcc89e18726377bcc685315f989ca22449
+  Stripe: 898f83a95d72180c6eb4acd65b2ae6158fc6a8bd
+  tipsi-stripe: 5688e4b999acac90e97db93c83957dae0aa32cde
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: 5d0a08355ce518dffa544afad3087cae2c5a84c2
+PODFILE CHECKSUM: 07bef849fa5d8c85ebfe51bd6f89a1af90df47dc
 
 COCOAPODS: 1.5.3
