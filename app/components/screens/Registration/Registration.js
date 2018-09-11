@@ -43,67 +43,61 @@ export default class Registration extends Component {
         if (EmptyField(this.state.FirstName) || Name(this.state.FirstName)) {
             // alert("Please Enter Valid Name with no wide spaces & Numbers.")
             Toast.show({
-                text: 'Please Enter Valid Name with no wide spaces & Numbers.',
+                text: 'Please Enter Valid First Name with no wide spaces & Numbers.',
                 duration: 2000,
                 type: "warning"
             })
             return false
         }
-        else
-            if (EmptyField(this.state.FirstName) || Name(this.state.FirstName)) {
-                Toast.show({
-                    text: 'Please Enter Valid Name with no wide spaces & Numbers.',
-                    duration: 2000,
-                    type: "warning"
-                })
-                return false
-            }
-            else
-                if (EmptyField(this.state.Email) || Email(this.state.Email)) {
-                    Toast.show({
-                        text: 'Please Enter Valid Email.',
-                        duration: 2000,
-                        type: "warning"
-                    })
-                    return false
-                }
-                else
-                    if (EmptyField(this.state.Password) || Password(this.state.Password) || this.state.Password.length < 8) {
-                        // alert("Enter alphanumeric password having atleast 8 characters.")
-                        Toast.show({
-                            text: 'Enter alphanumeric password having atleast 8 characters.',
-                            duration: 2000,
-                            type: "warning"
-                        })
-                        return false
-                    }
-                    else
-                        if (EmptyField(this.state.ConfirmPassword)) {
-                            Toast.show({
-                                text: 'Confirm Password.',
-                                duration: 2000,
-                                type: "warning"
-                            })
-                            return false
-                        }
-                        else
-                            if (this.state.ConfirmPassword != this.state.Password) {
-                                Toast.show({
-                                    text: 'Please enter password exactly same as above password.',
-                                    duration: 2000,
-                                    type: "warning"
-                                })
-                                return false
-                            }
-                            else
-                                if (EmptyField(this.state.PhoneNumber) || PhoneNumber(this.state.PhoneNumber)) {
-                                    Toast.show({
-                                        text: 'Please enter 10 digit phone no with country code(eg.+91).',
-                                        duration: 2000,
-                                        type: "warning"
-                                    })
-                                    return false
-                                }
+        if (EmptyField(this.state.LastName) || Name(this.state.LastName)) {
+            Toast.show({
+                text: 'Please Enter Valid Last Name with no wide spaces & Numbers.',
+                duration: 2000,
+                type: "warning"
+            })
+            return false
+        }
+        if (EmptyField(this.state.Email) || Email(this.state.Email)) {
+            Toast.show({
+                text: 'Please Enter Valid Email.',
+                duration: 2000,
+                type: "warning"
+            })
+            return false
+        }
+        if (EmptyField(this.state.Password) || Password(this.state.Password) || this.state.Password.length < 8) {
+            // alert("Enter alphanumeric password having atleast 8 characters.")
+            Toast.show({
+                text: 'Enter alphanumeric password having atleast 8 characters.',
+                duration: 2000,
+                type: "warning"
+            })
+            return false
+        }
+        if (EmptyField(this.state.ConfirmPassword)) {
+            Toast.show({
+                text: 'Confirm Password.',
+                duration: 2000,
+                type: "warning"
+            })
+            return false
+        }
+        if (this.state.ConfirmPassword != this.state.Password) {
+            Toast.show({
+                text: 'Please enter password exactly same as above password.',
+                duration: 2000,
+                type: "warning"
+            })
+            return false
+        }
+        if (EmptyField(this.state.PhoneNumber) || PhoneNumber(this.state.PhoneNumber)) {
+            Toast.show({
+                text: 'Please enter 10 digit phone no with country code(eg.+91).',
+                duration: 2000,
+                type: "warning"
+            })
+            return false
+        }
         if (this.state.Ischecked !== true) {
             Toast.show({
                 text: 'Please accept terms & conditions.',

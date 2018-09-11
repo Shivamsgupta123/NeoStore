@@ -19,8 +19,8 @@ export default class ResetPasswordScreen extends Component {
         token: '',
         Loading: false
     }
-    validate() {
 
+    validate() {
         if (EmptyField(this.state.CurrentPassword)) {
             Toast.show({
                 text: 'Please Enter Current Password.',
@@ -48,9 +48,8 @@ export default class ResetPasswordScreen extends Component {
         }
         else
             this.submit()
-
-
     }
+
     async submit() {
         this.setState({ Loading: true })
         var getdata = await AsyncStorage.getItem('ResponseData');

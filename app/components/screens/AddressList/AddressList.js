@@ -25,32 +25,40 @@ class AddressList extends Component {
         this.state = { autoplay: true, autoplay1: true, Select: 0, Loading: false }
         this.addressindex = 0
         this.index
-
+        // console.log("adresses", this.address1)
         this.options = {
             requiredBillingAddressFields: 'full',
             prefilledInformation: {
                 billingAddress: {
-                    name: 'abc',
-                    line1: 'pqr',
-                    line2: '3',
-                    city: 'Mumbai',
-                    state: 'Maharashtra',
-                    country: 'India',
-                    postalCode: '444605',
+                    name: '',
+                    line1: '',
+                    line2: '',
+                    city: '',
+                    state: '',
+                    country: '',
+                    postalCode: '',
                 },
             },
         }
+        // console.log("option", this.options)
     }
 
     //Getting addresses from local storage
     async getAddress() {
         this.address1 = await AsyncStorage.getItem("address")
         this.address1 = JSON.parse(this.address1)
-        // this.address1.splice(0, 1)
-        // console.log("list", this.address1)
-        // console.log("pqr", this.address1.length)
         this.index = this.address1.length
         this.setState({ autoplay: false })
+        // console.log("adresses", this.address1)
+        // console.log("addressindex", this.addressindex)
+        this.options.prefilledInformation.billingAddress.name = this.address1[this.addressindex].Name
+        this.options.prefilledInformation.billingAddress.line1 = this.address1[this.addressindex].address
+        this.options.prefilledInformation.billingAddress.line2 = this.address1[this.addressindex].landmark
+        this.options.prefilledInformation.billingAddress.city = this.address1[this.addressindex].city
+        this.options.prefilledInformation.billingAddress.state = this.address1[this.addressindex].state
+        this.options.prefilledInformation.billingAddress.country = this.address1[this.addressindex].country
+        this.options.prefilledInformation.billingAddress.postalCode = this.address1[this.addressindex].zipcode
+        console.log("option", this.options)
     }
     async componentDidMount() {
         const didBlurSubscription = this.props.navigation.addListener(
@@ -223,7 +231,7 @@ class AddressList extends Component {
     // Assigning the address & index of Address from array of addresses to specifying which address is selected from multiple addresses for placing order.
     selectAddress(item, index) {
         // console.log("item", item)
-        // console.log("index", index)
+        console.log("index", index)
         this.setState({ Select: index })
         this.addressindex = index
     }
