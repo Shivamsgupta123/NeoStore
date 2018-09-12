@@ -74,7 +74,7 @@ export default styles = StyleSheet.create({
     },
     dob: {
         marginLeft: 10,
-        color: "white",
+        color: White,
         fontSize: Platform.OS === 'ios' ? 20 : 15,
         fontWeight: Platform.OS === 'ios' ? '500' : '500',
         height: Platform.OS === 'ios' ? 37 : 48,
@@ -104,7 +104,8 @@ export default styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         paddingLeft: Platform.OS === 'ios' ? 0 : 6,
-        paddingTop: Platform.OS === "ios" ? 0 : 6
+        paddingTop: Platform.OS === "ios" ? 0 : 6,
+        color: White,
     },
     mailicon: {
         height: 45,
@@ -112,10 +113,11 @@ export default styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         paddingLeft: Platform.OS === 'ios' ? 0 : 8,
-        paddingTop: Platform.OS === "ios" ? 0 : 6
+        paddingTop: Platform.OS === "ios" ? 0 : 6,
+        color: White
     },
     cakeicon: {
-        color: "#f9fbff",
+        color: White,
         height: 50,
         width: Platform.OS === 'ios' ? 30 : 35,
         justifyContent: "center",

@@ -190,7 +190,8 @@ export default styles = StyleSheet.create({
     addaccount: {
         marginRight: 15,
         backgroundColor: PlusIconBackground,
-        padding: 2,
-        color: White
+        padding: 5,
+        color: White,
+
     }
 });

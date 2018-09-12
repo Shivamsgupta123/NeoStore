@@ -65,13 +65,16 @@ export default styles = StyleSheet.create({
         fontFamily: FontMedium
     },
     buttonview: {
+
+        // height: "%",
+        paddingTop: 25,
         justifyContent: 'center',
         alignItems: "center"
     },
     saveaddressbutton: {
         borderWidth: 1,
         backgroundColor: ButtonText,
-        height: "30%",
+        height: 60,
         width: Platform.OS === 'ios' ? "99%" : "99%",
         // marginTop: 25,
         borderRadius: 10,

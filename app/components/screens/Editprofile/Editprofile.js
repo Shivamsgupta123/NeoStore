@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity, Alert, Vibration } from 'react-native';
+import { ActivityIndicator, ImageBackground, TextInput, Text, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity, Alert, Vibration } from 'react-native';
 import { Icon } from '../../../utils/Icon/Icon';
-import { Container, Header, Left, Body, Right, Button, Toast } from 'native-base';
+import { Header, Left, Right, Button, Toast } from 'native-base';
 import styles from './Styles';
-import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
+import { White, HeaderColor } from '../../../utils/Colors';
 import { DatePickerDialog } from 'react-native-datepicker-dialog'
 import moment from 'moment';
 import ImagePicker from 'react-native-image-picker';
 import { updateaccountdetail } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
-import { UserProvider, UserObject } from '../../../lib/UserProvider';
 import { connect } from "react-redux";
 import { addUpdateData } from '../../../redux/actions/UserData_Action';
 
@@ -20,14 +19,14 @@ class Editprofile extends Component {
         this.focusNextField = this.focusNextField.bind(this);
         this.inputs = {};
         this.state = {
-            FirstName: UserObject.user_data.first_name,
-            LastName: UserObject.user_data.last_name,
-            Email: UserObject.user_data.email,
-            PhoneNumber: UserObject.user_data.phone_no,
+            FirstName: this.props.state.user_data.first_name,
+            LastName: this.props.state.user_data.last_name,
+            Email: this.props.state.user_data.email,
+            PhoneNumber: this.props.state.user_data.phone_no,
             avatarSource: null,
             Loading: false,
-            profileimage: UserObject.user_data.profile_pic,
-            DateText: UserObject.user_data.dob,
+            profileimage: this.props.state.user_data.profile_pic,
+            DateText: this.props.state.user_data.dob,
             DateHolder: null
         }
         this.minDate = new Date(1950, 11, 24, 10, 33, 30, 0);
@@ -41,9 +40,7 @@ class Editprofile extends Component {
 
     // sending updated data to API
     submit() {
-        var today = new Date();
-        console.log("todays date", today);
-        // console.log("date", date)
+        console.log("avatar", this.state.avatarSource)
         if (this.state.avatarSource == null)
             alert("Upload profile image")
         else {
@@ -61,16 +58,12 @@ class Editprofile extends Component {
                 if (response.status == 200) {
                     Vibration.vibrate(200)
                     this.props.addUpdateData({ user_data: response.data })
-                    // console.log("afs", response)
-                    // UserProvider.setUserInfo("user_data", response.data)
-                    console.log("updated", UserObject)
                     Toast.show({
                         text: 'Account detail updated successfully.',
                         duration: 2000,
                         type: "success"
                     })
                     this.setState({ Loading: false })
-                    // alert("Account detail updated successfully.")
                     this.props.navigation.goBack()
                 }
                 else
@@ -116,9 +109,12 @@ class Editprofile extends Component {
             else {
                 let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
+                // if (source != null) {
                 this.setState({
                     avatarSource: source
                 });
+                // }
+
             }
         });
     }
@@ -189,17 +185,17 @@ class Editprofile extends Component {
                                 </View>
 
                                 <View style={styles.view3}>
-                                    <Icon name="mail" size={22} color="#FFFFFF" style={styles.mailicon} />
+                                    <Icon name="mail" size={22} style={styles.mailicon} />
                                     <TextInput onSubmitEditing={() => { this.focusNextField('four'); }} returnKeyType={"next"} ref={input => { this.inputs['three'] = input; }} onChangeText={(text) => this.setState({ Email: text })} style={styles.textinput} defaultValue={this.state.Email} placeholderTextColor="white" ></TextInput>
                                 </View>
 
                                 <View style={styles.view3}>
-                                    <Icon name="mobile" size={25} color="#FFFFFF" style={styles.mobileicon} />
+                                    <Icon name="mobile" size={25} style={styles.mobileicon} />
                                     <TextInput onSubmitEditing={() => { this.focusNextField('five'); }} returnKeyType={"next"} ref={input => { this.inputs['four'] = input; }} keyboardType="phone-pad" onChangeText={(text) => this.setState({ PhoneNumber: text })} style={styles.textinput} defaultValue={this.state.PhoneNumber} placeholderTextColor="white" ></TextInput>
                                 </View>
 
                                 <View style={styles.view3}>
-                                    <Icon name="cake" size={20} color="#FFFFFF" style={styles.cakeicon} />
+                                    <Icon name="cake" size={20} style={styles.cakeicon} />
                                     <TouchableOpacity onPress={() => this.DatePickerMainFunctionCall()}>
                                         <Text style={styles.dob}>{this.state.DateText}</Text>
                                     </TouchableOpacity>

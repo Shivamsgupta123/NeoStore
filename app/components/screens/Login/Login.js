@@ -168,7 +168,7 @@ class Login extends Component {
                             <Text style={styles.newaccount}>DONT HAVE AN ACCOUNT?</Text>
                             {this.state.Loading ? <FeatherIcon style={{ marginRight: 15, backgroundColor: PlusIconBackground, padding: 2 }} name="plus" size={40} color="#FFFFFF" /> :
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Registration')}>
-                                    <Icon style={styles.addaccount} name="plus" size={35} />
+                                    <Icon style={styles.addaccount} name="plus" size={30} />
 
                                 </TouchableOpacity>
                             }

@@ -152,7 +152,7 @@ export default class Addaddress extends Component {
                             <View style={{ padding: 15 }}>
                                 <Text style={styles.address}>ADDRESS</Text>
                                 <View style={{ paddingTop: 10 }}>
-                                    <TextInput onSubmitEditing={() => { this.focusNextField('two'); }} returnKeyType={"next"} ref={input => { this.inputs['one'] = input; }} onChangeText={(text) => this.setState({ Address: text })} multiline={true} defaultValue={this.state.Address} style={styles.textinput}></TextInput>
+                                    <TextInput onSubmitEditing={() => { this.focusNextField('two'); }} returnKeyType={"next"} ref={input => { this.inputs['one'] = input; }} onChangeText={(text) => this.setState({ Address: text })} multiline={true} placeholder="ADDRESS" defaultValue={this.state.Address} style={styles.textinput}></TextInput>
                                 </View>
                                 <View style={{ paddingTop: 10 }}>
                                     <Text style={styles.address}>LANDMARK</Text>
@@ -182,7 +182,6 @@ export default class Addaddress extends Component {
                                         <Text style={styles.saveaddressbuttontext}>SAVE ADDRESS</Text>
                                     </TouchableOpacity>
                                 </View>
-
                             </View>
                         </View>
                     </KeyboardAvoidingView>

@@ -32,3 +32,14 @@ export const PhoneNumber = (data) => {
         return true
     return false
 }
+
+// radio buttons
+    // onPress = data => this.setState({ data });
+
+
+    // selectGender(value) {
+    //     value == 1 ? this.setState({ gender: "Female" }) : this.setState({ gender: "Male" })
+    //     console.log("gender", value)
+    // }
+    // (value) => this.selectGender(value)
+

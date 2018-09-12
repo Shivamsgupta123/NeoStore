@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Text, Platform, View, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { Icon } from '../../utils/Icon/Icon';
 import styles from './Styles';
 import { AsyncStorage } from 'react-native';
-import { UserObject } from '../../lib/UserProvider';
-// import { UserProvider } from '../../lib/Globals';
 import { connect } from "react-redux";
 
 class Drawer extends Component {
@@ -35,18 +33,6 @@ class Drawer extends Component {
         this.props.navigation.closeDrawer()
     }
 
-    componentDidMount() {
-
-        // const didBlurSubscription = this.props.navigation.addListener(
-        //     'willFocus',
-        //     payload => {
-
-        //         this.setState({ autoplay: false })
-        //         // console.log("autoplay", this.state.autoplay)
-        //         // console.log('called25')
-        //     }
-        // );
-    }
     logout = async () => {
         try {
             AsyncStorage.removeItem("access_token");

@@ -1,27 +1,18 @@
 import React, { Component } from 'react';
-import { AppRegistry, ActivityIndicator, ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
-import Editprofile from '../Editprofile/Editprofile'
+import { ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import { Icon } from '../../../utils/Icon/Icon';
 import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
 import styles from './Styles';
-import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
-import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
-import ResetPasswordScreen from '../ResetPassword/ResetPasswordScreen';
-import { UserObject } from '../../../lib/UserProvider';
+import { HeaderColor } from '../../../utils/Colors';
 import { connect } from "react-redux";
-
-var getdata
 class Myaccount extends Component {
     constructor(props) {
         super(props);
         this.state = {
             autoplay: true
         }
-        // console.log("Myacc props", props.state.user_data.first_name)
     }
-    // componentDidMount() {
-    //     console.log("25")
-    // }
+
     render() {
         return (
             <View style={{ flex: 1 }}>

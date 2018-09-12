@@ -3,11 +3,12 @@ import { View, ActivityIndicator, Image, Text, ImageBackground, BackHandler, Tex
 import styles from './Styles';
 import { Icon } from '../../../utils/Icon/Icon';
 import { Container, Header, Left, Body, Right, Button, Title, Toast } from 'native-base';
-import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
-import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
+import { White, HeaderColor } from '../../../utils/Colors';
+import RadioForm from 'react-native-simple-radio-button';
 import { register, } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import { EmptyField, Email, Name, Password, PhoneNumber } from '../../../lib/Validation';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 var gender = [
     { label: "Male", value: 0 },
@@ -18,23 +19,25 @@ export default class Registration extends Component {
         super(props);
         this.focusNextField = this.focusNextField.bind(this);
         this.inputs = {};
+        this.state = {
+            Loading: false,
+            FirstName: '',
+            LastName: '',
+            Email: '',
+            Password: '',
+            ConfirmPassword: '',
+            PhoneNumber: '',
+            Ischecked: this.props.Ischecked,
+            Gender: "Male"
+        }
     }
 
     focusNextField(id) {
         this.inputs[id].focus()
     }
-    state = {
 
-        FirstName: '',
-        LastName: '',
-        Email: '',
-        Password: '',
-        ConfirmPassword: '',
-        PhoneNumber: '',
-        Ischecked: this.props.Ischecked,
-        Loading: false
-    }
     validate() {
+        // console.log("gender", this.state.Gender)
         var namereg = /^[A-Za-z]+$/;
         var emailreg = /\S+@\S+\.\S+/;
         var passwordreg = /^[0-9a-zA-Z]+$/;
@@ -120,24 +123,28 @@ export default class Registration extends Component {
         formData.append('phone_no', this.state.PhoneNumber);
         console.log(formData)
         GlobalAPI(register, "POST", formData, null, response => {
-            this.setState({ Loading: false })
             if (response.status == 200) {
                 Toast.show({
                     text: 'Registration Successfull.',
                     duration: 2000,
                     type: "success"
                 })
-                alert("Registration Successfull")
-                this.props.navigation.replace("Login")
+                this.setState({ Loading: false })
+                const resetAction = StackActions.reset({
+                    index: 0,
+                    actions: [NavigationActions.navigate({ routeName: 'Login' })],
+                });
+                this.props.navigation.dispatch(resetAction);
             }
             else {
+                this.setState({ Loading: false })
                 Toast.show({
                     text: response.user_msg,
                     duration: 2000,
                     type: "danger"
                 })
-                // alert(response.user_msg)
-                this.setState({ Loading: false })
+                // alert(error)
+
             }
 
         },
@@ -160,8 +167,13 @@ export default class Registration extends Component {
         this.inputs[id].focus();
     }
 
-    // radio buttons
-    onPress = data => this.setState({ data });
+    // radio buttons  
+
+
+    selectGender(value) {
+        value == 1 ? this.setState({ Gender: "Female" }) : this.setState({ Gender: "Male" })
+        console.log("gender", value)
+    }
 
     render() {
         return (
@@ -217,7 +229,7 @@ export default class Registration extends Component {
                                             buttonColor={'#fff'}
                                             selectedButtonColor={'#fff'}
                                             labelStyle={styles.radiobuttonlable}
-                                            onPress={(value) => { }} />
+                                            onPress={(value) => this.selectGender(value)} />
                                     </View>
                                     <View style={styles.view3}>
                                         <Icon name="mobile" size={24} style={styles.lockicon} />
@@ -234,8 +246,6 @@ export default class Registration extends Component {
                                                 <Text style={styles.checkboxlable}>{this.props.label}</Text>
                                             </View>
                                         </TouchableOpacity>
-
-
 
                                         <Text style={{ color: "white", fontWeight: 'bold', fontSize: 14 }}>I agree the Terms & Condtition</Text>
                                     </View>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View, Alert, FlatList, Dimensions, ActivityIndicator, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './Styles';
-import { HeaderColor } from '../../../utils/Colors';
 import { Header, Left, Body, Right, Button, Title } from 'native-base';
 import { Icon } from '../../../utils/Icon/Icon';
 import MapView, { Marker } from 'react-native-maps';
@@ -17,7 +16,6 @@ export default class StoreLocator extends Component {
             coords: [],
             x: 'false',
             concat: null
-
         }
 
     }

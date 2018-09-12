@@ -158,7 +158,8 @@ export default styles = StyleSheet.create({
     subview1: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: "95%"
+        width: "95%",
+        paddingBottom: 7
     },
     productproducer: {
         color: ProductProducer,
@@ -177,7 +178,7 @@ export default styles = StyleSheet.create({
     productcost: {
         color: HeaderColor,
         fontSize: 25,
-        marginTop: 35,
+        marginTop: 10,
         fontWeight: '600'
     },
     subview3: {
@@ -193,10 +194,11 @@ export default styles = StyleSheet.create({
         borderWidth: 1
     },
     subview4: {
-        flex: 1,
+        // flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
-        paddingBottom: 15
+        paddingBottom: 15,
+        alignItems: "center"
     },
     productdescription: {
         color: "#111111",
@@ -211,13 +213,20 @@ export default styles = StyleSheet.create({
         marginLeft: 12,
         marginRight: 12,
         paddingTop: 5,
-        fontFamily: FontMedium
+        fontFamily: FontMedium,
+        paddingBottom: 5
     },
     subview5: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: Platform.OS == 'ios' ? "3%" : 0,
+        // padding: Platform.OS == 'ios' ? "3%" : 0,
+        paddingTop: Platform.OS == 'ios' ? "3%" : 0,
+        paddingBottom: Platform.OS == 'ios' ? "3%" : 5,
+        paddingLeft: Platform.OS == 'ios' ? "3%" : 0,
+        paddingRight: Platform.OS == 'ios' ? "3%" : 0,
+        // paddingBottom: 5,
+
         height: "26%"
     },
     modalview1: {
@@ -300,6 +309,14 @@ export default styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+    },
+    borderview: {
+        backgroundColor: "#c8cbd1",
+        height: 5
+    },
+    shareicon: {
+        color: "#7F7F7F",
+        marginTop: 10
     }
 
 
