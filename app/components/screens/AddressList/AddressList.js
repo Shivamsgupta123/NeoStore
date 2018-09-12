@@ -107,7 +107,6 @@ class AddressList extends Component {
             })
         }
         else {
-            this.setState({ Loading: true })
             stripe.setOptions({
                 publishableKey: 'pk_test_YQp17Dc1izLbcNXXiLn1qYbh',
                 merchantId: 'MERCHANT_ID', // Optional
@@ -122,7 +121,6 @@ class AddressList extends Component {
                     body: token.tokenId
                 }
             )
-                // .then((response) => response.json())
                 .then(response => {
                     console.log("response", response)
                     if (response.status == 200) {
@@ -133,14 +131,13 @@ class AddressList extends Component {
                             duration: 2000,
                             type: "success"
                         })
-                        this.setState({ Loading: false })
+                        this.setState({ Loading: true })
                         formData.append("address", this.address1[this.addressindex].address);
                         GlobalAPI(placeorder, "POST", formData, null, response => {
                             if (response.status == 200) {
-                                console.log("adree;ist", response)
+
                                 Vibration.vibrate(200)
                                 this.props.addUpdateData({ total_carts: 0 })
-                                // alert(response.user_msg)
                                 Toast.show({
                                     text: response.user_msg,
                                     duration: 2000,
@@ -151,6 +148,7 @@ class AddressList extends Component {
                                     actions: [NavigationActions.navigate({ routeName: 'MyApp' })],
                                 });
                                 this.props.navigation.dispatch(resetAction);
+                                this.setState({ Loading: false })
                             }
                             else {
                                 this.setState({ Loading: false })
@@ -162,7 +160,6 @@ class AddressList extends Component {
                                 'Failed!',
                                 'No Internet Connection.',
                                 [
-                                    // { text: 'Cancle', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
                                     { text: 'Retry', onPress: () => this.placeOrder() },
                                 ],
                                 { cancelable: false }
@@ -177,7 +174,6 @@ class AddressList extends Component {
                         'Failed!',
                         'No Internet Connection.',
                         [
-                            // { text: 'Cancle', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
                             { text: 'Retry', onPress: () => this.placeOrder() },
                         ],
                         { cancelable: false }
@@ -185,46 +181,6 @@ class AddressList extends Component {
                     console.log(error)
                 })
 
-
-
-            // this.setState({ Loading: true })
-            // formData.append("address", this.address1[this.addressindex].address);
-            // GlobalAPI(placeorder, "POST", formData, null, response => {
-            //     if (response.status == 200) {
-            //         this.setState({ Loading: false })
-            //         console.log("adree;ist", response)
-            //         Vibration.vibrate(200)
-            //         this.props.addUpdateData({ total_carts: 0 })
-            //         // alert(response.user_msg)
-            //         Toast.show({
-            //             text: response.user_msg,
-            //             duration: 2000,
-            //             type: "success"
-            //         })
-            //         const resetAction = StackActions.reset({
-            //             index: 0,
-            //             actions: [NavigationActions.navigate({ routeName: 'MyApp' })],
-            //         });
-            //         this.props.navigation.dispatch(resetAction);
-
-            //     }
-            //     else {
-            //         this.setState({ Loading: false })
-            //         alert(response.user_msg)
-            //     }
-            // }, error => {
-            //     this.setState({ Loading: false })
-            //     Alert.alert(
-            //         'Failed!',
-            //         'No Internet Connection.',
-            //         [
-            //             // { text: 'Cancle', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-            //             { text: 'Retry', onPress: () => this.placeOrder() },
-            //         ],
-            //         { cancelable: false }
-            //     )
-            //     console.log(error)
-            // })
         }
     }
 

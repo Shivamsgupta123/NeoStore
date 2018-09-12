@@ -7,54 +7,54 @@ import { Icon } from '../../../utils/Icon/Icon';
 import stripe from 'tipsi-stripe';
 import AddressList from '../AddressList/AddressList';
 
-
 export default class MakePayment extends Component {
     constructor(props) {
         super(props)
-        this.options = {
-            requiredBillingAddressFields: 'full',
-            prefilledInformation: {
-                billingAddress: {
-                    name: 'abc',
-                    line1: 'pqr',
-                    line2: '3',
-                    city: 'Mumbai',
-                    state: 'Maharashtra',
-                    country: 'India',
-                    postalCode: '444605',
-                },
-            },
-        }
+        this.token = 'aghsadajkf6565'
+
     }
-    makePayment = async () => {
+    makePayment() {
         stripe.setOptions({
             publishableKey: 'pk_test_YQp17Dc1izLbcNXXiLn1qYbh',
-            merchantId: 'MERCHANT_ID', // Optional
-            androidPayMode: 'test', // Android only
+            merchantId: 'MERCHANT_ID',
+            androidPayMode: 'test',
         })
-        const token = await stripe.paymentRequestWithCardForm(this.options)
-        console.log("token", token.tokenId)
-        fetch("http://localhost:9000/charge",
+
+        // console.log(token)
+        fetch("http://10.0.102.235:9000/charge",
             {
                 method: "POST",
-                body: token.tokenId
+                body: this.token
             }
         )
-            // .then((response) => response.json())
             .then(response => {
                 console.log("response", response)
-                if (response.status == 200)
+                if (response.status == 200) {
+                    console.log("success")
                     Vibration.vibrate(200)
-                Toast.show({
-                    text: 'Payment Successful',
-                    duration: 2000,
-                    type: "success"
-                })
-                this.props.navigation.goBack(5858)
+                    Toast.show({
+                        text: 'Payment Successful',
+                        duration: 2000,
+                        type: "success"
+                    })
+
+                }
             })
             .catch(error => {
+                this.setState({ Loading: false })
+                Alert.alert(
+                    'Failed!',
+                    'No Internet Connection.',
+                    [
+                        { text: 'Retry', onPress: () => this.placeOrder() },
+                    ],
+                    { cancelable: false }
+                )
                 console.log(error)
             })
+
+
+
 
     }
 
@@ -78,7 +78,7 @@ export default class MakePayment extends Component {
                     </Header>
 
                     <View style={styles.buttonview}>
-                        <TouchableOpacity style={styles.orderbutton} onPress={() => makePayment()}>
+                        <TouchableOpacity style={styles.orderbutton} onPress={() => this.makePayment()}>
                             <Text style={styles.orderbuttontext}>MAKE PAYMENT</Text>
                         </TouchableOpacity>
                     </View>
@@ -87,5 +87,5 @@ export default class MakePayment extends Component {
         )
     }
     // onPress={() => this.makePayment()}
-
 }
+

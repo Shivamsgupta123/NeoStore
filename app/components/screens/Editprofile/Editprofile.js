@@ -13,12 +13,6 @@ import { UserProvider, UserObject } from '../../../lib/UserProvider';
 import { connect } from "react-redux";
 import { addUpdateData } from '../../../redux/actions/UserData_Action';
 
-// const addUpdateData = (data) => {
-//     return {
-//         type: 'ADD_UPDATE_DATA',
-//         data
-//     }
-// }
 class Editprofile extends Component {
     constructor(props) {
         super(props);
@@ -36,9 +30,10 @@ class Editprofile extends Component {
             DateText: UserObject.user_data.dob,
             DateHolder: null
         }
-        // console.log("name", UserObject.user_data.first_name)
-        // console.log("profileimae", this.state.FirstName)
+        this.minDate = new Date(1950, 11, 24, 10, 33, 30, 0);
+        this.maxDate = new Date(2000, 11, 24, 10, 33, 30, 0);
     }
+
     // for tab to next input field through keypad
     focusNextField(id) {
         this.inputs[id].focus()
@@ -139,7 +134,8 @@ class Editprofile extends Component {
         //To open the dialog
         this.refs.DatePickerDialog.open({
             date: DateHolder,
-            maxDate: new Date()
+            maxDate: this.maxDate,
+            minDate: this.minDate
         });
     }
 
