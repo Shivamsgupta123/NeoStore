@@ -14,16 +14,25 @@ export default styles = StyleSheet.create({
         paddingBottom: LogoPadding,
         alignItems: 'center',
         // marginTop:20,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5,
     },
     backbutton: {
-        color: "#FFFFFF"
+        color: "#FFFFFF",
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
     },
     headertitle: {
         color: White,
         fontSize: HeaderText,
         textAlign: 'center', width: 250,
         fontWeight: "700",
-        fontFamily: FontBook
+        fontFamily: FontBook,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
 
     },
     icon: {
@@ -78,7 +87,10 @@ export default styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: ButtonTextSize,
         fontFamily: FontBook,
-        paddingTop: Platform.OS === 'ios' ? 7 : 0
+        paddingTop: Platform.OS === 'ios' ? 7 : 0,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
 
     },
     forgotpassword: {

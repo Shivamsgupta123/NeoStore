@@ -79,14 +79,14 @@ export default class StoreLocator extends Component {
                 <Header style={styles.header}>
                     <Left style={styles.headerleft}>
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="angle-left" size={22} color="#f9fbff" />
+                            <Icon name="angle-left" size={22} style={styles.headericon} />
                         </Button>
                     </Left>
                     <Body>
                         <Text style={styles.headertitle}>Store Locator</Text>
                     </Body>
                     <Right style={styles.headerright}>
-                        <Icon name="search" size={22} color="#f9fbff" />
+                        <Icon name="search" size={22} style={styles.headericon} />
                     </Right>
 
                 </Header>

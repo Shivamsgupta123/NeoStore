@@ -68,14 +68,14 @@ export default class Productlist extends Component {
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left style={{ marginLeft: Platform.OS === 'ios' ? 10 : -10 }}>
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="angle-left" size={22} color={White} />
+                            <Icon name="angle-left" style={styles.backicon} size={22} />
                         </Button>
                     </Left>
 
                     <Text style={styles.headertext}>{this.props.navigation.state.params.Title}</Text>
 
                     <Right style={{ paddingRight: 10 }}>
-                        <Icon name="search" size={20} color="#f9fbff" />
+                        <Icon name="search" size={20} style={styles.backicon} />
                     </Right>
                 </Header>
 
@@ -113,7 +113,7 @@ export default class Productlist extends Component {
                         keyExtractor={(item, index) => '' + index}
                     />
                     <View style={{ alignItems: "center" }}>
-                        {this.state.loader ? <Loader /> :
+                        {this.state.loader ? <Loader isRed={true} /> :
                             <Text style={styles.itemcount}>{this.state.fetcheddata.length} of {this.state.fetcheddata.length}</Text>}
                     </View>
                 </View>

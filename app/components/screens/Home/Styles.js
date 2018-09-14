@@ -107,8 +107,12 @@ export default styles = StyleSheet.create({
         fontSize: LogoHeaderText,
         marginLeft: Platform.OS === 'ios' ? 0 : 65,
         fontWeight: HeaderTextFontWeight,
-        marginTop: Platform.OS === 'ios' ? 5 : 10,
-        fontFamily: FontMedium
+        marginTop: 10,
+        fontFamily: FontMedium,
+        textAlign: 'center',
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5
     },
 
     containerbottom: {
@@ -132,7 +136,6 @@ export default styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-between',
         width: '100%',
-
     },
     boxrow: {
 
@@ -141,16 +144,13 @@ export default styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: '100%',
 
-
     },
     boxtop1: {
-        padding: 60 / 3,
+        padding: 20,
 
         justifyContent: 'space-between',
         width: '48%',
         height: '90%',
-
-
         backgroundColor: '#fe3f3f',
     },
     boxtop2: {
@@ -159,12 +159,9 @@ export default styles = StyleSheet.create({
         paddingTop: Platform.OS === 'ios' ? 15 : 5,
         paddingBottom: Platform.OS === 'ios' ? 15 : 9,
         paddingRight: Platform.OS === 'ios' ? 15 : 12,
-
         justifyContent: 'space-between',
         width: '48%',
         height: '90%',
-
-
         backgroundColor: '#bb0100',
     },
     boxbottom1: {
@@ -194,22 +191,50 @@ export default styles = StyleSheet.create({
         fontWeight: '500',
         fontSize: Platform.OS === 'ios' ? 23 : 23,
         color: '#ffffff',
-        fontFamily: FontMedium
+        fontFamily: FontMedium,
         // marginTop: 5
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5
     },
     icontext2: {
         textAlign: 'left',
         fontWeight: '500',
         fontSize: 25,
         color: '#ffffff',
-        fontFamily: FontMedium
+        fontFamily: FontMedium,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5
 
     },
     headreicon1: {
-        marginLeft: Platform.OS === 'ios' ? 10 : 0
+        marginLeft: Platform.OS === 'ios' ? 10 : 0,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
+        color: White
     },
     headericon2: {
-        marginRight: 13.3
+        marginRight: 13.3,
+        color: White,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5
+    },
+    sofaicon: {
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5,
+        textAlign: 'right',
+        color: White
+    },
+    tableicon: {
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5,
+        textAlign: 'left',
+        color: White
     }
 
 

@@ -9,7 +9,10 @@ export default styles = StyleSheet.create({
         fontSize: HeaderText,
         width: 250,
         fontWeight: HeaderTextFontWeight,
-        paddingRight: Platform.OS === 'ios' ? 0 : 15
+        paddingRight: Platform.OS === 'ios' ? 0 : 15,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
     },
     mainview: {
         flex: 1,
@@ -105,7 +108,10 @@ export default styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: ButtonTextSize,
         fontFamily: FontMedium,
-        paddingTop: Platform.OS === 'ios' ? 7 : 0
+        paddingTop: Platform.OS === 'ios' ? 7 : 0,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
     },
     buttonview: {
         // padding: "5%",
@@ -164,7 +170,10 @@ export default styles = StyleSheet.create({
         paddingRight: 6
     },
     iconback: {
-        color: "#f9fbff"
+        color: "#f9fbff",
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
     }
 
 

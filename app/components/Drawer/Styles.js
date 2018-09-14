@@ -5,7 +5,10 @@ export default styles = StyleSheet.create({
 
     drawericon: {
         paddingTop: Platform.OS === 'ios' ? 9 : 3,
-        paddingLeft: 20
+        paddingLeft: 20,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5,
     },
     drawericon1: {
         paddingTop: Platform.OS === 'ios' ? 13 : 6,
@@ -17,7 +20,10 @@ export default styles = StyleSheet.create({
         paddingTop: Platform.OS === 'ios' ? 11 : 5,
         marginLeft: 25,
         fontWeight: '400',
-        fontFamily: FontMedium
+        fontFamily: FontMedium,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5,
 
 
 
@@ -31,14 +37,20 @@ export default styles = StyleSheet.create({
         fontWeight: '500',
         fontSize: 25,
         paddingTop: 10,
-        fontFamily: FontMedium
+        fontFamily: FontMedium,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5,
 
     },
     useremail: {
         color: 'white',
         fontWeight: '400',
         fontSize: 14,
-        fontFamily: FontBook
+        fontFamily: FontBook,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5,
     },
     drawerview1: {
         flex: 1,
@@ -88,7 +100,10 @@ export default styles = StyleSheet.create({
         // height: 35,
         // width: 35,
         fontSize: 15,
-        fontFamily: FontBook
+        fontFamily: FontBook,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
         // marginLeft: 100,
         // backgroundColor: "red",
         // backgroundColor: "red",

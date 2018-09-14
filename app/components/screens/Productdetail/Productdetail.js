@@ -212,14 +212,14 @@ class Productdetail extends Component {
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left style={{ marginLeft: Platform.OS === 'ios' ? 10 : -10 }}>
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="angle-left" size={22} color={White} />
+                            <Icon name="angle-left" size={22} style={styles.headericon} />
                         </Button>
                     </Left>
                     <Body>
                         <Text style={styles.headertitle}>{this.props.navigation.state.params.Title}</Text>
                     </Body>
                     <Right>
-                        <Icon name="search" size={22} color="#f9fbff" style={{ marginRight: 6 }} />
+                        {/* <Icon name="search" size={22} color="#f9fbff" style={{ marginRight: 6 }} /> */}
                     </Right>
                 </Header>
                 {this.state.Loading ? <View style={{ flex: 1, justifyContent: "center" }}><ActivityIndicator size="large" color="#e91b1a" /></View> :

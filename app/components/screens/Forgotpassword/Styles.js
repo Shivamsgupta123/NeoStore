@@ -13,7 +13,10 @@ export default styles = StyleSheet.create({
         paddingBottom: LogoPadding,
         alignItems: 'center',
         // marginTop:20,
-        fontFamily: FontBold
+        fontFamily: FontBold,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5,
 
 
     },
@@ -23,7 +26,10 @@ export default styles = StyleSheet.create({
         fontSize: HeaderText,
         width: 250,
         fontWeight: HeaderTextFontWeight,
-        paddingRight: Platform.OS === 'ios' ? 0 : 15
+        paddingRight: Platform.OS === 'ios' ? 0 : 15,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
     },
     view3: {
         height: 45,
@@ -43,7 +49,10 @@ export default styles = StyleSheet.create({
         marginLeft: 10,
         color: White,
         fontSize: 20,
-        fontFamily: FontMedium
+        fontFamily: FontMedium,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
 
     },
     loginbutton: {
@@ -66,7 +75,10 @@ export default styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: ButtonTextSize,
         fontFamily: FontMedium,
-        paddingTop: Platform.OS === 'ios' ? 7 : 0
+        paddingTop: Platform.OS === 'ios' ? 7 : 0,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
 
     },
     forgotpassword: {
@@ -178,14 +190,20 @@ export default styles = StyleSheet.create({
     icon: {
         padding: Platform.OS === 'ios' ? 0 : 5,
         width: 35,
-        color: White
+        color: White,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
     },
     backgroungimage: {
         flex: 1, borderColor: "red",
         borderWidth: 1
     },
     backicon: {
-        color: White
+        color: White,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
     }
 
 

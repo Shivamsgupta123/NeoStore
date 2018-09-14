@@ -10,7 +10,10 @@ export default styles = StyleSheet.create({
         fontSize: HeaderText,
         width: 250,
         fontWeight: HeaderTextFontWeight,
-        fontFamily: FontBold
+        fontFamily: FontBold,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
     },
     mainview: {
         // height: Dimensions.get('window').height,
@@ -128,6 +131,12 @@ export default styles = StyleSheet.create({
         // fontSizes: 15,
         // width: 10
     },
+    headerricon: {
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
+        color: White
+    }
 
 
 

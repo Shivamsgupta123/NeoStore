@@ -30,7 +30,10 @@ export default styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: ButtonTextSize,
         fontFamily: FontMedium,
-        paddingTop: Platform.OS === 'ios' ? 7 : 0
+        paddingTop: Platform.OS === 'ios' ? 7 : 0,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
 
     },
     headertitle: {
@@ -39,7 +42,11 @@ export default styles = StyleSheet.create({
         fontSize: HeaderText,
         width: 230,
         fontWeight: HeaderTextFontWeight,
-        fontFamily: FontBold
+        fontFamily: FontBold,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
+
     },
 
     button1: {
@@ -67,6 +74,9 @@ export default styles = StyleSheet.create({
         fontSize: ButtonTextSize,
         fontFamily: FontMedium,
         paddingTop: Platform.OS == 'ios' ? 7 : 0,
+        textShadowColor: 'grey',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
 
     },
     popupbutton: {
@@ -75,6 +85,9 @@ export default styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: ButtonTextSize,
         paddingLeft: 10,
+        textShadowColor: 'grey',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
         // fontFamily: FontMedium,
         // paddingTop: Platform.OS === 'ios' ?  : 0
 
@@ -127,8 +140,10 @@ export default styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: ButtonTextSize,
         fontFamily: FontMedium,
-        paddingTop: Platform.OS === 'ios' ? 7 : 0
-
+        paddingTop: Platform.OS === 'ios' ? 7 : 0,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
 
     },
     buypopuptext: {
@@ -316,7 +331,14 @@ export default styles = StyleSheet.create({
     },
     shareicon: {
         color: "#7F7F7F",
-        marginTop: 10
+        marginTop: 10,
+
+    },
+    headericon: {
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
+        color: White
     }
 
 

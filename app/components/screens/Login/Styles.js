@@ -11,7 +11,10 @@ export default styles = StyleSheet.create({
         color: White,
         padding: LogoPadding,
         alignItems: 'center',
-        fontFamily: FontBold
+        fontFamily: FontBold,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 4 },
+        textShadowRadius: 5
 
 
     },
@@ -24,7 +27,6 @@ export default styles = StyleSheet.create({
         padding: Platform.OS === 'ios' ? 10 : 0,
         margin: 6,
 
-
         flexDirection: 'row'
 
     },
@@ -36,7 +38,11 @@ export default styles = StyleSheet.create({
         color: White,
         fontSize: TextInputFont,
         paddingBottom: Platform.OS === "ios" ? 30 : 20,
-        fontFamily: FontMedium
+        fontFamily: FontMedium,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5
+
 
     },
     loginbutton: {
@@ -59,7 +65,11 @@ export default styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: ButtonTextSize,
         fontFamily: FontMedium,
-        paddingTop: Platform.OS === 'ios' ? 7 : 0
+        paddingTop: Platform.OS === 'ios' ? 7 : 0,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5
+
 
     },
     forgotpassword: {
@@ -67,7 +77,10 @@ export default styles = StyleSheet.create({
         fontSize: 20,
         marginTop: 6,
         fontFamily: FontMedium,
-        paddingTop: Platform.OS === 'ios' ? 3 : 0
+        paddingTop: Platform.OS === 'ios' ? 3 : 0,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5
 
     },
     newaccount: {
@@ -78,6 +91,9 @@ export default styles = StyleSheet.create({
         marginLeft: 2,
         justifyContent: 'center',
         fontFamily: FontMedium,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5
 
     },
     view1: {
@@ -184,7 +200,10 @@ export default styles = StyleSheet.create({
     icon: {
         paddingTop: Platform.OS === 'ios' ? 0 : 8,
         paddingLeft: Platform.OS === 'ios' ? 0 : 5,
-        color: White
+        color: White,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5
 
     },
     addaccount: {
@@ -192,6 +211,9 @@ export default styles = StyleSheet.create({
         backgroundColor: PlusIconBackground,
         padding: 5,
         color: White,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5
 
     }
 });

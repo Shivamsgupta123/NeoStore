@@ -134,14 +134,14 @@ export default class Addaddress extends Component {
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left style={{ paddingRight: -10 }}>
                         <Button transparent onPress={() => this.props.navigation.pop()}>
-                            <Icon name="angle-left" size={22} color="#f9fbff" />
+                            <Icon name="angle-left" size={22} style={styles.headericon} />
                         </Button>
                     </Left>
                     <Body>
                         <Text style={styles.headertitle}>Add Address</Text>
                     </Body>
                     <Right style={{ paddingRight: 8 }}>
-                        <Icon name="search" size={22} color="#f9fbff" />
+                        <Icon name="search" size={22} style={styles.headericon} />
                     </Right>
 
                 </Header>

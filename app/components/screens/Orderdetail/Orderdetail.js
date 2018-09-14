@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import { View, FlatList, ActivityIndicator, Image, Text, ImageBackground, TextInput, TouchableOpacity, Platform, Dimensions, KeyboardAvoidingView, ScrollView, Alert } from 'react-native';
+import { View, FlatList, ActivityIndicator, Image, Text, Alert } from 'react-native';
 import styles from './Styles';
-import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
-import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
-import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
+import { HeaderColor } from '../../../utils/Colors';
+import { Container, Header, Left, Body, Right, Button, } from 'native-base';
 import { Icon } from '../../../utils/Icon/Icon';
 import { orderdetail } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
-import { AsyncStorage } from 'react-native';
-import ModalDropdown from 'react-native-modal-dropdown';
 
 
 export default class Orderdetail extends Component {
@@ -69,14 +66,14 @@ export default class Orderdetail extends Component {
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left>
                         <Button transparent onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="angle-left" size={22} color="#f9fbff" />
+                            <Icon name="angle-left" size={22} style={styles.headerricon} />
                         </Button>
                     </Left>
                     <Body>
                         <Text style={styles.headertitle}>Order ID :{this.props.navigation.state.params} </Text>
                     </Body>
                     <Right>
-                        <Icon name="search" size={22} color="#f9fbff" />
+                        <Icon name="search" size={22} style={styles.headerricon} />
                     </Right>
 
                 </Header>

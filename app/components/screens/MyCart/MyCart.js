@@ -10,18 +10,13 @@ import ModalDropdown from 'react-native-modal-dropdown';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { connect } from "react-redux";
 import { addUpdateData } from '../../../redux/actions/UserData_Action';
+import Loader from '../../Loader/Loader';
 
-// const addUpdateData = (data) => {
-//     return {
-//         type: 'ADD_UPDATE_DATA',
-//         data
-//     }
-// }
 class MyCart extends Component {
     constructor(props) {
         super(props)
         this.state = { fetcheddata: [], autoplay: true, Loading: true, Quantity: null, product_ID: '' }
-        console.log("cart", props)
+        // console.log("cart", props)
     }
 
     componentDidMount() {
@@ -35,10 +30,8 @@ class MyCart extends Component {
                 this.setState({
                     fetcheddata: response,
                     Loading: false,
-                    // Quantity: this.state.fetcheddata.data[0].quantity
                 }
                 );
-                // console.log("value", this.state.fetcheddata)
             }
         },
             error => {
@@ -55,19 +48,18 @@ class MyCart extends Component {
             }
         )
     }
-    componentWillUnmount() {
-        console.log("welcome")
-    }
+
     //update the Quantity of perticular product.
     setquantity(index, id, value, item) {
-        this.setState({})
+        console.log("prod Qty", value)
+        console.log("product data", this.state.fetcheddata.data[index])
+        // checking that updated qty of product is matched to existing qty for avoiding more hits to API 
+        if (value == this.state.fetcheddata.data[index].quantity)
+            return
         this.state.fetcheddata.data[index].quantity = value
         this.setState({ Loading: true })
-        // console.log("value", value)
-        // console.log("value1", this.state.Quantity)
         let formData = new FormData();
         formData.append("product_id", id)
-        // console.log("index", index)
         formData.append("quantity", value)
         GlobalAPI(editcart, "POST", formData, null, response => {
             if (response.status == 200) {
@@ -155,7 +147,7 @@ class MyCart extends Component {
 
     render() {
         // console.log("fetchdata", this.state.fetcheddata)
-        console.log("data lenght", this.state.fetcheddata.data)
+        // console.log("data lenght", this.state.fetcheddata.data)
         this.leftOpenValue = Dimensions.get('window').width;
         this.rightOpenValue = -Dimensions.get('window').width;
         // if (this.state.Loading)
@@ -233,7 +225,7 @@ class MyCart extends Component {
 
                         <View style={styles.buttonview}>
                             <TouchableOpacity style={styles.orderbutton} onPress={() => this.props.navigation.push('AddressList')}>
-                                {this.state.Loading ? <ActivityIndicator size="large" color="White" /> : <Text style={styles.orderbuttontext}>ORDER NOW</Text>}
+                                {this.state.Loading ? <Loader /> : <Text style={styles.orderbuttontext}>ORDER NOW</Text>}
                             </TouchableOpacity>
                         </View>
 

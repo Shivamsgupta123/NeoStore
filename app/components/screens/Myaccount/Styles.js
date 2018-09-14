@@ -13,10 +13,14 @@ export default styles = StyleSheet.create({
         width: Platform.OS === 'ios' ? 30 : 35,
         // textAlign:Platform.OS === 'ios' ? ,'center'
         justifyContent: "center",
-        color: "#f9fbff"
+        color: "#f9fbff",
+
     },
     icon: {
-        color: "#f9fbff"
+        color: "#f9fbff",
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
     },
 
     view3: {
@@ -46,7 +50,10 @@ export default styles = StyleSheet.create({
         fontSize: HeaderText,
         width: 250,
         fontWeight: HeaderTextFontWeight,
-        fontFamily: FontBold
+        fontFamily: FontBold,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
     },
 
     textinput: {
@@ -69,7 +76,7 @@ export default styles = StyleSheet.create({
         fontSize: 5,
         borderColor: "white",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
 
     },
     buttontext: {
@@ -78,7 +85,10 @@ export default styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: ButtonTextSize,
         fontFamily: FontMedium,
-        paddingTop: Platform.OS === 'ios' ? 7 : 0
+        paddingTop: Platform.OS === 'ios' ? 7 : 0,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
 
     },
 
@@ -98,7 +108,10 @@ export default styles = StyleSheet.create({
     resetpasswordbuttontext: {
         color: "#7F7F7F",
         // fontWeight: "bold",
-        fontSize: ButtonTextSize
+        fontSize: ButtonTextSize,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
     },
     mainview: {
         alignItems: 'center',

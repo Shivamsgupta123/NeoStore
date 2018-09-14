@@ -15,6 +15,7 @@ import { UserProvider } from '../../../lib/UserProvider';
 import { EmptyField, Email } from '../../../lib/Validation';
 import { connect } from "react-redux";
 import { addUserData } from '../../../redux/actions/UserData_Action';
+import Loader from '../../Loader/Loader';
 
 // const addUserData = (data) => {
 //     return {
@@ -39,7 +40,7 @@ class Login extends Component {
         SplashScreen.hide();
     }
 
-    // validing input field
+    // validating input field
     validate() {
         var emailreg = /\S+@\S+\.\S+/;
         var passwordreg = /^[0-9a-zA-Z]+$/;
@@ -151,7 +152,7 @@ class Login extends Component {
                         </View>
                         {/* {this.state.Loading ? <ActivityIndicator size="large" color="white" /> : null} */}
                         <TouchableOpacity onPress={() => this.validate()} style={styles.loginbutton}>
-                            {this.state.Loading ? <ActivityIndicator size="large" color="red" /> : <Text style={styles.buttontext}>LOGIN</Text>}
+                            {this.state.Loading ? <Loader isRed={true} /> : <Text style={styles.buttontext}>LOGIN</Text>}
                             {console.log("Loading", this.state.Loading)}
                         </TouchableOpacity>
                         {this.state.Loading ? <Text style={styles.forgotpassword}>Forgot Password?</Text> :

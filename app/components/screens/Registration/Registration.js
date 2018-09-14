@@ -183,7 +183,7 @@ export default class Registration extends Component {
                     <Header style={{ backgroundColor: HeaderColor }}>
                         <Left>
                             <Button transparent onPress={() => this.props.navigation.goBack()}>
-                                <Icon name="angle-left" size={26} color={White} />
+                                <Icon name="angle-left" size={26} style={styles.backicon} />
                             </Button>
                         </Left>
                         <Text style={styles.HeaderText}>Register</Text>

@@ -6,11 +6,17 @@ import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 export default styles = StyleSheet.create({
     headreicon1: {
         marginLeft: Platform.OS === 'ios' ? 10 : 0,
-        color: "#f9fbff"
+        color: "#f9fbff",
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
     },
     headericon2: {
         marginRight: 13.3,
-        color: "#f9fbff"
+        color: "#f9fbff",
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
     },
     headerText: {
         color: "white",
@@ -18,7 +24,10 @@ export default styles = StyleSheet.create({
         marginLeft: Platform.OS === 'ios' ? 0 : 65,
         fontWeight: HeaderTextFontWeight,
         marginTop: Platform.OS === 'ios' ? 10 : 10,
-        fontFamily: FontMedium
+        fontFamily: FontMedium,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
     },
     mainview: {
         flex: 1,

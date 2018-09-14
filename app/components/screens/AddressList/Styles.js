@@ -10,11 +10,17 @@ export default styles = StyleSheet.create({
         fontSize: HeaderText,
         width: 250,
         fontWeight: HeaderTextFontWeight,
-        paddingRight: Platform.OS === 'ios' ? 0 : 14
+        paddingRight: Platform.OS === 'ios' ? 0 : 14,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5,
 
     },
     headericon: {
-        color: White
+        color: White,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5,
     },
 
     mainview: {
@@ -122,7 +128,10 @@ export default styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: ButtonTextSize,
         fontFamily: FontMedium,
-        paddingTop: Platform.OS === "ios" ? 7 : 0
+        paddingTop: Platform.OS === "ios" ? 7 : 0,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5,
     },
     editicon: {
         paddingLeft: "93%",

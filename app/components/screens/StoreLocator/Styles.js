@@ -21,7 +21,10 @@ export default styles = StyleSheet.create({
         width: 250,
         fontWeight: HeaderTextFontWeight,
         paddingRight: Platform.OS === 'ios' ? 0 : 14,
-        fontFamily: FontBold
+        fontFamily: FontBold,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
 
     },
     headerright: {
@@ -73,6 +76,12 @@ export default styles = StyleSheet.create({
         paddingRight: 15,
         paddingLeft: 15,
         paddingTop: 6
+    },
+    headericon: {
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
+        color: White
     }
 
 })

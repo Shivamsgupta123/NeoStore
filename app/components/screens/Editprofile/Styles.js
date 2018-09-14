@@ -59,7 +59,10 @@ export default styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: ButtonTextSize,
         fontFamily: FontBold,
-        paddingTop: Platform.OS === 'ios' ? 7 : 0
+        paddingTop: Platform.OS === 'ios' ? 7 : 0,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
 
     },
     profileimage: {
@@ -92,7 +95,10 @@ export default styles = StyleSheet.create({
         fontSize: HeaderText,
         marginLeft: Platform.OS === 'ios' ? 0 : 65,
         fontWeight: HeaderTextFontWeight,
-        marginTop: Platform.OS === 'ios' ? 5 : 10
+        marginTop: Platform.OS === 'ios' ? 5 : 10,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
     },
     mainview: {
         alignItems: 'center',
@@ -123,6 +129,12 @@ export default styles = StyleSheet.create({
         justifyContent: "center",
         paddingTop: Platform.OS === 'ios' ? 0 : 8,
         paddingLeft: Platform.OS === 'ios' ? 0 : 10
+    },
+    headericon: {
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
+        color: White
     }
 
 });

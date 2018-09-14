@@ -7,6 +7,8 @@ import { forgotpassword } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import { White } from '../../../utils/Colors';
 import { EmptyField, Email } from '../../../lib/Validation';
+import Loader from '../../Loader/Loader';
+
 export default class Forgotpassword extends Component {
     state = {
         Username: '',
@@ -50,7 +52,7 @@ export default class Forgotpassword extends Component {
                     type: "danger"
                 })
             }
-            alert(response.user_msg)
+
         },
             error => {
                 this.setState({ Loading: false })
@@ -92,7 +94,7 @@ export default class Forgotpassword extends Component {
                     </View>
 
                     <TouchableOpacity style={styles.loginbutton} onPress={() => this.validate()}>
-                        {this.state.Loading ? <ActivityIndicator size="large" color="red" /> : <Text style={styles.buttontext}>SUBMIT</Text>}
+                        {this.state.Loading ? <Loader isRed={true} /> : <Text style={styles.buttontext}>SUBMIT</Text>}
                     </TouchableOpacity>
                 </View>
             </ImageBackground>

@@ -11,6 +11,7 @@ import { updateaccountdetail } from '../../../lib/api';
 import { GlobalAPI } from '../../../lib/Globals';
 import { connect } from "react-redux";
 import { addUpdateData } from '../../../redux/actions/UserData_Action';
+import Loader from '../../Loader/Loader';
 
 class Editprofile extends Component {
     constructor(props) {
@@ -66,8 +67,15 @@ class Editprofile extends Component {
                     this.setState({ Loading: false })
                     this.props.navigation.goBack()
                 }
-                else
-                    alert(response.user_msg)
+                else {
+                    this.setState({ Loading: false })
+                    Toast.show({
+                        text: response.user_msg,
+                        duration: 2000,
+                        type: "warning"
+                    })
+                }
+                // alert(response.user_msg)
             },
                 error => {
                     this.setState({ Loading: false })
@@ -153,12 +161,12 @@ class Editprofile extends Component {
                     <Header style={{ backgroundColor: HeaderColor }}>
                         <Left>
                             <Button transparent onPress={() => this.props.navigation.goBack()}>
-                                <Icon name="angle-left" size={22} color={White} />
+                                <Icon name="angle-left" size={22} style={styles.headericon} />
                             </Button>
                         </Left>
                         <Text style={styles.headertext}>Edit Profile</Text>
                         <Right>
-                            <Icon name="search" size={22} color={White} />
+                            <Icon name="search" size={22} style={styles.headericon} />
                         </Right>
                     </Header>
 
@@ -203,7 +211,7 @@ class Editprofile extends Component {
                                 </View>
 
                                 <TouchableOpacity style={styles.loginbutton} onPress={() => this.submit()}>
-                                    {this.state.Loading ? <ActivityIndicator size="large" color="red" /> : <Text onSubmitEditing={() => { this.focusNextField('six'); }} returnKeyType={"next"} ref={input => { this.inputs['five'] = input; }} style={styles.buttontext}>SUBMIT</Text>}
+                                    {this.state.Loading ? <Loader isRed={true} /> : <Text onSubmitEditing={() => { this.focusNextField('six'); }} returnKeyType={"next"} ref={input => { this.inputs['five'] = input; }} style={styles.buttontext}>SUBMIT</Text>}
                                 </TouchableOpacity>
                             </View>
                         </KeyboardAvoidingView>

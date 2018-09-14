@@ -57,7 +57,10 @@ export default styles = StyleSheet.create({
         marginLeft: Platform.OS === 'ios' ? -3 : "29%",
         marginTop: Platform.OS === 'ios' ? 10 : 13,
         fontWeight: HeaderTextFontWeight,
-        fontFamily: FontMedium
+        fontFamily: FontMedium,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
     },
     productproducer: {
         fontSize: 15,
@@ -75,6 +78,12 @@ export default styles = StyleSheet.create({
         color: HeaderColor,
         padding: 7,
         fontFamily: FontMedium
+    },
+    backicon: {
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5,
+        color: White
     }
 
 });

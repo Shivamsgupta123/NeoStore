@@ -12,7 +12,10 @@ export default styles = StyleSheet.create({
         color: White,
         padding: 15,
         alignItems: 'center',
-        fontFamily: FontBold
+        fontFamily: FontBold,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5
 
 
     },
@@ -23,6 +26,7 @@ export default styles = StyleSheet.create({
         borderWidth: 1,
         padding: Platform.OS === 'ios' ? 10 : 0,
         margin: 6,
+
 
 
         flexDirection: 'row'
@@ -37,7 +41,10 @@ export default styles = StyleSheet.create({
         height: Platform.OS === 'ios' ? 37 : 48,
         width: Platform.OS === 'ios' ? 37 : 47,
         marginTop: -5,
-        fontFamily: FontMedium
+        fontFamily: FontMedium,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5
 
     },
     loginbutton: {
@@ -58,7 +65,10 @@ export default styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 25,
         fontFamily: FontBold,
-        paddingTop: Platform.OS === 'ios' ? 7 : 0
+        paddingTop: Platform.OS === 'ios' ? 7 : 0,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5
 
     },
     forgotpassword: {
@@ -113,13 +123,19 @@ export default styles = StyleSheet.create({
         paddingLeft: Platform.OS === 'ios' ? 0 : 5,
         paddingTop: Platform.OS === 'ios' ? 0 : 5,
         color: White,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5
 
 
     },
     unlockicon: {
         paddingLeft: Platform.OS === 'ios' ? 0 : 8,
         paddingTop: Platform.OS === 'ios' ? 0 : 5,
-        color: "#FFFFFF"
+        color: "#FFFFFF",
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5
     },
     rowFlex: {
 
@@ -141,7 +157,10 @@ export default styles = StyleSheet.create({
         paddingBottom: 5,
         paddingRight: 20,
         paddingLeft: 5,
-        fontFamily: FontMedium
+        fontFamily: FontMedium,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 5
         // fontWeight:'bold',
     },
     HeaderText: {
@@ -150,7 +169,10 @@ export default styles = StyleSheet.create({
         marginLeft: Platform.OS === 'ios' ? 0 : 65,
         fontWeight: HeaderTextFontWeight,
         marginTop: Platform.OS === 'ios' ? 5 : 10,
-        fontFamily: FontBold
+        fontFamily: FontBold,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5
 
     },
     radiobuttonlable: {
@@ -170,6 +192,7 @@ export default styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+
     },
     square: {
         width: 7,
@@ -195,7 +218,16 @@ export default styles = StyleSheet.create({
     checkboxClick: {
         color: "white",
         fontWeight: 'bold',
-        fontSize: 14
+        fontSize: 14,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5
+    },
+    backicon: {
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5,
+        color: White
     }
 
 

@@ -11,7 +11,10 @@ export default styles = StyleSheet.create({
         width: 250,
         fontWeight: HeaderTextFontWeight,
         paddingRight: Platform.OS === 'ios' ? 0 : 14,
-        fontFamily: FontMedium
+        fontFamily: FontMedium,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5,
 
     },
     address: {
@@ -88,11 +91,20 @@ export default styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: ButtonTextSize,
         fontFamily: FontMedium,
-        paddingTop: Platform.OS === 'ios' ? 7 : 0
+        paddingTop: Platform.OS === 'ios' ? 7 : 0,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5,
     },
     keyboard: {
         flex: 1,
         height: Dimensions.get('window').height,
 
+    },
+    headericon: {
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 2 },
+        textShadowRadius: 5,
+        color: White
     }
 })
