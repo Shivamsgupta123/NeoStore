@@ -119,9 +119,9 @@ export default class Registration extends Component {
         formData.append('email', this.state.Email);
         formData.append('password', this.state.Password);
         formData.append('confirm_password', this.state.ConfirmPassword);
-        formData.append('gender', 'M');
+        formData.append('gender', this.state.Gender);
         formData.append('phone_no', this.state.PhoneNumber);
-        console.log(formData)
+        console.log("register", formData)
         GlobalAPI(register, "POST", formData, null, response => {
             if (response.status == 200) {
                 Toast.show({
@@ -239,7 +239,7 @@ export default class Registration extends Component {
 
                                         <TouchableOpacity style={styles.container} onPress={() => { this.setState({ Ischecked: !this.state.Ischecked }) }} >
                                             {console.log(this.state.Ischecked)}
-                                            <View style={styles.checkboxContainer}>
+                                            <View style={styles.checkboxView}>
                                                 <View style={[styles.square, this.state.Ischecked ? { backgroundColor: 'rgba(256,256,256,1.0)', } : { backgroundColor: 'rgba(256,256,256,0)', },]} ></View>
                                             </View>
                                             <View>
@@ -247,7 +247,7 @@ export default class Registration extends Component {
                                             </View>
                                         </TouchableOpacity>
 
-                                        <Text style={{ color: "white", fontWeight: 'bold', fontSize: 14 }}>I agree the Terms & Condtition</Text>
+                                        <Text style={styles.checkboxClick}>I agree the Terms & Condtition</Text>
                                     </View>
                                     <TouchableOpacity style={styles.loginbutton} onPress={() => this.validate()}>
                                         {this.state.Loading ? <ActivityIndicator size="large" color={HeaderColor} /> : <Text style={styles.buttontext}>REGISTER</Text>}

@@ -25,16 +25,16 @@ import { addUserData } from '../../../redux/actions/UserData_Action';
 class Login extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            Username: '',
+            Password: '',
+            Loading: false
+        }
     }
-    state = {
-        Username: '',
-        Password: '',
-        Loading: false
-    }
+    // componentWillMount = async () => {
+    //     let user = await AsyncStorage.getItem('Username')
+    // }
 
-    componentWillMount = async () => {
-        let user = await AsyncStorage.getItem('Username')
-    }
     componentDidMount() {
         SplashScreen.hide();
     }

@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
-import { View, Image, ActivityIndicator, Text, ImageBackground, TextInput, Platform, TouchableOpacity, KeyboardAvoidingView, Dimensions, ScrollView } from 'react-native';
+import { View, Image, ActivityIndicator, Text, ImageBackground, TextInput, Platform, TouchableOpacity, KeyboardAvoidingView, Dimensions, ScrollView, Alert } from 'react-native';
 import styles from './Styles';
 import { Icon } from '../../../utils/Icon/Icon';
-import { Container, Header, Left, Body, Right, Button, Title, Toast } from 'native-base';
-import { White, ButtonText, PlusIconBackground, HeaderColor, HeaderTextFontWeight } from '../../../utils/Colors';
+import { Header, Left, Body, Right, Button, Toast } from 'native-base';
+import { HeaderColor } from '../../../utils/Colors';
 import { AsyncStorage } from 'react-native';
 import { changepassword } from '../../../lib/api';
-// import { Globals } from '../../../lib/Globals';
 import { GlobalAPI } from '../../../lib/Globals';
-import { EmptyField, Email, Name, Password, PhoneNumber } from '../../../lib/Validation';
+import { EmptyField, Password } from '../../../lib/Validation';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 export default class ResetPasswordScreen extends Component {
-
-    state = {
-        CurrentPassword: '',
-        NewPassword: '',
-        ConfirmPassword: '',
-        token: '',
-        Loading: false
+    constructor(props) {
+        super(props);
+        this.state = {
+            CurrentPassword: '',
+            NewPassword: '',
+            ConfirmPassword: '',
+            token: '',
+            Loading: false
+        }
+        console.log("reset", props)
     }
 
     validate() {
@@ -50,30 +53,60 @@ export default class ResetPasswordScreen extends Component {
             this.submit()
     }
 
-    async submit() {
+    submit() {
         this.setState({ Loading: true })
-        var getdata = await AsyncStorage.getItem('ResponseData');
-        // console.log('resetpassword', getdata)
-        getdata = JSON.parse(getdata)
-        var accesstoken = getdata.data.access_token
-        console.log('resetpassword', accesstoken)
         let formData = new FormData();
         formData.append(' old_password', this.state.CurrentPassword);
         formData.append(' password', this.state.NewPassword);
         formData.append(' confirm_password', this.state.ConfirmPassword);
         // formData = JSON.parse(formData)
 
-        await GlobalAPI(changepassword, "POST", formData, accesstoken, response => {
+        GlobalAPI(changepassword, "POST", formData, null, response => {
             console.log('resetpassword123', response)
             if (response.status == 200) {
                 this.setState({ Loading: false })
-                alert("Password Changed Successfully")
-                this.props.navigation.replace('Myaccount')
-                this.setState({ Loading: true })
+                try {
+                    AsyncStorage.removeItem("access_token");
+                }
+                catch (exception) {
+                    alert("failed.")
+
+                }
+                Toast.show({
+                    text: 'Password Changed Successfully.',
+                    duration: 2000,
+                    type: "success"
+                })
+
+                const resetAction = StackActions.reset({
+                    index: 0,
+                    actions: [NavigationActions.navigate({ routeName: 'Login' })],
+                });
+                this.props.navigation.dispatch(resetAction);
             }
-            else
-                alert(response.user_msg)
-        })
+            else {
+                this.setState({ Loading: false })
+                Toast.show({
+                    text: response.user_msg,
+                    duration: 2000,
+                    type: "danger"
+                })
+            }
+
+        }, error => {
+            console.log("rpass", error)
+            this.setState({ Loading: false })
+            Alert.alert(
+                'Failed!',
+                'No Internet Connection.',
+                [
+                    { text: 'Ok', style: 'cancel' },
+                    { text: 'Retry', onPress: () => this.submit() },
+                ],
+                { cancelable: false }
+            )
+        }
+        )
 
     }
     render() {

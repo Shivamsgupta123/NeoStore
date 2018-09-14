@@ -25,7 +25,6 @@ export const GlobalAPI = (api, method, body, header, success_callback, error_cal
         value != null ? headers["access_token"] = value : null
         value != null ? obj["headers"] = headers : null
         // console.log('head123', headers)
-
         fetch(
             api,
             obj)

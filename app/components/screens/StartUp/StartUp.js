@@ -7,12 +7,6 @@ import { UserProvider } from '../../../lib/UserProvider';
 import { connect } from "react-redux";
 import { addUserData } from '../../../redux/actions/UserData_Action';
 
-// const addUserData = (data) => {
-//     return {
-//         type: 'ADD_USER-DATA',
-//         data
-//     }
-// }
 class StartUp extends Component {
     constructor(props) {
         super(props);
@@ -35,14 +29,12 @@ class StartUp extends Component {
                         UserProvider.setUserData(response.data)
                         this.props.navigation.replace('MyApp', response);
                     }
+                    //move user to login screen if he's logout
                     else {
-                        // console.log("456", response)
-                        AsyncStorage.removeItem("access_token")
+                        // AsyncStorage.removeItem("access_token")
                         this.props.navigation.replace('Login')
                     }
                 }, error => {
-                    // alert("No Internet Connection")
-                    // this.props.navigation.replace('Login')
                     Alert.alert(
                         'Failed!',
                         'No Internet Connection.',
@@ -58,7 +50,6 @@ class StartUp extends Component {
             }
             // Move to login screen if network failed.
             else {
-                // console.log("login")
                 this.props.navigation.replace('Login')
             }
         });

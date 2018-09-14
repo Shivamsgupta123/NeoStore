@@ -175,7 +175,7 @@ export default styles = StyleSheet.create({
         width: 7,
         height: 7,
     },
-    checkboxContainer: {
+    checkboxView: {
         width: 12,
         height: 12,
         borderColor: '#ffffff',
@@ -191,6 +191,11 @@ export default styles = StyleSheet.create({
         fontWeight: 'bold',
         fontFamily: FontMedium,
         padding: 1
+    },
+    checkboxClick: {
+        color: "white",
+        fontWeight: 'bold',
+        fontSize: 14
     }
 
 

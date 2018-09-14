@@ -8,6 +8,7 @@ import { HeaderColor } from '../../../utils/Colors';
 import SplashScreen from 'react-native-splash-screen';
 import { UserObject } from '../../../lib/UserProvider';
 
+
 export default class Home extends Component {
     constructor(props) {
         super(props)
@@ -34,7 +35,7 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        console.log("method")
+        // console.log("method")
         SplashScreen.hide()
         BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
     }

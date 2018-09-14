@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TouchableOpacity, SafeAreaView } from 'react-native';
 import { Icon } from '../../utils/Icon/Icon';
 import styles from './Styles';
 import { AsyncStorage } from 'react-native';
@@ -45,6 +45,7 @@ class Drawer extends Component {
     }
     render() {
         return (
+
             <View style={styles.mainview}>
                 {/* <View style={{ alignItems: 'center', padding: 20 }}> */}
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Myaccount')}>
@@ -123,6 +124,7 @@ class Drawer extends Component {
                 </View>
                 {/* </ScrollView> */}
             </View>
+
         );
     }
 }
