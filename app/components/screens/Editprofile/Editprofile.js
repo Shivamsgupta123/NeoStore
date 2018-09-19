@@ -43,7 +43,11 @@ class Editprofile extends Component {
     submit() {
         console.log("avatar", this.state.avatarSource)
         if (this.state.avatarSource == null)
-            alert("Upload profile image")
+            Toast.show({
+                text: 'Upload Profile Image',
+                duration: 2000,
+                type: "warning"
+            })
         else {
             this.setState({ Loading: true })
             let formData = new FormData();
@@ -166,7 +170,7 @@ class Editprofile extends Component {
                         </Left>
                         <Text style={styles.headertext}>Edit Profile</Text>
                         <Right>
-                            <Icon name="search" size={22} style={styles.headericon} />
+                            {/* <Icon name="search" size={22} style={styles.headericon} /> */}
                         </Right>
                     </Header>
 
@@ -175,7 +179,7 @@ class Editprofile extends Component {
                             <View style={styles.mainview}>
                                 <TouchableOpacity onPress={() => this.takeimage()} >
                                     <View style={styles.profileimage}>
-                                        {this.state.avatarSource === null ? <Image style={styles.profileimage} source={{ uri: this.state.profileimage }} /> :
+                                        {this.state.avatarSource === null ? <Image style={styles.profileimage} source={require('../../../assets/images/user.png')} /> :
                                             <Image style={styles.profileimage} source={this.state.avatarSource} />
                                         }
                                     </View>
@@ -205,7 +209,8 @@ class Editprofile extends Component {
                                 <View style={styles.view3}>
                                     <Icon name="cake" size={20} style={styles.cakeicon} />
                                     <TouchableOpacity onPress={() => this.DatePickerMainFunctionCall()}>
-                                        <Text style={styles.dob}>{this.state.DateText}</Text>
+                                        {this.state.DateText == null ? <Text style={styles.dob}>24-12-2000</Text> :
+                                            <Text style={styles.dob}>{this.state.DateText}</Text>}
                                     </TouchableOpacity>
                                     <DatePickerDialog ref="DatePickerDialog" onDatePicked={(d) => this.onDatePickedFunction(d)} />
                                 </View>

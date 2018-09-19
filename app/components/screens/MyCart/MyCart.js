@@ -164,7 +164,7 @@ class MyCart extends Component {
                         <Text style={styles.headertitle}>My Cart</Text>
                     </Body>
                     <Right style={{ paddingRight: 7 }}>
-                        <Icon name="search" size={22} style={styles.iconback} />
+                        {/* <Icon name="search" size={22} style={styles.iconback} /> */}
                     </Right>
                 </Header>
                 {this.state.fetcheddata.data == null || this.state.fetcheddata.data.length == 0 ? <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}><Text>Cart Is Empty!</Text></View> :

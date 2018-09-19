@@ -27,14 +27,14 @@ class Myaccount extends Component {
                             <Text style={styles.headertitle}>My Account</Text>
                         </Body>
                         <Right>
-                            <Icon name="search" size={22} style={styles.icon} />
+                            {/* <Icon name="search" size={22} style={styles.icon} /> */}
                         </Right>
                     </Header>
                     <ScrollView>
 
                         <View style={styles.mainview}>
-
-                            <Image style={styles.profileimage} source={{ uri: this.props.state.user_data.profile_pic }} />
+                            {this.props.state.user_data.profile_pic == null ? <Image style={styles.profileimage} source={require('../../../assets/images/user.png')} /> :
+                                <Image style={styles.profileimage} source={{ uri: this.props.state.user_data.profile_pic }} />}
                             <View style={styles.view3}>
                                 <Icon name="user" size={25} style={styles.iconpadding} />
                                 <TextInput style={styles.textinput} editable={false} placeholder={this.props.state.user_data.first_name} placeholderTextColor="white" ></TextInput>
@@ -58,7 +58,9 @@ class Myaccount extends Component {
 
                             <View style={styles.view3}>
                                 <Icon name="cake" size={20} style={styles.cakeicon} />
-                                <TextInput style={styles.textinput} editable={false} placeholder={this.props.state.user_data.dob} placeholderTextColor="white" ></TextInput>
+                                {/* {console.log("User DOB", this.props.state.user_data.dob)} */}
+                                {this.props.state.user_data.dob == null ? <TextInput style={styles.textinput} editable={false} placeholder="24-12-2000" placeholderTextColor="white" ></TextInput> :
+                                    <TextInput style={styles.textinput} editable={false} placeholder={this.props.state.user_data.dob} placeholderTextColor="white" ></TextInput>}
                             </View>
 
                             <TouchableOpacity style={styles.loginbutton} onPress={() => this.props.navigation.navigate('Editprofile')}>

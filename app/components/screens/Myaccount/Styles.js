@@ -38,6 +38,8 @@ export default styles = StyleSheet.create({
         width: 110,
         height: 110,
         borderRadius: 55,
+        // borderWidth: 2,
+        // borderColor: White
     },
     backgroundimage: {
         flex: 1, borderColor: "red",

@@ -13,6 +13,7 @@ import Stars from 'react-native-stars';
 import ImageZoom from 'react-native-image-pan-zoom';
 import { connect } from "react-redux";
 import { addUpdateData } from '../../../redux/actions/UserData_Action';
+import { UserObject } from '../../../lib/UserProvider'
 
 // const addUpdateData = (data) => {
 //     return {
@@ -84,10 +85,10 @@ class Productdetail extends Component {
             console.log(error)
         }
         )
-
     }
 
     getimage() {
+        console.log("images", this.state.fetcheddata.product_images)
         var image = [];
         this.state.fetcheddata.product_images.forEach((img, index) => {
             image.push(
@@ -191,7 +192,7 @@ class Productdetail extends Component {
     // sharing on media
     shareon() {
         Share.share({
-            message: "Shivam want to share - \n " + "Name:" + this.state.fetcheddata.name + ",\n Producer:" + this.state.fetcheddata.producer + ",\n Rating:" + this.state.fetcheddata.rating + ",\n Cost:" + this.state.fetcheddata.cost,
+            message: UserObject.user_data.first_name + " want to share - \n " + "Name:" + this.state.fetcheddata.name + ",\n Producer:" + this.state.fetcheddata.producer + ",\n Rating:" + this.state.fetcheddata.rating + ",\n Cost:" + this.state.fetcheddata.cost,
             url: 'http://bam.tech',
             title: 'Wow, did you see that?'
         }, {

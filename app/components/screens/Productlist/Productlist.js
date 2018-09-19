@@ -75,7 +75,7 @@ export default class Productlist extends Component {
                     <Text style={styles.headertext}>{this.props.navigation.state.params.Title}</Text>
 
                     <Right style={{ paddingRight: 10 }}>
-                        <Icon name="search" size={20} style={styles.backicon} />
+                        {/* <Icon name="search" size={20} style={styles.backicon} /> */}
                     </Right>
                 </Header>
 

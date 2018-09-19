@@ -50,7 +50,9 @@ class Drawer extends Component {
                 {/* <View style={{ alignItems: 'center', padding: 20 }}> */}
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Myaccount')}>
                     <View style={{ alignItems: 'center', padding: 20 }}>
-                        <Image style={styles.profileimage} source={{ uri: this.props.state.user_data.profile_pic }} />
+                        {/* {console.log("UserImage", this.props.state.user_data.profile_pic)} */}
+                        {this.props.state.user_data.profile_pic == null ? <Image style={styles.profileimage} source={require('../../assets/images/user.png')} /> :
+                            <Image style={styles.profileimage} source={{ uri: this.props.state.user_data.profile_pic }} />}
                         <Text style={styles.username}>{this.props.state.user_data.first_name} {this.props.state.user_data.last_name}</Text>
                         <Text style={styles.useremail}>{this.props.state.user_data.email}</Text></View>
 

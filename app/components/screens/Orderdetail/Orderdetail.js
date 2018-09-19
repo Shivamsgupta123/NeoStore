@@ -54,8 +54,6 @@ export default class Orderdetail extends Component {
         // console.log("ind", index)
         this.setState({ Quantity: value })
         console.log("qty", this.state.Quantity)
-
-
     }
 
     render() {
@@ -75,11 +73,8 @@ export default class Orderdetail extends Component {
                     <Right>
                         <Icon name="search" size={22} style={styles.headerricon} />
                     </Right>
-
                 </Header>
-
                 <View>
-
 
                     {/* Display cart items */}
                     <FlatList

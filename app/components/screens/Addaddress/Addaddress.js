@@ -141,7 +141,7 @@ export default class Addaddress extends Component {
                         <Text style={styles.headertitle}>Add Address</Text>
                     </Body>
                     <Right style={{ paddingRight: 8 }}>
-                        <Icon name="search" size={22} style={styles.headericon} />
+                        {/* <Icon name="search" size={22} style={styles.headericon} /> */}
                     </Right>
 
                 </Header>

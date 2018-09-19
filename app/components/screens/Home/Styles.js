@@ -121,7 +121,7 @@ export default styles = StyleSheet.create({
 
         flexDirection: 'column',
         marginHorizontal: 40 / 3,
-        marginVertical: 45 / 3,
+        marginVertical: 15,
         marginBottom: 15,
 
     },
@@ -152,6 +152,12 @@ export default styles = StyleSheet.create({
         width: '48%',
         height: '90%',
         backgroundColor: '#fe3f3f',
+        shadowOpacity: 0.75,
+        shadowRadius: 5,
+        shadowColor: "black",
+        shadowOffset: { height: 5, width: 5 },
+        elevation: 5
+
     },
     boxtop2: {
         // padding: Platform.OS === 'ios' ? 20 : 15,
@@ -163,6 +169,10 @@ export default styles = StyleSheet.create({
         width: '48%',
         height: '90%',
         backgroundColor: '#bb0100',
+        shadowOpacity: 0.75,
+        shadowRadius: 5,
+        shadowColor: "black",
+        shadowOffset: { height: 5, width: 5 },
     },
     boxbottom1: {
         paddingLeft: Platform.OS === 'ios' ? 20 : 16,
@@ -174,6 +184,10 @@ export default styles = StyleSheet.create({
         width: '48%',
         height: '90%',
         backgroundColor: '#e91b1a',
+        shadowOpacity: 0.75,
+        shadowRadius: 5,
+        shadowColor: "black",
+        shadowOffset: { height: 5, width: 5 },
     },
     boxbottom2: {
         paddingTop: Platform.OS === 'ios' ? 20 : 20,
@@ -185,6 +199,10 @@ export default styles = StyleSheet.create({
         width: '48%',
         height: '90%',
         backgroundColor: '#9e0100',
+        shadowOpacity: 0.75,
+        shadowRadius: 5,
+        shadowColor: "black",
+        shadowOffset: { height: 5, width: 5 },
     },
     icontext1: {
         textAlign: 'right',

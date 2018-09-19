@@ -17,7 +17,7 @@ export let UserObject = {
 export const UserProvider = {
     setUserData: (response) => {
         UserObject = response
-        // console.log("userobj", UserObject)
+        console.log("userobj", UserObject)
     },
     setUserInfo: (key, value) => {
         UserObject[key] = value

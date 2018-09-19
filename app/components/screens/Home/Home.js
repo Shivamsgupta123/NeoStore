@@ -54,7 +54,7 @@ export default class Home extends Component {
                     </Left>
                     <Text style={styles.headerText}>NeoSTORE</Text>
                     <Right>
-                        <Icon name="search" size={22} style={styles.headericon2} />
+                        {/* <Icon name="search" size={22} style={styles.headericon2} /> */}
                     </Right>
                 </Header>
 
