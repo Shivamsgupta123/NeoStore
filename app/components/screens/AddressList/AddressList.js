@@ -49,8 +49,7 @@ class AddressList extends Component {
         this.address1 = JSON.parse(this.address1)
         this.index = this.address1.length
         this.setState({ autoplay: false })
-        // console.log("adresses", this.address1)
-        // console.log("addressindex", this.addressindex)
+
         this.options.prefilledInformation.billingAddress.name = this.address1[this.addressindex].Name
         this.options.prefilledInformation.billingAddress.line1 = this.address1[this.addressindex].address
         this.options.prefilledInformation.billingAddress.line2 = this.address1[this.addressindex].landmark
@@ -91,7 +90,6 @@ class AddressList extends Component {
             text: 'Address Deleted.',
             duration: 2000,
             type: "success"
-
         })
         this.setState({ autoplay: true })
     }
@@ -135,7 +133,6 @@ class AddressList extends Component {
                         formData.append("address", this.address1[this.addressindex].address);
                         GlobalAPI(placeorder, "POST", formData, null, response => {
                             if (response.status == 200) {
-
                                 Vibration.vibrate(200)
                                 this.props.addUpdateData({ total_carts: 0 })
                                 Toast.show({

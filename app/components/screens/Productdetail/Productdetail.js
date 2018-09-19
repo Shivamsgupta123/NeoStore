@@ -58,7 +58,8 @@ class Productdetail extends Component {
         this.fetchResult()
     }
     // Fetching product detail from API
-    fetchResult() {
+    fetchResult = () => {
+        console.log("method called")
         let url = productdetail + productid + this.props.navigation.state.params.Id;
         return GlobalAPI(url, "GET", null, null, response => {
             if (response.status == 200) {
@@ -69,21 +70,24 @@ class Productdetail extends Component {
                     img1: response.data.product_images[0].image,
                 }
                 );
+                console.log("method called12")
+                // console.log("prodetail", this.state.fetcheddata.product_images[1].image)
             }
-        }, error => {
-            // alert("No Internet Connection!")
-            Alert.alert(
-                'Failed!',
-                'No Internet Connection.',
-                [
-                    // { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-                    { text: 'Retry', onPress: () => this.fetchResult() },
-                ],
-                { cancelable: false }
-            )
-            this.setState({ Loading: false })
-            console.log(error)
-        }
+        },
+            error => {
+                // alert("No Internet Connection!")
+                Alert.alert(
+                    'Failed!',
+                    'No Internet Connection.',
+                    [
+                        { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                        { text: 'Retry', onPress: () => this.fetchResult() },
+                    ],
+                    { cancelable: false }
+                )
+                this.setState({ Loading: false })
+                console.log(error)
+            }
         )
     }
 
@@ -192,7 +196,7 @@ class Productdetail extends Component {
     // sharing on media
     shareon() {
         Share.share({
-            message: UserObject.user_data.first_name + " want to share - \n " + "Name:" + this.state.fetcheddata.name + ",\n Producer:" + this.state.fetcheddata.producer + ",\n Rating:" + this.state.fetcheddata.rating + ",\n Cost:" + this.state.fetcheddata.cost,
+            message: UserObject.user_data.first_name + " want to share - \n " + "Name:" + this.state.fetcheddata.name + ",\n Producer:" + this.state.fetcheddata.producer + ",\n Rating:" + this.state.fetcheddata.rating + ",\n Cost:" + this.state.fetcheddata.cost + ",\n Image:" + this.state.fetcheddata.product_images[1].image,
             url: 'http://bam.tech',
             title: 'Wow, did you see that?'
         }, {

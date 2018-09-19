@@ -45,7 +45,7 @@ export default class Home extends Component {
 
     render() {
         return (
-            <View style={{ height: Dimensions.get('window').height }}>
+            <View>
                 <Header style={{ backgroundColor: HeaderColor }}>
                     <Left>
                         <Button transparent onPress={() => this.props.navigation.openDrawer()}>

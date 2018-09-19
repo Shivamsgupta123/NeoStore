@@ -1,8 +1,8 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 // import { ButtonText } from '../../../Utils/Colors';
-import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
-import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
-import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
+import { White, ButtonText } from '../../../utils/Colors';
+import { HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
+import { FontBold, FontMedium } from '../../../utils/Fonts';
 
 export default styles = StyleSheet.create({
 
@@ -119,7 +119,7 @@ export default styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         paddingLeft: Platform.OS === 'ios' ? 0 : 8,
-        paddingTop: Platform.OS === "ios" ? 0 : 6,
+        paddingTop: Platform.OS === "ios" ? 0 : 8,
         color: White
     },
     cakeicon: {

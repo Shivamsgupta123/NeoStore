@@ -5,7 +5,8 @@ import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, Heade
 import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 export default styles = StyleSheet.create({
     headertitle: {
-        color: White, textAlign: 'center',
+        color: White,
+        textAlign: 'center',
         fontSize: HeaderText,
         width: 250,
         fontWeight: HeaderTextFontWeight,
@@ -96,7 +97,6 @@ export default styles = StyleSheet.create({
         backgroundColor: ButtonText,
         height: Platform.OS === 'ios' ? "45%" : "50%",
         width: "94%",
-        // marginTop: "4%",
         borderRadius: 10,
         fontSize: 5,
         borderColor: White,
@@ -170,7 +170,7 @@ export default styles = StyleSheet.create({
         paddingRight: 6
     },
     iconback: {
-        color: "#f9fbff",
+        color: White,
         textShadowColor: 'black',
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 5,

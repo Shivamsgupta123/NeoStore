@@ -1,7 +1,7 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
 // import { ButtonText } from '../../../Utils/Colors';
-import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
-import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
+import { White, ButtonText, } from '../../../utils/Colors';
+import { HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
 import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 
 export default styles = StyleSheet.create({

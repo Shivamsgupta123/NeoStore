@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { ImageBackground, TextInput, StyleSheet, Text, Platform, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
+import { ImageBackground, TextInput, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Icon } from '../../../utils/Icon/Icon';
-import { Container, Header, Left, Body, Right, Button, Title } from 'native-base';
+import { Header, Left, Body, Right, Button, } from 'native-base';
 import styles from './Styles';
 import { HeaderColor } from '../../../utils/Colors';
 import { connect } from "react-redux";

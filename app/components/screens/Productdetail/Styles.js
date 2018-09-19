@@ -213,7 +213,10 @@ export default styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         paddingBottom: 15,
-        alignItems: "center"
+        alignItems: "center",
+        // width: "100%",
+        // backgroundColor: "red"
+
     },
     productdescription: {
         color: "#111111",
@@ -294,7 +297,6 @@ export default styles = StyleSheet.create({
     mainview: {
         flex: 1,
         // backgroundColor: "red"
-
         height: Dimensions.get('window').height
     },
     productsubimage: {

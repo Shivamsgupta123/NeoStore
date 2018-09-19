@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, ImageBackground, TextInput, Text, View, KeyboardAvoidingView, Image, ScrollView, Dimensions, TouchableOpacity, Alert, Vibration } from 'react-native';
+import { ImageBackground, TextInput, Text, View, KeyboardAvoidingView, Image, ScrollView, TouchableOpacity, Alert, Vibration } from 'react-native';
 import { Icon } from '../../../utils/Icon/Icon';
 import { Header, Left, Right, Button, Toast } from 'native-base';
 import styles from './Styles';
-import { White, HeaderColor } from '../../../utils/Colors';
+import { HeaderColor } from '../../../utils/Colors';
 import { DatePickerDialog } from 'react-native-datepicker-dialog'
 import moment from 'moment';
 import ImagePicker from 'react-native-image-picker';
@@ -198,7 +198,7 @@ class Editprofile extends Component {
 
                                 <View style={styles.view3}>
                                     <Icon name="mail" size={22} style={styles.mailicon} />
-                                    <TextInput onSubmitEditing={() => { this.focusNextField('four'); }} returnKeyType={"next"} ref={input => { this.inputs['three'] = input; }} onChangeText={(text) => this.setState({ Email: text })} style={styles.textinput} defaultValue={this.state.Email} placeholderTextColor="white" ></TextInput>
+                                    <TextInput onSubmitEditing={() => { this.focusNextField('four'); }} returnKeyType={"next"} ref={input => { this.inputs['three'] = input; }} onChangeText={(text) => this.setState({ Email: text })} style={styles.textinput} defaultValue={this.state.Email} editable={false} placeholderTextColor="white" ></TextInput>
                                 </View>
 
                                 <View style={styles.view3}>

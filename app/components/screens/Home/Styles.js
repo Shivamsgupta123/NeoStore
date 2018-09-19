@@ -208,7 +208,7 @@ export default styles = StyleSheet.create({
         textAlign: 'right',
         fontWeight: '500',
         fontSize: Platform.OS === 'ios' ? 23 : 23,
-        color: '#ffffff',
+        color: White,
         fontFamily: FontMedium,
         // marginTop: 5
         textShadowColor: 'black',
@@ -219,7 +219,7 @@ export default styles = StyleSheet.create({
         textAlign: 'left',
         fontWeight: '500',
         fontSize: 25,
-        color: '#ffffff',
+        color: White,
         fontFamily: FontMedium,
         textShadowColor: 'black',
         textShadowOffset: { width: 1, height: 2 },

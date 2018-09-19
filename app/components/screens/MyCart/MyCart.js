@@ -146,12 +146,8 @@ class MyCart extends Component {
     }
 
     render() {
-        // console.log("fetchdata", this.state.fetcheddata)
-        // console.log("data lenght", this.state.fetcheddata.data)
         this.leftOpenValue = Dimensions.get('window').width;
         this.rightOpenValue = -Dimensions.get('window').width;
-        // if (this.state.Loading)
-        //     return <ActivityIndicator style={{ flex: 1, justifyContent: 'center' }} size="large" color="#e91b1a" />
         return (
             <View pointerEvents={this.state.Loading ? "none" : "auto"} style={{ flex: 1, backgroundColor: "white" }}>
                 <Header style={{ backgroundColor: HeaderColor }}>
