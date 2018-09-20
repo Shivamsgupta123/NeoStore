@@ -1,5 +1,5 @@
 import { Platform, StyleSheet, Dimensions } from 'react-native';
-import { White, ButtonText, PlusIconBackground, HeaderColor } from '../../../utils/Colors';
+import { White, ButtonText, PlusIconBackground, HeaderColor, ProductProducer } from '../../../utils/Colors';
 import { LogoSize, LogoFontWeight, LogoPadding, TextInputFont, RegularFon, HeaderTextFontWeight, HeaderText, ButtonTextSize } from '../../../utils/FontSizes';
 import { FontBold, FontMedium, FontBook } from '../../../utils/Fonts';
 
@@ -13,30 +13,22 @@ export default styles = StyleSheet.create({
         paddingRight: Platform.OS === 'ios' ? 0 : 14,
         fontFamily: FontMedium
     },
-    buttonview: {
-        flex: 1,
-        paddingTop: "2%",
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center"
+    productproducer: {
+        color: ProductProducer,
+        fontSize: 15,
+        marginLeft: 8,
+        fontFamily: FontBook
     },
-    orderbutton: {
-        borderWidth: 1,
-        backgroundColor: White,
-        height: 55,
-        width: Platform.OS === 'ios' ? 347 : 330,
-        marginTop: 18,
-        borderRadius: 10,
-        fontSize: 5,
-        borderColor: White,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    orderbuttontext: {
+    productcost: {
         color: HeaderColor,
-        fontWeight: "bold",
-        fontSize: ButtonTextSize,
-        fontFamily: FontMedium,
-        paddingTop: Platform.OS === "ios" ? 7 : 0
+        fontSize: 23,
+
+        fontWeight: '600'
     },
+    shareicon: {
+        color: "#7F7F7F",
+
+
+    },
+
 })

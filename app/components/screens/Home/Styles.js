@@ -156,7 +156,7 @@ export default styles = StyleSheet.create({
         shadowRadius: 5,
         shadowColor: "black",
         shadowOffset: { height: 5, width: 5 },
-        elevation: 5
+        elevation: 10
 
     },
     boxtop2: {
@@ -173,6 +173,7 @@ export default styles = StyleSheet.create({
         shadowRadius: 5,
         shadowColor: "black",
         shadowOffset: { height: 5, width: 5 },
+        elevation: 10
     },
     boxbottom1: {
         paddingLeft: Platform.OS === 'ios' ? 20 : 16,
@@ -188,6 +189,7 @@ export default styles = StyleSheet.create({
         shadowRadius: 5,
         shadowColor: "black",
         shadowOffset: { height: 5, width: 5 },
+        elevation: 10
     },
     boxbottom2: {
         paddingTop: Platform.OS === 'ios' ? 20 : 20,
@@ -203,6 +205,7 @@ export default styles = StyleSheet.create({
         shadowRadius: 5,
         shadowColor: "black",
         shadowOffset: { height: 5, width: 5 },
+        elevation: 10
     },
     icontext1: {
         textAlign: 'right',

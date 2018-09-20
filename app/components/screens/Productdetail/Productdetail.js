@@ -73,6 +73,11 @@ class Productdetail extends Component {
                 console.log("method called12")
                 // console.log("prodetail", this.state.fetcheddata.product_images[1].image)
             }
+            else {
+                console.log(response.user_msg)
+                this.setState({ Loading: false })
+            }
+            console.log(response.user_msg)
         },
             error => {
                 // alert("No Internet Connection!")
